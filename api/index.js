@@ -157,6 +157,11 @@ app.post('/api/stats/visit', async (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Backend running on http://localhost:${PORT}`);
-});
+// Pour Vercel : Exporter l'application au lieu d'écouter un port
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(3000, () => {
+    console.log('🚀 Backend running on http://localhost:3000');
+  });
+}
+
+module.exports = app;
