@@ -1,6 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-const { PrismaClient } = require('@prisma/client');
+import express from 'express';
+import cors from 'cors';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 const app = express();
@@ -164,4 +164,4 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-module.exports = app;
+export default app;

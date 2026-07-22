@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx prisma db push --accept-data-loss && node scripts/scrape.js && node scripts/migrate_fcfa.js && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
     "postinstall": "prisma generate"
