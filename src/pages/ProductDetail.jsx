@@ -32,8 +32,11 @@ const ProductDetail = () => {
     product.image.replace('_1.jpg', '_2.jpg')
   ];
 
-  const baseRef = product.ref.substring(0, product.ref.length - 1);
-  const variants = products.filter(p => p.ref.substring(0, p.ref.length - 1) === baseRef);
+  const groupKey = product.groupId || product.ref.substring(0, product.ref.length - 1);
+  const variants = products.filter(p => {
+    const pKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+    return pKey === groupKey;
+  });
 
   return (
     <div style={{ paddingTop: '120px', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>

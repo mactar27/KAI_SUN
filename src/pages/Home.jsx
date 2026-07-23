@@ -77,14 +77,15 @@ const Home = () => {
               const filteredProducts = products.filter(p => activeFilter === 'all' || p.gender === activeFilter);
               const groupedProductsMap = new Map();
               filteredProducts.forEach(p => {
-                const baseRef = p.ref.substring(0, p.ref.length - 1);
-                if (!groupedProductsMap.has(baseRef)) {
-                  groupedProductsMap.set(baseRef, {
+                // Use explicit groupId if set, otherwise fall back to ref minus last char
+                const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+                if (!groupedProductsMap.has(groupKey)) {
+                  groupedProductsMap.set(groupKey, {
                     baseProduct: p,
                     variantsCount: 1
                   });
                 } else {
-                  groupedProductsMap.get(baseRef).variantsCount++;
+                  groupedProductsMap.get(groupKey).variantsCount++;
                 }
               });
               
