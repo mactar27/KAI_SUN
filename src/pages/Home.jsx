@@ -56,27 +56,16 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="cat-tiles">
-        <div class="wrap">
-          <div class="cat-grid">
-            <a href="#collection" class="cat-tile">
-              <span class="cat-tile-label">Pour elle</span>
-              <span class="cat-tile-cta">Découvrir →</span>
-            </a>
-            <a href="#collection" class="cat-tile">
-              <span class="cat-tile-label">Pour lui</span>
-              <span class="cat-tile-cta">Découvrir →</span>
-            </a>
 
-          </div>
-        </div>
-      </section>
 
 
 
       
       <section id="collection">
         <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, textTransform: 'uppercase' }}>Nouveautés</h2>
+          </div>
           <div className="filter-bar">
             <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => handleFilter('all')}>Tout</button>
             <button className={`filter-btn ${activeFilter === 'femme' ? 'active' : ''}`} onClick={() => handleFilter('femme')}>Femme</button>
@@ -86,6 +75,7 @@ const Home = () => {
           <div className="grid">
             {products
               .filter(p => activeFilter === 'all' || p.gender === activeFilter)
+              .slice(0, 12)
               .map(product => (
                 <div key={product.id} className="card" data-gender={product.gender}>
                   <Link to={`/product/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
