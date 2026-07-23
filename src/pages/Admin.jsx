@@ -340,7 +340,7 @@ const Admin = () => {
                             <img
                               src={product.image + (product.image.startsWith('http') ? '?width=80&height=80' : '')}
                               alt={product.ref}
-                              style={{ width: '70px', height: '70px', objectFit: 'cover', borderRadius: '10px', border: '2px solid #e5e5e5', display: 'block' }}
+                              style={{ width: '70px', height: '70px', objectFit: 'contain', borderRadius: '10px', border: '2px solid #e5e5e5', display: 'block', background: '#f3f4f6' }}
                               onError={e => { e.target.src = 'https://placehold.co/70x70/f0f0f0/aaa?text=?'; e.target.onerror = null; }}
                             />
                             <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#444', marginTop: '4px', fontWeight: 600 }}>{product.ref}</div>
@@ -396,7 +396,7 @@ const Admin = () => {
                         }}
                       >
                         {isSelected && <div style={{ position: 'absolute', top: '6px', right: '6px', width: '20px', height: '20px', borderRadius: '50%', background: '#16a34a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 900 }}>✓</div>}
-                        <img src={product.image + '?width=90'} alt={product.ref} style={{ width: '85px', height: '85px', objectFit: 'cover', borderRadius: '8px', display: 'block', margin: '0 auto 8px' }} />
+                        <img src={product.image + '?width=90'} alt={product.ref} style={{ width: '85px', height: '85px', objectFit: 'contain', borderRadius: '8px', display: 'block', margin: '0 auto 8px', background: '#f9fafb' }} />
                         <div style={{ fontSize: '11px', fontWeight: 700, fontFamily: 'monospace' }}>{product.ref}</div>
                       </div>
                     );
@@ -441,7 +441,7 @@ const Admin = () => {
                         }}
                       >
                         {isSelected && <div style={{ position: 'absolute', top: '6px', right: '6px', width: '20px', height: '20px', borderRadius: '50%', background: '#7c3aed', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 900 }}>✓</div>}
-                        <img src={product.image + '?width=85'} alt={product.ref} style={{ width: '85px', height: '85px', objectFit: 'cover', borderRadius: '8px', display: 'block', margin: '0 auto 8px' }} />
+                        <img src={product.image + '?width=85'} alt={product.ref} style={{ width: '85px', height: '85px', objectFit: 'contain', borderRadius: '8px', display: 'block', margin: '0 auto 8px', background: '#f9fafb' }} />
                         <div style={{ fontSize: '11px', fontWeight: 700, fontFamily: 'monospace' }}>{product.ref}</div>
                       </div>
                     );
