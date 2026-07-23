@@ -184,6 +184,20 @@ const Admin = () => {
     await refreshProducts();
   };
 
+  const deleteGroup = async (groupId) => {
+    if (!confirm("Voulez-vous vraiment dégrouper tous ces produits ?")) return;
+    const members = groups[groupId] || [];
+    const requests = members.map(p => 
+      fetch('/api/products', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: p.id, groupId: 'SOLO_' + p.ref, action: 'updateGroup' })
+      })
+    );
+    await Promise.all(requests);
+    await refreshProducts();
+  };
+
   const groupEntries = Object.entries(groups).sort((a, b) => b[1].length - a[1].length);
 
   return (
@@ -344,16 +358,31 @@ const Admin = () => {
                             {members.length > 1 ? `${members.length} coloris` : '1 produit seul'}
                           </span>
                         </div>
-                        <button
-                          onClick={() => startEditGroup(groupId)}
-                          style={{
-                            background: '#f0f9ff', color: '#0369a1', border: '1.5px solid #bae6fd',
-                            padding: '7px 16px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer',
-                            fontSize: '13px'
-                          }}
-                        >
-                          ✏️ Modifier le groupe
-                        </button>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          {members.length > 1 && (
+                            <button
+                              onClick={() => deleteGroup(groupId)}
+                              title="Dégrouper tout"
+                              style={{
+                                background: '#fef2f2', color: '#b91c1c', border: '1.5px solid #fecaca',
+                                padding: '7px 12px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer',
+                                fontSize: '13px'
+                              }}
+                            >
+                              🗑️
+                            </button>
+                          )}
+                          <button
+                            onClick={() => startEditGroup(groupId)}
+                            style={{
+                              background: '#f0f9ff', color: '#0369a1', border: '1.5px solid #bae6fd',
+                              padding: '7px 16px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer',
+                              fontSize: '13px'
+                            }}
+                          >
+                            ✏️ Modifier le groupe
+                          </button>
+                        </div>
                       </div>
                       <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
                         {members.map(product => (
