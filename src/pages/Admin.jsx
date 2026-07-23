@@ -154,7 +154,10 @@ const Admin = () => {
       if (requests.length > 0) {
         const responses = await Promise.all(requests);
         const failed = responses.filter(r => !r.ok);
-        if (failed.length > 0) throw new Error("Certaines mises à jour ont échoué.");
+        if (failed.length > 0) {
+          const errorData = await failed[0].json().catch(() => ({}));
+          throw new Error(errorData.error || "Certaines mises à jour ont échoué côté serveur.");
+        }
       }
       
       await refreshProducts();
