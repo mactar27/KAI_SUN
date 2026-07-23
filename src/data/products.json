@@ -155,19 +155,6 @@
     ]
   },
   {
-    "id": "NDL9914",
-    "ref": "NDL9914",
-    "gender": "femme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9914 - Fournisseur Femme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9914_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9914_3.jpg"
-    ]
-  },
-  {
     "id": "NDL9880",
     "ref": "NDL9880",
     "gender": "femme",
@@ -309,19 +296,6 @@
     ]
   },
   {
-    "id": "NDL9570",
-    "ref": "NDL9570",
-    "gender": "femme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/5/9570_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9570 - Fournisseur Femme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/5/9570_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/5/9570_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/5/9570_3.jpg"
-    ]
-  },
-  {
     "id": "NDL9571",
     "ref": "NDL9571",
     "gender": "femme",
@@ -450,19 +424,6 @@
     ]
   },
   {
-    "id": "NDL9712",
-    "ref": "NDL9712",
-    "gender": "homme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/7/9712_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9712 - Fournisseur Homme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/7/9712_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/7/9712_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/7/9712_3.jpg"
-    ]
-  },
-  {
     "id": "NDL9864",
     "ref": "NDL9864",
     "gender": "homme",
@@ -486,19 +447,6 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9899_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9899_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9899_3.jpg"
-    ]
-  },
-  {
-    "id": "NDL9875",
-    "ref": "NDL9875",
-    "gender": "homme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/8/9875_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9875 - Fournisseur Homme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/8/9875_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/8/9875_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/8/9875_3.jpg"
     ]
   },
   {
@@ -575,19 +523,6 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9869_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9869_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9869_3.jpg"
-    ]
-  },
-  {
-    "id": "NDL9901",
-    "ref": "NDL9901",
-    "gender": "homme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9901_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9901 - Fournisseur Homme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/9/9901_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9901_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9901_3.jpg"
     ]
   },
   {
@@ -690,19 +625,6 @@
     "thumbnails": [
       "https://www.solo-solis.com/media/catalog/product/8/3/8332_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/8/3/8332_3.jpg"
-    ]
-  },
-  {
-    "id": "NDL9857",
-    "ref": "NDL9857",
-    "gender": "homme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/8/9857_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9857 - Fournisseur Homme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/8/9857_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/8/9857_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/8/9857_3.jpg"
     ]
   }
 ]
