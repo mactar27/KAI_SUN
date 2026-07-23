@@ -1,7 +1,7 @@
 .hero-banner {
   height: 85vh;
   width: 100%;
-  background-image: url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=2000');
+  background-image: linear-gradient(to right, rgba(124, 116, 107, 0.95) 0%, rgba(124, 116, 107, 0.7) 45%, rgba(255, 255, 255, 0) 100%), url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=2000');
   background-size: cover;
   background-position: right center;
   display: flex;
