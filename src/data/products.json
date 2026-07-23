@@ -136,7 +136,7 @@
   {
     "id": "NDL9880",
     "ref": "NDL9880",
-    "gender": "homme",
+    "gender": "femme",
     "image": "https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg",
     "price": 25000,
     "name": "RÉF. NDL9880 - Fournisseur Femme",
@@ -145,7 +145,7 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9880_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9880_3.jpg"
     ],
-    "groupId": "GROUP_NDL988X"
+    "groupId": "SOLO_NDL9880"
   },
   {
     "id": "NDL9815",
