@@ -388,7 +388,8 @@
     "name": "RÉF. NDL9742 - Fournisseur Homme",
     "thumbnails": [
       "/images/NDL9742.png"
-    ]
+    ],
+    "groupId": "SOLO_NDL9742"
   },
   {
     "id": "NDL8318",
