@@ -6,6 +6,7 @@ import WomenCollection from './pages/WomenCollection';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Dashboard from './pages/admin/Dashboard';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/admin" element={<Dashboard />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

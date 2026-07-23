@@ -1,14 +1,14 @@
 :root {
-  /* Color Palette - Warm & Premium */
-  --color-primary: #1a1a1a;       /* Deep Charcoal */
-  --color-accent: #E07A5F;        /* Terracotta */
-  --color-accent-hover: #c46850;
-  --color-bg: #FDFBF7;            /* Warm Off-White */
+  /* Color Palette - Premium Luxury */
+  --color-primary: #111111;       /* Deep Black/Charcoal */
+  --color-accent: #b38b59;        /* Gold/Bronze */
+  --color-accent-hover: #9c7849;
+  --color-bg: #FAFAFA;            /* Very subtle off-white */
   --color-surface: #FFFFFF;
-  --color-surface-glass: rgba(255, 255, 255, 0.85);
-  --color-text: #2A2A2A;
-  --color-text-light: #666666;
-  --color-border: #EAE6DF;
+  --color-surface-glass: rgba(255, 255, 255, 0.9);
+  --color-text: #333333;
+  --color-text-light: #777777;
+  --color-border: #EEEEEE;
 
   /* Typography */
   --font-heading: 'Playfair Display', serif;
@@ -16,12 +16,12 @@
 
   /* Spacing & Sizes */
   --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
+  --spacing-sm: 1.5rem;
+  --spacing-md: 3rem;
+  --spacing-lg: 5rem;
+  --spacing-xl: 10rem;
 
-  --nav-height: 80px;
+  --nav-height: 90px;
 }
 
 /* Reset */
@@ -35,15 +35,18 @@ html, body {
   font-family: var(--font-body);
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--color-primary);
-  line-height: 1.2;
+  line-height: 1.3;
+  font-weight: 500;
 }
 
 a {
@@ -63,7 +66,7 @@ img {
 
 /* Utility Classes */
 .container {
-  max-width: 1280px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 var(--spacing-sm);
 }
@@ -73,15 +76,34 @@ img {
 }
 
 .section {
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-lg) 0;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 3.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-accent);
 }
 
 /* Glassmorphism */
 .glass-panel {
   background: var(--color-surface-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 /* Buttons */
@@ -89,16 +111,16 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 2rem;
+  padding: 1rem 2.5rem;
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: 0.95rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 0px; /* Sharp corners for luxury feel */
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .btn-primary {
@@ -108,8 +130,7 @@ img {
 
 .btn-primary:hover {
   background-color: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+  color: white;
 }
 
 .btn-accent {
@@ -118,9 +139,7 @@ img {
 }
 
 .btn-accent:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(224, 122, 95, 0.4);
+  background-color: var(--color-primary);
 }
 
 .btn-outline {
@@ -150,18 +169,19 @@ img {
 @media (max-width: 768px) {
   .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-cols-2 { grid-template-columns: 1fr; }
-  .section { padding: var(--spacing-lg) 0; }
+  .section { padding: var(--spacing-md) 0; }
+  .section-title { font-size: 2.2rem; }
 }
 @media (max-width: 480px) {
-  .grid-cols-2, .grid-cols-3, .grid-cols-4 { grid-template-columns: 1fr; }
+  .grid-cols-2, .grid-cols-3, .grid-cols-4 { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
