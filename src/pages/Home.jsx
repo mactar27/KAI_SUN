@@ -13,15 +13,16 @@ const Home = () => {
     <div>
       <HeroBanner />
       
-      <section className="section container animate-fade-in">
+      <section className="section container animate-fade-in" style={{ backgroundColor: '#F6F6F6', maxWidth: '100%', padding: '5rem 5%' }}>
+        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', textAlign: 'center', marginBottom: '0.5rem', fontWeight: 600 }}>Nouveauté</p>
         <h2 className="section-title">Nouvelle Collection</h2>
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-4" style={{ gap: '2rem' }}>
           {featuredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-        <div className="text-center" style={{ marginTop: '4rem' }}>
-          <Link to="/homme" className="btn btn-outline">Découvrir la sélection</Link>
+        <div className="text-center" style={{ marginTop: '3rem' }}>
+          <Link to="/homme" className="btn btn-outline" style={{ padding: '1rem 3rem', backgroundColor: 'white' }}>Découvrir la sélection</Link>
         </div>
       </section>
 
