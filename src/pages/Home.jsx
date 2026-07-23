@@ -5,18 +5,8 @@ import { ArrowRight, Check } from 'lucide-react';
 import { ShopContext } from '../context/ShopContext';
 
 const Home = () => {
-  const [tintValue, setTintValue] = useState(30);
   const [activeFilter, setActiveFilter] = useState('all');
   const { addToCart } = useContext(ShopContext);
-
-  const getTintName = (val) => {
-    if (val < 45 || val > 330) return 'Ambre';
-    if (val < 90) return 'Moutarde';
-    if (val < 160) return 'Vert Forêt';
-    if (val < 220) return 'Océan';
-    if (val < 280) return 'Bleu Nuit';
-    return 'Améthyste';
-  };
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);
@@ -77,44 +67,12 @@ const Home = () => {
               <span class="cat-tile-label">Pour lui</span>
               <span class="cat-tile-cta">Découvrir →</span>
             </a>
-            <a href="#essai-teintes" class="cat-tile">
-              <span class="cat-tile-label">Édition limitée</span>
-              <span class="cat-tile-cta">Découvrir →</span>
-            </a>
+
           </div>
         </div>
       </section>
 
-      <section id="essai-teintes" style={{ paddingTop: '70px', paddingBottom: '70px' }}>
-        <div className="wrap">
-          <div className="section-head">
-            <h2>Essayez la teinte.</h2>
-            <p>Faites glisser le curseur pour découvrir tous les coloris de verres disponibles sur ce modèle.</p>
-          </div>
-          <div className="tint-demo">
-            <div className="tint-frame">
-              <svg viewBox="0 0 220 100" width="100%" style={{ maxWidth: '520px' }}>
-                <ellipse id="lensL" cx="62" cy="52" rx="46" ry="38" fill="#8a5a2c" style={{ filter: `hue-rotate(${tintValue}deg)` }}/>
-                <ellipse id="lensR" cx="158" cy="52" rx="46" ry="38" fill="#8a5a2c" style={{ filter: `hue-rotate(${tintValue}deg)` }}/>
-                <ellipse cx="62" cy="52" rx="46" ry="38" fill="none" stroke="#111111" strokeWidth="6"/>
-                <ellipse cx="158" cy="52" rx="46" ry="38" fill="none" stroke="#111111" strokeWidth="6"/>
-                <path d="M108 46 Q110 40 112 46" fill="none" stroke="#111111" strokeWidth="6" strokeLinecap="round"/>
-                <path d="M16 48 L2 40" stroke="#111111" strokeWidth="6" strokeLinecap="round"/>
-                <path d="M204 48 L218 40" stroke="#111111" strokeWidth="6" strokeLinecap="round"/>
-              </svg>
-            </div>
-            <div className="tint-controls">
-              <span className="tint-name mono" id="tintName">{getTintName(tintValue)}</span>
-              <input 
-                type="range" min="0" max="360" 
-                value={tintValue} 
-                onChange={(e) => setTintValue(e.target.value)} 
-                id="tintSlider" className="tint-slider" aria-label="Choisir la teinte du verre" 
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       
       <section id="collection">
