@@ -6,7 +6,8 @@ const prisma = new PrismaClient();
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '4mb' }));
+app.use(express.urlencoded({ limit: '4mb', extended: true }));
 
 // --- PRODUCTS API ---
 
@@ -59,7 +60,7 @@ app.get('/api/orders', async (req, res) => {
       prenom: order.prenom,
       nom: order.nom,
       adresse: order.adresse,
-      cp: order.cp,
+      phone: order.cp, // On utilise la colonne cp pour stocker le phone
       ville: order.ville
     },
     items: order.items.map(item => ({
@@ -88,7 +89,7 @@ app.post('/api/orders', async (req, res) => {
           prenom: deliveryInfo.prenom,
           nom: deliveryInfo.nom,
           adresse: deliveryInfo.adresse,
-          cp: deliveryInfo.cp,
+          cp: deliveryInfo.phone, // Map phone to the 'cp' database column
           ville: deliveryInfo.ville,
           items: {
             create: items.map(item => ({

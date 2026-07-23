@@ -4,15 +4,33 @@ import { Plus, Edit, Trash2, Box, Users, BarChart } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Dashboard = () => {
-  const { products, orders, visitors, dailyVisits, addProduct, updateProduct, deleteProduct } = useContext(ShopContext);
+  const { products, orders, stats, addProduct, updateProduct, deleteProduct } = useContext(ShopContext);
   const [activeTab, setActiveTab] = useState('stats');
-  
-  // Product Form State
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  
   const [formData, setFormData] = useState({
-    name: '', price: '', costPrice: '', category: 'homme', image: '', stock: '', hoverImage: '', isNew: false
+    name: '',
+    price: '',
+    costPrice: '',
+    category: 'homme',
+    stock: '',
+    image: '',
+    hoverImage: '',
+    isNew: false
   });
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // Derived Stats
   const totalOrders = orders.length;
@@ -96,6 +114,15 @@ const Dashboard = () => {
     };
   });
 
+  const handleDeleteAll = async () => {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer TOUS les produits ? Cette action est irréversible.")) {
+      // Pour chaque produit, appeler la fonction deleteProduct (ou créer une route backend dédiée)
+      for (const product of products) {
+        await deleteProduct(product.id);
+      }
+    }
+  };
+
   const renderStats = () => (
     <div>
       <div className="grid grid-cols-4" style={{ marginBottom: '2rem' }}>
@@ -151,13 +178,28 @@ const Dashboard = () => {
     </div>
   );
 
-  const renderCatalog = () => (
+  const renderCatalog = () => {
+    const filteredProducts = products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <h2>Catalogue</h2>
-        <button className="btn btn-primary" onClick={() => handleOpenModal()} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Plus size={18} /> Ajouter un produit
-        </button>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <input 
+            type="text" 
+            placeholder="Rechercher un produit..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ padding: '0.8rem', border: '1px solid var(--color-border)', borderRadius: '4px', width: '250px' }}
+          />
+          <button className="btn btn-outline" onClick={handleDeleteAll} style={{ color: 'red', borderColor: 'red' }}>
+            Tout supprimer
+          </button>
+          <button className="btn btn-primary" onClick={() => handleOpenModal()} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Plus size={18} /> Ajouter un produit
+          </button>
+        </div>
       </div>
       <div style={{ overflowX: 'auto', background: 'white', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
@@ -172,7 +214,7 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map(product => {
+            {filteredProducts.map(product => {
               const margin = product.price - product.costPrice;
               const marginPercentage = Math.round((margin / product.price) * 100);
               return (
@@ -234,8 +276,14 @@ const Dashboard = () => {
                   <h4 style={{ color: 'var(--color-primary)' }}>Articles achetés</h4>
                   <ul style={{ padding: 0, margin: 0, listStyle: 'none' }}>
                     {order.items.map((item, idx) => (
-                      <li key={idx} style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span style={{ fontWeight: 'bold' }}>{item.quantity}x</span> {item.product.name} <span style={{ color: 'var(--color-text-light)' }}>({item.product.price}FCFA)</span>
+                      <li key={idx} style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <div style={{ width: '50px', height: '50px', backgroundColor: '#f5f5f5', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={item.product.image} alt={item.product.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        </div>
+                        <div>
+                          <span style={{ fontWeight: 'bold' }}>{item.quantity}x</span> {item.product.name} <br/>
+                          <span style={{ color: 'var(--color-text-light)', fontSize: '0.9rem' }}>({item.product.price}FCFA)</span>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -295,7 +343,11 @@ const Dashboard = () => {
                 </div>
                 <div><label style={{display:'block', marginBottom:'0.3rem'}}>Stock initial</label><input type="number" name="stock" value={formData.stock} onChange={handleChange} required style={{ width: '100%', padding: '0.8rem', border: '1px solid var(--color-border)', borderRadius: '4px' }}/></div>
               </div>
-              <div><label style={{display:'block', marginBottom:'0.3rem'}}>Lien de l'image (Ex: https://...)</label><input type="url" name="image" value={formData.image} onChange={handleChange} required style={{ width: '100%', padding: '0.8rem', border: '1px solid var(--color-border)', borderRadius: '4px' }}/></div>
+              <div>
+                <label style={{display:'block', marginBottom:'0.3rem'}}>Image du produit</label>
+                <input type="file" accept="image/*" onChange={handleImageUpload} style={{ width: '100%', padding: '0.8rem', border: '1px solid var(--color-border)', borderRadius: '4px', background: 'white' }}/>
+                {formData.image && <img src={formData.image} alt="Preview" style={{ marginTop: '1rem', width: '100px', height: '100px', objectFit: 'contain', border: '1px solid #eee' }} />}
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
                 <input type="checkbox" name="isNew" checked={formData.isNew} onChange={handleChange} id="isNew" />
                 <label htmlFor="isNew" style={{ margin: 0, cursor: 'pointer' }}>Mettre le badge "Nouveau"</label>

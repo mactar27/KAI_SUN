@@ -16,8 +16,8 @@ model Product {
   price      Float
   costPrice  Float
   category   String
-  image      String
-  hoverImage String?
+  image      String      @db.LongText
+  hoverImage String?     @db.LongText
   isNew      Boolean     @default(false)
   stock      Int         @default(0)
   orderItems OrderItem[]
