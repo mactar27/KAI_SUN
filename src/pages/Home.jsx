@@ -166,10 +166,6 @@ const Home = () => {
             <span className="trust-sub">Dès 2 paires achetées. Sur Dakar et Abidjan.</span>
           </div>
           <div className="trust-item">
-            <span className="trust-title">Garantie de 2 ans</span>
-            <span className="trust-sub">Couvre tout défaut de fabrication et casse normale.</span>
-          </div>
-          <div className="trust-item">
             <span className="trust-title">Paiement à la livraison</span>
             <span className="trust-sub">Possible pour les commandes sur Dakar.</span>
           </div>

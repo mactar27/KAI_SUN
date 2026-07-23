@@ -287,7 +287,7 @@
 
   /* ---------- TRUST STRIP ---------- */
   .trust-strip{padding:0 0 40px;}
-  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:28px 0;}
+  .trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:28px 0;}
   @media(max-width:700px){.trust-grid{grid-template-columns:1fr;gap:18px;}}
   .trust-item{display:flex;flex-direction:column;gap:4px;text-align:center;}
   .trust-title{font-weight:700;font-size:15px;color:var(--ink);text-transform:uppercase;}
