@@ -7,6 +7,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Dashboard from './pages/admin/Dashboard';
 import Footer from './components/Footer';
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/homme" element={<MenCollection />} />
           <Route path="/femme" element={<WomenCollection />} />
           <Route path="/panier" element={<Cart />} />
