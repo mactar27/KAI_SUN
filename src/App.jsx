@@ -8,6 +8,7 @@ import Checkout from './pages/Checkout';
 import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
+import AudioPlayer from './components/AudioPlayer';
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
         </Routes>
       </main>
       {!isAdmin && <Footer />}
+      {!isAdmin && <AudioPlayer />}
     </div>
   );
 }
