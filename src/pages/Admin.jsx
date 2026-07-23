@@ -123,33 +123,51 @@ const Admin = () => {
     setMode('edit-group');
   };
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const saveGroupEdit = async () => {
     if (selected.length === 0) return;
+    setIsSaving(true);
     
-    for (const p of products) {
-      const isSelected = selected.includes(p.id);
-      const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
-      const wasInGroup = groupKey === editingGroupId;
-      
-      if (isSelected && !wasInGroup) {
-        await fetch('/api/products', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: p.id, groupId: editingGroupId, action: 'updateGroup' })
-        });
-      } else if (!isSelected && wasInGroup) {
-        await fetch('/api/products', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: p.id, groupId: 'SOLO_' + p.ref, action: 'updateGroup' })
-        });
+    try {
+      const requests = [];
+      for (const p of products) {
+        const isSelected = selected.includes(p.id);
+        const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+        const wasInGroup = groupKey === editingGroupId;
+        
+        if (isSelected && !wasInGroup) {
+          requests.push(fetch('/api/products', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: p.id, groupId: editingGroupId, action: 'updateGroup' })
+          }));
+        } else if (!isSelected && wasInGroup) {
+          requests.push(fetch('/api/products', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: p.id, groupId: 'SOLO_' + p.ref, action: 'updateGroup' })
+          }));
+        }
       }
+      
+      if (requests.length > 0) {
+        const responses = await Promise.all(requests);
+        const failed = responses.filter(r => !r.ok);
+        if (failed.length > 0) throw new Error("Certaines mises à jour ont échoué.");
+      }
+      
+      await refreshProducts();
+      setSelected([]);
+      setEditingGroupId(null);
+      setMode('groups');
+      alert("✅ Groupe mis à jour avec succès !");
+    } catch (e) {
+      console.error(e);
+      alert("❌ Erreur lors de la modification du groupe : " + e.message);
+    } finally {
+      setIsSaving(false);
     }
-    
-    await refreshProducts();
-    setSelected([]);
-    setEditingGroupId(null);
-    setMode('groups');
   };
 
   const ungroup = async (productId) => {
@@ -370,8 +388,8 @@ const Admin = () => {
                       <strong>{selected.length} produit(s) sélectionné(s).</strong>
                     </p>
                   </div>
-                  <button onClick={saveGroupEdit} disabled={selected.length === 0} style={{ background: '#16a34a', color: '#fff', border: 'none', padding: '10px 22px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
-                    ✅ Valider
+                  <button onClick={saveGroupEdit} disabled={selected.length === 0 || isSaving} style={{ background: '#16a34a', color: '#fff', border: 'none', padding: '10px 22px', borderRadius: '8px', fontWeight: 700, cursor: isSaving ? 'wait' : 'pointer', opacity: isSaving ? 0.7 : 1 }}>
+                    {isSaving ? '⏳ Enregistrement...' : '✅ Valider'}
                   </button>
                   <button onClick={() => { setMode('groups'); setSelected([]); setEditingGroupId(null); }} style={{ background: '#f3f4f6', color: '#111', border: 'none', padding: '10px 16px', borderRadius: '8px', cursor: 'pointer' }}>
                     Annuler
