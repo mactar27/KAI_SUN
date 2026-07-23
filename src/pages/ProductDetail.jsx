@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import products from '../data/products.json';
 import { ShopContext } from '../context/ShopContext';
@@ -9,10 +9,14 @@ const ProductDetail = () => {
   const { addToCart } = useContext(ShopContext);
   
   const product = products.find(p => p.id === id);
+  const [mainImage, setMainImage] = useState(product ? product.image : '');
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (product) {
+      setMainImage(product.image);
+    }
+  }, [product]);
 
   if (!product) {
     return (
@@ -22,6 +26,12 @@ const ProductDetail = () => {
       </div>
     );
   }
+
+  const thumbnails = [
+    product.image,
+    product.image.replace('_1.jpg', '_2.jpg'),
+    product.image.replace('_1.jpg', '_3.jpg')
+  ];
 
   return (
     <div style={{ paddingTop: '120px', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>
@@ -34,19 +44,42 @@ const ProductDetail = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '60px', alignItems: 'start' }}>
           
           {/* IMAGE SECTION */}
-          <div style={{ 
-            background: 'var(--surface)', 
-            padding: '40px', 
-            border: '2px solid var(--ink)', 
-            borderRadius: '16px',
-            position: 'sticky',
-            top: '120px'
-          }}>
-            <img 
-              src={product.image + '?width=1000&height=1000'} 
-              alt={product.name} 
-              style={{ width: '100%', height: 'auto', display: 'block' }} 
-            />
+          <div style={{ position: 'sticky', top: '120px' }}>
+            <div style={{ 
+              background: 'var(--surface)', 
+              padding: '40px', 
+              border: '2px solid var(--ink)', 
+              borderRadius: '16px',
+            }}>
+              <img 
+                src={mainImage + '?width=1000&height=1000'} 
+                alt={product.name} 
+                style={{ width: '100%', height: 'auto', display: 'block' }} 
+              />
+            </div>
+            
+            {/* THUMBNAILS */}
+            <div style={{ display: 'flex', gap: '16px', marginTop: '16px', justifyContent: 'center' }}>
+              {thumbnails.map((thumb, idx) => (
+                <img
+                  key={idx}
+                  src={thumb + '?width=200&height=200'}
+                  alt={`Vue ${idx + 1}`}
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    objectFit: 'contain',
+                    border: mainImage === thumb ? '2px solid var(--ink)' : '2px solid var(--line)',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    background: 'var(--surface)',
+                    padding: '8px'
+                  }}
+                  onClick={() => setMainImage(thumb)}
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              ))}
+            </div>
           </div>
 
           {/* DETAILS SECTION */}
