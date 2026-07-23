@@ -243,6 +243,7 @@ const Dashboard = () => {
       </div>
     </div>
   );
+  };
 
   const renderOrders = () => (
     <div>
