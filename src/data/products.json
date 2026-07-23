@@ -130,31 +130,6 @@
     ]
   },
   {
-    "id": "NDL9910",
-    "ref": "NDL9910",
-    "gender": "femme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9910_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9910 - Fournisseur Femme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/9/9910_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9910_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9910_3.jpg"
-    ]
-  },
-  {
-    "id": "NDL9912",
-    "ref": "NDL9912",
-    "gender": "femme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9912_1.jpg",
-    "price": 25000,
-    "name": "RÉF. NDL9912 - Fournisseur Femme",
-    "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/9/9912_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/9/9912_2.jpg"
-    ]
-  },
-  {
     "id": "NDL9880",
     "ref": "NDL9880",
     "gender": "femme",
@@ -625,6 +600,54 @@
     "thumbnails": [
       "https://www.solo-solis.com/media/catalog/product/8/3/8332_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/8/3/8332_3.jpg"
+    ]
+  },
+  {
+    "id": "NDL9911",
+    "ref": "NDL9911",
+    "gender": "femme",
+    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9911_1.jpg",
+    "price": 25000,
+    "name": "RÉF. NDL9911 - Fournisseur Femme",
+    "thumbnails": [
+      "https://www.solo-solis.com/media/catalog/product/9/9/9911_1.jpg",
+      "https://www.solo-solis.com/media/catalog/product/9/9/9911_2.jpg"
+    ]
+  },
+  {
+    "id": "NDL9913",
+    "ref": "NDL9913",
+    "gender": "femme",
+    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9913_1.jpg",
+    "price": 25000,
+    "name": "RÉF. NDL9913 - Fournisseur Femme",
+    "thumbnails": [
+      "https://www.solo-solis.com/media/catalog/product/9/9/9913_1.jpg",
+      "https://www.solo-solis.com/media/catalog/product/9/9/9913_2.jpg"
+    ]
+  },
+  {
+    "id": "NDL9914",
+    "ref": "NDL9914",
+    "gender": "femme",
+    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg",
+    "price": 25000,
+    "name": "RÉF. NDL9914 - Fournisseur Femme",
+    "thumbnails": [
+      "https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg",
+      "https://www.solo-solis.com/media/catalog/product/9/9/9914_2.jpg"
+    ]
+  },
+  {
+    "id": "NDL9918",
+    "ref": "NDL9918",
+    "gender": "femme",
+    "image": "https://www.solo-solis.com/media/catalog/product/9/9/9918_1.jpg",
+    "price": 25000,
+    "name": "RÉF. NDL9918 - Fournisseur Femme",
+    "thumbnails": [
+      "https://www.solo-solis.com/media/catalog/product/9/9/9918_1.jpg",
+      "https://www.solo-solis.com/media/catalog/product/9/9/9918_2.jpg"
     ]
   }
 ]
