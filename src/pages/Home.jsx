@@ -20,10 +20,8 @@ const Home = () => {
           <div className="hero-copy">
             <span className="hero-tag">Collection 2026 — Dakar</span>
             <h1 className="hero-title" style={{ fontWeight: 900, color: 'var(--ink)' }}>KAIA SUN</h1>
-            <p>Verres polarisés UV400 et montures en acétate italien, pensés pour la lumière franche de Dakar. Fait pour durer, pas pour suivre les modes.</p>
             <div className="hero-actions">
               <a href="#collection" className="btn-primary">Découvrir la collection</a>
-              <a href="#savoir-faire" className="btn-secondary">Notre savoir-faire</a>
             </div>
           </div>
           <div className="hero-visual">
