@@ -27,7 +27,10 @@ const ProductDetail = () => {
     );
   }
 
-  const thumbnails = product.thumbnails || [product.image];
+  const thumbnails = product.thumbnails || [
+    product.image,
+    product.image.replace('_1.jpg', '_2.jpg')
+  ];
 
   return (
     <div style={{ paddingTop: '120px', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>

@@ -18,7 +18,7 @@ const Navbar = () => {
       <nav id="nav">
         <div className="wrap">
           <Link to="/" className="logo" style={{ fontWeight: 'bold', color: '#000000' }}>
-            KAIA
+            KAIA SUN
           </Link>
           <div className="nav-links">
             <a href="/#collection">Collection</a>
