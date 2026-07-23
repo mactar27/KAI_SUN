@@ -5,7 +5,7 @@ import MenCollection from './pages/MenCollection';
 import WomenCollection from './pages/WomenCollection';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import Dashboard from './pages/admin/Dashboard';
+import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 
@@ -21,7 +21,7 @@ function App() {
           <Route path="/femme" element={<WomenCollection />} />
           <Route path="/panier" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
       <Footer />
