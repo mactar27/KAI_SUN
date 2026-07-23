@@ -75,7 +75,6 @@ const Home = () => {
           <div className="grid">
             {products
               .filter(p => activeFilter === 'all' || p.gender === activeFilter)
-              .slice(0, 12)
               .map(product => (
                 <div key={product.id} className="card" data-gender={product.gender}>
                   <Link to={`/product/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
