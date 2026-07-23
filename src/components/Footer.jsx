@@ -40,7 +40,7 @@ const Footer = () => {
       
       <div className="wrap">
         <div className="foot-bottom">
-          <span>© 2026 Kaia Sun. Tous droits réservés.</span>
+          <span>© 2026 Kaia. Tous droits réservés. | Réalisé par WockyTeh avec <a href="https://wockytech.xyz" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>wockytech.xyz</a></span>
           <div style={{ display: 'flex', gap: '16px' }}>
             <Link to="/">Instagram</Link>
             <Link to="/">TikTok</Link>
