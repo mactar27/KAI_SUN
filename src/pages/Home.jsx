@@ -17,13 +17,6 @@ const Home = () => {
     <div style={{ paddingTop: '80px' }}>
       <header className="hero">
         <div className="wrap" style={{ display: 'contents' }}>
-          <div className="hero-copy">
-            <span className="hero-tag">Collection 2026 — Dakar</span>
-            <h1 className="hero-title" style={{ fontWeight: 900, color: 'var(--ink)' }}>KAIA SUN</h1>
-            <div className="hero-actions">
-              <a href="#collection" className="btn-primary">Découvrir la collection</a>
-            </div>
-          </div>
           <div className="hero-visual-box">
             <span className="kaia-floating-text">KAIA</span>
             <div className="wave-container">
@@ -31,6 +24,12 @@ const Home = () => {
                 <path d="M0,70 C50,40 100,100 150,70 C200,40 250,100 300,70 C350,40 400,100 450,70 C500,40 550,100 600,70 C650,40 700,100 750,70 C775,55 790,65 800,70 L800,130 L0,130 Z" fill="#9FDBFF" opacity="0.9"/>
                 <path d="M0,90 C60,60 120,120 180,90 C240,60 300,120 360,90 C420,60 480,120 540,90 C600,60 660,120 720,90 C750,75 780,85 800,90 L800,130 L0,130 Z" fill="#CDEEFF"/>
               </svg>
+            </div>
+          </div>
+          <div className="hero-copy" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <span className="hero-tag" style={{ marginBottom: '20px' }}>Collection 2026 — Dakar</span>
+            <div className="hero-actions" style={{ marginTop: '0', justifyContent: 'center' }}>
+              <a href="#collection" className="btn-primary" style={{ width: '100%', maxWidth: '300px' }}>Découvrir la collection</a>
             </div>
           </div>
         </div>
