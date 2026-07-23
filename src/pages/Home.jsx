@@ -27,13 +27,9 @@ const Home = () => {
           <div className="hero-visual-box">
             <span className="kaia-floating-text">KAIA</span>
             <div className="wave-container">
-              <svg className="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,60 C150,100 350,20 600,60 C850,100 1050,20 1200,60 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.8)"></path>
-                <path d="M0,60 C150,100 350,20 600,60 C850,100 1050,20 1200,60 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.8)" transform="translate(1200, 0)"></path>
-              </svg>
-              <svg className="wave-svg wave-svg-2" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,40 C200,0 400,120 600,80 C800,40 1000,120 1200,40 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.4)"></path>
-                <path d="M0,40 C200,0 400,120 600,80 C800,40 1000,120 1200,40 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.4)" transform="translate(1200, 0)"></path>
+              <svg className="wave-svg" viewBox="0 0 800 130" preserveAspectRatio="none">
+                <path d="M0,70 C50,40 100,100 150,70 C200,40 250,100 300,70 C350,40 400,100 450,70 C500,40 550,100 600,70 C650,40 700,100 750,70 C775,55 790,65 800,70 L800,130 L0,130 Z" fill="#9FDBFF" opacity="0.9"/>
+                <path d="M0,90 C60,60 120,120 180,90 C240,60 300,120 360,90 C420,60 480,120 540,90 C600,60 660,120 720,90 C750,75 780,85 800,90 L800,130 L0,130 Z" fill="#CDEEFF"/>
               </svg>
             </div>
           </div>

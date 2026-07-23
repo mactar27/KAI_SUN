@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Fredoka:wght@700&display=swap');
   :root{
     --bg:#FFFFFF;
     --surface:#FFFFFF;
@@ -101,7 +101,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background: #55b8e9;
+    background: #5EB8EA;
     border-radius: 20px;
     border: 2px solid var(--ink);
     overflow: hidden;
@@ -110,44 +110,57 @@
     justify-content: center;
   }
   .kaia-floating-text {
-    font-family: 'Fredoka', sans-serif;
-    font-size: clamp(90px, 15vw, 170px);
-    font-weight: 700;
-    color: #f8cd43;
+    font-family: 'Baloo 2', 'Fredoka', 'Arial Black', sans-serif;
+    font-size: clamp(100px, 15vw, 200px);
+    font-weight: 800;
+    line-height: 0.82;
+    letter-spacing: -2px;
+    color: #F4C430;
     z-index: 2;
-    animation: floatBob 3.5s ease-in-out infinite;
-    letter-spacing: -0.02em;
+    animation: swayLogo 4.5s ease-in-out infinite;
+    transform-origin: 50% 100%;
+    user-select: none;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: -30px;
   }
-  @keyframes floatBob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+  @keyframes swayLogo {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    25%  { transform: translateY(-14px) rotate(-3deg); }
+    50%  { transform: translateY(0px) rotate(0deg); }
+    75%  { transform: translateY(10px) rotate(3deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
   }
+
   .wave-container {
     position: absolute;
-    bottom: -2px;
+    bottom: 0px;
     left: 0;
     width: 100%;
-    height: 120px;
+    height: 130px;
     overflow: hidden;
     line-height: 0;
     z-index: 1;
+    animation: bobBand 4.5s ease-in-out infinite;
   }
+  @keyframes bobBand {
+    0%   { transform: translateY(0px); }
+    25%  { transform: translateY(-14px); }
+    50%  { transform: translateY(0px); }
+    75%  { transform: translateY(10px); }
+    100% { transform: translateY(0px); }
+  }
+
   .wave-svg {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 200%;
     height: 100%;
-    animation: waveScroll 8s linear infinite;
+    animation: waveMove 3.5s linear infinite;
   }
-  .wave-svg-2 {
-    animation: waveScroll 6s linear infinite reverse;
-    opacity: 0.6;
-    bottom: -10px;
-  }
-  @keyframes waveScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  @keyframes waveMove {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   /* ---------- MARQUEE ---------- */
