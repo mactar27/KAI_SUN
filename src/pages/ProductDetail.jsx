@@ -54,6 +54,7 @@ const ProductDetail = () => {
                 src={mainImage + '?width=1000&height=1000'} 
                 alt={product.name} 
                 style={{ width: '100%', height: 'auto', display: 'block' }} 
+                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1000x1000/f0f0f0/a0a0a0?text=Image+Indisponible' }}
               />
             </div>
             
@@ -75,7 +76,7 @@ const ProductDetail = () => {
                     padding: '8px'
                   }}
                   onClick={() => setMainImage(thumb)}
-                  onError={(e) => { e.target.style.display = 'none'; }}
+                  onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
                 />
               ))}
             </div>

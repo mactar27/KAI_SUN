@@ -80,7 +80,7 @@ const Home = () => {
                 <div key={product.id} className="card" data-gender={product.gender}>
                   <Link to={`/product/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
                     <div className="card-photo">
-                      <img src={product.image + '?width=600&height=600'} alt={product.name} loading="lazy" />
+                      <img src={product.image + '?width=600&height=600'} alt={product.name} loading="lazy" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x600/f0f0f0/a0a0a0?text=Image+Indisponible' }} />
                     </div>
                   </Link>
                   <div className="card-top">
