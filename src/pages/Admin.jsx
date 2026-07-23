@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Admin = () => {
   const { products, refreshProducts } = useContext(ProductsContext);
@@ -299,33 +300,31 @@ const Admin = () => {
           <div>
             <h2 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '16px', color: '#111' }}>Interactions sur le site</h2>
             {loadingAnalytics ? <p>Chargement des statistiques...</p> : (
-              <div style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: '12px', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                  <thead style={{ background: '#f9fafb', borderBottom: '2px solid #e5e5e5' }}>
-                    <tr>
-                      <th style={{ padding: '16px', fontWeight: 700, color: '#4b5563' }}>Produit (RÉF)</th>
-                      <th style={{ padding: '16px', fontWeight: 700, color: '#4b5563' }}>👀 Vues</th>
-                      <th style={{ padding: '16px', fontWeight: 700, color: '#4b5563' }}>🛒 Ajouts au panier</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {products.map(p => {
-                      const views = analytics.views[p.ref] || 0;
-                      const cart = analytics.cart[p.ref] || 0;
-                      if (views === 0 && cart === 0) return null; // Only show active products
-                      return (
-                        <tr key={p.id} style={{ borderBottom: '1px solid #f3f4f6' }}>
-                          <td style={{ padding: '16px', display: 'flex', alignItems: 'center', gap: '12px', fontWeight: 700 }}>
-                            <img src={p.image + '?width=40'} alt={p.ref} style={{ width: '40px', height: '40px', borderRadius: '6px', objectFit: 'cover' }} />
-                            {p.ref}
-                          </td>
-                          <td style={{ padding: '16px', fontSize: '1.1rem' }}>{views}</td>
-                          <td style={{ padding: '16px', fontSize: '1.1rem', color: '#16a34a' }}>{cart}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+              <div style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: '12px', padding: '24px', overflow: 'hidden' }}>
+                {products.some(p => (analytics.views[p.ref] || 0) > 0 || (analytics.cart[p.ref] || 0) > 0) ? (
+                  <div style={{ width: '100%', height: '400px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={products.map(p => ({
+                          name: p.ref,
+                          vues: analytics.views[p.ref] || 0,
+                          paniers: analytics.cart[p.ref] || 0,
+                        })).filter(d => d.vues > 0 || d.paniers > 0)}
+                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e5e5" />
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 12 }} />
+                        <YAxis axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 12 }} />
+                        <Tooltip cursor={{ fill: '#f3f4f6' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }} />
+                        <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                        <Bar dataKey="vues" name="👀 Vues" fill="#93c5fd" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="paniers" name="🛒 Ajouts au panier" fill="#16a34a" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                ) : (
+                  <p style={{ textAlign: 'center', color: '#666', padding: '40px 0' }}>Aucune donnée d'interaction pour le moment.</p>
+                )}
               </div>
             )}
           </div>
