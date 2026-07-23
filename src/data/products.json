@@ -415,7 +415,8 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9864_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9864_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9864_3.jpg"
-    ]
+    ],
+    "groupId": "SOLO_NDL9864"
   },
   {
     "id": "NDL9899",
@@ -481,7 +482,8 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9867_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9867_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9867_3.jpg"
-    ]
+    ],
+    "groupId": "GROUP_NDL986_HEX"
   },
   {
     "id": "NDL9860",
@@ -493,7 +495,8 @@
     "thumbnails": [
       "https://www.solo-solis.com/media/catalog/product/9/8/9860_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9860_2.jpg"
-    ]
+    ],
+    "groupId": "GROUP_NDL986_HEX"
   },
   {
     "id": "NDL9869",
@@ -506,7 +509,8 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9869_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9869_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9869_3.jpg"
-    ]
+    ],
+    "groupId": "GROUP_NDL986_HEX"
   },
   {
     "id": "NDL9924",
