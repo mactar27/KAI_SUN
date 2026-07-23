@@ -7,9 +7,9 @@ const MenCollection = () => {
   const menProducts = products.filter(p => p.category === 'homme');
 
   return (
-    <div className="section container" style={{ paddingTop: '120px' }}>
+    <div className="section container" style={{ paddingTop: '150px' }}>
       <h1 className="text-center" style={{ marginBottom: '3rem', fontSize: '3rem' }}>Collection Homme</h1>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-4">
         {menProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
