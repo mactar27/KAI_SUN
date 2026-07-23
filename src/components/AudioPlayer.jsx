@@ -6,7 +6,7 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     // Create audio element programmatically to avoid DOM clutter
-    const audio = new Audio('/ambiance.mp3');
+    const audio = new Audio('/ambiance.webm');
     audio.loop = true;
     audio.volume = 0.4; // Soft background volume
     audioRef.current = audio;

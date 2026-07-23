@@ -24,17 +24,17 @@ const Home = () => {
               <a href="#collection" className="btn-primary">Découvrir la collection</a>
             </div>
           </div>
-          <div className="hero-visual">
-            <div className="lens" id="lens">
-              <div className="lens-word">
-                <svg viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="8" y="6" width="50" height="48" rx="20" stroke="#111111" strokeWidth="8"/>
-                  <rect x="82" y="6" width="50" height="48" rx="20" stroke="#111111" strokeWidth="8"/>
-                  <line x1="58" y1="26" x2="82" y2="26" stroke="#111111" strokeWidth="8" strokeLinecap="round"/>
-                  <rect x="0" y="26" width="9" height="6" rx="3" fill="#111111"/>
-                  <rect x="131" y="26" width="9" height="6" rx="3" fill="#111111"/>
-                </svg>
-              </div>
+          <div className="hero-visual-box">
+            <span className="kaia-floating-text">KAIA</span>
+            <div className="wave-container">
+              <svg className="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,60 C150,100 350,20 600,60 C850,100 1050,20 1200,60 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.8)"></path>
+                <path d="M0,60 C150,100 350,20 600,60 C850,100 1050,20 1200,60 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.8)" transform="translate(1200, 0)"></path>
+              </svg>
+              <svg className="wave-svg wave-svg-2" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,40 C200,0 400,120 600,80 C800,40 1000,120 1200,40 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.4)"></path>
+                <path d="M0,40 C200,0 400,120 600,80 C800,40 1000,120 1200,40 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.4)" transform="translate(1200, 0)"></path>
+              </svg>
             </div>
           </div>
         </div>

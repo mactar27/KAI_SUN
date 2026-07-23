@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
   :root{
     --bg:#FFFFFF;
     --surface:#FFFFFF;
@@ -94,6 +95,60 @@
   .lens-word svg{width:62%;height:auto;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.25));}
   @media(max-width:900px){.lens-word svg{width:58%;}}
   @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ---------- NEW HERO VISUAL ---------- */
+  .hero-visual-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #55b8e9;
+    border-radius: 20px;
+    border: 2px solid var(--ink);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .kaia-floating-text {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(90px, 15vw, 170px);
+    font-weight: 700;
+    color: #f8cd43;
+    z-index: 2;
+    animation: floatBob 3.5s ease-in-out infinite;
+    letter-spacing: -0.02em;
+  }
+  @keyframes floatBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  .wave-container {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+  }
+  .wave-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    animation: waveScroll 8s linear infinite;
+  }
+  .wave-svg-2 {
+    animation: waveScroll 6s linear infinite reverse;
+    opacity: 0.6;
+    bottom: -10px;
+  }
+  @keyframes waveScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   /* ---------- MARQUEE ---------- */
   .marquee{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:16px 0;overflow:hidden;white-space:nowrap;background:var(--accent);}
