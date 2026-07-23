@@ -16,6 +16,13 @@ const ProductDetail = () => {
     window.scrollTo(0, 0);
     if (product) {
       setMainImage(product.image);
+      
+      // Analytics tracking
+      fetch('/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_type: 'view', product_ref: product.ref })
+      }).catch(e => console.error(e));
     }
   }, [product]);
 

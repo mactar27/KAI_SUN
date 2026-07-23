@@ -80,6 +80,13 @@ export const ShopProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product) => {
+    // Analytics tracking
+    fetch('/api/analytics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event_type: 'cart', product_ref: product.ref || product.id })
+    }).catch(e => console.error(e));
+
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.product.id === product.id);
       if (existingItem) {
@@ -104,13 +111,15 @@ export const ShopProvider = ({ children }) => {
   const placeOrder = async (deliveryInfo) => {
     const orderTotal = calculateCartTotal(cart);
     const orderData = {
-      deliveryInfo,
-      items: cart,
-      total: orderTotal
+      customer_name: `${deliveryInfo.prenom} ${deliveryInfo.nom}`,
+      phone: deliveryInfo.phone,
+      address: `${deliveryInfo.adresse}, ${deliveryInfo.ville}`,
+      total_amount: orderTotal,
+      items: cart.map(item => ({ id: item.product.id, quantity: item.quantity }))
     };
 
     try {
-      await fetch(`${API_URL}/orders`, {
+      await fetch(`/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
