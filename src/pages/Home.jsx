@@ -130,1849 +130,467 @@ const Home = () => {
           <div className="grid" id="supplierGrid">
             {(activeFilter === 'all' || activeFilter === 'femme') && (
               <>
-                <div className="card" data-gender="femme">
-                  <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #8a5a2c33, var(--surface))' }}>
-                    <svg viewBox="0 0 100 40" fill="none"><ellipse cx="25" cy="20" rx="20" ry="17" stroke="#111111" strokeWidth="3"/><ellipse cx="75" cy="20" rx="20" ry="17" stroke="#111111" strokeWidth="3"/><line x1="45" y1="20" x2="55" y2="20" stroke="#111111" strokeWidth="3"/></svg>
-                  </div>
-                  <div className="card-top"><span className="ref mono">RÉF. K-01</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway" data-name>Ambre</div>
-                  <div className="swatches">
-                    <button className="swatch active" style={{ background: '#8a5a2c' }} data-color="#8a5a2c" data-name="Ambre" aria-label="Ambre"></button>
-                    <button className="swatch" style={{ background: '#2c2c2c' }} data-color="#2c2c2c" data-name="Noir" aria-label="Noir"></button>
-                    <button className="swatch" style={{ background: '#5a7a6a' }} data-color="#5a7a6a" data-name="Vert" aria-label="Vert"></button>
-                  
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RFK01', name: 'RÉF. K-01 - Ambre', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
-                
-                <div className="card" data-gender="femme">
-                  <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #ffd10033, var(--surface))' }}>
-                    <svg viewBox="0 0 100 40" fill="none"><rect x="8" y="8" width="35" height="24" rx="4" stroke="#111111" strokeWidth="3"/><rect x="57" y="8" width="35" height="24" rx="4" stroke="#111111" strokeWidth="3"/><line x1="43" y1="20" x2="57" y2="20" stroke="#111111" strokeWidth="3"/></svg>
-                  </div>
-                  <div className="card-top"><span className="ref mono">RÉF. K-03</span></div>
-                  <div className="colorway" data-name>Ambre clair</div>
-                  <div className="swatches">
-                    <button className="swatch active" style={{ background: '#ffd100' }} data-color="#ffd100" data-name="Ambre clair" aria-label="Ambre clair"></button>
-                    <button className="swatch" style={{ background: '#3d3d3d' }} data-color="#3d3d3d" data-name="Fumé" aria-label="Fumé"></button>
-                  
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RFK03', name: 'RÉF. K-03 - Ambre clair', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
 
                 <div className="card" data-gender="femme">
-                  <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #8a3a2a33, var(--surface))' }}>
-                    <svg viewBox="0 0 100 40" fill="none"><path d="M6 30 L20 8 H42 L48 20 L58 20 L64 8 H86 L100 30" stroke="#111111" strokeWidth="3" fill="none"/></svg>
-                  </div>
-                  <div className="card-top"><span className="ref mono">RÉF. K-05</span></div>
-                  <div className="colorway" data-name>Brique</div>
-                  <div className="swatches">
-                    <button className="swatch active" style={{ background: '#8a3a2a' }} data-color="#8a3a2a" data-name="Brique" aria-label="Brique"></button>
-                    <button className="swatch" style={{ background: '#1a1a1a' }} data-color="#1a1a1a" data-name="Noir mat" aria-label="Noir mat"></button>
-                  
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RFK05', name: 'RÉF. K-05 - Brique', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
-
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/7/0/7076_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 7076" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 7076</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RF7076', name: 'RÉF. 7076 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/7/0/7076_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
-
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 9973" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9973</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RF9973', name: 'RÉF. 9973 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
-
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 9971" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9971</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RF9971', name: 'RÉF. 9971 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
-
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/2/8232_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 8232" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8232</span></div>
-                  <div className="colorway">Fournisseur — Femme
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-        <button 
-          className="btn-primary" 
-          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-          onClick={() => addToCart({ id: 'RF8232', name: 'RÉF. 8232 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/2/8232_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
-        >
-          Ajouter
-        </button>
-      </div>
-  </div>
-</div>
-              
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/7/0/7076_1.jpg?width=600&height=600" alt="Monture solaire réf. 7076" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 7076</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-7076', name: 'RÉF. 7076 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/7/0/7076_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/7/0/7075_1.jpg?width=600&height=600" alt="Monture solaire réf. 7075" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 7075</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-7075', name: 'RÉF. 7075 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/7/0/7075_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600" alt="Monture solaire réf. 9973" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9973</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9973', name: 'RÉF. 9973 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9972_1.jpg?width=600&height=600" alt="Monture solaire réf. 9972" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9972</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9972', name: 'RÉF. 9972 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9972_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600" alt="Monture solaire réf. 9971" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9971</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9971', name: 'RÉF. 9971 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9970_1.jpg?width=600&height=600" alt="Monture solaire réf. 9970" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9970</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9970', name: 'RÉF. 9970 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9970_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/3/8318_1.jpg?width=600&height=600" alt="Monture solaire réf. 8318" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8318</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-8318', name: 'RÉF. 8318 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/3/8318_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/3/8320_1.jpg?width=600&height=600" alt="Monture solaire réf. 8320" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8320</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-8320', name: 'RÉF. 8320 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/3/8320_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9925_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9925" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9925</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9925', name: 'RÉF. 9925 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9925_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9924_1.jpg?width=600&height=600" alt="Monture solaire réf. 9924" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9924</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9924', name: 'RÉF. 9924 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9924_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9928_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9928" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9928</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9928', name: 'RÉF. 9928 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9928_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9927_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9927" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9927</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9927', name: 'RÉF. 9927 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9927_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9926.jpg?width=600&height=600" alt="Monture solaire réf. 9926" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9926</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9926', name: 'RÉF. 9926 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9926.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9920_1.jpg?width=600&height=600" alt="Monture solaire réf. 9920" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9920</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9920', name: 'RÉF. 9920 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9920_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9919_1.jpg?width=600&height=600" alt="Monture solaire réf. 9919" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9919</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9919', name: 'RÉF. 9919 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9919_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9923_1.jpg?width=600&height=600" alt="Monture solaire réf. 9923" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9923</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9923', name: 'RÉF. 9923 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9923_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9921_1.jpg?width=600&height=600" alt="Monture solaire réf. 9921" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9921</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9921', name: 'RÉF. 9921 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9921_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9922_1.jpg?width=600&height=600" alt="Monture solaire réf. 9922" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9922</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9922', name: 'RÉF. 9922 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9922_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9915_1.jpg?width=600&height=600" alt="Monture solaire réf. 9915" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9915</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9915', name: 'RÉF. 9915 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9915_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9916_1.jpg?width=600&height=600" alt="Monture solaire réf. 9916" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9916</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9916', name: 'RÉF. 9916 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9916_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9917_1.jpg?width=600&height=600" alt="Monture solaire réf. 9917" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9917</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9917', name: 'RÉF. 9917 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9917_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9918_1.jpg?width=600&height=600" alt="Monture solaire réf. 9918" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9918</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9918', name: 'RÉF. 9918 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9918_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9912.jpg?width=600&height=600" alt="Monture solaire réf. 9912" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9912</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9912', name: 'RÉF. 9912 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9912.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg?width=600&height=600" alt="Monture solaire réf. 9914" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9914</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9914', name: 'RÉF. 9914 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9911_1.jpg?width=600&height=600" alt="Monture solaire réf. 9911" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9911</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9911', name: 'RÉF. 9911 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9911_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9907_fv.jpg?width=600&height=600" alt="Monture solaire réf. 9907" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9907</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9907', name: 'RÉF. 9907 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9907_fv.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9905_1.jpg?width=600&height=600" alt="Monture solaire réf. 9905" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9905</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9905', name: 'RÉF. 9905 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9905_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9909_1.jpg?width=600&height=600" alt="Monture solaire réf. 9909" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9909</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9909', name: 'RÉF. 9909 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9909_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9906_fv_1.jpg?width=600&height=600" alt="Monture solaire réf. 9906" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9906</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9906', name: 'RÉF. 9906 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9906_fv_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9908_1.jpg?width=600&height=600" alt="Monture solaire réf. 9908" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9908</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9908', name: 'RÉF. 9908 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9908_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9669_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9669" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9669</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9669', name: 'RÉF. 9669 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9669_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9670_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9670" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9670</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9670', name: 'RÉF. 9670 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9670_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9672_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9672" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9672</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9672', name: 'RÉF. 9672 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9672_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9671_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9671" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9671</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9671', name: 'RÉF. 9671 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9671_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9673_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9673" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9673</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9673', name: 'RÉF. 9673 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9673_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg?width=600&height=600" alt="Monture solaire réf. 9880" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9880</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9880', name: 'RÉF. 9880 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9667_1_2.jpg?width=600&height=600" alt="Monture solaire réf. 9667" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9667</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9667', name: 'RÉF. 9667 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9667_1_2.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9665_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9665" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9665</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9665', name: 'RÉF. 9665 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9665_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9666_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9666" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9666</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9666', name: 'RÉF. 9666 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9666_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9668_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9668" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9668</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9668', name: 'RÉF. 9668 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9668_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9878_1.jpg?width=600&height=600" alt="Monture solaire réf. 9878" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9878</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9878', name: 'RÉF. 9878 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9878_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9879.jpg?width=600&height=600" alt="Monture solaire réf. 9879" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9879</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9879', name: 'RÉF. 9879 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9879.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9650_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9650" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9650</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9650', name: 'RÉF. 9650 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9650_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9649_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9649" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9649</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9649', name: 'RÉF. 9649 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9649_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9903_1.jpg?width=600&height=600" alt="Monture solaire réf. 9903" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9903</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9903', name: 'RÉF. 9903 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9903_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9651_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9651" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9651</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9651', name: 'RÉF. 9651 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9651_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9963.jpg?width=600&height=600" alt="Monture solaire réf. 9963" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9963</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9963', name: 'RÉF. 9963 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9963.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9904.jpg?width=600&height=600" alt="Monture solaire réf. 9904" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9904</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9904', name: 'RÉF. 9904 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9904.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9767_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9767" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9767</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9767', name: 'RÉF. 9767 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9767_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9768_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9768" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9768</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9768', name: 'RÉF. 9768 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9768_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9770_1.jpg?width=600&height=600" alt="Monture solaire réf. 9770" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9770</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9770', name: 'RÉF. 9770 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9770_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9894_1.jpg?width=600&height=600" alt="Monture solaire réf. 9894" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9894</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9894', name: 'RÉF. 9894 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9894_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9625_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9625" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9625</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9625', name: 'RÉF. 9625 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9625_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9623_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9623" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9623</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9623', name: 'RÉF. 9623 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9623_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9624_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9624" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9624</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9624', name: 'RÉF. 9624 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9624_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9626_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9626" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9626</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9626', name: 'RÉF. 9626 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9626_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9627_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9627" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9627</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9627', name: 'RÉF. 9627 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9627_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9960_fv.jpg?width=600&height=600" alt="Monture solaire réf. 9960" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9960</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9960', name: 'RÉF. 9960 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9960_fv.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9961_fv.jpg?width=600&height=600" alt="Monture solaire réf. 9961" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9961</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9961', name: 'RÉF. 9961 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9961_fv.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9867.jpg?width=600&height=600" alt="Monture solaire réf. 9867" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9867</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9867', name: 'RÉF. 9867 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9867.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9868_1.jpg?width=600&height=600" alt="Monture solaire réf. 9868" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9868</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9868', name: 'RÉF. 9868 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9868_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9869.jpg?width=600&height=600" alt="Monture solaire réf. 9869" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9869</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9869', name: 'RÉF. 9869 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9869.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9891_1.jpg?width=600&height=600" alt="Monture solaire réf. 9891" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9891</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9891', name: 'RÉF. 9891 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9891_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9751_1.jpg?width=600&height=600" alt="Monture solaire réf. 9751" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9751</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9751', name: 'RÉF. 9751 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9751_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9749_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9749" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9749</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9749', name: 'RÉF. 9749 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9749_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9752_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9752" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9752</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9752', name: 'RÉF. 9752 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9752_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9750_1.jpg?width=600&height=600" alt="Monture solaire réf. 9750" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9750</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9750', name: 'RÉF. 9750 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9750_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9890_1.jpg?width=600&height=600" alt="Monture solaire réf. 9890" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9890</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9890', name: 'RÉF. 9890 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9890_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9756_1.jpg?width=600&height=600" alt="Monture solaire réf. 9756" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9756</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9756', name: 'RÉF. 9756 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9756_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9757_1.jpg?width=600&height=600" alt="Monture solaire réf. 9757" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9757</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9757', name: 'RÉF. 9757 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9757_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9758_1.jpg?width=600&height=600" alt="Monture solaire réf. 9758" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9758</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9758', name: 'RÉF. 9758 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9758_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9865_1.jpg?width=600&height=600" alt="Monture solaire réf. 9865" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9865</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9865', name: 'RÉF. 9865 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9865_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9866_1.jpg?width=600&height=600" alt="Monture solaire réf. 9866" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9866</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9866', name: 'RÉF. 9866 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9866_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9876.jpg?width=600&height=600" alt="Monture solaire réf. 9876" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9876</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9876', name: 'RÉF. 9876 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9876.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9864.jpg?width=600&height=600" alt="Monture solaire réf. 9864" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9864</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9864', name: 'RÉF. 9864 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9864.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9746_1.jpg?width=600&height=600" alt="Monture solaire réf. 9746" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9746</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9746', name: 'RÉF. 9746 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9746_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9747_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9747" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9747</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9747', name: 'RÉF. 9747 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9747_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9748_1.jpg?width=600&height=600" alt="Monture solaire réf. 9748" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9748</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9748', name: 'RÉF. 9748 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9748_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/3/8347_1.jpg?width=600&height=600" alt="Monture solaire réf. 8347" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8347</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-8347', name: 'RÉF. 8347 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/3/8347_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/3/8348_1.jpg?width=600&height=600" alt="Monture solaire réf. 8348" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8348</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-8348', name: 'RÉF. 8348 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/3/8348_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/3/8345_1.jpg?width=600&height=600" alt="Monture solaire réf. 8345" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8345</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-8345', name: 'RÉF. 8345 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/3/8345_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/3/8346_1.jpg?width=600&height=600" alt="Monture solaire réf. 8346" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 8346</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-8346', name: 'RÉF. 8346 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/3/8346_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9720_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9720" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9720</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9720', name: 'RÉF. 9720 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9720_1_1.jpg?width=600&height=600' })}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-                <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9721_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9721" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9721</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9971" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9971</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9721', name: 'RÉF. 9721 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9721_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9971', name: 'RÉF. NDL9971 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9723_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9723" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9723</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9973" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9973</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9723', name: 'RÉF. 9723 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9723_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9973', name: 'RÉF. NDL9973 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9722_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9722" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9722</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9970_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9970" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9970</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9722', name: 'RÉF. 9722 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9722_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9970', name: 'RÉF. NDL9970 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9970_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9724_1.jpg?width=600&height=600" alt="Monture solaire réf. 9724" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9724</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9919_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9919" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9919</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9724', name: 'RÉF. 9724 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9724_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9919', name: 'RÉF. NDL9919 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9919_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9881_1.jpg?width=600&height=600" alt="Monture solaire réf. 9881" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9881</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9921_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9921" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9921</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9881', name: 'RÉF. 9881 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9881_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9921', name: 'RÉF. NDL9921 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9921_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9682_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9682" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9682</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9922_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9922" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9922</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9682', name: 'RÉF. 9682 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9682_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9922', name: 'RÉF. NDL9922 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9922_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/6/9681_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9681" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9681</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9920_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9920" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9920</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9681', name: 'RÉF. 9681 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/6/9681_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9920', name: 'RÉF. NDL9920 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9920_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9845.jpg?width=600&height=600" alt="Monture solaire réf. 9845" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9845</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9916_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9916" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9916</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9845', name: 'RÉF. 9845 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9845.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9916', name: 'RÉF. NDL9916 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9916_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9844.jpg?width=600&height=600" alt="Monture solaire réf. 9844" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9844</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9915_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9915" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9915</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9844', name: 'RÉF. 9844 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9844.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9915', name: 'RÉF. NDL9915 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9915_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9875_1.jpg?width=600&height=600" alt="Monture solaire réf. 9875" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9875</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9917_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9917" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9917</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9875', name: 'RÉF. 9875 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9875_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9917', name: 'RÉF. NDL9917 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9917_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9847.jpg?width=600&height=600" alt="Monture solaire réf. 9847" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9847</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9910_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9910" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9910</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9847', name: 'RÉF. 9847 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9847.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9910', name: 'RÉF. NDL9910 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9910_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9725_1.jpg?width=600&height=600" alt="Monture solaire réf. 9725" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9725</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9912_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9912" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9912</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9725', name: 'RÉF. 9725 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9725_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9912', name: 'RÉF. NDL9912 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9912_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9727_1.jpg?width=600&height=600" alt="Monture solaire réf. 9727" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9727</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9914" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9914</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9727', name: 'RÉF. 9727 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9727_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9914', name: 'RÉF. NDL9914 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9914_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9726_1.jpg?width=600&height=600" alt="Monture solaire réf. 9726" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9726</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9880" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9880</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9726', name: 'RÉF. 9726 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9726_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9880', name: 'RÉF. NDL9880 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9896_1.jpg?width=600&height=600" alt="Monture solaire réf. 9896" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9896</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9815_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9815" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9815</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9896', name: 'RÉF. 9896 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9896_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9815', name: 'RÉF. NDL9815 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9815_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9895_1.jpg?width=600&height=600" alt="Monture solaire réf. 9895" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9895</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9816_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9816" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9816</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9895', name: 'RÉF. 9895 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9895_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9816', name: 'RÉF. NDL9816 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9816_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9897.jpg?width=600&height=600" alt="Monture solaire réf. 9897" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9897</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/2/8298_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL8298" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL8298</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9897', name: 'RÉF. 9897 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9897.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL8298', name: 'RÉF. NDL8298 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/2/8298_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9839.jpg?width=600&height=600" alt="Monture solaire réf. 9839" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9839</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/2/8299_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL8299" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL8299</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9839', name: 'RÉF. 9839 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9839.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL8299', name: 'RÉF. NDL8299 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/2/8299_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9838.jpg?width=600&height=600" alt="Monture solaire réf. 9838" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9838</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9871_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9871" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9871</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9838', name: 'RÉF. 9838 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9838.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9871', name: 'RÉF. NDL9871 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9871_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9840_1.jpg?width=600&height=600" alt="Monture solaire réf. 9840" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9840</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9872_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9872" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9872</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9840', name: 'RÉF. 9840 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9840_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9872', name: 'RÉF. NDL9872 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9872_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9835.jpg?width=600&height=600" alt="Monture solaire réf. 9835" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9835</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9873_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9873" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9873</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9835', name: 'RÉF. 9835 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9835.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9873', name: 'RÉF. NDL9873 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9873_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9836_1.jpg?width=600&height=600" alt="Monture solaire réf. 9836" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9836</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9776_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9776" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9776</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9836', name: 'RÉF. 9836 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9836_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9776', name: 'RÉF. NDL9776 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9776_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9714_1.jpg?width=600&height=600" alt="Monture solaire réf. 9714" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9714</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9775_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9775" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9775</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9714', name: 'RÉF. 9714 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9714_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9775', name: 'RÉF. NDL9775 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9775_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9719_1.jpg?width=600&height=600" alt="Monture solaire réf. 9719" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9719</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/5/9572_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9572" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9572</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9719', name: 'RÉF. 9719 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9719_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9572', name: 'RÉF. NDL9572 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/5/9572_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9717_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9717" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9717</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/5/9570_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9570" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9570</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9717', name: 'RÉF. 9717 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9717_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9570', name: 'RÉF. NDL9570 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/5/9570_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9718_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9718" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9718</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/5/9571_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9571" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9571</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9718', name: 'RÉF. 9718 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9718_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9571', name: 'RÉF. NDL9571 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/5/9571_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/8/9885_fv.jpg?width=600&height=600" alt="Monture solaire réf. 9885" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9885</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/5/9518_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9518" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9518</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9885', name: 'RÉF. 9885 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/8/9885_fv.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9518', name: 'RÉF. NDL9518 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/5/9518_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9716_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9716" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9716</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9952_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9952" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9952</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9716', name: 'RÉF. 9716 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9716_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9952', name: 'RÉF. NDL9952 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9952_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9735_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9735" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9735</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/3/9338_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9338" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9338</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9735', name: 'RÉF. 9735 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9735_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9338', name: 'RÉF. NDL9338 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/3/9338_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9736_1.jpg?width=600&height=600" alt="Monture solaire réf. 9736" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9736</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/3/9340_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9340" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9340</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9736', name: 'RÉF. 9736 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9736_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9340', name: 'RÉF. NDL9340 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/3/9340_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
                   </div>
                 </div>
                 <div className="card" data-gender="femme">
-                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/7/9737_1_1.jpg?width=600&height=600" alt="Monture solaire réf. 9737" loading="lazy" /></div>
-                  <div className="card-top"><span className="ref mono">RÉF. 9737</span><span className="badge-new">NOUVEAU</span></div>
+                  <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/5/9583_1.jpg?width=600&height=600" alt="Monture solaire réf. NDL9583" loading="lazy" /></div>
+                  <div className="card-top"><span className="ref mono">RÉF. NDL9583</span><span className="badge-new">NOUVEAU</span></div>
                   <div className="colorway">Fournisseur — Femme</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
                       className="btn-primary" 
                       style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={() => addToCart({ id: 'K-9737', name: 'RÉF. 9737 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/7/9737_1_1.jpg?width=600&height=600' })}
+                      onClick={() => addToCart({ id: 'NDL9583', name: 'RÉF. NDL9583 - Fournisseur Femme', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/5/9583_1.jpg?width=600&height=600' })}
                     >
                       Ajouter
                     </button>
