@@ -120,7 +120,15 @@ const Home = () => {
 
       <section id="savoir-faire" className="wrap">
         <div className="craft">
-          <div className="craft-visual"></div>
+          <div className="craft-visual">
+            <span className="kaia-floating-text" style={{ fontSize: 'clamp(70px, 12vw, 120px)', marginTop: '-10px' }}>KAIA</span>
+            <div className="wave-container">
+              <svg className="wave-svg" viewBox="0 0 800 130" preserveAspectRatio="none">
+                <path d="M0,70 C50,40 100,100 150,70 C200,40 250,100 300,70 C350,40 400,100 450,70 C500,40 550,100 600,70 C650,40 700,100 750,70 C775,55 790,65 800,70 L800,130 L0,130 Z" fill="#9FDBFF" opacity="0.9"/>
+                <path d="M0,90 C60,60 120,120 180,90 C240,60 300,120 360,90 C420,60 480,120 540,90 C600,60 660,120 720,90 C750,75 780,85 800,90 L800,130 L0,130 Z" fill="#CDEEFF"/>
+              </svg>
+            </div>
+          </div>
           <div className="craft-copy">
             <span className="eyebrow">Studio & Atelier</span>
             <p>Notre atelier situé au cœur de la ville assemble chaque paire avec précision. L'acétate de cellulose, extrait de fibres de coton, offre une finition et une robustesse que le plastique injecté ne pourra jamais égaler.</p>
