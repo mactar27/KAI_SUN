@@ -383,13 +383,11 @@
     "id": "NDL9742",
     "ref": "NDL9742",
     "gender": "homme",
-    "image": "https://www.solo-solis.com/media/catalog/product/9/7/9742_1.jpg",
+    "image": "/images/NDL9742.png",
     "price": 25000,
     "name": "RÉF. NDL9742 - Fournisseur Homme",
     "thumbnails": [
-      "https://www.solo-solis.com/media/catalog/product/9/7/9742_1.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/7/9742_2.jpg",
-      "https://www.solo-solis.com/media/catalog/product/9/7/9742_3.jpg"
+      "/images/NDL9742.png"
     ]
   },
   {
