@@ -14,6 +14,8 @@ export const ShopProvider = ({ children }) => {
   const [visitors, setVisitors] = useState(1245);
   const [dailyVisits, setDailyVisits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const [adminToken, setAdminToken] = useState(() => localStorage.getItem('kaia_admin_token') || null);
 
   // Fetch initial data
   const fetchProducts = async () => {
@@ -23,9 +25,18 @@ export const ShopProvider = ({ children }) => {
   };
 
   const fetchOrders = async () => {
-    const res = await fetch(`${API_URL}/orders`);
-    const data = await res.json();
-    setOrders(data);
+    if (!adminToken) return;
+    try {
+      const res = await fetch(`${API_URL}/orders`, {
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setOrders(data);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const fetchStats = async () => {
@@ -38,7 +49,8 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     const initApp = async () => {
       try {
-        await Promise.all([fetchProducts(), fetchOrders(), fetchStats()]);
+        await Promise.all([fetchProducts(), fetchStats()]);
+        if (adminToken) await fetchOrders();
         
         // Simuler une visite (incrément backend) uniquement si c'est une nouvelle session
         const hasVisited = sessionStorage.getItem('kaia_session_visit');
@@ -55,7 +67,7 @@ export const ShopProvider = ({ children }) => {
       }
     };
     initApp();
-  }, []);
+  }, [adminToken]);
 
   // Le panier reste stocké localement pour ne pas perdre les articles non achetés
   useEffect(() => {
@@ -111,11 +123,18 @@ export const ShopProvider = ({ children }) => {
     try {
       const res = await fetch(`${API_URL}/products`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
         body: JSON.stringify(product)
       });
-      const newProduct = await res.json();
-      setProducts(prev => [...prev, newProduct]);
+      if (res.ok) {
+        const newProduct = await res.json();
+        setProducts(prev => [...prev, newProduct]);
+      } else {
+        alert("Action non autorisée");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -125,11 +144,18 @@ export const ShopProvider = ({ children }) => {
     try {
       const res = await fetch(`${API_URL}/products/${updatedProduct.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
         body: JSON.stringify(updatedProduct)
       });
-      const data = await res.json();
-      setProducts(prev => prev.map(p => p.id === updatedProduct.id ? data : p));
+      if (res.ok) {
+        const data = await res.json();
+        setProducts(prev => prev.map(p => p.id === updatedProduct.id ? data : p));
+      } else {
+        alert("Action non autorisée");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -137,13 +163,39 @@ export const ShopProvider = ({ children }) => {
 
   const deleteProduct = async (productId) => {
     try {
-      await fetch(`${API_URL}/products/${productId}`, {
-        method: 'DELETE'
+      const res = await fetch(`${API_URL}/products/${productId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${adminToken}` }
       });
-      setProducts(prev => prev.filter(p => p.id !== productId));
+      if (res.ok) {
+        setProducts(prev => prev.filter(p => p.id !== productId));
+      } else {
+        alert("Action non autorisée");
+      }
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const loginAdmin = async (password) => {
+    const res = await fetch(`${API_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    });
+    const data = await res.json();
+    if (data.success) {
+      setAdminToken(data.token);
+      localStorage.setItem('kaia_admin_token', data.token);
+      return true;
+    }
+    return false;
+  };
+
+  const logoutAdmin = () => {
+    setAdminToken(null);
+    localStorage.removeItem('kaia_admin_token');
+    setOrders([]);
   };
 
   return (
@@ -160,7 +212,10 @@ export const ShopProvider = ({ children }) => {
       addProduct,
       updateProduct,
       deleteProduct,
-      isLoading
+      isLoading,
+      adminToken,
+      loginAdmin,
+      logoutAdmin
     }}>
       {children}
     </ShopContext.Provider>

@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
-import { Plus, Edit, Trash2, Box, Users, BarChart } from 'lucide-react';
+import { Plus, Edit, Trash2, Box, Users, BarChart, LogOut } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import Login from './Login';
 
 const Dashboard = () => {
-  const { products, orders, stats, addProduct, updateProduct, deleteProduct } = useContext(ShopContext);
+  const { products, orders, stats, addProduct, updateProduct, deleteProduct, adminToken, logoutAdmin, visitors } = useContext(ShopContext);
   const [activeTab, setActiveTab] = useState('stats');
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -297,9 +298,18 @@ const Dashboard = () => {
     </div>
   );
 
+  if (!adminToken) {
+    return <Login />;
+  }
+
   return (
     <div className="section container" style={{ paddingTop: '120px' }}>
-      <h1 style={{ marginBottom: '2rem' }}>Espace Administrateur</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <h1 style={{ margin: 0 }}>Espace Administrateur</h1>
+        <button onClick={logoutAdmin} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'red', borderColor: 'red' }}>
+          <LogOut size={18} /> Déconnexion
+        </button>
+      </div>
       
       {/* Tab Navigation */}
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', borderBottom: '1px solid var(--color-border)' }}>

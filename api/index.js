@@ -9,6 +9,29 @@ app.use(cors());
 app.use(express.json({ limit: '4mb' }));
 app.use(express.urlencoded({ limit: '4mb', extended: true }));
 
+// --- AUTH MIDDLEWARE ---
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'secret123';
+const ADMIN_TOKEN = 'kaia-admin-token-2026';
+
+const authMiddleware = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.split(' ')[1] === ADMIN_TOKEN) {
+    next();
+  } else {
+    res.status(401).json({ error: 'Accès non autorisé' });
+  }
+};
+
+// --- AUTHENTICATION API ---
+app.post('/api/auth/login', (req, res) => {
+  const { password } = req.body;
+  if (password === ADMIN_PASSWORD) {
+    res.json({ success: true, token: ADMIN_TOKEN });
+  } else {
+    res.status(401).json({ success: false, error: 'Mot de passe incorrect' });
+  }
+});
+
 // --- PRODUCTS API ---
 
 app.get('/api/products', async (req, res) => {
@@ -16,14 +39,14 @@ app.get('/api/products', async (req, res) => {
   res.json(products);
 });
 
-app.post('/api/products', async (req, res) => {
+app.post('/api/products', authMiddleware, async (req, res) => {
   const product = await prisma.product.create({
     data: req.body
   });
   res.json(product);
 });
 
-app.put('/api/products/:id', async (req, res) => {
+app.put('/api/products/:id', authMiddleware, async (req, res) => {
   const product = await prisma.product.update({
     where: { id: parseInt(req.params.id) },
     data: req.body
@@ -31,7 +54,7 @@ app.put('/api/products/:id', async (req, res) => {
   res.json(product);
 });
 
-app.delete('/api/products/:id', async (req, res) => {
+app.delete('/api/products/:id', authMiddleware, async (req, res) => {
   await prisma.product.delete({
     where: { id: parseInt(req.params.id) }
   });
@@ -40,7 +63,7 @@ app.delete('/api/products/:id', async (req, res) => {
 
 // --- ORDERS API ---
 
-app.get('/api/orders', async (req, res) => {
+app.get('/api/orders', authMiddleware, async (req, res) => {
   const orders = await prisma.order.findMany({
     include: {
       items: {
