@@ -129,7 +129,6 @@ const Home = () => {
           <div className="craft-visual"></div>
           <div className="craft-copy">
             <span className="eyebrow">Studio & Atelier</span>
-            <h2>Fait à la main, un par un.</h2>
             <p>Notre atelier situé au cœur de la ville assemble chaque paire avec précision. L'acétate de cellulose, extrait de fibres de coton, offre une finition et une robustesse que le plastique injecté ne pourra jamais égaler.</p>
             <p>Le polissage est manuel, les charnières rivetées et les verres rigoureusement contrôlés pour assurer une optique sans faille. On prend le temps qu'il faut pour que vous gardiez vos lunettes des années.</p>
           </div>
