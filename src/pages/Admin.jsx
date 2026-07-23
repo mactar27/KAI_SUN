@@ -79,8 +79,9 @@ const Admin = () => {
   // --- PRODUCTS & GROUPS LOGIC ---
   const groups = {};
   products.forEach(p => {
-    if (!groups[p.groupId]) groups[p.groupId] = [];
-    groups[p.groupId].push(p);
+    const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+    if (!groups[groupKey]) groups[groupKey] = [];
+    groups[groupKey].push(p);
   });
 
   const filteredProducts = products.filter(p => {
@@ -127,7 +128,8 @@ const Admin = () => {
     
     for (const p of products) {
       const isSelected = selected.includes(p.id);
-      const wasInGroup = p.groupId === editingGroupId;
+      const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+      const wasInGroup = groupKey === editingGroupId;
       
       if (isSelected && !wasInGroup) {
         await fetch('/api/products', {
