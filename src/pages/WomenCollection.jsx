@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import { ShopContext } from '../context/ShopContext';
+import { ProductsContext } from '../context/ProductsContext';
 
 const WomenCollection = () => {
-  const { products } = useContext(ShopContext);
-  const womenProducts = products.filter(p => p.category === 'femme');
+  const { products } = useContext(ProductsContext);
+  const womenProducts = products.filter(p => p.gender === 'femme' || p.category === 'femme');
 
   return (
     <div className="section container" style={{ paddingTop: '150px' }}>

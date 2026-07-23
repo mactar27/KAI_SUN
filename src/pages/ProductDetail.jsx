@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import products from '../data/products.json';
 import { ShopContext } from '../context/ShopContext';
+import { ProductsContext } from '../context/ProductsContext';
 import { ArrowLeft, Check } from 'lucide-react';
 
 const ProductDetail = () => {
+  const { products } = useContext(ProductsContext);
   const { id } = useParams();
   const { addToCart } = useContext(ShopContext);
   

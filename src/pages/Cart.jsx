@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+import { ProductsContext } from '../context/ProductsContext';
 import { Link } from 'react-router-dom';
 import { Trash2 } from 'lucide-react';
 import { ShopContext, calculateCartTotal } from '../context/ShopContext';
 
 const Cart = () => {
+  const { products } = useContext(ProductsContext);
   const { cart, removeFromCart } = useContext(ShopContext);
 
   const total = calculateCartTotal(cart);

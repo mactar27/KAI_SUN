@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
-import products from '../data/products.json';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import { ShopContext } from '../context/ShopContext';
+import { ProductsContext } from '../context/ProductsContext';
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const { addToCart } = useContext(ShopContext);
+  const { products, loading } = useContext(ProductsContext);
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);

@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
+import { ProductsContext } from '../context/ProductsContext';
 
 const Checkout = () => {
+  const { products } = useContext(ProductsContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { cart, placeOrder, clearCart } = useContext(ShopContext);
   const navigate = useNavigate();
