@@ -4,6 +4,11 @@ export const ShopContext = createContext();
 
 const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:3000/api';
 
+export const calculateCartTotal = (cart) => {
+  const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  return Math.floor(totalQuantity / 2) * 30000 + (totalQuantity % 2) * 25000;
+};
+
 export const ShopProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(() => {
@@ -97,7 +102,7 @@ export const ShopProvider = ({ children }) => {
   };
 
   const placeOrder = async (deliveryInfo) => {
-    const orderTotal = cart.reduce((acc, item) => acc + (item.product.price * item.quantity), 0);
+    const orderTotal = calculateCartTotal(cart);
     const orderData = {
       deliveryInfo,
       items: cart,

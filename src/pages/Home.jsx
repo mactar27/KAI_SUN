@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ShopContext } from '../context/ShopContext';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [tintValue, setTintValue] = useState(30);
   const [activeFilter, setActiveFilter] = useState('all');
+  const { addToCart } = useContext(ShopContext);
 
   const getTintName = (val) => {
     if (val < 45 || val > 330) return 'Ambre';
@@ -138,8 +140,19 @@ const Home = () => {
                     <button className="swatch active" style={{ background: '#8a5a2c' }} data-color="#8a5a2c" data-name="Ambre" aria-label="Ambre"></button>
                     <button className="swatch" style={{ background: '#2c2c2c' }} data-color="#2c2c2c" data-name="Noir" aria-label="Noir"></button>
                     <button className="swatch" style={{ background: '#5a7a6a' }} data-color="#5a7a6a" data-name="Vert" aria-label="Vert"></button>
-                  </div>
-                </div>
+                  
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RFK01', name: 'RÉF. K-01 - Ambre', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
                 
                 <div className="card" data-gender="femme">
                   <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #ffd10033, var(--surface))' }}>
@@ -150,8 +163,19 @@ const Home = () => {
                   <div className="swatches">
                     <button className="swatch active" style={{ background: '#ffd100' }} data-color="#ffd100" data-name="Ambre clair" aria-label="Ambre clair"></button>
                     <button className="swatch" style={{ background: '#3d3d3d' }} data-color="#3d3d3d" data-name="Fumé" aria-label="Fumé"></button>
-                  </div>
-                </div>
+                  
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RFK03', name: 'RÉF. K-03 - Ambre clair', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="femme">
                   <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #8a3a2a33, var(--surface))' }}>
@@ -162,32 +186,87 @@ const Home = () => {
                   <div className="swatches">
                     <button className="swatch active" style={{ background: '#8a3a2a' }} data-color="#8a3a2a" data-name="Brique" aria-label="Brique"></button>
                     <button className="swatch" style={{ background: '#1a1a1a' }} data-color="#1a1a1a" data-name="Noir mat" aria-label="Noir mat"></button>
-                  </div>
-                </div>
+                  
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RFK05', name: 'RÉF. K-05 - Brique', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="femme">
                   <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/7/0/7076_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 7076" loading="lazy" /></div>
                   <div className="card-top"><span className="ref mono">RÉF. 7076</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                </div>
+                  <div className="colorway">Fournisseur — Femme
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RF7076', name: 'RÉF. 7076 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/7/0/7076_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="femme">
                   <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 9973" loading="lazy" /></div>
                   <div className="card-top"><span className="ref mono">RÉF. 9973</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                </div>
+                  <div className="colorway">Fournisseur — Femme
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RF9973', name: 'RÉF. 9973 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9973_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="femme">
                   <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 9971" loading="lazy" /></div>
                   <div className="card-top"><span className="ref mono">RÉF. 9971</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                </div>
+                  <div className="colorway">Fournisseur — Femme
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RF9971', name: 'RÉF. 9971 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9971_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="femme">
                   <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/8/2/8232_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 8232" loading="lazy" /></div>
                   <div className="card-top"><span className="ref mono">RÉF. 8232</span></div>
-                  <div className="colorway">Fournisseur — Femme</div>
-                </div>
+                  <div className="colorway">Fournisseur — Femme
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RF8232', name: 'RÉF. 8232 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/8/2/8232_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
               </>
             )}
 
@@ -203,8 +282,19 @@ const Home = () => {
                     <button className="swatch active" style={{ background: '#8b5cf6' }} data-color="#8b5cf6" data-name="Violet" aria-label="Violet"></button>
                     <button className="swatch" style={{ background: '#ff3b5c' }} data-color="#ff3b5c" data-name="Corail" aria-label="Corail"></button>
                     <button className="swatch" style={{ background: '#2c2c2c' }} data-color="#2c2c2c" data-name="Noir" aria-label="Noir"></button>
-                  </div>
-                </div>
+                  
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RFK02', name: 'RÉF. K-02 - Violet', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="homme">
                   <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #e0b84f33, var(--surface))' }}>
@@ -215,20 +305,53 @@ const Home = () => {
                   <div className="swatches">
                     <button className="swatch active" style={{ background: '#e0b84f' }} data-color="#e0b84f" data-name="Or" aria-label="Or"></button>
                     <button className="swatch" style={{ background: '#2f6fed' }} data-color="#2f6fed" data-name="Bleu" aria-label="Bleu"></button>
-                  </div>
-                </div>
+                  
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RFK04', name: 'RÉF. K-04 - Or', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="homme">
                   <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/7/0/7075_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 7075" loading="lazy" /></div>
                   <div className="card-top"><span className="ref mono">RÉF. 7075</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Homme</div>
-                </div>
+                  <div className="colorway">Fournisseur — Homme
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RF7075', name: 'RÉF. 7075 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/7/0/7075_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
 
                 <div className="card" data-gender="homme">
                   <div className="card-photo"><img src="https://www.solo-solis.com/media/catalog/product/9/9/9972_1.jpg?width=600&height=600&store=solosolisfr&image-type=image" alt="Monture solaire réf. 9972" loading="lazy" /></div>
                   <div className="card-top"><span className="ref mono">RÉF. 9972</span><span className="badge-new">NOUVEAU</span></div>
-                  <div className="colorway">Fournisseur — Homme</div>
-                </div>
+                  <div className="colorway">Fournisseur — Homme
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RF9972', name: 'RÉF. 9972 - Lunettes', price: 25000, image: 'https://www.solo-solis.com/media/catalog/product/9/9/9972_1.jpg?width=600&height=600&store=solosolisfr&image-type=image' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
                 
                 <div className="card" data-gender="homme">
                   <div className="card-lens" data-lens style={{ background: 'radial-gradient(circle, #5B463233, var(--surface))' }}>
@@ -239,8 +362,19 @@ const Home = () => {
                   <div className="swatches">
                     <button className="swatch active" style={{ background: '#5B4632' }} data-color="#5B4632" data-name="Écaille" aria-label="Écaille"></button>
                     <button className="swatch" style={{ background: '#E8DCC8' }} data-color="#E8DCC8" data-name="Crème" aria-label="Crème"></button>
-                  </div>
-                </div>
+                  
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+        <button 
+          className="btn-primary" 
+          style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+          onClick={() => addToCart({ id: 'RFNDL8317', name: 'RÉF. NDL8317 - Écaille', price: 25000, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600' })}
+        >
+          Ajouter
+        </button>
+      </div>
+  </div>
+</div>
               </>
             )}
           </div>

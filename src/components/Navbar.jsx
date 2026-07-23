@@ -7,10 +7,10 @@ const Navbar = () => {
       <div className="promo-bar" id="promoBar">
         <div className="promo-track">
           <span>LIVRAISON OFFERTE DÈS 2 PAIRES ACHETÉES</span>
-          <span>GARANTIE 2 ANS SUR TOUTES LES MONTURES</span>
+          <span>PROMO : UNE ACHETÉE, LA DEUXIÈME À 5000 FCFA</span>
           <span>PAIEMENT À LA LIVRAISON DISPONIBLE À DAKAR</span>
           <span>LIVRAISON OFFERTE DÈS 2 PAIRES ACHETÉES</span>
-          <span>GARANTIE 2 ANS SUR TOUTES LES MONTURES</span>
+          <span>PROMO : UNE ACHETÉE, LA DEUXIÈME À 5000 FCFA</span>
           <span>PAIEMENT À LA LIVRAISON DISPONIBLE À DAKAR</span>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Trash2 } from 'lucide-react';
-import { ShopContext } from '../context/ShopContext';
+import { ShopContext, calculateCartTotal } from '../context/ShopContext';
 
 const Cart = () => {
   const { cart, removeFromCart } = useContext(ShopContext);
 
-  const total = cart.reduce((acc, item) => acc + (item.product.price * item.quantity), 0);
+  const total = calculateCartTotal(cart);
 
   if (cart.length === 0) {
     return (
@@ -64,6 +64,11 @@ const Cart = () => {
               <span>Livraison</span>
               <span>Calculée à l'étape suivante</span>
             </div>
+            {cart.reduce((acc, item) => acc + item.quantity, 0) >= 2 && (
+              <div style={{ padding: '0.8rem', backgroundColor: '#e6f7ff', border: '1px solid #91d5ff', borderRadius: '4px', marginBottom: '1rem', color: '#0050b3', fontSize: '0.85rem' }}>
+                🎉 Promo appliquée : La deuxième paire est à 5 000 FCFA !
+              </div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: '1.3rem', marginBottom: '3rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem', color: 'var(--color-primary)' }}>
               <span>Total</span>
               <span>{total} FCFA</span>
