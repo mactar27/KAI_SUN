@@ -136,7 +136,7 @@
   {
     "id": "NDL9880",
     "ref": "NDL9880",
-    "gender": "femme",
+    "gender": "homme",
     "image": "https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg",
     "price": 25000,
     "name": "RÉF. NDL9880 - Fournisseur Femme",
@@ -144,7 +144,8 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9880_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9880_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9880_3.jpg"
-    ]
+    ],
+    "groupId": "GROUP_NDL988X"
   },
   {
     "id": "NDL9815",
@@ -362,7 +363,8 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9889_1.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9889_2.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9889_3.jpg"
-    ]
+    ],
+    "groupId": "GROUP_NDL988X"
   },
   {
     "id": "NDL9713",
@@ -553,7 +555,8 @@
       "https://www.solo-solis.com/media/catalog/product/9/8/9884_fv.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9884_fv.jpg",
       "https://www.solo-solis.com/media/catalog/product/9/8/9884_fv.jpg"
-    ]
+    ],
+    "groupId": "GROUP_NDL988X"
   },
   {
     "id": "NDL8315",
