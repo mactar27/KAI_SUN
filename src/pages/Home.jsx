@@ -73,9 +73,22 @@ const Home = () => {
           </div>
           
           <div className="grid">
-            {products
-              .filter(p => activeFilter === 'all' || p.gender === activeFilter)
-              .map(product => (
+            {(() => {
+              const filteredProducts = products.filter(p => activeFilter === 'all' || p.gender === activeFilter);
+              const groupedProductsMap = new Map();
+              filteredProducts.forEach(p => {
+                const baseRef = p.ref.substring(0, p.ref.length - 1);
+                if (!groupedProductsMap.has(baseRef)) {
+                  groupedProductsMap.set(baseRef, {
+                    baseProduct: p,
+                    variantsCount: 1
+                  });
+                } else {
+                  groupedProductsMap.get(baseRef).variantsCount++;
+                }
+              });
+              
+              return Array.from(groupedProductsMap.values()).map(({ baseProduct: product, variantsCount }) => (
                 <div key={product.id} className="card" data-gender={product.gender}>
                   <Link to={`/product/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
                     <div className="card-photo">
@@ -86,7 +99,10 @@ const Home = () => {
                     <span className="ref mono">RÉF. {product.ref}</span>
                     <span className="badge-new">NOUVEAU</span>
                   </div>
-                  <div className="colorway">Fournisseur — {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}</div>
+                  <div className="colorway">
+                    Fournisseur — {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}
+                    {variantsCount > 1 && <span style={{display: 'block', color: 'var(--ink)', fontSize: '0.85rem', marginTop: '4px', fontWeight: 500}}>+ {variantsCount} coloris disponibles</span>}
+                  </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
                     <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
                     <button 
@@ -101,8 +117,8 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-              ))
-            }
+              ));
+            })()}
           </div>
         </div>      </section>
 

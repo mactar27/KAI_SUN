@@ -32,6 +32,9 @@ const ProductDetail = () => {
     product.image.replace('_1.jpg', '_2.jpg')
   ];
 
+  const baseRef = product.ref.substring(0, product.ref.length - 1);
+  const variants = products.filter(p => p.ref.substring(0, p.ref.length - 1) === baseRef);
+
   return (
     <div style={{ paddingTop: '120px', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>
       <div className="container" style={{ maxWidth: '1200px' }}>
@@ -104,28 +107,27 @@ const ProductDetail = () => {
               Cette monture premium offre une protection UV400 optimale tout en conservant une légèreté exceptionnelle pour un confort tout au long de la journée.
             </p>
 
-            {/* MOCK COLORS */}
-            <div style={{ marginBottom: '40px' }}>
-              <h3 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Couleurs disponibles</h3>
-              <div style={{ display: 'flex', gap: '16px' }}>
-                <button 
-                  style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#111111', border: '2px solid var(--ink)', cursor: 'pointer', outlineOffset: '4px' }} 
-                  aria-label="Noir"
-                  title="Noir"
-                ></button>
-                <button 
-                  style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(45deg, #6b4c3a, #b38b6d, #4a3424)', border: '2px solid transparent', cursor: 'pointer', opacity: 0.6 }} 
-                  aria-label="Écaille"
-                  title="Écaille"
-                ></button>
-                <button 
-                  style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#e5e5e5', border: '2px solid transparent', cursor: 'pointer', opacity: 0.6 }} 
-                  aria-label="Transparent"
-                  title="Transparent"
-                ></button>
+            {variants.length > 1 && (
+              <div style={{ marginBottom: '40px' }}>
+                <h3 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Coloris disponibles ({variants.length})</h3>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                  {variants.map(v => (
+                    <Link key={v.id} to={`/product/${v.id}`} onClick={() => { window.scrollTo(0, 0); }} title={`RÉF. ${v.ref}`}>
+                      <img 
+                        src={v.image + '?width=100&height=100'} 
+                        alt={v.name}
+                        style={{ 
+                          width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover',
+                          border: v.id === product.id ? '2px solid var(--ink)' : '2px solid transparent',
+                          padding: '2px', background: 'var(--surface)'
+                        }}
+                        onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
+                      />
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <p style={{ fontSize: '12px', color: 'var(--ink-soft)', marginTop: '12px' }}>*La couleur affichée est celle sélectionnée par défaut.</p>
-            </div>
+            )}
 
             <button 
               className="btn-primary" 
