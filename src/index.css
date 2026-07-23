@@ -109,6 +109,30 @@
     align-items: center;
     justify-content: center;
   }
+  .sun-element {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #FFFBEA 0%, #FFD700 40%, #FFA500 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px #FFD700, 0 0 60px #FF8C00;
+    z-index: 0;
+    animation: pulseSun 4s infinite alternate;
+  }
+  @media(max-width:900px) {
+    .sun-element {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      right: 10%;
+    }
+  }
+  @keyframes pulseSun {
+    0% { transform: scale(1); box-shadow: 0 0 30px #FFD700, 0 0 60px #FF8C00; }
+    100% { transform: scale(1.15); box-shadow: 0 0 50px #FFD700, 0 0 90px #FF8C00; }
+  }
   .kaia-floating-text {
     font-family: 'Baloo 2', 'Fredoka', 'Arial Black', sans-serif;
     font-size: clamp(100px, 15vw, 200px);

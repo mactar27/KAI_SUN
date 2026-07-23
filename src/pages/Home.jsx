@@ -18,6 +18,7 @@ const Home = () => {
       <header className="hero">
         <div className="wrap" style={{ display: 'contents' }}>
           <div className="hero-visual-box">
+            <div className="sun-element"></div>
             <span className="kaia-floating-text">KAIA</span>
             <div className="wave-container">
               <svg className="wave-svg" viewBox="0 0 800 130" preserveAspectRatio="none">
@@ -120,6 +121,7 @@ const Home = () => {
       <section id="savoir-faire" className="wrap">
         <div className="craft">
           <div className="craft-visual">
+            <div className="sun-element"></div>
             <span className="kaia-floating-text" style={{ fontSize: 'clamp(70px, 12vw, 120px)', marginTop: '-10px' }}>KAIA</span>
             <div className="wave-container">
               <svg className="wave-svg" viewBox="0 0 800 130" preserveAspectRatio="none">
