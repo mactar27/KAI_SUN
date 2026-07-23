@@ -16,10 +16,10 @@ const Footer = () => {
 
         <div className="foot-col">
           <div className="foot-heading">Boutique</div>
-          <Link to="/#collection">Femme</Link>
-          <Link to="/#collection">Homme</Link>
-          <Link to="/#collection">Nouveautés</Link>
-          <Link to="/#collection">Accessoires</Link>
+          <a href="/#collection">Femme</a>
+          <a href="/#collection">Homme</a>
+          <a href="/#collection">Nouveautés</a>
+          <a href="/#collection">Accessoires</a>
         </div>
 
         <div className="foot-col">

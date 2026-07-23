@@ -21,13 +21,13 @@ const Navbar = () => {
             KAIA SUN
           </Link>
           <div className="nav-links">
-            <Link to="/#collection">Collection</Link>
-            <Link to="/#savoir-faire">Savoir-faire</Link>
-            <Link to="/#avis">Avis</Link>
+            <a href="/#collection">Collection</a>
+            <a href="/#savoir-faire">Savoir-faire</a>
+            <a href="/#avis">Avis</a>
             {/* Added a link to the cart so we don't lose that functionality */}
             <Link to="/panier">Panier</Link>
           </div>
-          <Link to="/#collection" className="nav-cta">Voir la collection</Link>
+          <a href="/#collection" className="nav-cta">Voir la collection</a>
         </div>
       </nav>
     </>
