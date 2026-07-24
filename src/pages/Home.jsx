@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ShopContext } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
 
@@ -8,6 +8,29 @@ const Home = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const { addToCart } = useContext(ShopContext);
   const { products, loading } = useContext(ProductsContext);
+  const carouselRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        // Si on est à la fin, on retourne au début, sinon on avance
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carouselRef.current.scrollBy({ left: 324, behavior: 'smooth' });
+        }
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [activeFilter]);
+
+  const scrollPrev = () => {
+    if (carouselRef.current) carouselRef.current.scrollBy({ left: -324, behavior: 'smooth' });
+  };
+  const scrollNext = () => {
+    if (carouselRef.current) carouselRef.current.scrollBy({ left: 324, behavior: 'smooth' });
+  };
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);
@@ -65,56 +88,61 @@ const Home = () => {
             <button className={`filter-btn ${activeFilter === 'homme' ? 'active' : ''}`} onClick={() => handleFilter('homme')}>Homme</button>
           </div>
           
-          <div className="grid">
-            {(() => {
-              const filteredProducts = products.filter(p => activeFilter === 'all' || p.gender === activeFilter);
-              const groupedProductsMap = new Map();
-              filteredProducts.forEach(p => {
-                // Use explicit groupId if set, otherwise fall back to ref minus last char
-                const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
-                if (!groupedProductsMap.has(groupKey)) {
-                  groupedProductsMap.set(groupKey, {
-                    baseProduct: p,
-                    variantsCount: 1
-                  });
-                } else {
-                  groupedProductsMap.get(groupKey).variantsCount++;
-                }
-              });
-              
-              return Array.from(groupedProductsMap.values()).map(({ baseProduct: product, variantsCount }) => (
-                <div key={product.id} className="card" data-gender={product.gender}>
-                  <Link to={`/product/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
-                    <div className="card-photo">
-                      <img src={product.image + '?width=600&height=600'} alt={product.name} loading="lazy" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x600/f0f0f0/a0a0a0?text=Image+Indisponible' }} />
+          <div className="carousel-wrapper">
+            <button className="carousel-arrow prev" onClick={scrollPrev}>
+              <ChevronLeft size={24} />
+            </button>
+            <button className="carousel-arrow next" onClick={scrollNext}>
+              <ChevronRight size={24} />
+            </button>
+            <div className="carousel-track" ref={carouselRef}>
+              {(() => {
+                const filteredProducts = products.filter(p => activeFilter === 'all' || p.gender === activeFilter);
+                const groupedProductsMap = new Map();
+                filteredProducts.forEach(p => {
+                  const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+                  if (!groupedProductsMap.has(groupKey)) {
+                    groupedProductsMap.set(groupKey, { baseProduct: p, variantsCount: 1 });
+                  } else {
+                    groupedProductsMap.get(groupKey).variantsCount++;
+                  }
+                });
+                
+                return Array.from(groupedProductsMap.values()).map(({ baseProduct: product, variantsCount }) => (
+                  <div key={product.id} className="card" data-gender={product.gender}>
+                    <Link to={`/product/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
+                      <div className="card-photo">
+                        <img src={product.image + '?width=600&height=600'} alt={product.name} loading="lazy" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x600/f0f0f0/a0a0a0?text=Image+Indisponible' }} />
+                      </div>
+                    </Link>
+                    <div className="card-top">
+                      <span className="ref mono">RÉF. {product.ref}</span>
+                      <span className="badge-new">NOUVEAU</span>
                     </div>
-                  </Link>
-                  <div className="card-top">
-                    <span className="ref mono">RÉF. {product.ref}</span>
-                    <span className="badge-new">NOUVEAU</span>
+                    <div className="colorway">
+                      Fournisseur — {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}
+                      {variantsCount > 1 && <span style={{display: 'block', color: 'var(--ink)', fontSize: '0.85rem', marginTop: '4px', fontWeight: 500}}>+ {variantsCount} coloris disponibles</span>}
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+                      <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+                      <button 
+                        className="btn-primary" 
+                        style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart({ id: product.id, name: product.name, price: 25000, image: product.image + '?width=600&height=600' });
+                        }}
+                      >
+                        Ajouter
+                      </button>
+                    </div>
                   </div>
-                  <div className="colorway">
-                    Fournisseur — {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}
-                    {variantsCount > 1 && <span style={{display: 'block', color: 'var(--ink)', fontSize: '0.85rem', marginTop: '4px', fontWeight: 500}}>+ {variantsCount} coloris disponibles</span>}
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
-                    <button 
-                      className="btn-primary" 
-                      style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addToCart({ id: product.id, name: product.name, price: 25000, image: product.image + '?width=600&height=600' });
-                      }}
-                    >
-                      Ajouter
-                    </button>
-                  </div>
-                </div>
-              ));
-            })()}
+                ));
+              })()}
+            </div>
           </div>
-        </div>      </section>
+        </div>
+      </section>
 
       <section id="savoir-faire" className="wrap">
         <div className="craft">
