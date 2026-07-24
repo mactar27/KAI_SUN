@@ -1,9 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
+import { ShopContext } from '../context/ShopContext';
+import Login from './admin/Login';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
 const Admin = () => {
+  const { adminToken, logoutAdmin } = useContext(ShopContext);
   const { products, refreshProducts } = useContext(ProductsContext);
+
+  if (!adminToken) {
+    return <Login />;
+  }
   const [activeTab, setActiveTab] = useState('products'); // 'products', 'orders', 'analytics'
   
   // Orders State
@@ -208,7 +214,15 @@ const Admin = () => {
         {/* Header & Tabs */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #e5e5e5', paddingBottom: '16px' }}>
           <div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 900, color: '#111', margin: '0 0 16px 0' }}>⚙️ Centre de Contrôle</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+              <h1 style={{ fontSize: '2rem', fontWeight: 900, color: '#111', margin: 0 }}>⚙️ Centre de Contrôle</h1>
+              <button 
+                onClick={logoutAdmin}
+                style={{ padding: '6px 12px', background: '#ffebee', color: '#c62828', border: '1px solid #ef9a9a', borderRadius: '6px', fontWeight: 600, cursor: 'pointer', fontSize: '0.85rem' }}
+              >
+                Se déconnecter
+              </button>
+            </div>
             <div style={{ display: 'flex', gap: '12px' }}>
               <button 
                 onClick={() => setActiveTab('products')}
