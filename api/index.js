@@ -10,7 +10,7 @@ app.use(express.json({ limit: '4mb' }));
 app.use(express.urlencoded({ limit: '4mb', extended: true }));
 
 // --- AUTH MIDDLEWARE ---
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Pita999!!';
+const ADMIN_PASSWORD = 'Pita999!!';
 const ADMIN_TOKEN = 'kaia-admin-token-2026';
 
 const authMiddleware = (req, res, next) => {
