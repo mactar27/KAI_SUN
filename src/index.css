@@ -111,8 +111,8 @@
   }
   .sun-element {
     position: absolute;
-    top: 15%;
-    right: 15%;
+    top: 10%;
+    right: 2%;
     width: 120px;
     height: 120px;
     background: radial-gradient(circle, #FFFBEA 0%, #FFD700 40%, #FFA500 100%);
@@ -123,10 +123,10 @@
   }
   @media(max-width:900px) {
     .sun-element {
-      width: 80px;
-      height: 80px;
+      width: 75px;
+      height: 75px;
       top: 10%;
-      right: 10%;
+      right: -15px;
     }
   }
   @keyframes pulseSun {
