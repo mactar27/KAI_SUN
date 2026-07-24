@@ -45,10 +45,19 @@ export const ShopProvider = ({ children }) => {
   };
 
   const fetchStats = async () => {
-    const res = await fetch(`${API_URL}/stats`);
-    const data = await res.json();
-    setVisitors(data.visitors);
-    setDailyVisits(data.daily || []);
+    try {
+      const res = await fetch(`${API_URL}/stats`);
+      if (res.ok) {
+        const data = await res.json();
+        setVisitors(data.visitors);
+        setDailyVisits(data.daily || []);
+      } else {
+        const err = await res.text();
+        console.error('API Error /stats:', err.substring(0, 50));
+      }
+    } catch (e) {
+      console.error('Network Error /stats:', e);
+    }
   };
 
   useEffect(() => {
