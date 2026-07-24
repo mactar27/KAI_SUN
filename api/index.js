@@ -24,11 +24,15 @@ const authMiddleware = (req, res, next) => {
 
 // --- AUTHENTICATION API ---
 app.post('/api/auth/login', (req, res) => {
-  const { password } = req.body;
-  if (password === ADMIN_PASSWORD) {
-    res.json({ success: true, token: ADMIN_TOKEN });
-  } else {
-    res.status(401).json({ success: false, error: 'Mot de passe incorrect' });
+  try {
+    const password = req.body?.password;
+    if (password && password.trim() === ADMIN_PASSWORD) {
+      res.json({ success: true, token: ADMIN_TOKEN });
+    } else {
+      res.status(401).json({ success: false, error: 'Mot de passe incorrect' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Server error: ' + error.message });
   }
 });
 

@@ -12,9 +12,9 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    const success = await loginAdmin(password);
-    if (!success) {
-      setError('Mot de passe incorrect');
+    const result = await loginAdmin(password);
+    if (!result.success) {
+      setError(result.error || 'Mot de passe incorrect');
     }
     setLoading(false);
   };

@@ -204,17 +204,17 @@ export const ShopProvider = ({ children }) => {
         data = JSON.parse(text);
       } catch (e) {
         console.error("Non-JSON response:", text);
-        return false;
+        return { success: false, error: "Erreur serveur: réponse invalide" };
       }
       if (data && data.success) {
         setAdminToken(data.token);
         localStorage.setItem('kaia_admin_token', data.token);
-        return true;
+        return { success: true };
       }
-      return false;
+      return { success: false, error: data?.error || 'Mot de passe incorrect' };
     } catch (err) {
       console.error("Login error:", err);
-      return false;
+      return { success: false, error: "Erreur de connexion au serveur" };
     }
   };
 
