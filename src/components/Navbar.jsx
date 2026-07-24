@@ -70,7 +70,7 @@ const Navbar = () => {
             <button 
               className="mobile-menu-btn" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ background: 'none', border: 'none', color: '#111', cursor: 'pointer', display: 'flex', padding: '4px' }}
+              style={{ background: 'none', border: 'none', color: '#111', cursor: 'pointer', padding: '4px' }}
             >
               {isMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
             </button>
