@@ -192,18 +192,30 @@ export const ShopProvider = ({ children }) => {
   };
 
   const loginAdmin = async (password) => {
-    const res = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
-    });
-    const data = await res.json();
-    if (data.success) {
-      setAdminToken(data.token);
-      localStorage.setItem('kaia_admin_token', data.token);
-      return true;
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        console.error("Non-JSON response:", text);
+        return false;
+      }
+      if (data && data.success) {
+        setAdminToken(data.token);
+        localStorage.setItem('kaia_admin_token', data.token);
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error("Login error:", err);
+      return false;
     }
-    return false;
   };
 
   const logoutAdmin = () => {
