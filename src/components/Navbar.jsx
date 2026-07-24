@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from './../context/ShopContext';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const { cart } = useContext(ShopContext);
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
 
   return (
     <>
@@ -25,11 +32,14 @@ const Navbar = () => {
           <Link to="/" className="logo" style={{ fontWeight: 'bold', color: '#000000' }}>
             KAIA SUN
           </Link>
+
+          {/* DESKTOP NAV */}
           <div className="nav-links">
             <a href="/#collection">Collection</a>
             <a href="/#savoir-faire">Savoir-faire</a>
             <a href="/#avis">Avis</a>
           </div>
+
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111' }}>
               <ShoppingBag size={24} strokeWidth={2.5} />
@@ -54,10 +64,31 @@ const Navbar = () => {
                 </span>
               )}
             </Link>
-            <a href="/#collection" className="nav-cta">Voir la collection</a>
+            <a href="/#collection" className="nav-cta hide-on-mobile">Voir la collection</a>
+            
+            {/* MOBILE MENU BUTTON */}
+            <button 
+              className="mobile-menu-btn" 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              style={{ background: 'none', border: 'none', color: '#111', cursor: 'pointer', display: 'flex', padding: '4px' }}
+            >
+              {isMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      {isMenuOpen && (
+        <div className="mobile-menu-overlay">
+          <div className="mobile-menu-content">
+            <a href="/#collection" onClick={() => setIsMenuOpen(false)}>Collection</a>
+            <a href="/#savoir-faire" onClick={() => setIsMenuOpen(false)}>Savoir-faire</a>
+            <a href="/#avis" onClick={() => setIsMenuOpen(false)}>Avis</a>
+            <a href="/#collection" className="mobile-menu-cta" onClick={() => setIsMenuOpen(false)}>Voir la collection</a>
+          </div>
+        </div>
+      )}
     </>
   );
 };

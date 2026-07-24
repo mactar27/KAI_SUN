@@ -56,7 +56,18 @@
   .nav-links a:hover{opacity:.6;}
   .nav-cta{font-size:13px;font-weight:700;padding:11px 22px;border-radius:100px;background:var(--ink);color:#fff;border:2px solid var(--ink);transition:transform .2s ease, background .2s ease;text-transform:uppercase;letter-spacing:0.04em;}
   .nav-cta:hover{transform:translateY(-1px);background:#fff;color:var(--ink);}
-  @media(max-width:800px){.nav-links{display:none;}}
+  
+  .mobile-menu-btn{display:none;}
+  .mobile-menu-overlay{position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--surface);z-index:99;display:flex;flex-direction:column;padding:40px 20px;}
+  .mobile-menu-content{display:flex;flex-direction:column;gap:32px;align-items:center;margin-top:20px;}
+  .mobile-menu-content a{font-size:24px;font-weight:700;color:var(--ink);text-transform:uppercase;text-decoration:none;letter-spacing:0.04em;}
+  .mobile-menu-cta{background:var(--ink);color:#fff !important;padding:16px 32px;border-radius:100px;margin-top:20px;}
+
+  @media(max-width:800px){
+    .nav-links{display:none;}
+    .hide-on-mobile{display:none !important;}
+    .mobile-menu-btn{display:flex;}
+  }
 
   /* ---------- HERO ---------- */
   .hero{min-height:100svh;display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;padding-top:130px;padding-bottom:60px;position:relative;}
