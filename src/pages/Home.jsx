@@ -41,12 +41,10 @@ const Home = () => {
           <span>Verres polarisés — UV400</span>
           <span>Acétate italien</span>
           <span>Monté à la main</span>
-          <span>Garantie 2 ans</span>
           <span>Livraison Dakar & Abidjan</span>
           <span>Verres polarisés — UV400</span>
           <span>Acétate italien</span>
           <span>Monté à la main</span>
-          <span>Garantie 2 ans</span>
           <span>Livraison Dakar & Abidjan</span>
         </div>
       </div>
@@ -180,10 +178,6 @@ const Home = () => {
           <div className="review">
             <p>"La clarté des verres polarisés est dingue. Le soleil de midi n'est plus un problème, même en conduisant. Et la monture est super légère."</p>
             <div className="who">— Amadou L.</div>
-          </div>
-          <div className="review">
-            <p>"J'ai la réf. K-01 en ambre. Je n'ai eu que des compliments. On sent vraiment la différence de qualité avec mes anciennes lunettes."</p>
-            <div className="who">— Fatou S.</div>
           </div>
           <div className="review">
             <p>"Commande passée le matin, livrée l'après-midi au bureau à Dakar. Service impeccable et les lunettes respirent le premium."</p>
