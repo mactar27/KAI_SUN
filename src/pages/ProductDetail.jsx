@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
 import { ArrowLeft, Check } from 'lucide-react';
@@ -12,6 +12,8 @@ const ProductDetail = () => {
   const product = products.find(p => p.id === id);
   const [mainImage, setMainImage] = useState(product ? product.image : '');
 
+  const navigate = useNavigate();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
     if (product) {
@@ -25,6 +27,16 @@ const ProductDetail = () => {
       }).catch(e => console.error(e));
     }
   }, [product]);
+
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
 
   if (!product) {
     return (
@@ -46,6 +58,26 @@ const ProductDetail = () => {
     return pKey === groupKey;
   });
 
+  const onTouchEndHandler = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe || isRightSwipe) {
+      if (variants.length > 1) {
+        const currentIndex = variants.findIndex(v => v.id === product.id);
+        if (isLeftSwipe) {
+          const nextIndex = (currentIndex + 1) % variants.length;
+          navigate(`/product/${variants[nextIndex].id}`);
+        } else {
+          const prevIndex = (currentIndex - 1 + variants.length) % variants.length;
+          navigate(`/product/${variants[prevIndex].id}`);
+        }
+      }
+    }
+  };
+
   return (
     <div style={{ paddingTop: '120px', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>
       <div className="container" style={{ maxWidth: '1200px' }}>
@@ -58,12 +90,18 @@ const ProductDetail = () => {
           
           {/* IMAGE SECTION */}
           <div style={{ position: 'sticky', top: '120px' }}>
-            <div style={{ 
-              background: 'var(--surface)', 
-              padding: '40px', 
-              border: '2px solid var(--ink)', 
-              borderRadius: '16px',
-            }}>
+            <div 
+              style={{ 
+                background: 'var(--surface)', 
+                padding: '40px', 
+                border: '2px solid var(--ink)', 
+                borderRadius: '16px',
+                touchAction: 'pan-y'
+              }}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEndHandler}
+            >
               <img 
                 src={mainImage + '?width=1000&height=1000'} 
                 alt={product.name} 
