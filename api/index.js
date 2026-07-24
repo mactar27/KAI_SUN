@@ -2,7 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const dbUrl = process.env.DATABASE_URL || (process.env.TIDB_USER ? `mysql://${process.env.TIDB_USER}:${process.env.TIDB_PASSWORD}@${process.env.TIDB_HOST}:4000/${process.env.TIDB_DATABASE}?ssl={"rejectUnauthorized":true}` : undefined);
+
+const prisma = new PrismaClient({
+  ...(dbUrl && { datasources: { db: { url: dbUrl } } })
+});
 const app = express();
 
 app.use(cors());
@@ -182,6 +186,16 @@ app.post('/api/stats/visit', async (req, res) => {
   const totalVisitors = allVisits.reduce((sum, v) => sum + v.count, 0) + 1240;
   
   res.json({ visitors: totalVisitors });
+});
+
+// --- GLOBAL ERROR HANDLER ---
+app.use((err, req, res, next) => {
+  console.error('Unhandled API Error:', err);
+  res.status(500).json({ 
+    success: false, 
+    error: 'Erreur interne du serveur',
+    details: err.message 
+  });
 });
 
 const PORT = 3000;

@@ -61,8 +61,10 @@ export const ShopProvider = ({ children }) => {
         const hasVisited = sessionStorage.getItem('kaia_session_visit');
         if (!hasVisited) {
           const res = await fetch(`${API_URL}/stats/visit`, { method: 'POST' });
-          const data = await res.json();
-          setVisitors(data.visitors);
+          if (res.ok) {
+            const data = await res.json();
+            setVisitors(data.visitors);
+          }
           sessionStorage.setItem('kaia_session_visit', 'true');
         }
       } catch (err) {
