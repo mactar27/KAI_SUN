@@ -28,15 +28,17 @@ const ProductDetail = () => {
     }
   }, [product]);
 
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
+  const touchStartX = React.useRef(null);
+  const touchEndX = React.useRef(null);
 
   const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    touchEndX.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
   };
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
 
   if (!product) {
     return (
@@ -59,20 +61,25 @@ const ProductDetail = () => {
   });
 
   const onTouchEndHandler = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
 
     if (isLeftSwipe || isRightSwipe) {
       if (variants.length > 1) {
         const currentIndex = variants.findIndex(v => v.id === product.id);
+        let targetId = null;
         if (isLeftSwipe) {
           const nextIndex = (currentIndex + 1) % variants.length;
-          navigate(`/product/${variants[nextIndex].id}`);
+          targetId = variants[nextIndex].id;
         } else {
           const prevIndex = (currentIndex - 1 + variants.length) % variants.length;
-          navigate(`/product/${variants[prevIndex].id}`);
+          targetId = variants[prevIndex].id;
+        }
+        if (targetId) {
+          navigate(`/product/${targetId}`);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     }
@@ -110,28 +117,7 @@ const ProductDetail = () => {
               />
             </div>
             
-            {/* THUMBNAILS */}
-            <div style={{ display: 'flex', gap: '16px', marginTop: '16px', justifyContent: 'center' }}>
-              {thumbnails.map((thumb, idx) => (
-                <img
-                  key={idx}
-                  src={thumb + '?width=200&height=200'}
-                  alt={`Vue ${idx + 1}`}
-                  style={{
-                    width: '80px',
-                    height: '80px',
-                    objectFit: 'contain',
-                    border: mainImage === thumb ? '2px solid var(--ink)' : '2px solid var(--line)',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    background: 'var(--surface)',
-                    padding: '8px'
-                  }}
-                  onClick={() => setMainImage(thumb)}
-                  onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
-                />
-              ))}
-            </div>
+            {/* THUMBNAILS REMOVED AS REQUESTED */}
           </div>
 
           {/* DETAILS SECTION */}
