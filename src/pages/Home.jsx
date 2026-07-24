@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { ShopContext } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
 
@@ -84,18 +84,6 @@ const VariantSliderCard = ({ group, addToCart }) => {
           />
           {variants.length > 1 && (
             <>
-              <button 
-                onClick={handlePrev} 
-                style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', opacity: 0.8 }}
-              >
-                <ChevronLeft size={20} color="#111" />
-              </button>
-              <button 
-                onClick={handleNext} 
-                style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', opacity: 0.8 }}
-              >
-                <ChevronRight size={20} color="#111" />
-              </button>
               <div style={{ position: 'absolute', bottom: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6 }}>
                 {variants.map((v, idx) => (
                   <div key={v.id} style={{ width: 6, height: 6, borderRadius: '50%', background: idx === currentIndex ? 'var(--ink)' : 'rgba(0,0,0,0.2)' }} />
