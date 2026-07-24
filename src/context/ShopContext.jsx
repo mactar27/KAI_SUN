@@ -64,8 +64,11 @@ export const ShopProvider = ({ children }) => {
           if (res.ok) {
             const data = await res.json();
             setVisitors(data.visitors);
+            sessionStorage.setItem('kaia_session_visit', 'true');
+          } else {
+            const errData = await res.json().catch(() => ({}));
+            console.error('API Error /stats/visit:', errData);
           }
-          sessionStorage.setItem('kaia_session_visit', 'true');
         }
       } catch (err) {
         console.error('Erreur connexion backend', err);

@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 
-const dbUrl = process.env.DATABASE_URL || (process.env.TIDB_USER ? `mysql://${process.env.TIDB_USER}:${process.env.TIDB_PASSWORD}@${process.env.TIDB_HOST}:4000/${process.env.TIDB_DATABASE}?ssl={"rejectUnauthorized":true}` : undefined);
+const dbUrl = process.env.DATABASE_URL || (process.env.TIDB_USER ? `mysql://${process.env.TIDB_USER}:${process.env.TIDB_PASSWORD}@${process.env.TIDB_HOST}:4000/${process.env.TIDB_DATABASE}?sslaccept=strict` : undefined);
 
 const prisma = new PrismaClient({
   ...(dbUrl && { datasources: { db: { url: dbUrl } } })
