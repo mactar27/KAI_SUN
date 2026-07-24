@@ -204,7 +204,7 @@ export const ShopProvider = ({ children }) => {
         data = JSON.parse(text);
       } catch (e) {
         console.error("Non-JSON response:", text);
-        return { success: false, error: "Erreur serveur: réponse invalide" };
+        return { success: false, error: `Erreur serveur: ${text.substring(0, 60)}` };
       }
       if (data && data.success) {
         setAdminToken(data.token);
