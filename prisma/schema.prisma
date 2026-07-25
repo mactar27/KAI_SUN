@@ -53,3 +53,10 @@ model DailyVisit {
   date  DateTime @unique
   count Int      @default(0)
 }
+
+model MusicTrack {
+  id        Int     @id @default(autoincrement())
+  title     String
+  url       String  @db.LongText
+  isActive  Boolean @default(false)
+}

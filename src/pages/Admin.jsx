@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
 import { ShopContext } from '../context/ShopContext';
 import Login from './admin/Login';
+import MusicTab from './admin/MusicTab';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 const Admin = () => {
   const { adminToken, logoutAdmin } = useContext(ShopContext);
@@ -239,9 +240,19 @@ const Admin = () => {
                 style={{ padding: '8px 16px', background: activeTab === 'analytics' ? '#111' : '#eee', color: activeTab === 'analytics' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
                 📊 Statistiques
               </button>
+              <button 
+                onClick={() => setActiveTab('music')}
+                style={{ padding: '8px 16px', background: activeTab === 'music' ? '#111' : '#eee', color: activeTab === 'music' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+                🎵 Ambiance Sonore
+              </button>
             </div>
           </div>
         </div>
+
+        {/* --- TAB: MUSIC --- */}
+        {activeTab === 'music' && (
+          <MusicTab adminToken={adminToken} />
+        )}
 
         {/* --- TAB: ORDERS --- */}
         {activeTab === 'orders' && (

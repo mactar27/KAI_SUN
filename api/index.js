@@ -191,6 +191,52 @@ app.post('/api/stats/visit', async (req, res) => {
   
   res.json({ visitors: totalVisitors });
 });
+// --- MUSIC API ---
+app.get('/api/music', async (req, res) => {
+  try {
+    const tracks = await prisma.musicTrack.findMany();
+    res.json(tracks);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/music', authMiddleware, async (req, res) => {
+  try {
+    const { title, url } = req.body;
+    const count = await prisma.musicTrack.count();
+    const track = await prisma.musicTrack.create({
+      data: { title, url, isActive: count === 0 }
+    });
+    res.json(track);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/music/:id/activate', authMiddleware, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await prisma.musicTrack.updateMany({ data: { isActive: false } });
+    const track = await prisma.musicTrack.update({
+      where: { id },
+      data: { isActive: true }
+    });
+    res.json(track);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/music/:id', authMiddleware, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await prisma.musicTrack.delete({ where: { id } });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // --- GLOBAL ERROR HANDLER ---
 app.use((err, req, res, next) => {

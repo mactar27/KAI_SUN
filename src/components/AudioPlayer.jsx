@@ -2,11 +2,33 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [activeUrl, setActiveUrl] = useState(null);
   const audioRef = useRef(null);
 
   useEffect(() => {
+    // Fetch active music track
+    const fetchMusic = async () => {
+      try {
+        const res = await fetch('/api/music');
+        if (res.ok) {
+          const tracks = await res.json();
+          const active = tracks.find(t => t.isActive);
+          if (active) {
+            setActiveUrl(active.url);
+          }
+        }
+      } catch (e) {
+        console.error("Erreur chargement musique:", e);
+      }
+    };
+    fetchMusic();
+  }, []);
+
+  useEffect(() => {
+    if (!activeUrl) return;
+
     // Create audio element programmatically to avoid DOM clutter
-    const audio = new Audio('/ambiance.webm');
+    const audio = new Audio(activeUrl);
     audio.loop = true;
     audio.volume = 0.4; // Soft background volume
     audioRef.current = audio;
@@ -15,7 +37,9 @@ const AudioPlayer = () => {
       audio.pause();
       audio.src = '';
     };
-  }, []);
+  }, [activeUrl]);
+
+  if (!activeUrl) return null; // Don't show player if no active music
 
   const togglePlay = () => {
     if (isPlaying) {
