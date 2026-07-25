@@ -74,6 +74,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
           style={{ 
             position: 'relative', 
             touchAction: 'pan-y',
+            backgroundImage: 'url("https://images.unsplash.com/photo-1533692328991-08159ff19fca?q=80&w=800&auto=format&fit=crop")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '12px',

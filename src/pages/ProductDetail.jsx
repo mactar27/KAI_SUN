@@ -99,6 +99,9 @@ const ProductDetail = () => {
           <div style={{ position: 'sticky', top: '120px' }}>
             <div 
               style={{ 
+                backgroundImage: 'url("https://images.unsplash.com/photo-1533692328991-08159ff19fca?q=80&w=800&auto=format&fit=crop")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 padding: '40px', 
                 border: '2px solid var(--ink)', 
                 borderRadius: '16px',

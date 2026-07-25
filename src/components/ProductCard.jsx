@@ -8,6 +8,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card group">
       <div className="product-image-container" style={{ 
+        backgroundImage: 'url("https://images.unsplash.com/photo-1533692328991-08159ff19fca?q=80&w=800&auto=format&fit=crop")',
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
         borderRadius: '12px',
