@@ -62,6 +62,8 @@ const VariantSliderCard = ({ group, addToCart }) => {
     }
   };
 
+  const isPreviewModel = currentProduct.ref.includes("9971");
+
   return (
     <div className="card" data-gender={currentProduct.gender}>
       <Link 
@@ -71,7 +73,15 @@ const VariantSliderCard = ({ group, addToCart }) => {
       >
         <div 
           className="card-photo" 
-          style={{ position: 'relative', touchAction: 'pan-y' }}
+          style={{ 
+            position: 'relative', 
+            touchAction: 'pan-y',
+            backgroundImage: isPreviewModel ? 'url(/images/sable_coquillage.png)' : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            borderRadius: '12px',
+            overflow: 'hidden'
+          }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
@@ -80,6 +90,12 @@ const VariantSliderCard = ({ group, addToCart }) => {
             src={currentProduct.image + '?width=600&height=600'} 
             alt={currentProduct.name} 
             loading="lazy" 
+            style={{ 
+              mixBlendMode: isPreviewModel ? 'multiply' : 'normal',
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain'
+            }}
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x600/f0f0f0/a0a0a0?text=Image+Indisponible' }} 
           />
           {variants.length > 1 && (
