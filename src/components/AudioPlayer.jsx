@@ -38,9 +38,9 @@ const AudioPlayer = () => {
         playing={isPlaying}
         loop={true}
         volume={0.4}
-        width="0"
-        height="0"
-        style={{ display: 'none' }}
+        width="1px"
+        height="1px"
+        style={{ position: 'absolute', top: '-1000px', left: '-1000px', opacity: 0 }}
       />
       <style>{`
         @keyframes pointToButton {
