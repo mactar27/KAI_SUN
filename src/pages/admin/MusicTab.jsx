@@ -27,6 +27,12 @@ const MusicTab = ({ adminToken }) => {
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!newTitle || !newUrl) return;
+
+    if (newUrl.includes('youtube.com') || newUrl.includes('youtu.be')) {
+      alert("❌ Les liens YouTube ne sont pas supportés sur mobile pour la musique d'ambiance. Veuillez mettre un lien direct vers un fichier audio (.mp3, .webm, .wav, etc.).");
+      return;
+    }
+
     try {
       const res = await fetch('/api/music', {
         method: 'POST',
@@ -94,12 +100,15 @@ const MusicTab = ({ adminToken }) => {
             />
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: '#555' }}>Lien Audio (URL directe vers un fichier .mp3, .webm, etc.)</label>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: '#555' }}>
+              Lien Audio <strong style={{ color: 'red' }}>(PAS DE LIEN YOUTUBE)</strong>
+              <br/><span style={{ fontSize: '0.8rem' }}>URL directe vers un fichier .mp3, .webm, etc.</span>
+            </label>
             <input 
               type="url" 
               value={newUrl} 
               onChange={e => setNewUrl(e.target.value)} 
-              placeholder="https://..."
+              placeholder="https://.../fichier.mp3"
               style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }}
               required
             />
