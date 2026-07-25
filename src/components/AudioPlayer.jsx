@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import ReactPlayer from 'react-player';
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -25,45 +24,33 @@ const AudioPlayer = () => {
     fetchMusic();
   }, []);
 
-  const cleanUrl = (url) => {
-    if (!url) return null;
-    try {
-      const urlObj = new URL(url);
-      if (urlObj.hostname.includes('youtube.com') && urlObj.searchParams.has('v')) {
-        return `https://www.youtube.com/watch?v=${urlObj.searchParams.get('v')}`;
-      }
-      if (urlObj.hostname === 'youtu.be') {
-        return `https://www.youtube.com/watch?v=${urlObj.pathname.substring(1)}`;
-      }
-    } catch(e) {}
-    return url;
-  };
+  useEffect(() => {
+    if (!activeUrl) return;
 
-  const finalUrl = cleanUrl(activeUrl);
+    const audio = new Audio(activeUrl);
+    audio.loop = true;
+    audio.volume = 0.4;
+    audioRef.current = audio;
 
-  if (!finalUrl) return null; // Don't show player if no active music
+    return () => {
+      audio.pause();
+      audio.src = '';
+    };
+  }, [activeUrl]);
+
+  if (!activeUrl) return null;
 
   const togglePlay = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+    }
     setIsPlaying(!isPlaying);
   };
 
   return (
     <>
-      <ReactPlayer 
-        url={finalUrl}
-        playing={isPlaying}
-        loop={true}
-        volume={0.4}
-        width="200px"
-        height="200px"
-        style={{ position: 'fixed', top: '0', left: '0', opacity: 0.001, pointerEvents: 'none', zIndex: -9999 }}
-        onError={(e) => console.error("ReactPlayer Error:", e)}
-        config={{
-          youtube: {
-            playerVars: { origin: typeof window !== 'undefined' ? window.location.origin : '' }
-          }
-        }}
-      />
       <style>{`
         @keyframes pointToButton {
           0%, 100% { transform: translateX(0); }
