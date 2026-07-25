@@ -99,7 +99,9 @@ const ProductDetail = () => {
           <div style={{ position: 'sticky', top: '120px' }}>
             <div 
               style={{ 
-                background: 'var(--surface)', 
+                backgroundImage: 'url(/images/sable_coquillage.png)', 
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 padding: '40px', 
                 border: '2px solid var(--ink)', 
                 borderRadius: '16px',
@@ -112,7 +114,7 @@ const ProductDetail = () => {
               <img 
                 src={mainImage + '?width=1000&height=1000'} 
                 alt={product.name} 
-                style={{ width: '100%', height: 'auto', display: 'block' }} 
+                style={{ width: '100%', height: 'auto', display: 'block', mixBlendMode: 'multiply' }} 
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1000x1000/f0f0f0/a0a0a0?text=Image+Indisponible' }}
               />
             </div>

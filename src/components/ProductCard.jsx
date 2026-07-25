@@ -7,11 +7,17 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card group">
-      <div className="product-image-container">
+      <div className="product-image-container" style={{ 
+        backgroundImage: 'url(/images/sable_coquillage.png)', 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center',
+        borderRadius: '12px',
+        overflow: 'hidden'
+      }}>
         {product.isNew && <span className="product-badge">Nouveau</span>}
         {product.stock === 0 && <span className="product-badge" style={{ background: 'black', color: 'white' }}>Rupture</span>}
-        <img src={product.image} alt={product.name} className="product-image" />
-        <img src={product.hoverImage} alt={`${product.name} hover`} className="product-image-hover" />
+        <img src={product.image} alt={product.name} className="product-image" style={{ mixBlendMode: 'multiply' }} />
+        <img src={product.hoverImage} alt={`${product.name} hover`} className="product-image-hover" style={{ mixBlendMode: 'multiply' }} />
       </div>
       <div className="product-info">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>

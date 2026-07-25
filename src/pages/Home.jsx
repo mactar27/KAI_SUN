@@ -62,8 +62,6 @@ const VariantSliderCard = ({ group, addToCart }) => {
     }
   };
 
-  const isPreviewModel = currentProduct.ref.includes("9971");
-
   return (
     <div className="card" data-gender={currentProduct.gender}>
       <Link 
@@ -76,7 +74,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
           style={{ 
             position: 'relative', 
             touchAction: 'pan-y',
-            backgroundImage: isPreviewModel ? 'url(/images/sable_coquillage.png)' : 'none',
+            backgroundImage: 'url(/images/sable_coquillage.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '12px',
@@ -91,7 +89,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
             alt={currentProduct.name} 
             loading="lazy" 
             style={{ 
-              mixBlendMode: isPreviewModel ? 'multiply' : 'normal',
+              mixBlendMode: 'multiply',
               width: '100%',
               height: '100%',
               objectFit: 'contain'
