@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactPlayer from 'react-player';
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,34 +25,23 @@ const AudioPlayer = () => {
     fetchMusic();
   }, []);
 
-  useEffect(() => {
-    if (!activeUrl) return;
-
-    // Create audio element programmatically to avoid DOM clutter
-    const audio = new Audio(activeUrl);
-    audio.loop = true;
-    audio.volume = 0.4; // Soft background volume
-    audioRef.current = audio;
-
-    return () => {
-      audio.pause();
-      audio.src = '';
-    };
-  }, [activeUrl]);
-
   if (!activeUrl) return null; // Don't show player if no active music
 
   const togglePlay = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(e => console.log("Audio play failed:", e));
-    }
     setIsPlaying(!isPlaying);
   };
 
   return (
     <>
+      <ReactPlayer 
+        url={activeUrl}
+        playing={isPlaying}
+        loop={true}
+        volume={0.4}
+        width="0"
+        height="0"
+        style={{ display: 'none' }}
+      />
       <style>{`
         @keyframes pointToButton {
           0%, 100% { transform: translateX(0); }
