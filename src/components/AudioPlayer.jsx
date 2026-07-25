@@ -4,7 +4,6 @@ import ReactPlayer from 'react-player';
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeUrl, setActiveUrl] = useState(null);
-  const [isReady, setIsReady] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -57,12 +56,11 @@ const AudioPlayer = () => {
         volume={0.4}
         width="200px"
         height="200px"
-        style={{ position: 'absolute', top: '-1000px', left: '-1000px', opacity: 0, pointerEvents: 'none' }}
-        onReady={() => setIsReady(true)}
+        style={{ position: 'fixed', top: '0', left: '0', opacity: 0.001, pointerEvents: 'none', zIndex: -9999 }}
         onError={(e) => console.error("ReactPlayer Error:", e)}
         config={{
           youtube: {
-            playerVars: { origin: window.location.origin }
+            playerVars: { origin: typeof window !== 'undefined' ? window.location.origin : '' }
           }
         }}
       />
@@ -73,7 +71,7 @@ const AudioPlayer = () => {
         }
       `}</style>
       
-      {isReady && !isPlaying && (
+      {!isPlaying && (
         <div style={{
           position: 'fixed',
           bottom: '36px',
@@ -98,8 +96,7 @@ const AudioPlayer = () => {
         </div>
       )}
 
-      {isReady && (
-        <button
+      <button
           onClick={togglePlay}
           title={isPlaying ? "Désactiver la musique" : "Activer la musique"}
           style={{
@@ -136,7 +133,6 @@ const AudioPlayer = () => {
             </svg>
           )}
         </button>
-      )}
     </>
   );
 };
