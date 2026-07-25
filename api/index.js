@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
+import { handleUpload } from '@vercel/blob/client';
 
 // Force explicit TiDB connection string to guarantee sslaccept=strict is present
 // because the user's Vercel DATABASE_URL might be missing it.
@@ -235,6 +236,28 @@ app.delete('/api/music/:id', authMiddleware, async (req, res) => {
     res.json({ success: true });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+// --- UPLOAD API ---
+app.post('/api/upload-music', async (request, response) => {
+  const body = request.body;
+  try {
+    const jsonResponse = await handleUpload({
+      body,
+      request,
+      onBeforeGenerateToken: async (pathname) => {
+        return {
+          allowedContentTypes: ['audio/mpeg', 'audio/webm', 'audio/wav', 'audio/ogg', 'video/webm', 'audio/mp4', 'audio/x-m4a'],
+        };
+      },
+      onUploadCompleted: async ({ blob, tokenPayload }) => {
+        console.log("Upload completed:", blob.url);
+      },
+    });
+    return response.status(200).json(jsonResponse);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
   }
 });
 

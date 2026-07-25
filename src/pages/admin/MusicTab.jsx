@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { upload } from '@vercel/blob/client';
 
 const MusicTab = ({ adminToken }) => {
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newTitle, setNewTitle] = useState('');
-  const [newUrl, setNewUrl] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const fetchTracks = async () => {
     setLoading(true);
@@ -26,29 +28,35 @@ const MusicTab = ({ adminToken }) => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    if (!newTitle || !newUrl) return;
+    if (!newTitle || !selectedFile) return;
 
-    if (newUrl.includes('youtube.com') || newUrl.includes('youtu.be')) {
-      alert("❌ Les liens YouTube ne sont pas supportés sur mobile pour la musique d'ambiance. Veuillez mettre un lien direct vers un fichier audio (.mp3, .webm, .wav, etc.).");
-      return;
-    }
+    setIsUploading(true);
 
     try {
+      const newBlob = await upload(selectedFile.name, selectedFile, {
+        access: 'public',
+        handleUploadUrl: '/api/upload-music',
+      });
+
       const res = await fetch('/api/music', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${adminToken}`
         },
-        body: JSON.stringify({ title: newTitle, url: newUrl })
+        body: JSON.stringify({ title: newTitle, url: newBlob.url })
       });
+      
       if (res.ok) {
         setNewTitle('');
-        setNewUrl('');
+        setSelectedFile(null);
         fetchTracks();
       }
     } catch (e) {
-      console.error(e);
+      console.error("Erreur:", e);
+      alert("Erreur lors de l'upload du fichier. Vérifiez que Vercel Blob est bien configuré.");
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -101,20 +109,22 @@ const MusicTab = ({ adminToken }) => {
           </div>
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: '#555' }}>
-              Lien Audio <strong style={{ color: 'red' }}>(PAS DE LIEN YOUTUBE)</strong>
-              <br/><span style={{ fontSize: '0.8rem' }}>URL directe vers un fichier .mp3, .webm, etc.</span>
+              Fichier Audio (.mp3, .webm, .wav)
             </label>
             <input 
-              type="url" 
-              value={newUrl} 
-              onChange={e => setNewUrl(e.target.value)} 
-              placeholder="https://.../fichier.mp3"
-              style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }}
+              type="file" 
+              accept="audio/*"
+              onChange={e => setSelectedFile(e.target.files[0])} 
+              style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd', background: '#fff' }}
               required
             />
           </div>
-          <button type="submit" style={{ padding: '0.75rem 1.5rem', background: 'var(--ink)', color: '#fff', borderRadius: '8px', border: 'none', fontWeight: 600, cursor: 'pointer', justifySelf: 'start' }}>
-            Ajouter la musique
+          <button 
+            type="submit" 
+            disabled={isUploading}
+            style={{ padding: '0.75rem 1.5rem', background: isUploading ? '#888' : 'var(--ink)', color: '#fff', borderRadius: '8px', border: 'none', fontWeight: 600, cursor: isUploading ? 'not-allowed' : 'pointer', justifySelf: 'start' }}
+          >
+            {isUploading ? 'Envoi en cours...' : 'Ajouter la musique'}
           </button>
         </form>
       </div>
