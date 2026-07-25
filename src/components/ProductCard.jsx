@@ -8,7 +8,6 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card group">
       <div className="product-image-container" style={{ 
-        backgroundImage: 'url(/images/sable_coquillage.png)', 
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
         borderRadius: '12px',

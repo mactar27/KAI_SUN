@@ -74,7 +74,6 @@ const VariantSliderCard = ({ group, addToCart }) => {
           style={{ 
             position: 'relative', 
             touchAction: 'pan-y',
-            backgroundImage: 'url(/images/sable_coquillage.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '12px',

@@ -99,9 +99,6 @@ const ProductDetail = () => {
           <div style={{ position: 'sticky', top: '120px' }}>
             <div 
               style={{ 
-                backgroundImage: 'url(/images/sable_coquillage.png)', 
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
                 padding: '40px', 
                 border: '2px solid var(--ink)', 
                 borderRadius: '16px',
