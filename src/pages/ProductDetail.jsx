@@ -97,9 +97,9 @@ const ProductDetail = () => {
           
           {/* IMAGE SECTION */}
           <div style={{ position: 'sticky', top: '120px' }}>
-            <div 
+              <div 
               style={{ 
-                backgroundImage: 'url("https://images.unsplash.com/photo-1533692328991-08159ff19fca?q=80&w=800&auto=format&fit=crop")',
+                backgroundImage: 'url(/images/sable_sans_coquillage.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 padding: '40px', 
