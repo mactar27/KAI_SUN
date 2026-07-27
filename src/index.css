@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Fredoka:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
   :root{
     --bg:#FFFFFF;
     --surface:#FFFFFF;
@@ -9,6 +9,9 @@
     --accent-dark:#0284C7;
     --solid:#38BDF8;
     --line:rgba(17,17,17,0.14);
+    --kaia-green: #0d2823;
+    --kaia-gold: #ce9d52;
+    --kaia-cream: #f4efdf;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -22,12 +25,16 @@
     overflow-x:hidden;
   }
   h1,h2,h3,.display{
-    font-family:'Anton',sans-serif;
-    font-weight:400;
+    font-family:'Playfair Display',serif;
+    font-weight:600;
     letter-spacing:0;
-    text-transform:uppercase;
-    line-height:0.98;
+    line-height:1.1;
     color:var(--ink);
+  }
+  
+  .serif-italic {
+    font-family:'Playfair Display',serif;
+    font-style: italic;
   }
   p{color:var(--ink-soft);font-weight:400;}
   .mono{font-family:'JetBrains Mono',monospace;letter-spacing:0.02em;font-weight:500;}
@@ -96,6 +103,12 @@
   .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;height:460px;}
   .lens{width:340px;height:340px;border-radius:50%;position:relative;overflow:hidden;background:conic-gradient(from 200deg,#3FA34D,#2F6FED,#FFD100,#8A5A2C,#8C8C88,#3FA34D);box-shadow:0 0 0 10px var(--surface), 0 0 0 12px var(--ink), 0 30px 80px -25px rgba(56,189,248,0.35);animation:spin 22s linear infinite, hueShift 9s linear infinite;}
   @keyframes hueShift{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(360deg);}}
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
   @media(max-width:900px){.lens{width:260px;height:260px;}.hero-visual{height:340px;}}
   .lens::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,30%) var(--my,30%), rgba(255,255,255,0.75), rgba(255,255,255,0) 38%);mix-blend-mode:screen;}
   .lens-bridge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120%;height:3px;background:#111;opacity:.9;z-index:1;}

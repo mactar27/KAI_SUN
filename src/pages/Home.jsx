@@ -74,9 +74,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
           style={{ 
             position: 'relative', 
             touchAction: 'pan-y',
-            backgroundImage: 'url(/images/sable_sans_coquillage.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            background: 'var(--kaia-cream)',
             borderRadius: '12px',
             overflow: 'hidden'
           }}
@@ -143,54 +141,182 @@ const Home = () => {
 
   return (
     <div style={{ paddingTop: '80px' }}>
-      <header className="hero">
-        <div className="wrap" style={{ display: 'contents' }}>
-          <div className="hero-visual-box">
-            <div className="sun-element"></div>
-            <span className="kaia-floating-text">KAIA</span>
-            <div className="wave-container">
-              <svg className="wave-svg" viewBox="0 0 800 130" preserveAspectRatio="none">
-                <path d="M0,70 C50,40 100,100 150,70 C200,40 250,100 300,70 C350,40 400,100 450,70 C500,40 550,100 600,70 C650,40 700,100 750,70 C775,55 790,65 800,70 L800,130 L0,130 Z" fill="#9FDBFF" opacity="0.9"/>
-                <path d="M0,90 C60,60 120,120 180,90 C240,60 300,120 360,90 C420,60 480,120 540,90 C600,60 660,120 720,90 C750,75 780,85 800,90 L800,130 L0,130 Z" fill="#CDEEFF"/>
-              </svg>
-            </div>
+      <header className="hero" style={{ background: 'var(--kaia-green)', minHeight: '100svh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '120px 20px 60px', textAlign: 'center', color: '#fff' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          
+          {/* Floating Gold Ball */}
+          <div className="floating-gold-ball" style={{
+            width: '120px',
+            height: '120px',
+            background: 'radial-gradient(circle at 30% 30%, #e2c079, #cba75c)',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+            marginBottom: '40px',
+            animation: 'float 6s ease-in-out infinite'
+          }}>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="6" cy="15" r="4" />
+              <circle cx="18" cy="15" r="4" />
+              <path d="M14 15a2 2 0 0 0-4 0" />
+              <path d="M2.5 13 5 7h14l2.5 6" />
+            </svg>
           </div>
-          <div className="hero-copy" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <span className="hero-tag" style={{ marginBottom: '20px' }}>Collection 2026 — Dakar</span>
-            <div className="hero-actions" style={{ marginTop: '0', justifyContent: 'center' }}>
-              <a href="#collection" className="btn-primary" style={{ width: '100%', maxWidth: '300px' }}>Découvrir la collection</a>
-            </div>
-          </div>
+
+          {/* Title */}
+          <h1 style={{ 
+            fontFamily: "'Playfair Display', serif", 
+            fontSize: 'clamp(32px, 8vw, 56px)', 
+            fontWeight: 500, 
+            lineHeight: 1.1,
+            color: '#fff',
+            marginBottom: '40px',
+            letterSpacing: '0.02em'
+          }}>
+            Là où le regard <br />
+            <span style={{ fontStyle: 'italic', color: 'var(--kaia-gold)' }}>prend forme.</span>
+          </h1>
+
+          {/* Button */}
+          <a href="#collection" style={{
+            background: '#1a1a1a',
+            color: '#fff',
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 500,
+            fontSize: '14px',
+            padding: '16px 32px',
+            borderRadius: '100px',
+            textDecoration: 'none',
+            letterSpacing: '0.05em',
+            marginBottom: '32px',
+            border: '1px solid rgba(255,255,255,0.1)',
+            transition: 'background 0.2s'
+          }}>
+            Découvrir la collection
+          </a>
+
+          {/* Notre Histoire Link */}
+          <a href="#histoire" style={{
+            color: 'rgba(255,255,255,0.6)',
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '12px',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            NOTRE HISTOIRE <ArrowRight size={14} />
+          </a>
+
         </div>
       </header>
 
-      <div className="marquee">
-        <div className="marquee-track" id="marquee">
-          <span>Verres polarisés — UV400</span>
-          <span>Acétate italien</span>
-          <span>Monté à la main</span>
-          <span>Livraison Dakar & Abidjan</span>
-          <span>Verres polarisés — UV400</span>
-          <span>Acétate italien</span>
-          <span>Monté à la main</span>
-          <span>Livraison Dakar & Abidjan</span>
-        </div>
-      </div>
+      <section id="histoire" style={{ background: 'var(--kaia-green)', color: 'var(--kaia-gold)', padding: '80px 20px', position: 'relative', overflow: 'hidden' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px', alignItems: 'center' }}>
+          
+          <div style={{ zIndex: 2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '60px' }}>
+              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', color: '#fff', letterSpacing: '0.1em' }}>KAIA SUN</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', opacity: 0.6 }}>HISTOIRE</span>
+            </div>
 
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }}>
+              <div>
+                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '48px', lineHeight: 1 }}>2</div>
+                <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginTop: '8px' }}>CONTINENTS</div>
+              </div>
+              <div>
+                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '48px', lineHeight: 1 }}>3</div>
+                <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginTop: '8px' }}>LIGNES DE MONTURE</div>
+              </div>
+            </div>
+
+            <div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '48px', lineHeight: 1 }}>100%</div>
+              <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginTop: '8px' }}>PROTECTION UV400</div>
+            </div>
+          </div>
+
+          <div style={{ position: 'absolute', right: '-10%', bottom: '-20%', width: '60vw', maxWidth: '600px', opacity: 0.2, pointerEvents: 'none', zIndex: 1 }}>
+            <svg viewBox="0 0 100 100" style={{ width: '100%', height: 'auto', transform: 'rotate(-15deg)' }}>
+              <circle cx="50" cy="50" r="45" fill="none" stroke="var(--kaia-gold)" strokeWidth="0.5" />
+              <circle cx="50" cy="50" r="30" fill="none" stroke="var(--kaia-gold)" strokeWidth="0.5" />
+              <circle cx="50" cy="50" r="15" fill="none" stroke="var(--kaia-gold)" strokeWidth="0.5" />
+              <circle cx="80" cy="50" r="2" fill="var(--kaia-gold)" />
+            </svg>
+          </div>
+
+        </div>
+      </section>
 
 
 
 
       
-      <section id="collection">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, textTransform: 'uppercase' }}>Nouveautés</h2>
+      <section id="collection" style={{ padding: '80px 20px', background: '#fff' }}>
+        <div className="wrap">
+          <div style={{ textAlign: 'left', marginBottom: '40px' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginBottom: '16px', textTransform: 'uppercase' }}>
+              — LA COLLECTION
+            </div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, color: 'var(--kaia-green)', lineHeight: 1.1, maxWidth: '500px' }}>
+              Trois lignes, une seule <br />lumière
+            </h2>
           </div>
-          <div className="filter-bar">
-            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => handleFilter('all')}>Tout</button>
-            <button className={`filter-btn ${activeFilter === 'femme' ? 'active' : ''}`} onClick={() => handleFilter('femme')}>Femme</button>
-            <button className={`filter-btn ${activeFilter === 'homme' ? 'active' : ''}`} onClick={() => handleFilter('homme')}>Homme</button>
+          <div style={{ display: 'flex', gap: '12px', marginBottom: '60px', flexWrap: 'wrap' }}>
+            <button 
+              onClick={() => handleFilter('all')}
+              style={{
+                padding: '10px 24px',
+                borderRadius: '100px',
+                fontSize: '12px',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                background: activeFilter === 'all' ? 'var(--ink)' : '#fff',
+                color: activeFilter === 'all' ? '#fff' : 'var(--ink)',
+                border: `1px solid ${activeFilter === 'all' ? 'var(--ink)' : 'rgba(0,0,0,0.1)'}`
+              }}
+            >
+              Tout
+            </button>
+            <button 
+              onClick={() => handleFilter('femme')}
+              style={{
+                padding: '10px 24px',
+                borderRadius: '100px',
+                fontSize: '12px',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                background: activeFilter === 'femme' ? 'var(--ink)' : '#fff',
+                color: activeFilter === 'femme' ? '#fff' : 'var(--ink)',
+                border: `1px solid ${activeFilter === 'femme' ? 'var(--ink)' : 'rgba(0,0,0,0.1)'}`
+              }}
+            >
+              Femme
+            </button>
+            <button 
+              onClick={() => handleFilter('homme')}
+              style={{
+                padding: '10px 24px',
+                borderRadius: '100px',
+                fontSize: '12px',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                background: activeFilter === 'homme' ? 'var(--ink)' : '#fff',
+                color: activeFilter === 'homme' ? '#fff' : 'var(--ink)',
+                border: `1px solid ${activeFilter === 'homme' ? 'var(--ink)' : 'rgba(0,0,0,0.1)'}`
+              }}
+            >
+              Homme
+            </button>
           </div>
           
           <div className="grid">
