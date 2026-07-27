@@ -64,10 +64,10 @@ const Chatbot = () => {
           width: '56px',
           height: '56px',
           borderRadius: '50%',
-          background: 'var(--kaia-green)',
-          color: 'var(--kaia-gold)',
-          border: 'none',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          background: '#fff',
+          color: '#3a4a35',
+          border: '1px solid rgba(0,0,0,0.05)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
           display: isOpen ? 'none' : 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -78,7 +78,7 @@ const Chatbot = () => {
         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >
-        <MessageCircle size={28} />
+        <MessageCircle size={26} strokeWidth={1.5} />
       </button>
 
       {/* Chat Window */}
@@ -91,8 +91,8 @@ const Chatbot = () => {
           height: '500px',
           maxHeight: '80vh',
           background: '#fff',
-          borderRadius: '16px',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+          borderRadius: '24px',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
           display: 'flex',
           flexDirection: 'column',
           zIndex: 1000,
@@ -101,46 +101,66 @@ const Chatbot = () => {
         }}>
           {/* Header */}
           <div style={{
-            background: 'var(--kaia-green)',
-            padding: '16px 20px',
+            background: 'var(--kaia-cream)',
+            padding: '20px 24px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            color: 'var(--kaia-gold)'
+            borderBottom: '1px solid rgba(0,0,0,0.05)'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#4CAF50' }}></div>
-              <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 600, fontSize: '18px' }}>Assistant Kaïa</span>
+              <div style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: '24px',
+                color: 'var(--kaia-green)',
+                lineHeight: 0.8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+              }}>
+                KAÏA
+                <span style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '7px',
+                  fontWeight: 600,
+                  letterSpacing: '0.4em',
+                  color: 'var(--kaia-gold)',
+                  marginTop: '6px'
+                }}>ASSISTANT</span>
+              </div>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              style={{ background: 'none', border: 'none', color: 'var(--kaia-gold)', cursor: 'pointer', display: 'flex', padding: '4px' }}
+              style={{ background: 'none', border: 'none', color: 'var(--kaia-green)', cursor: 'pointer', display: 'flex', padding: '8px', opacity: 0.6, transition: 'opacity 0.2s' }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
             >
-              <X size={20} />
+              <X size={20} strokeWidth={1.5} />
             </button>
           </div>
 
           {/* Messages */}
           <div style={{
             flex: 1,
-            padding: '20px',
+            padding: '24px 20px',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
-            gap: '16px',
-            background: 'var(--kaia-cream)'
+            gap: '20px',
+            background: '#faf9f6'
           }}>
             {messages.map((msg, index) => (
               <div key={index} style={{
                 alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
                 maxWidth: '85%',
-                background: msg.role === 'user' ? 'var(--kaia-gold)' : '#fff',
-                color: msg.role === 'user' ? 'var(--kaia-green)' : 'var(--ink)',
-                padding: '12px 16px',
-                borderRadius: msg.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-                fontSize: '14px',
-                lineHeight: 1.5,
-                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                background: msg.role === 'user' ? 'var(--kaia-green)' : '#fff',
+                color: msg.role === 'user' ? '#fff' : 'var(--ink)',
+                padding: '14px 18px',
+                borderRadius: msg.role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+                fontSize: '13px',
+                lineHeight: 1.6,
+                boxShadow: msg.role === 'user' ? 'none' : '0 4px 12px rgba(0,0,0,0.03)',
+                border: msg.role === 'user' ? 'none' : '1px solid rgba(0,0,0,0.04)'
               }}>
                 {msg.content}
               </div>
@@ -149,11 +169,13 @@ const Chatbot = () => {
               <div style={{
                 alignSelf: 'flex-start',
                 background: '#fff',
-                padding: '12px 16px',
-                borderRadius: '16px 16px 16px 4px',
-                fontSize: '14px',
+                padding: '14px 18px',
+                borderRadius: '20px 20px 20px 4px',
+                fontSize: '13px',
                 display: 'flex',
-                gap: '4px'
+                gap: '4px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+                border: '1px solid rgba(0,0,0,0.04)'
               }}>
                 <span className="typing-dot" style={{ animationDelay: '0s' }}>.</span>
                 <span className="typing-dot" style={{ animationDelay: '0.2s' }}>.</span>
@@ -165,11 +187,13 @@ const Chatbot = () => {
 
           {/* Input */}
           <form onSubmit={handleSubmit} style={{
-            padding: '16px',
+            padding: '16px 20px',
             background: '#fff',
             display: 'flex',
             gap: '12px',
-            borderTop: '1px solid rgba(0,0,0,0.05)'
+            borderTop: '1px solid rgba(0,0,0,0.05)',
+            borderBottomLeftRadius: '24px',
+            borderBottomRightRadius: '24px'
           }}>
             <input
               type="text"
@@ -178,13 +202,17 @@ const Chatbot = () => {
               placeholder="Posez votre question..."
               style={{
                 flex: 1,
-                padding: '12px 16px',
+                padding: '14px 18px',
                 borderRadius: '100px',
-                border: '1px solid rgba(0,0,0,0.1)',
-                background: 'var(--kaia-cream)',
-                fontSize: '14px',
-                outline: 'none'
+                border: '1px solid rgba(0,0,0,0.08)',
+                background: '#faf9f6',
+                fontSize: '13px',
+                outline: 'none',
+                transition: 'border-color 0.2s',
+                fontFamily: "'Inter', sans-serif"
               }}
+              onFocus={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.2)'}
+              onBlur={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.08)'}
             />
             <button 
               type="submit"
@@ -193,17 +221,20 @@ const Chatbot = () => {
                 background: 'var(--kaia-green)',
                 color: 'var(--kaia-gold)',
                 border: 'none',
-                width: '44px',
-                height: '44px',
+                width: '46px',
+                height: '46px',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: isLoading || !input.trim() ? 'not-allowed' : 'pointer',
-                opacity: isLoading || !input.trim() ? 0.5 : 1
+                opacity: isLoading || !input.trim() ? 0.6 : 1,
+                transition: 'opacity 0.2s, transform 0.2s'
               }}
+              onMouseEnter={(e) => !isLoading && input.trim() && (e.currentTarget.style.transform = 'scale(1.05)')}
+              onMouseLeave={(e) => !isLoading && input.trim() && (e.currentTarget.style.transform = 'scale(1)')}
             >
-              <Send size={18} style={{ marginLeft: '2px' }} />
+              <Send size={18} style={{ marginLeft: '2px' }} strokeWidth={2} />
             </button>
           </form>
         </div>
