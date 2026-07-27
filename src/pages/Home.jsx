@@ -144,7 +144,7 @@ const Home = () => {
       <header className="hero" style={{ 
         backgroundImage: 'url(/images/hero_pool.png)', 
         backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
+        backgroundPosition: 'center 80%', 
         minHeight: '100svh', 
         display: 'flex', 
         flexDirection: 'column', 
