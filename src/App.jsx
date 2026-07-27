@@ -9,6 +9,7 @@ import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import AudioPlayer from './components/AudioPlayer';
+import Chatbot from './components/Chatbot';
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
       </main>
       {!isAdmin && <Footer />}
       {!isAdmin && <AudioPlayer />}
+      {!isAdmin && <Chatbot />}
     </div>
   );
 }

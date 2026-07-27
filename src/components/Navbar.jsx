@@ -29,8 +29,8 @@ const Navbar = () => {
 
       <nav id="nav">
         <div className="wrap">
-          <Link to="/" className="logo" style={{ fontWeight: 'bold', color: '#000000' }}>
-            KAIA SUN
+          <Link to="/" className="logo">
+            KAÏA <span>SUNGLASSES</span>
           </Link>
 
           {/* DESKTOP NAV */}
@@ -41,7 +41,7 @@ const Navbar = () => {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111' }}>
+            <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a4a35' }}>
               <ShoppingBag size={24} strokeWidth={2.5} />
               {cartItemCount > 0 && (
                 <span style={{
@@ -70,7 +70,7 @@ const Navbar = () => {
             <button 
               className="mobile-menu-btn" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ background: 'none', border: 'none', color: '#111', cursor: 'pointer', padding: '4px' }}
+              style={{ background: 'none', border: 'none', color: '#3a4a35', cursor: 'pointer', padding: '4px' }}
             >
               {isMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
             </button>

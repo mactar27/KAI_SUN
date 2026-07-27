@@ -54,11 +54,11 @@
   nav{padding-top:0;margin-top:34px;}
 
   /* ---------- NAV ---------- */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:var(--kaia-green);border-bottom:1px solid rgba(255,255,255,0.1);}
+  nav{position:absolute;top:0;left:0;right:0;z-index:100;padding:24px 0;background:transparent;border-bottom:none;}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .logo{font-family:'Playfair Display',serif;font-weight:600;text-transform:uppercase;font-size:26px;letter-spacing:0.1em;color:#fff;}
-  .logo span{color:var(--kaia-gold);}
-  .nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.08em;}
+  .logo{font-family:'Playfair Display',serif;font-weight:400;font-size:36px;letter-spacing:0.15em;color:#3a4a35;line-height:0.8;display:flex;flex-direction:column;align-items:flex-start;}
+  .logo span{font-family:'Inter',sans-serif;font-size:9px;font-weight:600;letter-spacing:0.4em;color:#3a4a35;margin-top:6px;margin-left:2px;}
+  .nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;color:#3a4a35;text-transform:uppercase;letter-spacing:0.08em;}
   .nav-links a{transition:opacity .2s;}
   .nav-links a:hover{opacity:.6;}
   .nav-cta{font-size:12px;font-weight:600;padding:11px 22px;border-radius:100px;background:var(--kaia-gold);color:var(--kaia-green);transition:transform .2s ease, opacity .2s ease;text-transform:uppercase;letter-spacing:0.08em;}

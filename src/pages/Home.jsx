@@ -140,78 +140,84 @@ const Home = () => {
   };
 
   return (
-    <div style={{ paddingTop: '80px' }}>
-      <header className="hero" style={{ background: 'var(--kaia-green)', minHeight: '100svh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '120px 20px 60px', textAlign: 'center', color: '#fff' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ paddingTop: '0' }}>
+      <header className="hero" style={{ 
+        backgroundImage: 'url(/images/hero_pool.png)', 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center', 
+        minHeight: '100svh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'flex-start', 
+        justifyContent: 'center', 
+        padding: '120px 40px 60px', 
+        textAlign: 'left', 
+        color: '#3a4a35' 
+      }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           
-          {/* Floating Gold Ball */}
-          <div className="floating-gold-ball" style={{
-            width: '120px',
-            height: '120px',
-            background: 'radial-gradient(circle at 30% 30%, #e2c079, #cba75c)',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-            marginBottom: '40px',
-            animation: 'float 6s ease-in-out infinite'
-          }}>
-            <svg width="60" height="24" viewBox="0 0 60 24" fill="none" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="18" cy="12" r="7" />
-              <circle cx="42" cy="12" r="7" />
-              <path d="M25 12 Q30 7 35 12" />
-              <path d="M11 12 L4 12" />
-              <path d="M49 12 L56 12" />
-            </svg>
-          </div>
-
           {/* Title */}
           <h1 style={{ 
             fontFamily: "'Playfair Display', serif", 
-            fontSize: 'clamp(32px, 8vw, 56px)', 
+            fontSize: 'clamp(40px, 8vw, 64px)', 
             fontWeight: 500, 
             lineHeight: 1.1,
-            color: '#fff',
-            marginBottom: '40px',
+            color: '#3a4a35',
+            marginBottom: '20px',
             letterSpacing: '0.02em'
           }}>
             Là où le regard <br />
-            <span style={{ fontStyle: 'italic', color: 'var(--kaia-gold)' }}>prend forme.</span>
+            <span style={{ fontStyle: 'italic', color: '#687860' }}>prend forme.</span>
           </h1>
+
+          {/* Subtitle */}
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '11px',
+            fontWeight: 600,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: '#3a4a35',
+            marginBottom: '40px',
+            lineHeight: 1.6
+          }}>
+            DES LUNETTES PENSÉES <br/>
+            POUR S'ACCORDER À L'ESSENTIEL.
+          </p>
 
           {/* Button */}
           <a href="#collection" style={{
-            background: '#1a1a1a',
+            background: '#8d9983',
             color: '#fff',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500,
-            fontSize: '14px',
-            padding: '16px 32px',
+            fontSize: '12px',
+            padding: '14px 28px',
             borderRadius: '100px',
             textDecoration: 'none',
             letterSpacing: '0.05em',
-            marginBottom: '32px',
-            border: '1px solid rgba(255,255,255,0.1)',
-            transition: 'background 0.2s'
+            marginBottom: '24px',
+            transition: 'background 0.2s, transform 0.2s'
           }}>
-            Découvrir la collection
+            DÉCOUVRIR LA COLLECTION &rarr;
           </a>
 
           {/* Notre Histoire Link */}
           <a href="#histoire" style={{
-            color: 'rgba(255,255,255,0.6)',
+            color: '#3a4a35',
             fontFamily: "'Inter', sans-serif",
-            fontSize: '12px',
+            fontSize: '11px',
             fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
             textDecoration: 'none',
-            display: 'flex',
+            borderBottom: '1px solid #3a4a35',
+            paddingBottom: '2px',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '8px'
           }}>
-            NOTRE HISTOIRE <ArrowRight size={14} />
+            NOTRE HISTOIRE &rarr;
           </a>
 
         </div>
