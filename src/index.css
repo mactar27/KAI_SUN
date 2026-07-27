@@ -54,14 +54,14 @@
   nav{padding-top:0;margin-top:34px;}
 
   /* ---------- NAV ---------- */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:var(--accent);border-bottom:2px solid var(--ink);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:var(--kaia-green);border-bottom:1px solid rgba(255,255,255,0.1);}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .logo{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:26px;letter-spacing:0.01em;color:var(--ink);}
-  .logo span{color:#fff;-webkit-text-stroke:1.5px var(--ink);}
-  .nav-links{display:flex;gap:32px;font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.04em;}
+  .logo{font-family:'Playfair Display',serif;font-weight:600;text-transform:uppercase;font-size:26px;letter-spacing:0.1em;color:#fff;}
+  .logo span{color:var(--kaia-gold);}
+  .nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.08em;}
   .nav-links a{transition:opacity .2s;}
   .nav-links a:hover{opacity:.6;}
-  .nav-cta{font-size:13px;font-weight:700;padding:11px 22px;border-radius:100px;background:var(--ink);color:#fff;border:2px solid var(--ink);transition:transform .2s ease, background .2s ease;text-transform:uppercase;letter-spacing:0.04em;}
+  .nav-cta{font-size:12px;font-weight:600;padding:11px 22px;border-radius:100px;background:var(--kaia-gold);color:var(--kaia-green);transition:transform .2s ease, opacity .2s ease;text-transform:uppercase;letter-spacing:0.08em;}
   .nav-cta:hover{transform:translateY(-1px);background:#fff;color:var(--ink);}
   
   .mobile-menu-btn{display:none;}

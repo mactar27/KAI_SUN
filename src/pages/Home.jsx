@@ -157,11 +157,12 @@ const Home = () => {
             marginBottom: '40px',
             animation: 'float 6s ease-in-out infinite'
           }}>
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="6" cy="15" r="4" />
-              <circle cx="18" cy="15" r="4" />
-              <path d="M14 15a2 2 0 0 0-4 0" />
-              <path d="M2.5 13 5 7h14l2.5 6" />
+            <svg width="60" height="24" viewBox="0 0 60 24" fill="none" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="12" r="7" />
+              <circle cx="42" cy="12" r="7" />
+              <path d="M25 12 Q30 7 35 12" />
+              <path d="M11 12 L4 12" />
+              <path d="M49 12 L56 12" />
             </svg>
           </div>
 
