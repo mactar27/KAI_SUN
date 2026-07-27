@@ -341,103 +341,82 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="savoir-faire" className="wrap">
-        <div className="craft">
-          <div className="craft-visual">
-            <div className="sun-element"></div>
-            <span className="kaia-floating-text" style={{ fontSize: 'clamp(70px, 12vw, 120px)', marginTop: '-10px' }}>KAIA</span>
-            <div className="wave-container">
-              <svg className="wave-svg" viewBox="0 0 800 130" preserveAspectRatio="none">
-                <path d="M0,70 C50,40 100,100 150,70 C200,40 250,100 300,70 C350,40 400,100 450,70 C500,40 550,100 600,70 C650,40 700,100 750,70 C775,55 790,65 800,70 L800,130 L0,130 Z" fill="#9FDBFF" opacity="0.9"/>
-                <path d="M0,90 C60,60 120,120 180,90 C240,60 300,120 360,90 C420,60 480,120 540,90 C600,60 660,120 720,90 C750,75 780,85 800,90 L800,130 L0,130 Z" fill="#CDEEFF"/>
-              </svg>
+      <section id="savoir-faire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)', color: 'var(--ink)' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'center' }}>
+          
+          <div>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginBottom: '16px', textTransform: 'uppercase' }}>
+              — SAVOIR-FAIRE
+            </div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(32px, 6vw, 48px)', fontWeight: 600, color: 'var(--kaia-green)', lineHeight: 1.1, marginBottom: '32px' }}>
+              L'excellence du <br/>Studio & Atelier
+            </h2>
+            <div style={{ width: '60px', height: '2px', background: 'var(--kaia-gold)', marginBottom: '32px' }}></div>
+          </div>
+
+          <div>
+            <p style={{ fontSize: '16px', lineHeight: 1.8, marginBottom: '24px' }}>
+              Notre atelier situé au cœur de la ville assemble chaque paire avec précision. L'acétate de cellulose, extrait de fibres de coton, offre une finition et une robustesse que le plastique injecté ne pourra jamais égaler.
+            </p>
+            <p style={{ fontSize: '16px', lineHeight: 1.8, color: 'var(--ink-soft)' }}>
+              Le polissage est manuel, les charnières rivetées et les verres rigoureusement contrôlés pour assurer une optique sans faille. On prend le temps qu'il faut pour que vous gardiez vos lunettes des années.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section style={{ padding: '60px 20px', background: 'var(--kaia-green)', color: 'var(--kaia-gold)' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px', textAlign: 'center' }}>
+          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>MONTURE</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>Acétate bio-sourcé</div>
+          </div>
+          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>VERRES</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>Nylon polarisé cat. 3</div>
+          </div>
+          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>CHARNIÈRES</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>Acier 5 barillets</div>
+          </div>
+          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>POIDS</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>32 grammes</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="avis" style={{ padding: '100px 20px', background: '#fff' }}>
+        <div className="wrap">
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginBottom: '16px', textTransform: 'uppercase' }}>— TÉMOIGNAGES</div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 5vw, 40px)', color: 'var(--kaia-green)' }}>Ils voient la différence.</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+            <div style={{ padding: '40px', background: 'var(--kaia-cream)' }}>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '18px', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '20px' }}>
+                "La clarté des verres polarisés est dingue. Le soleil de midi n'est plus un problème, même en conduisant. Et la monture est super légère."
+              </p>
+              <div style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em' }}>— AMADOU L.</div>
+            </div>
+            <div style={{ padding: '40px', background: 'var(--kaia-cream)' }}>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '18px', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '20px' }}>
+                "Commande passée le matin, livrée l'après-midi au bureau à Dakar. Service impeccable et les lunettes respirent le premium."
+              </p>
+              <div style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em' }}>— KARIM N.</div>
             </div>
           </div>
-          <div className="craft-copy">
-            <span className="eyebrow">Studio & Atelier</span>
-            <p>Notre atelier situé au cœur de la ville assemble chaque paire avec précision. L'acétate de cellulose, extrait de fibres de coton, offre une finition et une robustesse que le plastique injecté ne pourra jamais égaler.</p>
-            <p>Le polissage est manuel, les charnières rivetées et les verres rigoureusement contrôlés pour assurer une optique sans faille. On prend le temps qu'il faut pour que vous gardiez vos lunettes des années.</p>
-          </div>
         </div>
       </section>
 
-      <section className="wrap">
-        <div className="spec-card">
-          <div className="spec-item">
-            <span className="label">Monture</span>
-            <span className="value">Acétate bio-sourcé</span>
-          </div>
-          <div className="spec-item">
-            <span className="label">Verres</span>
-            <span className="value">Nylon polarisé cat. 3</span>
-          </div>
-          <div className="spec-item">
-            <span className="label">Charnières</span>
-            <span className="value">Acier 5 barillets</span>
-          </div>
-          <div className="spec-item">
-            <span className="label">Poids</span>
-            <span className="value">32 grammes</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="trust-strip wrap">
-        <div className="trust-grid">
-          <div className="trust-item">
-            <span className="trust-title">Livraison gratuite</span>
-            <span className="trust-sub">Dès 2 paires achetées. Sur Dakar et Abidjan.</span>
-          </div>
-          <div className="trust-item">
-            <span className="trust-title">Paiement à la livraison</span>
-            <span className="trust-sub">Possible pour les commandes sur Dakar.</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="avis" className="wrap">
-        <div className="section-head">
-          <h2>Ils voient la différence.</h2>
-        </div>
-        <div className="reviews">
-          <div className="review">
-            <p>"La clarté des verres polarisés est dingue. Le soleil de midi n'est plus un problème, même en conduisant. Et la monture est super légère."</p>
-            <div className="who">— Amadou L.</div>
-          </div>
-          <div className="review">
-            <p>"Commande passée le matin, livrée l'après-midi au bureau à Dakar. Service impeccable et les lunettes respirent le premium."</p>
-            <div className="who">— Karim N.</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="wrap" style={{ paddingBottom: '110px' }}>
-        <div className="section-head">
-          <h2>Questions fréquentes.</h2>
-        </div>
-        <div className="faq-list">
-          <details className="faq-item">
-            <summary>Quelle est la protection des verres ?</summary>
-            <p>Tous nos verres offrent une protection UV400 (filtrant 100% des UVA et UVB) et sont polarisés pour réduire l'éblouissement sur les surfaces planes.</p>
-          </details>
-          <details className="faq-item">
-            <summary>Faites-vous des verres à la vue ?</summary>
-            <p>Pas pour le moment. Mais nos montures en acétate sont compatibles avec le montage optique. Vous pouvez acheter la monture et faire poser des verres chez votre opticien.</p>
-          </details>
-          <details className="faq-item">
-            <summary>Comment fonctionne la livraison ?</summary>
-            <p>Livraison express (24/48h) sur Dakar. Pour Abidjan et le reste de la région, comptez 3 à 5 jours ouvrés via notre partenaire logistique.</p>
-          </details>
-        </div>
-      </section>
-
-      <section className="cta">
-        <div className="wrap">
-          <h2>Rejoignez le club Kaia.</h2>
-          <p style={{ color: 'var(--ink)' }}>Accès anticipé aux collections en édition limitée.</p>
-          <form className="cta-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Votre adresse email..." required />
-            <button className="btn-primary" type="submit">S'inscrire</button>
+      <section style={{ padding: '80px 20px', background: 'var(--kaia-green)', color: '#fff', textAlign: 'center' }}>
+        <div className="wrap" style={{ maxWidth: '600px' }}>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '16px' }}>Rejoignez le cercle.</h2>
+          <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '32px' }}>Accès anticipé aux collections en édition limitée.</p>
+          <form style={{ display: 'flex', gap: '8px', maxWidth: '400px', margin: '0 auto' }} onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="Votre adresse email..." required style={{ flex: 1, padding: '12px 20px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', outline: 'none' }} />
+            <button type="submit" style={{ padding: '12px 24px', background: 'var(--kaia-gold)', color: 'var(--kaia-green)', border: 'none', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '12px', cursor: 'pointer' }}>S'inscrire</button>
           </form>
         </div>
       </section>
