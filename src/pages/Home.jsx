@@ -149,22 +149,24 @@ const Home = () => {
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'flex-start', 
-        justifyContent: 'center', 
-        padding: '120px 40px 60px', 
+        justifyContent: 'flex-end', 
+        padding: '120px 24px 120px', 
         textAlign: 'left', 
-        color: '#3a4a35' 
+        color: '#3a4a35',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', zIndex: 2 }}>
           
           {/* Title */}
           <h1 style={{ 
             fontFamily: "'Playfair Display', serif", 
-            fontSize: 'clamp(40px, 8vw, 64px)', 
-            fontWeight: 500, 
-            lineHeight: 1.1,
+            fontSize: 'clamp(44px, 10vw, 72px)', 
+            fontWeight: 400, 
+            lineHeight: 1.05,
             color: '#3a4a35',
-            marginBottom: '20px',
-            letterSpacing: '0.02em'
+            marginBottom: '24px',
+            letterSpacing: '0.01em'
           }}>
             Là où le regard <br />
             <span style={{ fontStyle: 'italic', color: '#687860' }}>prend forme.</span>
@@ -174,12 +176,12 @@ const Home = () => {
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '0.2em',
+            fontWeight: 500,
+            letterSpacing: '0.25em',
             textTransform: 'uppercase',
             color: '#3a4a35',
-            marginBottom: '40px',
-            lineHeight: 1.6
+            marginBottom: '48px',
+            lineHeight: 1.8
           }}>
             DES LUNETTES PENSÉES <br/>
             POUR S'ACCORDER À L'ESSENTIEL.
@@ -191,13 +193,16 @@ const Home = () => {
             color: '#fff',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500,
-            fontSize: '12px',
-            padding: '14px 28px',
+            fontSize: '11px',
+            padding: '16px 32px',
             borderRadius: '100px',
             textDecoration: 'none',
-            letterSpacing: '0.05em',
+            letterSpacing: '0.1em',
             marginBottom: '24px',
-            transition: 'background 0.2s, transform 0.2s'
+            transition: 'background 0.2s, transform 0.2s',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px'
           }}>
             DÉCOUVRIR LA COLLECTION &rarr;
           </a>
@@ -212,7 +217,7 @@ const Home = () => {
             letterSpacing: '0.1em',
             textDecoration: 'none',
             borderBottom: '1px solid #3a4a35',
-            paddingBottom: '2px',
+            paddingBottom: '4px',
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px'
@@ -221,6 +226,20 @@ const Home = () => {
           </a>
 
         </div>
+        
+        {/* Curved bottom overlay */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '80px',
+          background: 'var(--kaia-cream)',
+          borderTopLeftRadius: '100% 100%',
+          borderTopRightRadius: '100% 100%',
+          zIndex: 1,
+          transform: 'scaleX(1.2)'
+        }}></div>
       </header>
 
       <section id="histoire" style={{ background: 'var(--kaia-green)', color: 'var(--kaia-gold)', padding: '80px 20px', position: 'relative', overflow: 'hidden' }}>
