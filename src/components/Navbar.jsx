@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from './../context/ShopContext';
 import { ShoppingBag, Menu, X } from 'lucide-react';
+import AudioPlayer from './AudioPlayer';
 
 const Navbar = () => {
   const { cart } = useContext(ShopContext);
@@ -41,6 +42,8 @@ const Navbar = () => {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <AudioPlayer />
+            
             <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a4a35' }}>
               <ShoppingBag size={24} strokeWidth={2.5} />
               {cartItemCount > 0 && (

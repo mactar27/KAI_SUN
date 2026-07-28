@@ -8,7 +8,6 @@ import Checkout from './pages/Checkout';
 import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
-import AudioPlayer from './components/AudioPlayer';
 import Chatbot from './components/Chatbot';
 
 function App() {
@@ -30,7 +29,6 @@ function App() {
         </Routes>
       </main>
       {!isAdmin && <Footer />}
-      {!isAdmin && <AudioPlayer />}
       {!isAdmin && <Chatbot />}
     </div>
   );
