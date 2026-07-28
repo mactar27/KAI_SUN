@@ -58,30 +58,7 @@ const AudioPlayer = () => {
         }
       `}</style>
       
-      {!isPlaying && (
-        <div style={{
-          position: 'fixed',
-          bottom: '102px',
-          right: '85px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-          color: '#111',
-          fontSize: '12px',
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          pointerEvents: 'none',
-          zIndex: 9999,
-          animation: 'pointToButton 1.5s infinite ease-in-out'
-        }}>
-          <span>Mettre l'ambiance</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14"></path>
-            <path d="M12 5l7 7-7 7"></path>
-          </svg>
-        </div>
-      )}
+
 
       <button
           onClick={togglePlay}

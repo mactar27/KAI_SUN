@@ -242,41 +242,21 @@ const Home = () => {
         }}></div>
       </header>
 
-      <section id="histoire" style={{ background: 'var(--kaia-green)', color: 'var(--kaia-gold)', padding: '80px 20px', position: 'relative', overflow: 'hidden' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px', alignItems: 'center' }}>
-          
-          <div style={{ zIndex: 2 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '60px' }}>
-              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', color: '#fff', letterSpacing: '0.1em' }}>KAIA SUN</span>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', opacity: 0.6 }}>HISTOIRE</span>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }}>
-              <div>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '48px', lineHeight: 1 }}>2</div>
-                <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginTop: '8px' }}>CONTINENTS</div>
-              </div>
-              <div>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '48px', lineHeight: 1 }}>3</div>
-                <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginTop: '8px' }}>LIGNES DE MONTURE</div>
-              </div>
-            </div>
-
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '48px', lineHeight: 1 }}>100%</div>
-              <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginTop: '8px' }}>PROTECTION UV400</div>
+      <section id="histoire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center' }}>
+          <div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', color: 'var(--kaia-green)', lineHeight: 1.1 }}>
+              KAÏA SUN
+            </h2>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginTop: '8px', textTransform: 'uppercase' }}>
+              HISTOIRE
             </div>
           </div>
-
-          <div style={{ position: 'absolute', right: '-10%', bottom: '-20%', width: '60vw', maxWidth: '600px', opacity: 0.2, pointerEvents: 'none', zIndex: 1 }}>
-            <svg viewBox="0 0 100 100" style={{ width: '100%', height: 'auto', transform: 'rotate(-15deg)' }}>
-              <circle cx="50" cy="50" r="45" fill="none" stroke="var(--kaia-gold)" strokeWidth="0.5" />
-              <circle cx="50" cy="50" r="30" fill="none" stroke="var(--kaia-gold)" strokeWidth="0.5" />
-              <circle cx="50" cy="50" r="15" fill="none" stroke="var(--kaia-gold)" strokeWidth="0.5" />
-              <circle cx="80" cy="50" r="2" fill="var(--kaia-gold)" />
-            </svg>
+          <div>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontStyle: 'italic', color: 'var(--kaia-green)', lineHeight: 1.6 }}>
+              « Notre savoir-faire, forgé par 10 ans d’expérience dans l’optique, répond à une exigence claire : offrir des lunettes de soleil qui vont au-delà de l’accessoire. »
+            </p>
           </div>
-
         </div>
       </section>
 
@@ -380,7 +360,7 @@ const Home = () => {
           </div>
 
           <div>
-            <img src="/images/atelier.png" alt="Atelier Kaïa" style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
+            <img src="/images/atelier.png" alt="Atelier Kaïa" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }} />
           </div>
 
         </div>
@@ -407,23 +387,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="histoire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center' }}>
-          <div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', color: 'var(--kaia-green)', lineHeight: 1.1 }}>
-              KAÏA SUN
-            </h2>
-            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginTop: '8px', textTransform: 'uppercase' }}>
-              HISTOIRE
-            </div>
-          </div>
-          <div>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontStyle: 'italic', color: 'var(--kaia-green)', lineHeight: 1.6 }}>
-              « Notre savoir-faire, forgé par 10 ans d’expérience dans l’optique, répond à une exigence claire : offrir des lunettes de soleil qui vont au-delà de l’accessoire. »
-            </p>
-          </div>
-        </div>
-      </section>
+
 
       <section id="avis" style={{ padding: '100px 20px', background: '#fff' }}>
         <div className="wrap">
