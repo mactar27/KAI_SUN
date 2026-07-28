@@ -10,6 +10,12 @@ import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import Chatbot from './components/Chatbot';
 
+// New Pages
+import CGV from './pages/legal/CGV';
+import MentionsLegales from './pages/legal/MentionsLegales';
+import Confidentialite from './pages/legal/Confidentialite';
+import ContactFAQ from './pages/ContactFAQ';
+
 function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
@@ -26,6 +32,13 @@ function App() {
           <Route path="/panier" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<Admin />} />
+          
+          {/* Legal & Contact Routes */}
+          <Route path="/cgv" element={<CGV />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
+          <Route path="/contact" element={<ContactFAQ />} />
+          <Route path="/faq" element={<ContactFAQ />} />
         </Routes>
       </main>
       {!isAdmin && <Footer />}

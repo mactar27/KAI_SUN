@@ -24,17 +24,17 @@ const Footer = () => {
 
         <div className="foot-col">
           <div className="foot-heading">Service client</div>
-          <Link to="/">Contact</Link>
-          <Link to="/">Livraison & Retours</Link>
-          <Link to="/">FAQ</Link>
-          <Link to="/">Suivi de commande</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/cgv">Livraison & Retours</Link>
+          <Link to="/faq">FAQ</Link>
+          <Link to="/contact">Suivi de commande</Link>
         </div>
 
         <div className="foot-col">
           <div className="foot-heading">Légal</div>
-          <Link to="/">Conditions Générales</Link>
-          <Link to="/">Politique de confidentialité</Link>
-          <Link to="/">Mentions légales</Link>
+          <Link to="/cgv">Conditions Générales</Link>
+          <Link to="/confidentialite">Politique de confidentialité</Link>
+          <Link to="/mentions-legales">Mentions légales</Link>
         </div>
       </div>
       
