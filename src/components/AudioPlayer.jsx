@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const AudioPlayer = () => {
+const AudioPlayer = ({ color = '#3a4a35' }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeUrl, setActiveUrl] = useState(null);
   const audioRef = useRef(null);
@@ -58,8 +58,6 @@ const AudioPlayer = () => {
         }
       `}</style>
       
-
-
       <button
           onClick={togglePlay}
           title={isPlaying ? "Désactiver la musique" : "Activer la musique"}
@@ -67,9 +65,9 @@ const AudioPlayer = () => {
             width: '36px',
             height: '36px',
             borderRadius: '50%',
-            background: isPlaying ? '#3a4a35' : 'transparent',
-            color: isPlaying ? '#fff' : '#3a4a35',
-            border: isPlaying ? 'none' : '1px solid rgba(0,0,0,0.1)',
+            background: isPlaying ? color : 'transparent',
+            color: isPlaying ? (color === '#faf9f6' ? '#0d2823' : '#fff') : color,
+            border: isPlaying ? 'none' : `1px solid ${color}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

@@ -10,6 +10,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Determine if we are on the home page with the dark hero image
+  const isHomePage = location.pathname === '/';
+  const navColor = isHomePage ? '#faf9f6' : '#0d2823';
+
   // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
@@ -28,7 +32,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <nav id="nav">
+      <nav id="nav" style={{ '--nav-color': navColor }}>
         <div className="wrap">
           <Link to="/" className="logo">
             KAÏA <span>SUNGLASSES</span>
@@ -42,9 +46,9 @@ const Navbar = () => {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <AudioPlayer />
+            <AudioPlayer color={navColor} />
             
-            <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3a4a35' }}>
+            <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: navColor }}>
               <ShoppingBag size={24} strokeWidth={2.5} />
               {cartItemCount > 0 && (
                 <span style={{
@@ -67,13 +71,13 @@ const Navbar = () => {
                 </span>
               )}
             </Link>
-            <a href="/#collection" className="nav-cta hide-on-mobile">Voir la collection</a>
+            <a href="/#collection" className="nav-cta hide-on-mobile" style={isHomePage ? { background: '#faf9f6', color: '#0d2823' } : {}}>Voir la collection</a>
             
             {/* MOBILE MENU BUTTON */}
             <button 
               className="mobile-menu-btn" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ background: 'none', border: 'none', color: '#3a4a35', cursor: 'pointer', padding: '4px' }}
+              style={{ background: 'none', border: 'none', color: navColor, cursor: 'pointer', padding: '4px' }}
             >
               {isMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
             </button>
