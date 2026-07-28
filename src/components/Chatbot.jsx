@@ -18,6 +18,14 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
+  // Open chatbot automatically on first visit after a short delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
