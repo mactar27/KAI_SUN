@@ -380,34 +380,47 @@ const Home = () => {
           </div>
 
           <div>
-            <p style={{ fontSize: '16px', lineHeight: 1.8, marginBottom: '24px' }}>
-              Notre atelier situé au cœur de la ville assemble chaque paire avec précision. L'acétate de cellulose, extrait de fibres de coton, offre une finition et une robustesse que le plastique injecté ne pourra jamais égaler.
-            </p>
-            <p style={{ fontSize: '16px', lineHeight: 1.8, color: 'var(--ink-soft)' }}>
-              Le polissage est manuel, les charnières rivetées et les verres rigoureusement contrôlés pour assurer une optique sans faille. On prend le temps qu'il faut pour que vous gardiez vos lunettes des années.
-            </p>
+            <img src="/images/atelier.png" alt="Atelier Kaïa" style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
           </div>
 
         </div>
       </section>
 
-      <section style={{ padding: '60px 20px', background: 'var(--kaia-green)', color: 'var(--kaia-gold)' }}>
+      <section style={{ padding: '60px 20px', background: 'var(--kaia-cream)', color: 'var(--kaia-green)' }}>
         <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px', textAlign: 'center' }}>
-          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+          <div style={{ padding: '20px', border: '1px solid rgba(13, 40, 35, 0.1)' }}>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>MONTURE</div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>Acétate bio-sourcé</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: 'var(--kaia-green)' }}>Acétate bio-sourcé</div>
           </div>
-          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+          <div style={{ padding: '20px', border: '1px solid rgba(13, 40, 35, 0.1)' }}>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>VERRES</div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>Nylon polarisé cat. 3</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: 'var(--kaia-green)' }}>Nylon polarisé cat. 3</div>
           </div>
-          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+          <div style={{ padding: '20px', border: '1px solid rgba(13, 40, 35, 0.1)' }}>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>CHARNIÈRES</div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>Acier 5 barillets</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: 'var(--kaia-green)' }}>Acier 5 barillets</div>
           </div>
-          <div style={{ padding: '20px', border: '1px solid rgba(203, 167, 92, 0.2)' }}>
+          <div style={{ padding: '20px', border: '1px solid rgba(13, 40, 35, 0.1)' }}>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', marginBottom: '8px' }}>POIDS</div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#fff' }}>32 grammes</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: 'var(--kaia-green)' }}>32 grammes</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="histoire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center' }}>
+          <div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', color: 'var(--kaia-green)', lineHeight: 1.1 }}>
+              KAÏA SUN
+            </h2>
+            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginTop: '8px', textTransform: 'uppercase' }}>
+              HISTOIRE
+            </div>
+          </div>
+          <div>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontStyle: 'italic', color: 'var(--kaia-green)', lineHeight: 1.6 }}>
+              « Notre savoir-faire, forgé par 10 ans d’expérience dans l’optique, répond à une exigence claire : offrir des lunettes de soleil qui vont au-delà de l’accessoire. »
+            </p>
           </div>
         </div>
       </section>

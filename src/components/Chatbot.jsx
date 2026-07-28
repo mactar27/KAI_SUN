@@ -78,7 +78,27 @@ const Chatbot = () => {
         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >
-        <MessageCircle size={26} strokeWidth={1.5} />
+        <div style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: '14px',
+          color: 'var(--kaia-green)',
+          lineHeight: 0.8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: '-4px'
+        }}>
+          KAÏA
+          <span style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '5px',
+            fontWeight: 700,
+            letterSpacing: '0.4em',
+            color: 'var(--kaia-gold)',
+            marginTop: '4px',
+            marginLeft: '2px'
+          }}>ASSISTANT</span>
+        </div>
       </button>
 
       {/* Chat Window */}

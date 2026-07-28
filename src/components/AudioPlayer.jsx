@@ -61,7 +61,7 @@ const AudioPlayer = () => {
       {!isPlaying && (
         <div style={{
           position: 'fixed',
-          bottom: '36px',
+          bottom: '102px',
           right: '85px',
           display: 'flex',
           alignItems: 'center',
@@ -88,7 +88,7 @@ const AudioPlayer = () => {
           title={isPlaying ? "Désactiver la musique" : "Activer la musique"}
           style={{
             position: 'fixed',
-            bottom: '24px',
+            bottom: '90px',
             right: '24px',
             width: '48px',
             height: '48px',
