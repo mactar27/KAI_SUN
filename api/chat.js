@@ -1,4 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
+import pool from './db.js';
 
 // Initialize the Google Gen AI SDK
 // It automatically picks up process.env.GEMINI_API_KEY
@@ -16,13 +17,22 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid request: messages array is required.' });
     }
 
+    // Fetch the product catalog from the database
+    const [products] = await pool.query('SELECT * FROM products');
+    const catalogText = products.map(p => `- Modèle: ${p.name} (Réf: ${p.ref}, Genre: ${p.gender === 'homme' ? 'Homme' : p.gender === 'femme' ? 'Femme' : 'Unisexe'})`).join('\\n');
+
     const systemInstruction = `Tu es l'assistant virtuel officiel de KAÏA SUNGLASSES, une marque premium de lunettes de soleil basée à Dakar.
 Ton rôle est d'accueillir les clients de manière polie, élégante et très serviable. 
 Tu réponds en français, avec un ton chic, professionnel et chaleureux.
 Si le client demande le prix, dis-leur que toutes nos paires sont au prix unique de 15 000 FCFA.
 Nous offrons la livraison gratuite dès 2 paires achetées (sur Dakar et Abidjan). Le paiement à la livraison est disponible sur Dakar.
 Nos lunettes sont en acétate bio-sourcé (pas de plastique injecté), avec des verres en Nylon polarisé de catégorie 3 (protection UV400) et des charnières en acier 5 barillets. Elles sont assemblées avec soin et polies à la main dans notre studio & atelier.
-Sois concis dans tes réponses. N'invente pas d'informations sur d'autres modèles que ce que le client demande.`;
+
+Voici notre catalogue actuel en stock :
+${catalogText}
+
+Si le client cherche un modèle particulier, n'hésite pas à lui suggérer un ou plusieurs modèles de ce catalogue qui correspondent à sa demande. Tu peux mentionner le nom du modèle pour qu'il puisse le trouver facilement sur le site.
+Sois concis dans tes réponses. N'invente pas d'informations sur d'autres modèles que ceux présents dans ce catalogue.`;
 
     // Convert the message history into the format expected by the Gemini API
     const geminiMessages = messages.map(msg => ({
