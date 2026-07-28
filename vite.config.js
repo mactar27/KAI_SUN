@@ -21,6 +21,12 @@ export default defineConfig({
             src: 'kaia-logo-v3.svg',
             sizes: 'any',
             type: 'image/svg+xml'
+          },
+          {
+            src: 'kaia-logo-v3.svg',
+            sizes: 'any',
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
           }
         ]
       }
