@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['kaia-icon.svg'],
+      includeAssets: ['favicon.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'Kaïa Sun',
         short_name: 'Kaïa Sun',
@@ -18,9 +18,15 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: 'kaia-icon.svg',
-            sizes: 'any',
-            type: 'image/svg+xml'
+            src: 'favicon.png',
+            sizes: '1024x1024',
+            type: 'image/png'
+          },
+          {
+            src: 'apple-touch-icon.png',
+            sizes: '1024x1024',
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       }
