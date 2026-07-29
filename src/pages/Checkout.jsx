@@ -41,7 +41,7 @@ const Checkout = () => {
     message += `%0AMes informations :%0ANom : ${formData.prenom} ${formData.nom}%0ATéléphone : ${formData.phone}%0AAdresse : ${formData.adresse}, ${formData.ville}`;
 
     // Open WhatsApp
-    window.open(`https://wa.me/221770000000?text=${message}`, '_blank');
+    window.open(`https://wa.me/221781925177?text=${message}`, '_blank');
     
     clearCart(); // Make sure to clear cart upon order
     setIsSubmitted(true);
