@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
 }
 
@@ -25,15 +22,15 @@ model Product {
 }
 
 model Order {
-  id           Int         @id @default(autoincrement())
-  date         DateTime    @default(now())
-  total        Float
-  prenom       String
-  nom          String
-  adresse      String
-  cp           String
-  ville        String
-  items        OrderItem[]
+  id      Int         @id @default(autoincrement())
+  date    DateTime    @default(now())
+  total   Float
+  prenom  String
+  nom     String
+  adresse String
+  cp      String
+  ville   String
+  items   OrderItem[]
 }
 
 model OrderItem {
@@ -41,11 +38,13 @@ model OrderItem {
   orderId   Int
   productId Int
   quantity  Int
-  price     Float   // Snapshot du prix au moment de l'achat
-  costPrice Float   // Snapshot du coût au moment de l'achat
+  price     Float
+  costPrice Float
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 
-  order   Order   @relation(fields: [orderId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  @@index([orderId], map: "OrderItem_orderId_fkey")
+  @@index([productId], map: "OrderItem_productId_fkey")
 }
 
 model DailyVisit {
@@ -55,8 +54,62 @@ model DailyVisit {
 }
 
 model MusicTrack {
-  id        Int     @id @default(autoincrement())
-  title     String
-  url       String  @db.LongText
-  isActive  Boolean @default(false)
+  id       Int     @id @default(autoincrement())
+  title    String
+  url      String  @db.LongText
+  isActive Boolean @default(false)
+}
+
+model analytics {
+  id          Int       @id @default(autoincrement())
+  event_type  String    @db.VarChar(50)
+  product_ref String?   @db.VarChar(50)
+  timestamp   DateTime? @default(now()) @db.Timestamp(0)
+}
+
+model order_items {
+  id         Int    @id @default(autoincrement())
+  order_id   Int
+  product_id String @db.VarChar(50)
+  quantity   Int
+  orders     orders @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_order_items")
+
+  @@index([order_id], map: "fk_order_items_idx")
+}
+
+model orders {
+  id            Int           @id @default(autoincrement())
+  customer_name String        @db.VarChar(255)
+  phone         String        @db.VarChar(50)
+  address       String        @db.Text
+  total_amount  Int
+  status        String?       @default("Nouvelle") @db.VarChar(50)
+  created_at    DateTime?     @default(now()) @db.Timestamp(0)
+  order_items   order_items[]
+}
+
+model product_thumbnails {
+  id         Int       @id @default(autoincrement())
+  product_id String?   @db.VarChar(50)
+  url        String?   @db.VarChar(255)
+  products   products? @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_product_thumbnails")
+
+  @@index([product_id], map: "fk_product_thumbnails_idx")
+}
+
+model products {
+  id                 String               @id @db.VarChar(50)
+  ref                String               @db.VarChar(50)
+  name               String               @db.VarChar(255)
+  price              Int
+  gender             String               @db.VarChar(20)
+  image              String               @db.VarChar(255)
+  groupId            String?              @db.VarChar(50)
+  product_thumbnails product_thumbnails[]
+}
+
+model Newsletter {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
 }

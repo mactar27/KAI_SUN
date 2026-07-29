@@ -261,6 +261,37 @@ app.post('/api/upload-music', async (request, response) => {
   }
 });
 
+// --- NEWSLETTER API ---
+app.post('/api/newsletter', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email manquant' });
+    
+    // Create or ignore if already exists (using Prisma)
+    // To handle unique constraint failure, we can upsert or catch error
+    const subscriber = await prisma.newsletter.upsert({
+      where: { email },
+      update: {},
+      create: { email }
+    });
+    
+    res.json({ success: true, subscriber });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/newsletter', authMiddleware, async (req, res) => {
+  try {
+    const subscribers = await prisma.newsletter.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(subscribers);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // --- GLOBAL ERROR HANDLER ---
 app.use((err, req, res, next) => {
   console.error('Unhandled API Error:', err);

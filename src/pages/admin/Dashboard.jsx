@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
-import { Plus, Edit, Trash2, Box, Users, BarChart, LogOut } from 'lucide-react';
+import { Plus, Edit, Trash2, Box, Users, BarChart, LogOut, Mail } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Login from './Login';
 
@@ -8,6 +8,7 @@ const Dashboard = () => {
   const { products, orders, stats, addProduct, updateProduct, deleteProduct, adminToken, logoutAdmin, visitors } = useContext(ShopContext);
   const [activeTab, setActiveTab] = useState('stats');
   const [showModal, setShowModal] = useState(false);
+  const [subscribers, setSubscribers] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -298,9 +299,60 @@ const Dashboard = () => {
     </div>
   );
 
+  const copyEmails = () => {
+    const emails = subscribers.map(s => s.email).join(', ');
+    navigator.clipboard.writeText(emails);
+    alert('Emails copiés dans le presse-papiers !');
+  };
+
+  useEffect(() => {
+    if (activeTab === 'newsletter' && adminToken) {
+      fetch('/api/newsletter', {
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      })
+      .then(res => res.json())
+      .then(data => setSubscribers(Array.isArray(data) ? data : []))
+      .catch(err => console.error("Erreur fetch newsletter:", err));
+    }
+  }, [activeTab, adminToken]);
+
   if (!adminToken) {
     return <Login />;
   }
+
+  const renderNewsletter = () => (
+    <div className="animate-fade-in">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--color-primary)' }}>Abonnés Newsletter ({subscribers.length})</h2>
+        <button className="btn btn-primary" onClick={copyEmails}>
+          Copier les emails
+        </button>
+      </div>
+      <div style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
+              <th style={{ padding: '1rem', color: '#666' }}>Email</th>
+              <th style={{ padding: '1rem', color: '#666' }}>Date d'inscription</th>
+            </tr>
+          </thead>
+          <tbody>
+            {subscribers.map(sub => (
+              <tr key={sub.id} style={{ borderBottom: '1px solid #eee' }}>
+                <td style={{ padding: '1rem', fontWeight: '500' }}>{sub.email}</td>
+                <td style={{ padding: '1rem', color: '#666' }}>{new Date(sub.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+              </tr>
+            ))}
+            {subscribers.length === 0 && (
+              <tr>
+                <td colSpan="2" style={{ padding: '2rem', textAlign: 'center', color: '#999' }}>Aucun abonné pour le moment.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 
   return (
     <div className="section container" style={{ paddingTop: '120px' }}>
@@ -313,11 +365,19 @@ const Dashboard = () => {
       
       {/* Tab Navigation */}
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', borderBottom: '1px solid var(--color-border)' }}>
-        <button 
-          onClick={() => setActiveTab('stats')}
-          style={{ padding: '0.8rem 1.5rem', background: 'none', border: 'none', borderBottom: activeTab === 'stats' ? '2px solid var(--color-primary)' : '2px solid transparent', cursor: 'pointer', fontWeight: activeTab === 'stats' ? 'bold' : 'normal', display: 'flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s ease' }}
-        ><BarChart size={18}/> Vue d'ensemble</button>
-        <button 
+          <button 
+            onClick={() => setActiveTab('stats')}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1rem', background: activeTab === 'stats' ? 'var(--color-primary)' : 'transparent', color: activeTab === 'stats' ? '#fff' : 'inherit', border: 'none', borderRadius: '4px', cursor: 'pointer', textAlign: 'left', fontWeight: activeTab === 'stats' ? '600' : '400', transition: 'all 0.2s ease', fontFamily: 'var(--font-body)' }}
+          >
+            <BarChart size={18} /> Statistiques
+          </button>
+          <button 
+            onClick={() => setActiveTab('newsletter')}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1rem', background: activeTab === 'newsletter' ? 'var(--color-primary)' : 'transparent', color: activeTab === 'newsletter' ? '#fff' : 'inherit', border: 'none', borderRadius: '4px', cursor: 'pointer', textAlign: 'left', fontWeight: activeTab === 'newsletter' ? '600' : '400', transition: 'all 0.2s ease', fontFamily: 'var(--font-body)' }}
+          >
+            <Mail size={18} /> Newsletter
+          </button>
+          <button 
           onClick={() => setActiveTab('catalog')}
           style={{ padding: '0.8rem 1.5rem', background: 'none', border: 'none', borderBottom: activeTab === 'catalog' ? '2px solid var(--color-primary)' : '2px solid transparent', cursor: 'pointer', fontWeight: activeTab === 'catalog' ? 'bold' : 'normal', display: 'flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s ease' }}
         ><Box size={18}/> Catalogue</button>
@@ -331,6 +391,7 @@ const Dashboard = () => {
         {activeTab === 'stats' && renderStats()}
         {activeTab === 'catalog' && renderCatalog()}
         {activeTab === 'orders' && renderOrders()}
+        {activeTab === 'newsletter' && renderNewsletter()}
       </div>
 
       {/* Product Form Modal */}

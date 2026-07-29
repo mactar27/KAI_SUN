@@ -25,7 +25,24 @@ const Checkout = () => {
     e.preventDefault();
     if (cart.length === 0) return;
     
+    // Save to database
     placeOrder(formData);
+
+    // Format WhatsApp message
+    const orderTotal = cart.reduce((acc, item) => acc + (item.quantity * item.product.price), 0);
+    // Use format 25000 FCFA
+    const totalFormatted = new Intl.NumberFormat('fr-FR').format(orderTotal) + ' FCFA';
+    
+    let message = `Bonjour Kaïa Sun !%0AJe souhaite valider ma commande:%0A`;
+    cart.forEach(item => {
+      message += `- ${item.quantity}x ${item.product.name} (${new Intl.NumberFormat('fr-FR').format(item.product.price)} FCFA)%0A`;
+    });
+    message += `%0A*Total: ${totalFormatted}*%0A`;
+    message += `%0AMes informations :%0ANom : ${formData.prenom} ${formData.nom}%0ATéléphone : ${formData.phone}%0AAdresse : ${formData.adresse}, ${formData.ville}`;
+
+    // Open WhatsApp
+    window.open(`https://wa.me/221770000000?text=${message}`, '_blank');
+    
     clearCart(); // Make sure to clear cart upon order
     setIsSubmitted(true);
   };
