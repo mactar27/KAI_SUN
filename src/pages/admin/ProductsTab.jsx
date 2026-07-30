@@ -319,28 +319,40 @@ const ProductsTab = ({ products, refreshProducts }) => {
                     <img src={product.image + '?width=100&height=100'} alt={product.ref} style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px', margin: '0 auto 12px', background: '#f9f9f9' }} />
                     <div style={{ fontWeight: 700, color: '#111', fontSize: '0.9rem' }}>{product.ref}</div>
                     
-                    {editingStock === product.id ? (
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', marginTop: '6px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', marginTop: '8px' }} onClick={(e) => e.stopPropagation()}>
+                      <button 
+                        onClick={() => handleUpdateStock(product.id, Math.max(0, (product.stock || 0) - 1))}
+                        style={{ width: '24px', height: '24px', borderRadius: '4px', border: '1px solid #ddd', background: '#fff', cursor: 'pointer', fontWeight: 700, fontSize: '0.85rem' }}
+                        title="Diminuer le stock"
+                      >-</button>
+                      
+                      {editingStock === product.id ? (
                         <input 
                           type="number" 
                           min="0"
                           value={stockValue}
                           onChange={(e) => setStockValue(e.target.value)}
-                          style={{ width: '60px', padding: '4px 8px', borderRadius: '4px', border: '1px solid #eaeaea', textAlign: 'center' }}
+                          style={{ width: '50px', padding: '2px 4px', borderRadius: '4px', border: '1px solid #D4AF37', textAlign: 'center', fontSize: '0.8rem', fontWeight: 700 }}
                           autoFocus
-                          onBlur={() => handleUpdateStock(product.id, stockValue)}
-                          onKeyDown={(e) => e.key === 'Enter' && handleUpdateStock(product.id, stockValue)}
+                          onBlur={() => handleUpdateStock(product.id, Math.max(0, parseInt(stockValue) || 0))}
+                          onKeyDown={(e) => e.key === 'Enter' && handleUpdateStock(product.id, Math.max(0, parseInt(stockValue) || 0))}
                         />
-                      </div>
-                    ) : (
-                      <div 
-                        onClick={(e) => { e.stopPropagation(); setEditingStock(product.id); setStockValue(product.stock || 0); }}
-                        style={{ fontSize: '0.75rem', color: product.stock === 0 ? '#dc2626' : '#888', marginTop: '4px', cursor: 'text', padding: '2px 6px', background: '#f3f4f6', borderRadius: '4px', display: 'inline-block', border: product.stock === 0 ? '1px solid #fecaca' : '1px solid transparent' }}
-                        title="Cliquez pour modifier le stock"
-                      >
-                        Stock: <span style={{ fontWeight: 700 }}>{product.stock || 0}</span> ✏️
-                      </div>
-                    )}
+                      ) : (
+                        <span 
+                          onClick={() => { setEditingStock(product.id); setStockValue(Math.max(0, product.stock || 0)); }}
+                          style={{ fontSize: '0.8rem', fontWeight: 700, color: (product.stock || 0) <= 0 ? '#dc2626' : '#111', cursor: 'pointer', padding: '2px 6px', background: (product.stock || 0) <= 0 ? '#fef2f2' : '#f3f4f6', borderRadius: '4px', border: (product.stock || 0) <= 0 ? '1px solid #fecaca' : '1px solid transparent' }}
+                          title="Cliquer pour modifier"
+                        >
+                          {(product.stock || 0) <= 0 ? '0 (Rupture)' : product.stock}
+                        </span>
+                      )}
+
+                      <button 
+                        onClick={() => handleUpdateStock(product.id, Math.max(0, (product.stock || 0) + 1))}
+                        style={{ width: '24px', height: '24px', borderRadius: '4px', border: '1px solid #ddd', background: '#fff', cursor: 'pointer', fontWeight: 700, fontSize: '0.85rem' }}
+                        title="Augmenter le stock"
+                      >+</button>
+                    </div>
                   </div>
                 );
               })}

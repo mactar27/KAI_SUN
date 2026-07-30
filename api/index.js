@@ -50,6 +50,11 @@ app.post('/api/auth/login', (req, res) => {
 
 app.get('/api/products', async (req, res) => {
   try {
+    // Reset any legacy negative stocks to 0
+    await prisma.products.updateMany({
+      where: { stock: { lt: 0 } },
+      data: { stock: 0 }
+    });
     const products = await prisma.products.findMany();
     res.json(products);
   } catch (e) {
@@ -69,15 +74,17 @@ app.put('/api/products', authMiddleware, async (req, res) => {
       return res.json(updated);
     }
     if (action === 'updateStock') {
+      const newStock = Math.max(0, parseInt(stock) || 0);
       const updated = await prisma.products.update({
         where: { id: String(id) },
-        data: { stock: parseInt(stock) }
+        data: { stock: newStock }
       });
       return res.json(updated);
     }
+    const safeStock = stock !== undefined ? Math.max(0, parseInt(stock) || 0) : undefined;
     const updated = await prisma.products.update({
       where: { id: String(id) },
-      data: { ...rest, ...(stock !== undefined ? { stock: parseInt(stock) } : {}) }
+      data: { ...rest, ...(safeStock !== undefined ? { stock: safeStock } : {}) }
     });
     res.json(updated);
   } catch (e) {
@@ -222,16 +229,18 @@ app.post('/api/orders', async (req, res) => {
         }
       });
 
-      // 2. Mettre à jour les stocks
+      // 2. Mettre à jour les stocks (sans descendre en dessous de 0)
       for (const item of items) {
-        await tx.products.update({
-          where: { id: item.product?.id || item.id },
-          data: {
-            stock: {
-              decrement: item.quantity
-            }
-          }
-        });
+        const prodId = item.product?.id || item.id;
+        const currentProd = await tx.products.findUnique({ where: { id: prodId } });
+        if (currentProd) {
+          const currentStock = Number(currentProd.stock) || 0;
+          const newStock = Math.max(0, currentStock - item.quantity);
+          await tx.products.update({
+            where: { id: prodId },
+            data: { stock: newStock }
+          });
+        }
       }
 
       // 3. Désactiver le code promo si utilisé (usage unique)
