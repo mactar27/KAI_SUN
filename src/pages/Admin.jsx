@@ -172,6 +172,19 @@ const Admin = () => {
     }
   };
 
+  const deleteAllOrders = async () => {
+    if (!confirm("Voulez-vous vraiment supprimer toutes les commandes ? Cette action est irréversible.")) return;
+    try {
+      await fetch('/api/orders', {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      });
+      fetchOrders();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <Home size={18} /> },
     { id: 'products', label: 'Produits', icon: <Package size={18} /> },
@@ -369,7 +382,13 @@ const Admin = () => {
         {/* Dynamic Tab Content */}
         <div className="admin-content">
           {activeTab === 'dashboard' && <DashboardTab orders={orders} products={products} />}
-          {activeTab === 'orders' && <OrdersTab orders={orders} loadingOrders={loadingOrders} updateOrderStatus={updateOrderStatus} products={products} />}
+          {activeTab === 'orders' && <OrdersTab 
+            orders={orders} 
+            loadingOrders={loadingOrders} 
+            updateOrderStatus={updateOrderStatus} 
+            deleteAllOrders={deleteAllOrders}
+            products={products} 
+          />}
           {activeTab === 'products' && <ProductsTab products={products} refreshProducts={refreshProducts} />}
           
           {/* Legacy components injected cleanly */}

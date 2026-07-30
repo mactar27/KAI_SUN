@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, FileText } from 'lucide-react';
 
-const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
+const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, deleteAllOrders, products }) => {
   const getWhatsAppLink = (order) => {
     const phone = (order.deliveryInfo?.phone || '').replace(/[^0-9]/g, '');
     const cleanPhone = phone.startsWith('221') ? phone : '221' + phone;
@@ -37,8 +37,16 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
 
   return (
     <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #eaeaea', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', overflow: 'hidden' }}>
-      <div style={{ padding: '24px', borderBottom: '1px solid #eaeaea' }}>
+      <div style={{ padding: '24px', borderBottom: '1px solid #eaeaea', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: '#111' }}>Toutes les commandes</h2>
+        {orders?.length > 0 && (
+          <button
+            onClick={deleteAllOrders}
+            style={{ padding: '8px 16px', background: '#fee2e2', color: '#b91c1c', border: '1px solid #fecaca', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer' }}
+          >
+            Tout supprimer
+          </button>
+        )}
       </div>
       
       <div style={{ overflowX: 'auto' }}>

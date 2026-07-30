@@ -141,6 +141,17 @@ app.put('/api/orders', authMiddleware, async (req, res) => {
   }
 });
 
+app.delete('/api/orders', authMiddleware, async (req, res) => {
+  try {
+    await prisma.order_items.deleteMany();
+    await prisma.orders.deleteMany();
+    res.json({ success: true });
+  } catch (error) {
+    console.error('DELETE /api/orders Error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/api/orders', async (req, res) => {
   const { deliveryInfo, items, total, promoCodeId } = req.body;
 
