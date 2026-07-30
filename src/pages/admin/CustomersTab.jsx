@@ -1,9 +1,10 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { ShopContext } from '../../context/ShopContext';
-import { Users, Phone, MapPin, ShoppingBag } from 'lucide-react';
+import { Users, Phone, MapPin, ShoppingBag, Gift } from 'lucide-react';
 
 const CustomersTab = () => {
-  const { orders } = useContext(ShopContext);
+  const { orders, adminToken } = useContext(ShopContext);
+  const [loadingCode, setLoadingCode] = useState(null);
 
   const customers = useMemo(() => {
     const map = new Map();
@@ -30,6 +31,30 @@ const CustomersTab = () => {
     });
     return Array.from(map.values()).sort((a, b) => b.totalSpent - a.totalSpent);
   }, [orders]);
+
+  const sendPromoCode = async (customer) => {
+    setLoadingCode(customer.phone);
+    try {
+      const codeName = `FIDELITE-${customer.name.substring(0, 3).toUpperCase().replace(/[^A-Z]/g, '')}-${Math.floor(Math.random() * 1000)}`;
+      const res = await fetch('/api/promocodes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminToken}` },
+        body: JSON.stringify({ code: codeName, discountPercent: 15 })
+      });
+      if (res.ok) {
+        const msg = `Bonjour ${customer.name}, pour vous remercier de votre fidélité (déjà ${customer.orderCount} commandes chez nous !), voici un code promo exclusif de 15% valable sur toute la boutique : ${codeName}. À très vite chez Kaïa Sun ! 😎`;
+        const phone = customer.phone.replace(/[^0-9]/g, '');
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      } else {
+        alert("Erreur lors de la création du code.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erreur réseau.");
+    } finally {
+      setLoadingCode(null);
+    }
+  };
 
   return (
     <div className="admin-card" style={{ background: '#fff', borderRadius: '12px', padding: '24px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
@@ -79,6 +104,17 @@ const CustomersTab = () => {
                 </td>
                 <td style={{ padding: '16px', textAlign: 'right', fontWeight: 800, fontSize: '1.1rem' }}>
                   {c.totalSpent.toLocaleString()} FCFA
+                  {c.orderCount > 1 && (
+                    <div style={{ marginTop: '12px' }}>
+                      <button 
+                        onClick={() => sendPromoCode(c)}
+                        disabled={loadingCode === c.phone}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#25D366', color: '#fff', border: 'none', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer' }}
+                      >
+                        <Gift size={14} /> {loadingCode === c.phone ? 'Génération...' : 'Envoyer Promo'}
+                      </button>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
