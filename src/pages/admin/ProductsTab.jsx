@@ -151,9 +151,10 @@ const ProductsTab = ({ products, refreshProducts }) => {
       <div style={{ padding: '24px' }}>
         {/* VIEW MODE: GROUPS */}
         {mode === 'groups' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {groupEntries.map(([groupId, members]) => {
-              const totalStock = members.reduce((sum, p) => sum + p.stock, 0);
+          <div style={{ overflowX: 'auto' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', minWidth: '700px' }}>
+              {groupEntries.map(([groupId, members]) => {
+                const totalStock = members.reduce((sum, p) => sum + (Number(p.stock) || 0), 0);
               const price = members[0]?.price || 0;
               const groupName = groupId.replace('GRP_', '').replace('SOLO_', '');
 
@@ -211,6 +212,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
                 </div>
               );
             })}
+            </div>
           </div>
         )}
 
@@ -286,7 +288,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
                     )}
                     <img src={product.image + '?width=100&height=100'} alt={product.ref} style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px', margin: '0 auto 12px', background: '#f9f9f9' }} />
                     <div style={{ fontWeight: 700, color: '#111', fontSize: '0.9rem' }}>{product.ref}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#888', marginTop: '4px' }}>Stock: {product.stock}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#888', marginTop: '4px' }}>Stock: {product.stock || 0}</div>
                   </div>
                 );
               })}
