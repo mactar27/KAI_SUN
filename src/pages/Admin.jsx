@@ -11,7 +11,8 @@ import CustomersTab from './admin/CustomersTab';
 import DashboardTab from './admin/DashboardTab';
 import OrdersTab from './admin/OrdersTab';
 import ProductsTab from './admin/ProductsTab';
-import { Home, Package, ShoppingBag, Users, Star, Ticket, Mail, BarChart2, Settings, LogOut, Bell, Music } from 'lucide-react';
+import { Home, Package, ShoppingBag, Users, Star, Ticket, Mail, BarChart2, Settings, LogOut, Bell, Music, Copy, Check } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Admin = () => {
   const { adminToken, logoutAdmin } = useContext(ShopContext);
@@ -36,6 +37,14 @@ const Admin = () => {
   // Newsletter State
   const [subscribers, setSubscribers] = useState([]);
   const [loadingSubscribers, setLoadingSubscribers] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmails = () => {
+    const emails = subscribers.map(s => s.email).join(', ');
+    navigator.clipboard.writeText(emails);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   // Load Orders
   const fetchOrders = async () => {
@@ -212,11 +221,11 @@ const Admin = () => {
         <div style={{ padding: '24px 16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', padding: '0 8px' }}>
             <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#333', color: '#D4AF37', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.9rem' }}>
-              MN
+              KA
             </div>
             <div>
-              <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>Administrateur</div>
-              <div style={{ fontSize: '0.75rem', color: '#666' }}>Mactar Ndiaye</div>
+              <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>KAÏA SUN</div>
+              <div style={{ fontSize: '0.75rem', color: '#666' }}>Administrateur</div>
             </div>
           </div>
           <button
@@ -282,32 +291,80 @@ const Admin = () => {
             <MusicTab adminToken={adminToken} />
           </div>
           <div style={{ display: activeTab === 'newsletter' ? 'block' : 'none' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '24px', color: '#111' }}>💌 Newsletter</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, color: '#111' }}>💌 Newsletter</h2>
+              <button 
+                onClick={copyEmails}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '8px', background: copied ? '#f0fdf4' : '#111',
+                  color: copied ? '#15803d' : '#fff', border: copied ? '1px solid #bbf7d0' : 'none',
+                  padding: '10px 16px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'
+                }}
+              >
+                {copied ? <Check size={18} /> : <Copy size={18} />}
+                {copied ? 'Copié !' : 'Copier les emails'}
+              </button>
+            </div>
             {loadingSubscribers ? <p>Chargement...</p> : (
               <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #eaeaea', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                 <p style={{ margin: '0 0 16px 0', fontWeight: 600 }}>{subscribers.length} abonnés</p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '12px' }}>
                   {subscribers.map((sub, i) => (
-                    <div key={i} style={{ background: '#fafafa', padding: '12px 16px', borderRadius: '8px', border: '1px solid #eaeaea', fontSize: '0.9rem', color: '#333' }}>
-                      {sub.email}
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fafafa', padding: '12px 16px', borderRadius: '8px', border: '1px solid #eaeaea', fontSize: '0.9rem', color: '#333' }}>
+                      <span>{sub.email}</span>
+                      <button 
+                        onClick={() => {
+                          navigator.clipboard.writeText(sub.email);
+                          alert('Email copié !');
+                        }}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888', padding: '4px' }}
+                        title="Copier cet email"
+                      >
+                        <Copy size={14} />
+                      </button>
                     </div>
                   ))}
                 </div>
               </div>
             )}
           </div>
-          {/* We dropped 'analytics' tab from here because we built a robust dashboard, but we can still render the legacy bar chart if needed, 
-              but the dashboard is much better. Let's just leave it empty or map it to the old view */}
-          {activeTab === 'analytics' && (
-            <div>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '24px', color: '#111' }}>📊 Statistiques Détaillées</h2>
-              <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #eaeaea', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                <p>Les statistiques de vente globales sont désormais sur le <strong>Dashboard</strong>. 
-                <br/><br/>
-                <em>Note: Les graphiques d'interactions approfondis seront migrés ici prochainement.</em></p>
-              </div>
+          
+          {/* Analytics restored */}
+          <div style={{ display: activeTab === 'analytics' ? 'block' : 'none' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '24px', color: '#111' }}>📊 Statistiques Détaillées</h2>
+            
+            <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #eaeaea', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+              <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', fontWeight: 700 }}>Interactions (Vues vs Ajouts Panier)</h3>
+              {loadingAnalytics ? <p>Chargement des statistiques...</p> : (
+                <>
+                  {products.some(p => (analytics.views[p.ref] || 0) > 0 || (analytics.cart[p.ref] || 0) > 0) ? (
+                    <div style={{ width: '100%', height: '450px' }}>
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                          data={products.map(p => ({
+                            name: p.ref,
+                            vues: analytics.views[p.ref] || 0,
+                            paniers: analytics.cart[p.ref] || 0,
+                          })).filter(d => d.vues > 0 || d.paniers > 0)}
+                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eaeaea" />
+                          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 12 }} />
+                          <YAxis axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 12 }} />
+                          <Tooltip cursor={{ fill: '#fafafa' }} contentStyle={{ borderRadius: '12px', border: '1px solid #eaeaea', boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }} />
+                          <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                          <Bar dataKey="vues" name="👀 Vues" fill="#D4AF37" radius={[6, 6, 0, 0]} />
+                          <Bar dataKey="paniers" name="🛒 Ajouts au panier" fill="#111" radius={[6, 6, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                  ) : (
+                    <p style={{ textAlign: 'center', color: '#888', padding: '40px 0' }}>Aucune donnée d'interaction pour le moment.</p>
+                  )}
+                </>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
