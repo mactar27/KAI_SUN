@@ -9,6 +9,7 @@ const Navbar = () => {
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const [bannerText, setBannerText] = useState(null); // null means loading, '' means disabled
 
   // Determine if we are on the home page with the dark hero image
   const isHomePage = location.pathname === '/';
@@ -19,20 +20,34 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        setBannerText(data.announcement_text || '');
+      })
+      .catch(e => {
+        console.error(e);
+        setBannerText('');
+      });
+  }, []);
+
   return (
     <>
-      <div className="promo-bar" id="promoBar">
-        <div className="promo-track">
-          <span>LIVRAISON OFFERTE DÈS 2 PAIRES ACHETÉES</span>
-          <span>PROMO : UNE ACHETÉE, LA DEUXIÈME À 10 000 FCFA</span>
-          <span>PAIEMENT À LA LIVRAISON DISPONIBLE À DAKAR</span>
-          <span>LIVRAISON OFFERTE DÈS 2 PAIRES ACHETÉES</span>
-          <span>PROMO : UNE ACHETÉE, LA DEUXIÈME À 10 000 FCFA</span>
-          <span>PAIEMENT À LA LIVRAISON DISPONIBLE À DAKAR</span>
+      {bannerText && (
+        <div className="promo-bar" id="promoBar">
+          <div className="promo-track">
+            <span>{bannerText}</span>
+            <span>{bannerText}</span>
+            <span>{bannerText}</span>
+            <span>{bannerText}</span>
+            <span>{bannerText}</span>
+            <span>{bannerText}</span>
+          </div>
         </div>
-      </div>
+      )}
 
-      <nav id="nav" style={{ '--nav-color': navColor }}>
+      <nav id="nav" style={{ '--nav-color': navColor, top: bannerText ? '35px' : '0' }}>
         <div className="wrap">
           <Link to="/" className="logo">
             KAÏA <span>SUNGLASSES</span>
