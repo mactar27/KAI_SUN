@@ -389,8 +389,20 @@ const Home = () => {
             <div style={{ width: '60px', height: '2px', background: 'var(--kaia-gold)', marginBottom: '32px' }}></div>
           </div>
 
-          <div>
-            <img src="/images/atelier.png" alt="Atelier Kaïa" style={{ width: '100%', aspectRatio: '16/9', maxHeight: '380px', borderRadius: '24px', boxShadow: '0 15px 35px rgba(0,0,0,0.08)', display: 'block', objectFit: 'cover', objectPosition: 'center 60%' }} />
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img 
+              src="/images/atelier.png" 
+              alt="Atelier Kaïa" 
+              style={{ 
+                width: 'min(100%, 420px)', 
+                height: '420px', 
+                borderRadius: '50%', 
+                boxShadow: '0 20px 40px rgba(0,0,0,0.1)', 
+                display: 'block', 
+                objectFit: 'cover', 
+                objectPosition: 'center' 
+              }} 
+            />
           </div>
 
         </div>
