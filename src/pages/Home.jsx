@@ -246,7 +246,7 @@ const Home = () => {
       </header>
 
       <section id="histoire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '40px', alignItems: 'center' }}>
           <div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', color: 'var(--kaia-green)', lineHeight: 1.1 }}>
               KAÏA SUN
@@ -350,7 +350,7 @@ const Home = () => {
       </section>
 
       <section id="savoir-faire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)', color: 'var(--ink)' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'center' }}>
+        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '60px', alignItems: 'center' }}>
           
           <div>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginBottom: '16px', textTransform: 'uppercase' }}>
@@ -398,7 +398,7 @@ const Home = () => {
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginBottom: '16px', textTransform: 'uppercase' }}>— TÉMOIGNAGES</div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 5vw, 40px)', color: 'var(--kaia-green)' }}>Ils voient la différence.</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '40px' }}>
             <div style={{ padding: '40px', background: 'var(--kaia-cream)' }}>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '18px', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '20px' }}>
                 "La clarté des verres polarisés est dingue. Le soleil de midi n'est plus un problème, même en conduisant. Et la monture est super légère."
