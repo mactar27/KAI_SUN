@@ -6,6 +6,11 @@ import { ProductsContext } from '../context/ProductsContext';
 const Checkout = () => {
   const { products } = useContext(ProductsContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // Review State
+  const [reviewForm, setReviewForm] = useState({ authorName: '', rating: 5, comment: '' });
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const [purchasedProductId, setPurchasedProductId] = useState('STORE');
   const { cart, placeOrder, clearCart } = useContext(ShopContext);
   const navigate = useNavigate();
 
@@ -55,6 +60,8 @@ const Checkout = () => {
     e.preventDefault();
     if (cart.length === 0) return;
     
+    setPurchasedProductId(cart[0]?.id || 'STORE');
+
     try {
       // Save to database
       await placeOrder(formData, discountAmount, appliedPromo?.id);
@@ -76,14 +83,57 @@ const Checkout = () => {
     }
   };
 
+  const submitReview = async (e) => {
+    e.preventDefault();
+    try {
+      await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId: purchasedProductId, ...reviewForm })
+      });
+      setReviewSubmitted(true);
+      setReviewForm({ authorName: '', rating: 5, comment: '' });
+    } catch (err) { console.error(err); }
+  };
+
   if (isSubmitted) {
     return (
-      <div className="section container text-center animate-fade-in" style={{ paddingTop: '150px', minHeight: '60vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <h1 className="section-title" style={{ marginBottom: '1.5rem', color: 'var(--color-primary)' }}>Merci pour votre commande !</h1>
-        <p style={{ fontSize: '1.2rem', marginBottom: '3rem', color: 'var(--color-text-light)' }}>
-          Votre commande a bien été prise en compte et sera préparée avec soin très prochainement.
-        </p>
-        <Link to="/" className="btn btn-primary">Retour à la boutique</Link>
+      <div className="checkout-container success">
+        <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+          <div style={{ fontSize: '64px', marginBottom: '20px' }}>✅</div>
+          <h1 style={{ fontSize: '2rem', marginBottom: '20px' }}>Commande Confirmée !</h1>
+          <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '40px' }}>
+            Merci pour votre achat. Notre équipe va vous contacter sur WhatsApp dans les plus brefs délais pour organiser la livraison.
+          </p>
+          
+          <div style={{ background: '#f9f9f9', padding: '40px 20px', borderRadius: '12px', marginTop: '40px', maxWidth: '600px', margin: '40px auto 0' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '20px' }}>⭐ Laissez-nous un avis !</h3>
+            <p style={{ marginBottom: '20px', color: '#666' }}>Votre avis compte beaucoup pour nous. Comment s'est passée votre commande ?</p>
+            
+            {reviewSubmitted ? (
+              <div style={{ background: '#e8f5e9', color: '#2e7d32', padding: '16px', borderRadius: '8px', fontWeight: 600 }}>
+                Merci beaucoup ! Votre avis a été envoyé avec succès.
+              </div>
+            ) : (
+              <form onSubmit={submitReview} style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left' }}>
+                <input required type="text" placeholder="Votre nom" value={reviewForm.authorName} onChange={e => setReviewForm({...reviewForm, authorName: e.target.value})} style={{ padding: '14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem' }} />
+                <select value={reviewForm.rating} onChange={e => setReviewForm({...reviewForm, rating: parseInt(e.target.value)})} style={{ padding: '14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem', background: '#fff' }}>
+                  <option value="5">5 Étoiles - Excellent</option>
+                  <option value="4">4 Étoiles - Très bien</option>
+                  <option value="3">3 Étoiles - Moyen</option>
+                  <option value="2">2 Étoiles - Décevant</option>
+                  <option value="1">1 Étoile - Mauvais</option>
+                </select>
+                <textarea required placeholder="Partagez votre expérience d'achat..." value={reviewForm.comment} onChange={e => setReviewForm({...reviewForm, comment: e.target.value})} style={{ padding: '14px', borderRadius: '8px', border: '1px solid #ddd', minHeight: '120px', fontSize: '1rem', fontFamily: 'inherit' }}></textarea>
+                <button type="submit" style={{ padding: '16px', background: '#111', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', fontSize: '1.1rem' }}>Envoyer mon avis</button>
+              </form>
+            )}
+          </div>
+          
+          <div style={{ marginTop: '40px' }}>
+            <Link to="/" className="btn btn-primary">Retour à la boutique</Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -160,19 +210,33 @@ const Checkout = () => {
                 placeholder="Entrez votre code" 
                 value={promoCodeInput}
                 onChange={e => setPromoCodeInput(e.target.value.toUpperCase())}
-                style={{ ...inputStyle, flex: 1 }}
+                style={{ ...inputStyle, flex: 1, opacity: appliedPromo ? 0.7 : 1 }}
+                disabled={!!appliedPromo}
               />
-              <button 
-                type="button" 
-                onClick={handleApplyPromo}
-                disabled={promoLoading}
-                style={{ padding: '0 20px', background: '#333', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}
-              >
-                {promoLoading ? '...' : 'Appliquer'}
-              </button>
+              {appliedPromo ? (
+                <button 
+                  type="button" 
+                  onClick={() => {
+                    setAppliedPromo(null);
+                    setPromoCodeInput('');
+                  }}
+                  style={{ padding: '0 20px', background: '#dc2626', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}
+                >
+                  Supprimer
+                </button>
+              ) : (
+                <button 
+                  type="button" 
+                  onClick={handleApplyPromo}
+                  disabled={promoLoading || !promoCodeInput}
+                  style={{ padding: '0 20px', background: '#333', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: (!promoCodeInput || promoLoading) ? 'not-allowed' : 'pointer', opacity: (!promoCodeInput || promoLoading) ? 0.5 : 1 }}
+                >
+                  {promoLoading ? '...' : 'Appliquer'}
+                </button>
+              )}
             </div>
             {promoError && <p style={{ color: '#c62828', fontSize: '0.85rem', marginTop: '8px' }}>{promoError}</p>}
-            {appliedPromo && <p style={{ color: '#2e7d32', fontSize: '0.85rem', marginTop: '8px', fontWeight: 600 }}>✅ Code {appliedPromo.code} appliqué (-{appliedPromo.discountPercent}%)</p>}
+            {appliedPromo && <p style={{ color: '#2e7d32', fontSize: '0.9rem', marginTop: '8px', fontWeight: 700 }}>✅ Code appliqué ! Vous bénéficiez de -{appliedPromo.discountPercent}% de réduction.</p>}
           </div>
 
           <div style={{ background: '#f8f8f8', padding: '20px', borderRadius: '8px', marginTop: '1rem' }}>
@@ -182,7 +246,7 @@ const Checkout = () => {
             </div>
             {appliedPromo && (
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: '#2e7d32', fontWeight: 600 }}>
-                <span>Réduction ({appliedPromo.code})</span>
+                <span>Réduction ({appliedPromo.discountPercent}%)</span>
                 <span>-{discountAmount.toLocaleString()} FCFA</span>
               </div>
             )}

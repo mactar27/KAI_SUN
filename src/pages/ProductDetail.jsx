@@ -12,8 +12,6 @@ const ProductDetail = () => {
   const product = products.find(p => p.id === id);
   const [mainImage, setMainImage] = useState(product ? product.image : '');
   const [reviews, setReviews] = useState([]);
-  const [reviewForm, setReviewForm] = useState({ authorName: '', rating: 5, comment: '' });
-  const [reviewSubmitted, setReviewSubmitted] = useState(false);
 
   const navigate = useNavigate();
   
@@ -54,18 +52,7 @@ const ProductDetail = () => {
     }
   }, [product]);
 
-  const submitReview = async (e) => {
-    e.preventDefault();
-    try {
-      await fetch('/api/reviews', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: product.id, ...reviewForm })
-      });
-      setReviewSubmitted(true);
-      setReviewForm({ authorName: '', rating: 5, comment: '' });
-    } catch (err) { console.error(err); }
-  };
+
 
   const touchStartX = React.useRef(null);
   const touchEndX = React.useRef(null);
@@ -275,25 +262,7 @@ const ProductDetail = () => {
             ))}
           </div>
 
-          <div style={{ marginTop: '2rem', borderTop: '1px solid #ddd', paddingTop: '2rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '1rem' }}>Laissez votre avis</h3>
-            {reviewSubmitted ? (
-              <p style={{ color: '#2e7d32', fontWeight: 600 }}>Merci ! Votre avis est en attente de modération.</p>
-            ) : (
-              <form onSubmit={submitReview} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '500px' }}>
-                <input required type="text" placeholder="Votre nom" value={reviewForm.authorName} onChange={e => setReviewForm({...reviewForm, authorName: e.target.value})} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }} />
-                <select value={reviewForm.rating} onChange={e => setReviewForm({...reviewForm, rating: parseInt(e.target.value)})} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }}>
-                  <option value="5">5 Étoiles - Excellent</option>
-                  <option value="4">4 Étoiles - Très bien</option>
-                  <option value="3">3 Étoiles - Moyen</option>
-                  <option value="2">2 Étoiles - Décevant</option>
-                  <option value="1">1 Étoile - Mauvais</option>
-                </select>
-                <textarea required placeholder="Votre commentaire..." value={reviewForm.comment} onChange={e => setReviewForm({...reviewForm, comment: e.target.value})} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd', minHeight: '100px' }}></textarea>
-                <button type="submit" style={{ padding: '12px', background: '#111', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>Envoyer mon avis</button>
-              </form>
-            )}
-          </div>
+
         </div>
 
         {/* Cross-selling */}
