@@ -92,6 +92,7 @@ const PromoTab = ({ adminToken }) => {
                 <th style={{ padding: '12px 8px' }}>Réduction</th>
                 <th style={{ padding: '12px 8px' }}>Statut</th>
                 <th style={{ padding: '12px 8px' }}>Actions</th>
+              </tr>
             </thead>
             <tbody>
               {promos.length === 0 ? (

@@ -143,7 +143,6 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
           </tbody>
           </table>
         </div>
-      </div>
     </div>
   );
 };
