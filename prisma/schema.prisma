@@ -113,3 +113,29 @@ model Newsletter {
   email     String   @unique
   createdAt DateTime @default(now())
 }
+
+model PromoCode {
+  id              Int      @id @default(autoincrement())
+  code            String   @unique
+  discountPercent Int
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  productId  String   @db.VarChar(50)
+  authorName String
+  rating     Int
+  comment    String   @db.Text
+  isApproved Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([productId])
+}
+
+model SiteSetting {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String @db.Text
+}

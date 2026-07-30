@@ -291,7 +291,110 @@ app.get('/api/newsletter', authMiddleware, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+// --- PROMO CODES API ---
+app.get('/api/promocodes', authMiddleware, async (req, res) => {
+  try {
+    const codes = await prisma.promoCode.findMany({ orderBy: { createdAt: 'desc' } });
+    res.json(codes);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
 
+app.post('/api/promocodes', authMiddleware, async (req, res) => {
+  try {
+    const { code, discountPercent } = req.body;
+    const newCode = await prisma.promoCode.create({ data: { code: code.toUpperCase(), discountPercent: parseInt(discountPercent) } });
+    res.json(newCode);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.put('/api/promocodes/:id/toggle', authMiddleware, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const { isActive } = req.body;
+    const updated = await prisma.promoCode.update({ where: { id }, data: { isActive } });
+    res.json(updated);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.delete('/api/promocodes/:id', authMiddleware, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await prisma.promoCode.delete({ where: { id } });
+    res.json({ success: true });
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.get('/api/promocodes/validate', async (req, res) => {
+  try {
+    const { code } = req.query;
+    if (!code) return res.status(400).json({ error: 'Code manquant' });
+    const promo = await prisma.promoCode.findUnique({ where: { code: code.toUpperCase() } });
+    if (!promo || !promo.isActive) return res.status(404).json({ error: 'Code invalide ou expiré' });
+    res.json(promo);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+// --- REVIEWS API ---
+app.get('/api/reviews', async (req, res) => {
+  try {
+    const { productId, all } = req.query;
+    const where = {};
+    if (productId) where.productId = productId;
+    if (all !== 'true') where.isApproved = true; // Public only sees approved
+
+    const reviews = await prisma.review.findMany({ where, orderBy: { createdAt: 'desc' } });
+    res.json(reviews);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.post('/api/reviews', async (req, res) => {
+  try {
+    const { productId, authorName, rating, comment } = req.body;
+    const review = await prisma.review.create({
+      data: { productId, authorName, rating: parseInt(rating), comment }
+    });
+    res.json(review);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.put('/api/reviews/:id/approve', authMiddleware, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const { isApproved } = req.body;
+    const review = await prisma.review.update({ where: { id }, data: { isApproved } });
+    res.json(review);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.delete('/api/reviews/:id', authMiddleware, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    await prisma.review.delete({ where: { id } });
+    res.json({ success: true });
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+// --- SITE SETTINGS API ---
+app.get('/api/settings', async (req, res) => {
+  try {
+    const settings = await prisma.siteSetting.findMany();
+    // Convert array to key-value object
+    const settingsObj = settings.reduce((acc, curr) => { acc[curr.key] = curr.value; return acc; }, {});
+    res.json(settingsObj);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
+
+app.put('/api/settings', authMiddleware, async (req, res) => {
+  try {
+    const { key, value } = req.body;
+    const setting = await prisma.siteSetting.upsert({
+      where: { key },
+      update: { value },
+      create: { key, value }
+    });
+    res.json(setting);
+  } catch (error) { res.status(500).json({ error: error.message }); }
+});
 // --- GLOBAL ERROR HANDLER ---
 app.use((err, req, res, next) => {
   console.error('Unhandled API Error:', err);

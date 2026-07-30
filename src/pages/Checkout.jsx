@@ -17,6 +17,36 @@ const Checkout = () => {
     ville: ''
   });
 
+  const [promoCodeInput, setPromoCodeInput] = useState('');
+  const [appliedPromo, setAppliedPromo] = useState(null);
+  const [promoError, setPromoError] = useState('');
+  const [promoLoading, setPromoLoading] = useState(false);
+
+  const handleApplyPromo = async () => {
+    if (!promoCodeInput) return;
+    setPromoLoading(true);
+    setPromoError('');
+    try {
+      const res = await fetch(`/api/promocodes/validate?code=${promoCodeInput}`);
+      if (res.ok) {
+        const data = await res.json();
+        setAppliedPromo(data);
+        setPromoError('');
+      } else {
+        const err = await res.json();
+        setPromoError(err.error || 'Code invalide');
+        setAppliedPromo(null);
+      }
+    } catch (e) {
+      setPromoError('Erreur de validation');
+    }
+    setPromoLoading(false);
+  };
+
+  const orderTotal = cart.reduce((acc, item) => acc + (item.quantity * item.product.price), 0);
+  const discountAmount = appliedPromo ? (orderTotal * (appliedPromo.discountPercent / 100)) : 0;
+  const finalTotal = Math.max(0, orderTotal - discountAmount);
+
   const handleChange = (e) => {
     setFormData({...formData, [e.target.id]: e.target.value});
   };
@@ -26,7 +56,7 @@ const Checkout = () => {
     if (cart.length === 0) return;
     
     // Save to database
-    placeOrder(formData);
+    placeOrder(formData, discountAmount);
 
     // Removed WhatsApp redirection per user request
     
@@ -110,7 +140,47 @@ const Checkout = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn btn-primary" style={{ marginTop: '2rem', padding: '1.2rem' }}>
+          <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #eee' }}>
+            <label style={labelStyle}>Avez-vous un code promo ?</label>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+              <input 
+                type="text" 
+                placeholder="Entrez votre code" 
+                value={promoCodeInput}
+                onChange={e => setPromoCodeInput(e.target.value.toUpperCase())}
+                style={{ ...inputStyle, flex: 1 }}
+              />
+              <button 
+                type="button" 
+                onClick={handleApplyPromo}
+                disabled={promoLoading}
+                style={{ padding: '0 20px', background: '#333', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}
+              >
+                {promoLoading ? '...' : 'Appliquer'}
+              </button>
+            </div>
+            {promoError && <p style={{ color: '#c62828', fontSize: '0.85rem', marginTop: '8px' }}>{promoError}</p>}
+            {appliedPromo && <p style={{ color: '#2e7d32', fontSize: '0.85rem', marginTop: '8px', fontWeight: 600 }}>✅ Code {appliedPromo.code} appliqué (-{appliedPromo.discountPercent}%)</p>}
+          </div>
+
+          <div style={{ background: '#f8f8f8', padding: '20px', borderRadius: '8px', marginTop: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+              <span>Sous-total</span>
+              <span>{orderTotal.toLocaleString()} FCFA</span>
+            </div>
+            {appliedPromo && (
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: '#2e7d32', fontWeight: 600 }}>
+                <span>Réduction ({appliedPromo.code})</span>
+                <span>-{discountAmount.toLocaleString()} FCFA</span>
+              </div>
+            )}
+            <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #ddd', paddingTop: '12px', marginTop: '12px', fontWeight: 900, fontSize: '1.2rem' }}>
+              <span>Total à payer</span>
+              <span>{finalTotal.toLocaleString()} FCFA</span>
+            </div>
+          </div>
+
+          <button type="submit" className="btn btn-primary" style={{ marginTop: '1rem', padding: '1.2rem' }}>
             Confirmer la commande
           </button>
         </form>

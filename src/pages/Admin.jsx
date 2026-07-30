@@ -3,6 +3,9 @@ import { ProductsContext } from '../context/ProductsContext';
 import { ShopContext } from '../context/ShopContext';
 import Login from './admin/Login';
 import MusicTab from './admin/MusicTab';
+import PromoTab from './admin/PromoTab';
+import ReviewTab from './admin/ReviewTab';
+import SettingsTab from './admin/SettingsTab';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 const Admin = () => {
   const { adminToken, logoutAdmin } = useContext(ShopContext);
@@ -333,9 +336,29 @@ const Admin = () => {
                 style={{ padding: '8px 16px', background: activeTab === 'newsletter' ? '#111' : '#eee', color: activeTab === 'newsletter' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
                 💌 Newsletter
               </button>
+              <button 
+                onClick={() => setActiveTab('promocodes')}
+                style={{ padding: '8px 16px', background: activeTab === 'promocodes' ? '#111' : '#eee', color: activeTab === 'promocodes' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+                🎟️ Codes Promo
+              </button>
+              <button 
+                onClick={() => setActiveTab('reviews')}
+                style={{ padding: '8px 16px', background: activeTab === 'reviews' ? '#111' : '#eee', color: activeTab === 'reviews' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+                ⭐ Avis Clients
+              </button>
+              <button 
+                onClick={() => setActiveTab('settings')}
+                style={{ padding: '8px 16px', background: activeTab === 'settings' ? '#111' : '#eee', color: activeTab === 'settings' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+                ⚙️ Paramètres
+              </button>
             </div>
           </div>
         </div>
+
+        {/* --- TAB: NEW ONES --- */}
+        {activeTab === 'promocodes' && <PromoTab adminToken={adminToken} />}
+        {activeTab === 'reviews' && <ReviewTab adminToken={adminToken} />}
+        {activeTab === 'settings' && <SettingsTab adminToken={adminToken} />}
 
         {/* --- TAB: MUSIC --- */}
         {activeTab === 'music' && (
@@ -390,11 +413,15 @@ const Admin = () => {
                       <div>
                         <strong style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#888', textTransform: 'uppercase' }}>Produits</strong>
                         <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-                          {order.items?.map(item => (
-                            <li key={item.id} style={{ padding: '8px 0', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between' }}>
-                              <span>{item.quantity}x {item.product_id}</span>
-                            </li>
-                          ))}
+                          {order.items?.map(item => {
+                            const p = products.find(prod => prod.id === item.product_id);
+                            return (
+                              <li key={item.id} style={{ padding: '8px 0', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                {p && <img src={p.image + '?width=50&height=50'} alt={p.name} style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover' }} />}
+                                <span>{item.quantity}x {item.product_id}</span>
+                              </li>
+                            );
+                          })}
                         </ul>
                         <div style={{ marginTop: '16px', fontSize: '1.2rem', fontWeight: 900, textAlign: 'right' }}>
                           Total : {order.total_amount.toLocaleString()} FCFA

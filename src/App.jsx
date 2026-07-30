@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -20,8 +21,24 @@ function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
 
+  const [banner, setBanner] = useState('');
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(r => r.json())
+      .then(data => {
+        if (data.announcement_text) setBanner(data.announcement_text);
+      })
+      .catch(e => console.error(e));
+  }, []);
+
   return (
     <div className="app">
+      {!isAdmin && banner && (
+        <div style={{ background: '#111', color: '#fff', textAlign: 'center', padding: '10px', fontSize: '0.9rem', fontWeight: 600 }}>
+          {banner}
+        </div>
+      )}
       {!isAdmin && <Navbar />}
       <main>
         <Routes>
