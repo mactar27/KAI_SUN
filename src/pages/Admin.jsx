@@ -293,10 +293,10 @@ const Admin = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
 
         {/* Header & Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', borderBottom: '2px solid #e5e5e5', paddingBottom: '16px' }}>
+        <div style={{ marginBottom: '32px', borderBottom: '2px solid #e5e5e5', paddingBottom: '16px' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-              <h1 style={{ fontSize: '2rem', fontWeight: 900, color: '#111', margin: 0 }}>⚙️ Centre de Contrôle</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
+              <h1 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', fontWeight: 900, color: '#111', margin: 0 }}>⚙️ Centre de Contrôle</h1>
               <button 
                 onClick={requestNotifications}
                 style={{ padding: '6px 12px', background: notificationsEnabled ? '#e8f5e9' : '#fff3e0', color: notificationsEnabled ? '#2e7d32' : '#e65100', border: notificationsEnabled ? '1px solid #c8e6c9' : '1px solid #ffe0b2', borderRadius: '6px', fontWeight: 600, cursor: 'pointer', fontSize: '0.85rem' }}
@@ -310,7 +310,7 @@ const Admin = () => {
                 Se déconnecter
               </button>
             </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               <button 
                 onClick={() => setActiveTab('products')}
                 style={{ padding: '8px 16px', background: activeTab === 'products' ? '#111' : '#eee', color: activeTab === 'products' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
