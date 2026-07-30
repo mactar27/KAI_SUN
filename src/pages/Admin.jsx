@@ -18,9 +18,6 @@ const Admin = () => {
   const { adminToken, logoutAdmin } = useContext(ShopContext);
   const { products, refreshProducts } = useContext(ProductsContext);
 
-  if (!adminToken) {
-    return <Login />;
-  }
 
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -148,6 +145,10 @@ const Admin = () => {
       alert("Son activé ! Laissez cet onglet ouvert.");
     }
   };
+
+  if (!adminToken) {
+    return <Login />;
+  }
 
   // Handle Orders
   const updateOrderStatus = async (id, status) => {
