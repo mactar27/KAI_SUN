@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
 import { ShopContext } from '../context/ShopContext';
 import Login from './admin/Login';
@@ -16,6 +16,8 @@ const Admin = () => {
   // Orders State
   const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(false);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const lastOrderCountRef = useRef(null);
   
   // Analytics State
   const [analytics, setAnalytics] = useState({ views: {}, cart: {} });
@@ -84,6 +86,59 @@ const Admin = () => {
     if (activeTab === 'analytics') fetchAnalytics();
     if (activeTab === 'newsletter') fetchNewsletter();
   }, [activeTab]);
+
+  // Polling for new orders
+  useEffect(() => {
+    const pollOrders = async () => {
+      try {
+        const res = await fetch('/api/orders');
+        if (res.ok) {
+          const data = await res.json();
+          // If we have a previous count and the new count is higher, trigger notification
+          if (lastOrderCountRef.current !== null && data.length > lastOrderCountRef.current) {
+            if (notificationsEnabled) {
+              const audio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
+              audio.play().catch(e => console.error("Erreur audio:", e));
+              if (Notification.permission === 'granted') {
+                new Notification("Nouvelle commande !", { body: "Une nouvelle commande est arrivée sur Kaïa Sun." });
+              }
+            }
+          }
+          lastOrderCountRef.current = data.length;
+          // If user is on the orders tab, silently update the list
+          if (activeTab === 'orders') {
+            setOrders(data);
+          }
+        }
+      } catch (e) {
+        console.error("Polling error", e);
+      }
+    };
+
+    // Initial fetch to set baseline
+    pollOrders();
+
+    // Poll every 15 seconds
+    const interval = setInterval(pollOrders, 15000);
+    return () => clearInterval(interval);
+  }, [activeTab, notificationsEnabled]);
+
+  const requestNotifications = () => {
+    if ('Notification' in window) {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          setNotificationsEnabled(true);
+          alert("Notifications activées ! Laissez cet onglet ouvert pour entendre le son des nouvelles commandes.");
+        } else {
+          alert("Vous avez refusé les notifications.");
+        }
+      });
+    } else {
+      // Fallback: just enable sound
+      setNotificationsEnabled(true);
+      alert("Son activé ! Laissez cet onglet ouvert.");
+    }
+  };
 
   // Handle Orders
   const updateOrderStatus = async (id, status) => {
@@ -239,6 +294,12 @@ const Admin = () => {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
               <h1 style={{ fontSize: '2rem', fontWeight: 900, color: '#111', margin: 0 }}>⚙️ Centre de Contrôle</h1>
+              <button 
+                onClick={requestNotifications}
+                style={{ padding: '6px 12px', background: notificationsEnabled ? '#e8f5e9' : '#fff3e0', color: notificationsEnabled ? '#2e7d32' : '#e65100', border: notificationsEnabled ? '1px solid #c8e6c9' : '1px solid #ffe0b2', borderRadius: '6px', fontWeight: 600, cursor: 'pointer', fontSize: '0.85rem' }}
+              >
+                {notificationsEnabled ? '🔔 Notifications : ON' : '🔕 Activer les notifs (Son)'}
+              </button>
               <button 
                 onClick={logoutAdmin}
                 style={{ padding: '6px 12px', background: '#ffebee', color: '#c62828', border: '1px solid #ef9a9a', borderRadius: '6px', fontWeight: 600, cursor: 'pointer', fontSize: '0.85rem' }}
