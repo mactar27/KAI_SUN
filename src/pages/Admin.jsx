@@ -177,6 +177,7 @@ const Admin = () => {
   ];
 
   return (
+    <div className="admin-layout">
       <style>{`
         .admin-layout { display: flex; min-height: 100vh; background: #FAFAFA; font-family: Inter, sans-serif; }
         .admin-sidebar { width: 260px; background: #0A0A0A; color: #fff; display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; transition: transform 0.3s ease; }
