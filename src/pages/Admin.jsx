@@ -413,12 +413,12 @@ const Admin = () => {
                       <div>
                         <strong style={{ display: 'block', marginBottom: '8px', fontSize: '14px', color: '#888', textTransform: 'uppercase' }}>Produits</strong>
                         <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-                          {order.items?.map(item => {
+                          {order.items?.map((item, i) => {
                             const p = products.find(prod => prod.id === item.product_id);
                             return (
-                              <li key={item.id} style={{ padding: '8px 0', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                {p && <img src={p.image + '?width=50&height=50'} alt={p.name} style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover' }} />}
-                                <span>{item.quantity}x {item.product_id}</span>
+                              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 0', borderBottom: '1px solid #f0f0f0' }}>
+                                {p && <img src={p.image + '?width=150&height=150'} alt={p.name} style={{ width: 80, height: 80, borderRadius: 8, objectFit: 'cover', border: '1px solid #eee' }} />}
+                                <span style={{ fontWeight: 600, fontSize: '1.1rem' }}>{item.quantity}x {p ? p.ref : 'Inconnu'}</span>
                               </li>
                             );
                           })}
