@@ -257,8 +257,6 @@ export const ShopProvider = ({ children }) => {
       adminToken,
       loginAdmin,
       logoutAdmin,
-      updateProductStock,
-      createPromoCode,
       isSearchOpen,
       setIsSearchOpen
     }}>
