@@ -7,6 +7,8 @@ const ProductsTab = ({ products, refreshProducts }) => {
   const [editingGroupId, setEditingGroupId] = useState(null);
   const [search, setSearch] = useState('');
   const [filterGender, setFilterGender] = useState('all');
+  const [editingStock, setEditingStock] = useState(null);
+  const [stockValue, setStockValue] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
   // Group logic
@@ -288,7 +290,29 @@ const ProductsTab = ({ products, refreshProducts }) => {
                     )}
                     <img src={product.image + '?width=100&height=100'} alt={product.ref} style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '8px', margin: '0 auto 12px', background: '#f9f9f9' }} />
                     <div style={{ fontWeight: 700, color: '#111', fontSize: '0.9rem' }}>{product.ref}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#888', marginTop: '4px' }}>Stock: {product.stock || 0}</div>
+                    
+                    {editingStock === product.id ? (
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', marginTop: '6px' }}>
+                        <input 
+                          type="number" 
+                          min="0"
+                          value={stockValue}
+                          onChange={(e) => setStockValue(e.target.value)}
+                          style={{ width: '60px', padding: '4px 8px', borderRadius: '4px', border: '1px solid #eaeaea', textAlign: 'center' }}
+                          autoFocus
+                          onBlur={() => handleUpdateStock(product.id, stockValue)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleUpdateStock(product.id, stockValue)}
+                        />
+                      </div>
+                    ) : (
+                      <div 
+                        onClick={(e) => { e.stopPropagation(); setEditingStock(product.id); setStockValue(product.stock || 0); }}
+                        style={{ fontSize: '0.75rem', color: product.stock === 0 ? '#dc2626' : '#888', marginTop: '4px', cursor: 'text', padding: '2px 6px', background: '#f3f4f6', borderRadius: '4px', display: 'inline-block', border: product.stock === 0 ? '1px solid #fecaca' : '1px solid transparent' }}
+                        title="Cliquez pour modifier le stock"
+                      >
+                        Stock: <span style={{ fontWeight: 700 }}>{product.stock || 0}</span> ✏️
+                      </div>
+                    )}
                   </div>
                 );
               })}

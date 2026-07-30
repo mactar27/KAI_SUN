@@ -35,6 +35,11 @@ export default async function handler(req, res) {
         await pool.query('UPDATE products SET groupId = ? WHERE id = ?', [groupId, id]);
         return res.status(200).json({ success: true });
       }
+      if (action === 'updateStock') {
+        const { stock } = req.body;
+        await pool.query('UPDATE products SET stock = ? WHERE id = ?', [stock, id]);
+        return res.status(200).json({ success: true, stock });
+      }
       return res.status(400).json({ error: 'Unknown action' });
     }
     

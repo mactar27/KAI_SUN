@@ -95,12 +95,35 @@ export const ShopProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product) => {
-    // Analytics tracking
+    // Analytics tracking (internal API)
     fetch('/api/analytics', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ event_type: 'cart', product_ref: product.ref || product.id })
     }).catch(e => console.error(e));
+
+    // E-commerce Tracking: AddToCart
+    if (typeof window !== 'undefined') {
+      if (window.fbq) {
+        window.fbq('track', 'AddToCart', {
+          content_ids: [product.ref || product.id],
+          content_name: product.name,
+          value: product.price,
+          currency: 'XOF'
+        });
+      }
+      if (window.gtag) {
+        window.gtag('event', 'add_to_cart', {
+          items: [{
+            item_id: product.ref || product.id,
+            item_name: product.name,
+            price: product.price
+          }],
+          value: product.price,
+          currency: 'XOF'
+        });
+      }
+    }
 
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.product.id === product.id);

@@ -58,8 +58,16 @@ const Checkout = () => {
     // Save to database
     placeOrder(formData, discountAmount, appliedPromo?.id);
 
-    // Removed WhatsApp redirection per user request
-    
+    // E-commerce Tracking: Purchase
+    if (typeof window !== 'undefined') {
+      if (window.fbq) {
+        window.fbq('track', 'Purchase', { value: finalTotal, currency: 'XOF' });
+      }
+      if (window.gtag) {
+        window.gtag('event', 'purchase', { value: finalTotal, currency: 'XOF' });
+      }
+    }
+
     clearCart(); // Make sure to clear cart upon order
     setIsSubmitted(true);
   };

@@ -4,16 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { ShopProvider } from './context/ShopContext';
 import { ProductsProvider } from './context/ProductsContext';
+import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProductsProvider>
-        <ShopProvider>
-          <App />
-        </ShopProvider>
-      </ProductsProvider>
+      <HelmetProvider>
+        <ProductsProvider>
+          <ShopProvider>
+            <App />
+          </ShopProvider>
+        </ProductsProvider>
+      </HelmetProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );

@@ -3,17 +3,39 @@ import pool from './db.js';
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
-      // Get counts of views and cart adds per product
-      const [stats] = await pool.query(`
+      // Get total counts
+      const [totalStats] = await pool.query(`
         SELECT event_type, product_ref, COUNT(*) as count 
         FROM analytics 
         GROUP BY event_type, product_ref
       `);
       
-      const result = { views: {}, cart: {} };
-      stats.forEach(row => {
+      // Get daily counts for the last 30 days
+      const [dailyStats] = await pool.query(`
+        SELECT DATE_FORMAT(timestamp, '%Y-%m-%d') as date, event_type, product_ref, COUNT(*) as count 
+        FROM analytics 
+        WHERE timestamp >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+        GROUP BY DATE_FORMAT(timestamp, '%Y-%m-%d'), event_type, product_ref
+        ORDER BY date ASC
+      `);
+      
+      const result = { 
+        views: {}, 
+        cart: {},
+        daily: {}
+      };
+      
+      // Populate totals
+      totalStats.forEach(row => {
         if (row.event_type === 'view') result.views[row.product_ref] = row.count;
         if (row.event_type === 'cart') result.cart[row.product_ref] = row.count;
+      });
+      
+      // Populate daily
+      dailyStats.forEach(row => {
+        if (!result.daily[row.date]) result.daily[row.date] = { views: {}, cart: {} };
+        if (row.event_type === 'view') result.daily[row.date].views[row.product_ref] = row.count;
+        if (row.event_type === 'cart') result.daily[row.date].cart[row.product_ref] = row.count;
       });
       
       return res.status(200).json(result);

@@ -29,7 +29,8 @@ const Admin = () => {
   const lastOrderCountRef = useRef(null);
   
   // Analytics State
-  const [analytics, setAnalytics] = useState({ views: {}, cart: {} });
+  const [analytics, setAnalytics] = useState({ views: {}, cart: {}, daily: {} });
+  const [selectedDate, setSelectedDate] = useState('total');
   const [loadingAnalytics, setLoadingAnalytics] = useState(false);
 
   // Newsletter State
@@ -424,20 +425,41 @@ const Admin = () => {
             <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '24px', color: '#111' }}>📊 Statistiques Détaillées</h2>
             
             <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #eaeaea', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-              <h3 style={{ margin: '0 0 20px 0', fontSize: '1.1rem', fontWeight: 700 }}>Interactions (Vues vs Ajouts Panier)</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '16px' }}>
+                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>Interactions (Vues vs Ajouts Panier)</h3>
+                <select 
+                  value={selectedDate} 
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #eaeaea', outline: 'none', background: '#fafafa', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' }}
+                >
+                  <option value="total">Total du mois</option>
+                  {analytics.daily && Object.keys(analytics.daily).sort((a, b) => new Date(b) - new Date(a)).map(date => (
+                    <option key={date} value={date}>{new Date(date).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}</option>
+                  ))}
+                </select>
+              </div>
+              
               {loadingAnalytics ? <p>Chargement des statistiques...</p> : (
                 <>
-                  {products.some(p => (analytics.views[p.ref] || 0) > 0 || (analytics.cart[p.ref] || 0) > 0) ? (
-                    <div style={{ width: '100%', height: '450px', minWidth: 0 }}>
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                          data={products.map(p => ({
-                            name: p.ref,
-                            vues: analytics.views[p.ref] || 0,
-                            paniers: analytics.cart[p.ref] || 0,
-                          })).filter(d => d.vues > 0 || d.paniers > 0)}
-                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                        >
+                  {(() => {
+                    const dataSource = selectedDate === 'total' ? analytics : (analytics.daily[selectedDate] || { views: {}, cart: {} });
+                    const hasData = products.some(p => (dataSource.views?.[p.ref] || 0) > 0 || (dataSource.cart?.[p.ref] || 0) > 0);
+                    
+                    if (!hasData) {
+                      return <p style={{ textAlign: 'center', color: '#888', padding: '40px 0' }}>Aucune donnée d'interaction pour cette période.</p>;
+                    }
+                    
+                    return (
+                      <div style={{ width: '100%', height: '450px', minWidth: 0 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart
+                            data={products.map(p => ({
+                              name: p.ref,
+                              vues: dataSource.views?.[p.ref] || 0,
+                              paniers: dataSource.cart?.[p.ref] || 0,
+                            })).filter(d => d.vues > 0 || d.paniers > 0)}
+                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                          >
                           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eaeaea" />
                           <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 12 }} />
                           <YAxis axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 12 }} />
@@ -447,10 +469,9 @@ const Admin = () => {
                           <Bar dataKey="paniers" name="🛒 Ajouts au panier" fill="#111" radius={[6, 6, 0, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
-                    </div>
-                  ) : (
-                    <p style={{ textAlign: 'center', color: '#888', padding: '40px 0' }}>Aucune donnée d'interaction pour le moment.</p>
-                  )}
+                      </div>
+                    );
+                  })()}
                 </>
               )}
             </div>

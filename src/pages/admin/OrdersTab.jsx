@@ -10,12 +10,16 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
     return `https://wa.me/${phone}?text=${msg}`;
   };
 
-  const getStatusBadgeStyle = (status) => {
-    if (status === 'Nouvelle') return { background: '#fef2f2', color: '#b91c1c', border: '1px solid #fecaca' };
-    if (status === 'En cours') return { background: '#fefce8', color: '#a16207', border: '1px solid #fef08a' };
-    if (status === 'Livrée') return { background: '#f0fdf4', color: '#15803d', border: '1px solid #bbf7d0' };
-    if (status === 'Annulée') return { background: '#f3f4f6', color: '#374151', border: '1px solid #e5e7eb' };
-    return { background: '#f3f4f6', color: '#374151', border: '1px solid #e5e7eb' };
+  const statusConfig = {
+    'En attente': { bg: '#fefce8', color: '#a16207', border: '#fef08a', label: 'En attente', nextStatus: 'Préparation', actionLabel: 'Préparer', actionIcon: 'Package' },
+    'Préparation': { bg: '#eff6ff', color: '#1d4ed8', border: '#bfdbfe', label: 'En préparation', nextStatus: 'Livrée', actionLabel: 'Valider', actionIcon: 'Check' },
+    'Livrée': { bg: '#f0fdf4', color: '#15803d', border: '#bbf7d0', label: 'Livrée', nextStatus: null, actionLabel: null, actionIcon: null },
+    'Nouvelle': { bg: '#fef2f2', color: '#b91c1c', border: '#fecaca', label: 'Nouvelle (Alerte)', nextStatus: 'En attente', actionLabel: 'Traiter', actionIcon: 'ArrowRight' }
+  };
+
+  const getStatusStyle = (status) => {
+    const conf = statusConfig[status] || statusConfig['Nouvelle'];
+    return { background: conf.bg, color: conf.color, border: `1px solid ${conf.border}` };
   };
 
   if (loadingOrders) {
@@ -91,23 +95,39 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
                   </td>
                   
                   <td data-label="Statut" style={{ padding: '20px 24px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <select 
-                        value={order.status || 'Nouvelle'} 
-                        onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                        style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid #eaeaea', outline: 'none', background: statusColors[order.status || 'Nouvelle']?.bg || '#f3f4f6', color: statusColors[order.status || 'Nouvelle']?.color || '#374151', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', appearance: 'none' }}
-                      >
-                        <option value="Nouvelle">Nouvelle</option>
-                        <option value="En cours">En cours</option>
-                        <option value="Livrée">Livrée</option>
-                        <option value="Annulée">Annulée</option>
-                      </select>
-                      <ChevronDown size={14} style={{ color: '#888', marginLeft: '-24px', pointerEvents: 'none' }} />
+                    <div style={{ display: 'inline-flex', padding: '6px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600, ...getStatusStyle(order.status || 'Nouvelle') }}>
+                      {(statusConfig[order.status] || statusConfig['Nouvelle']).label}
                     </div>
                   </td>
                   
                   <td data-label="Actions" style={{ padding: '20px 24px', textAlign: 'right' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
+                      {(() => {
+                        const currentStatus = order.status || 'Nouvelle';
+                        const conf = statusConfig[currentStatus];
+                        if (conf && conf.nextStatus) {
+                          return (
+                            <button
+                              onClick={() => updateOrderStatus(order.id, conf.nextStatus)}
+                              style={{ 
+                                display: 'inline-flex', alignItems: 'center', gap: '6px', 
+                                padding: '6px 12px', fontSize: '0.8rem', fontWeight: 600, 
+                                borderRadius: '8px', cursor: 'pointer', border: 'none',
+                                background: currentStatus === 'Préparation' ? '#22c55e' : '#111', 
+                                color: '#fff', transition: 'opacity 0.2s' 
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.opacity = 0.9}
+                              onMouseLeave={e => e.currentTarget.style.opacity = 1}
+                            >
+                              {conf.actionLabel}
+                            </button>
+                          );
+                        }
+                        return null;
+                      })()}
+                      
+                      <div style={{ width: '1px', height: '24px', background: '#eaeaea', margin: '0 4px' }}></div>
+                      
                       <a 
                         href={getWhatsAppLink(order)} 
                         target="_blank" 
