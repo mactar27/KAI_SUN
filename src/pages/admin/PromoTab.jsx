@@ -85,7 +85,7 @@ const PromoTab = ({ adminToken }) => {
 
       {loading ? <p>Chargement...</p> : (
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px', whiteSpace: 'nowrap' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
                 <th style={{ padding: '12px 8px' }}>Code</th>

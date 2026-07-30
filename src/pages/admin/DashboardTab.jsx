@@ -116,7 +116,7 @@ const DashboardTab = ({ orders, products }) => {
             </div>
             
             <div style={{ overflowX: 'auto', width: '100%' }}>
-              <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse', textAlign: 'left', whiteSpace: 'nowrap' }}>
               <thead>
                 <tr style={{ background: '#fafafa' }}>
                   <th style={{ padding: '12px 16px', fontSize: '0.75rem', textTransform: 'uppercase', color: '#888', fontWeight: 600 }}>Commande</th>

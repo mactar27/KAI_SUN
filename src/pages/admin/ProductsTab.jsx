@@ -175,7 +175,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
                     
                     <div>
                       <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700, color: '#111', textTransform: 'uppercase' }}>{groupName}</h3>
-                      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '4px', fontSize: '0.8rem', color: '#666' }}>
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '4px', fontSize: '0.8rem', color: '#666', whiteSpace: 'nowrap' }}>
                         <span>{members.length > 1 ? `${members.length} variantes` : 'Produit unique'}</span>
                         <span style={{ color: '#eaeaea' }}>|</span>
                         <span>Stock total : <strong style={{ color: totalStock === 0 ? '#dc2626' : '#111' }}>{totalStock}</strong></span>
@@ -183,7 +183,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
                     </div>
                   </div>
 
-                  <div style={{ flex: 1, textAlign: 'center' }}>
+                  <div style={{ flex: 1, textAlign: 'center', whiteSpace: 'nowrap' }}>
                     <div style={{ fontWeight: 700, color: '#111' }}>{price.toLocaleString()} FCFA</div>
                     <div style={{ fontSize: '0.75rem', color: '#888' }}>Prix de vente</div>
                   </div>
@@ -191,7 +191,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
                   <div style={{ display: 'flex', gap: '8px', flex: 1, justifyContent: 'flex-end' }}>
                     <button
                       onClick={() => startEditGroup(groupId)}
-                      style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#fff', color: '#111', border: '1px solid #eaeaea', padding: '8px 16px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.8rem', transition: 'all 0.2s' }}
+                      style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#fff', color: '#111', border: '1px solid #eaeaea', padding: '8px 16px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.8rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = '#111'; e.currentTarget.style.background = '#fafafa'; }}
                       onMouseLeave={e => { e.currentTarget.style.borderColor = '#eaeaea'; e.currentTarget.style.background = '#fff'; }}
                     >

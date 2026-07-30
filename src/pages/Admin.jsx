@@ -182,10 +182,10 @@ const Admin = () => {
       <style>{`
         .admin-layout { display: flex; min-height: 100vh; background: #FAFAFA; font-family: Inter, sans-serif; }
         .admin-sidebar { width: 260px; background: #0A0A0A; color: #fff; display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; transition: transform 0.3s ease; }
-        .admin-main { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; transition: margin-left 0.3s ease; }
+        .admin-main { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; transition: margin-left 0.3s ease; min-width: 0; }
         .admin-topbar { height: 80px; background: #fff; border-bottom: 1px solid #eaeaea; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; position: sticky; top: 0; z-index: 90; }
         .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: #111; padding: 8px; margin-left: -16px; }
-        .admin-content { padding: 40px; flex: 1; max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .admin-content { padding: 40px; flex: 1; max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box; min-width: 0; }
         .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; }
         
         @media (max-width: 768px) {
