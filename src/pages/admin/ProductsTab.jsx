@@ -152,14 +152,14 @@ const ProductsTab = ({ products, refreshProducts }) => {
         {/* VIEW MODE: GROUPS */}
         {mode === 'groups' && (
           <div style={{ overflowX: 'auto' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', minWidth: '700px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {groupEntries.map(([groupId, members]) => {
                 const totalStock = members.reduce((sum, p) => sum + (Number(p.stock) || 0), 0);
               const price = members[0]?.price || 0;
               const groupName = groupId.replace('GRP_', '').replace('SOLO_', '');
 
               return (
-                <div key={groupId} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', border: '1px solid #eaeaea', borderRadius: '12px', background: '#fafafa', transition: 'border-color 0.2s' }} onMouseEnter={e => e.currentTarget.style.borderColor = '#d4af37'} onMouseLeave={e => e.currentTarget.style.borderColor = '#eaeaea'}>
+                <div key={groupId} className="responsive-flex-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', border: '1px solid #eaeaea', borderRadius: '12px', background: '#fafafa', transition: 'border-color 0.2s' }} onMouseEnter={e => e.currentTarget.style.borderColor = '#d4af37'} onMouseLeave={e => e.currentTarget.style.borderColor = '#eaeaea'}>
                   <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flex: 1 }}>
                     {/* Thumbnail Stack */}
                     <div style={{ display: 'flex', width: '80px', position: 'relative', height: '50px' }}>

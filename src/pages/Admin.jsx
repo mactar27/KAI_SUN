@@ -235,6 +235,21 @@ const Admin = () => {
           .admin-bottom-bar button.active {
             color: #D4AF37;
           }
+          
+          /* Native App Responsive Tables */
+          .responsive-table { width: 100% !important; min-width: 0 !important; border: none !important; }
+          .responsive-table thead { display: none; }
+          .responsive-table tbody { display: flex; flex-direction: column; gap: 16px; }
+          .responsive-table tr { display: flex; flex-direction: column; border: 1px solid #eaeaea; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+          .responsive-table td { display: flex; justify-content: space-between; align-items: center; padding: 8px 0 !important; border-bottom: 1px solid #f5f5f5 !important; text-align: right; white-space: normal !important; }
+          .responsive-table td:last-child { border-bottom: none !important; }
+          .responsive-table td::before { content: attr(data-label); font-weight: 600; font-size: 0.75rem; color: #888; text-transform: uppercase; margin-right: 16px; text-align: left; }
+          .responsive-table td > div { text-align: right; }
+          
+          /* Native App Responsive Flex Rows (for Products/Music) */
+          .responsive-flex-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+          .responsive-flex-row > div { width: 100% !important; justify-content: flex-start !important; text-align: left !important; }
+          .responsive-flex-row > div:last-child { justify-content: space-between !important; }
         }
         .admin-bottom-bar {
           display: none;

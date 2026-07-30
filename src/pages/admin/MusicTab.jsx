@@ -138,7 +138,7 @@ const MusicTab = ({ adminToken }) => {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {tracks.map(track => (
-              <div key={track.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', borderRadius: '8px', border: track.isActive ? '2px solid var(--ink)' : '1px solid #ddd', background: track.isActive ? '#fafafa' : '#fff' }}>
+              <div key={track.id} className="responsive-flex-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', borderRadius: '8px', border: track.isActive ? '2px solid var(--ink)' : '1px solid #ddd', background: track.isActive ? '#fafafa' : '#fff' }}>
                 <div>
                   <h4 style={{ margin: 0, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     {track.title}

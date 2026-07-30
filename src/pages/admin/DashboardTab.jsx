@@ -116,7 +116,7 @@ const DashboardTab = ({ orders, products }) => {
             </div>
             
             <div style={{ overflowX: 'auto', width: '100%' }}>
-              <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse', textAlign: 'left', whiteSpace: 'nowrap' }}>
+              <table className="responsive-table" style={{ width: '100%', borderCollapse: 'collapse', minWidth: '500px', textAlign: 'left', whiteSpace: 'nowrap' }}>
               <thead>
                 <tr style={{ background: '#fafafa' }}>
                   <th style={{ padding: '12px 16px', fontSize: '0.75rem', textTransform: 'uppercase', color: '#888', fontWeight: 600 }}>Commande</th>
@@ -128,10 +128,10 @@ const DashboardTab = ({ orders, products }) => {
               <tbody>
                 {recentOrders.map(order => (
                   <tr key={order.id} style={{ borderBottom: '1px solid #eaeaea' }}>
-                    <td style={{ padding: '16px', fontWeight: 600 }}>#{order.id}</td>
-                    <td style={{ padding: '16px', color: '#444' }}>{order.customer_name}</td>
-                    <td style={{ padding: '16px', fontWeight: 600 }}>{(order.total_amount || order.total || 0).toLocaleString()} FCFA</td>
-                    <td style={{ padding: '16px' }}>
+                    <td data-label="Commande" style={{ padding: '16px', fontWeight: 600 }}>#{order.id}</td>
+                    <td data-label="Client" style={{ padding: '16px', color: '#666' }}>{order.customer_name}</td>
+                    <td data-label="Montant" style={{ padding: '16px', fontWeight: 600 }}>{(order.total_amount || order.total || 0).toLocaleString()} FCFA</td>
+                    <td data-label="Statut" style={{ padding: '16px' }}>
                       <span style={{ ...getStatusBadgeStyle(order.status || 'Nouvelle'), padding: '4px 10px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 600 }}>
                         {order.status || 'Nouvelle'}
                       </span>

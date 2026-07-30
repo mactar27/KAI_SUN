@@ -37,7 +37,7 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
       </div>
       
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', minWidth: '1000px', borderCollapse: 'collapse', textAlign: 'left', whiteSpace: 'nowrap' }}>
+        <table className="responsive-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', whiteSpace: 'nowrap' }}>
           <thead>
             <tr style={{ background: '#fafafa', borderBottom: '1px solid #eaeaea' }}>
               <th style={{ padding: '16px 24px', fontSize: '0.75rem', textTransform: 'uppercase', color: '#888', fontWeight: 600, letterSpacing: '0.5px' }}>Commande</th>
@@ -57,7 +57,7 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
               return (
                 <tr key={order.id} style={{ borderBottom: '1px solid #eaeaea', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = '#fafafa'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
                   {/* Commande */}
-                  <td style={{ padding: '20px 24px' }}>
+                  <td data-label="Commande" style={{ padding: '20px 24px' }}>
                     <div style={{ fontWeight: 700, color: '#111' }}>#{order.id}</div>
                     <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '4px' }}>
                       {new Date(order.created_at || order.date).toLocaleDateString('fr-FR')}
@@ -65,13 +65,13 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
                   </td>
                   
                   {/* Client */}
-                  <td style={{ padding: '20px 24px' }}>
+                  <td data-label="Client" style={{ padding: '20px 24px' }}>
                     <div style={{ fontWeight: 600, color: '#333' }}>{order.customer_name}</div>
                     <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '4px', whiteSpace: 'nowrap' }}>{order.phone}</div>
                   </td>
                   
                   {/* Produits */}
-                  <td style={{ padding: '20px 24px' }}>
+                  <td data-label="Produits" style={{ padding: '20px 24px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       {firstProduct && (
                         <img src={firstProduct.image + '?width=40&height=40'} alt="product" style={{ width: 40, height: 40, borderRadius: '8px', objectFit: 'cover', border: '1px solid #eaeaea' }} />
@@ -86,37 +86,27 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
                   </td>
                   
                   {/* Total */}
-                  <td style={{ padding: '20px 24px', fontWeight: 700, color: '#111' }}>
+                  <td data-label="Total" style={{ padding: '20px 24px', fontWeight: 700, color: '#111' }}>
                     {order.total_amount?.toLocaleString() || order.total?.toLocaleString()} FCFA
                   </td>
                   
-                  {/* Statut */}
-                  <td style={{ padding: '20px 24px' }}>
-                    <select 
-                      value={order.status || 'Nouvelle'}
-                      onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                      style={{ 
-                        ...getStatusBadgeStyle(order.status || 'Nouvelle'),
-                        padding: '6px 12px', 
-                        borderRadius: '20px', 
-                        fontWeight: 600, 
-                        fontSize: '0.75rem',
-                        outline: 'none',
-                        cursor: 'pointer',
-                        appearance: 'none',
-                        WebkitAppearance: 'none',
-                        textAlign: 'center'
-                      }}
-                    >
-                      <option value="Nouvelle">Nouvelle</option>
-                      <option value="En cours">En cours</option>
-                      <option value="Livrée">Livrée</option>
-                      <option value="Annulée">Annulée</option>
-                    </select>
+                  <td data-label="Statut" style={{ padding: '20px 24px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <select 
+                        value={order.status || 'Nouvelle'} 
+                        onChange={(e) => updateOrderStatus(order.id, e.target.value)}
+                        style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid #eaeaea', outline: 'none', background: statusColors[order.status || 'Nouvelle']?.bg || '#f3f4f6', color: statusColors[order.status || 'Nouvelle']?.color || '#374151', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', appearance: 'none' }}
+                      >
+                        <option value="Nouvelle">Nouvelle</option>
+                        <option value="En cours">En cours</option>
+                        <option value="Livrée">Livrée</option>
+                        <option value="Annulée">Annulée</option>
+                      </select>
+                      <ChevronDown size={14} style={{ color: '#888', marginLeft: '-24px', pointerEvents: 'none' }} />
+                    </div>
                   </td>
                   
-                  {/* Actions */}
-                  <td style={{ padding: '20px 24px', textAlign: 'right' }}>
+                  <td data-label="Actions" style={{ padding: '20px 24px', textAlign: 'right' }}>
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
                       <a 
                         href={getWhatsAppLink(order)} 

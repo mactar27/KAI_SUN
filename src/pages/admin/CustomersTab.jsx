@@ -63,7 +63,7 @@ const CustomersTab = () => {
       </div>
 
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px', whiteSpace: 'nowrap' }}>
+        <table className="responsive-table" style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px', whiteSpace: 'nowrap' }}>
           <thead>
             <tr style={{ background: '#f8f8f8', borderBottom: '2px solid #eee' }}>
               <th style={{ padding: '16px', textAlign: 'left', fontWeight: 700 }}>Client</th>
@@ -76,7 +76,7 @@ const CustomersTab = () => {
           <tbody>
             {customers.map((c, i) => (
               <tr key={i} style={{ borderBottom: '1px solid #eee' }}>
-                <td style={{ padding: '16px' }}>
+                <td data-label="Client" style={{ padding: '16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>
                       <Users size={20} />
@@ -87,22 +87,22 @@ const CustomersTab = () => {
                     </div>
                   </div>
                 </td>
-                <td style={{ padding: '16px' }}>
+                <td data-label="Contact" style={{ padding: '16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#444' }}>
                     <Phone size={16} /> {c.phone}
                   </div>
                 </td>
-                <td style={{ padding: '16px' }}>
+                <td data-label="Adresse" style={{ padding: '16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#444' }}>
-                    <MapPin size={16} /> {c.address.split(',')[0]} {/* show only street */}
+                    <MapPin size={16} /> {c.address.split(',')[0]}
                   </div>
                 </td>
-                <td style={{ padding: '16px', textAlign: 'center' }}>
+                <td data-label="Commandes" style={{ padding: '16px', textAlign: 'center' }}>
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#f0f0f0', padding: '4px 12px', borderRadius: '20px', fontWeight: 600 }}>
                     <ShoppingBag size={14} /> {c.orderCount}
                   </div>
                 </td>
-                <td style={{ padding: '16px', textAlign: 'right', fontWeight: 800, fontSize: '1.1rem' }}>
+                <td data-label="Total Dépensé" style={{ padding: '16px', textAlign: 'right', fontWeight: 800, fontSize: '1.1rem' }}>
                   {c.totalSpent.toLocaleString()} FCFA
                   {c.orderCount > 1 && (
                     <div style={{ marginTop: '12px' }}>

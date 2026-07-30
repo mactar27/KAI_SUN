@@ -85,7 +85,7 @@ const PromoTab = ({ adminToken }) => {
 
       {loading ? <p>Chargement...</p> : (
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px', whiteSpace: 'nowrap' }}>
+          <table className="responsive-table" style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px', whiteSpace: 'nowrap' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
                 <th style={{ padding: '12px 8px' }}>Code</th>
@@ -99,14 +99,14 @@ const PromoTab = ({ adminToken }) => {
                 <tr><td colSpan="4" style={{ padding: '16px', textAlign: 'center', color: '#666' }}>Aucun code promo créé.</td></tr>
               ) : promos.map(promo => (
                 <tr key={promo.id} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '12px 8px', fontWeight: 600 }}>{promo.code}</td>
-                  <td style={{ padding: '12px 8px' }}>{promo.discount_percent}%</td>
-                  <td style={{ padding: '12px 8px' }}>
+                  <td data-label="Code" style={{ padding: '12px 8px', fontWeight: 600 }}>{promo.code}</td>
+                  <td data-label="Réduction" style={{ padding: '12px 8px' }}>{promo.discount_percent}%</td>
+                  <td data-label="Statut" style={{ padding: '12px 8px' }}>
                     <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', background: promo.is_active ? '#e6f4ea' : '#fce8e6', color: promo.is_active ? '#137333' : '#c5221f' }}>
                       {promo.is_active ? 'Actif' : 'Désactivé'}
                     </span>
                   </td>
-                  <td style={{ padding: '12px 8px' }}>
+                  <td data-label="Actions" style={{ padding: '12px 8px' }}>
                     <button onClick={() => togglePromo(promo.id, !promo.is_active)} style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>
                       {promo.is_active ? 'Désactiver' : 'Activer'}
                     </button>

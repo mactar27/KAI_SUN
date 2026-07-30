@@ -52,7 +52,8 @@ const ReviewTab = ({ adminToken }) => {
       <h2 style={{ fontSize: '1.5rem', marginBottom: '24px' }}>⭐ Avis Clients</h2>
       
       {loading ? <p>Chargement...</p> : (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div style={{ overflowX: 'auto' }}>
+          <table className="responsive-table" style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px', whiteSpace: 'nowrap' }}>
           <thead>
             <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
               <th style={{ padding: '12px 8px' }}>Date</th>
@@ -68,19 +69,19 @@ const ReviewTab = ({ adminToken }) => {
               <tr><td colSpan="6" style={{ padding: '16px', textAlign: 'center', color: '#666' }}>Aucun avis reçu.</td></tr>
             ) : reviews.map(r => (
               <tr key={r.id} style={{ borderBottom: '1px solid #eee' }}>
-                <td style={{ padding: '12px 8px', fontSize: '0.85rem' }}>{new Date(r.createdAt).toLocaleDateString('fr-FR')}</td>
-                <td style={{ padding: '12px 8px', fontWeight: 'bold' }}>{r.productId}</td>
-                <td style={{ padding: '12px 8px' }}>
+                <td data-label="Date" style={{ padding: '12px 8px', fontSize: '0.85rem' }}>{new Date(r.createdAt).toLocaleDateString('fr-FR')}</td>
+                <td data-label="Produit" style={{ padding: '12px 8px', fontWeight: 'bold' }}>{r.productId}</td>
+                <td data-label="Client & Note" style={{ padding: '12px 8px' }}>
                   {r.authorName}<br/>
                   <span style={{ color: '#F59E0B' }}>{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
                 </td>
-                <td style={{ padding: '12px 8px', maxWidth: '300px', fontSize: '0.9rem' }}>"{r.comment}"</td>
-                <td style={{ padding: '12px 8px' }}>
+                <td data-label="Commentaire" style={{ padding: '12px 8px', maxWidth: '300px', fontSize: '0.9rem', whiteSpace: 'normal' }}>"{r.comment}"</td>
+                <td data-label="Statut" style={{ padding: '12px 8px' }}>
                   <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', background: r.isApproved ? '#e8f5e9' : '#fff3e0', color: r.isApproved ? '#2e7d32' : '#e65100' }}>
                     {r.isApproved ? 'En ligne' : 'En attente'}
                   </span>
                 </td>
-                <td style={{ padding: '12px 8px', display: 'flex', gap: '8px' }}>
+                <td data-label="Actions" style={{ padding: '12px 8px', display: 'flex', gap: '8px' }}>
                   <button onClick={() => toggleApproval(r.id, !r.isApproved)} style={{ padding: '6px 12px', background: '#f5f5f5', border: '1px solid #ddd', borderRadius: '4px', cursor: 'pointer' }}>
                     {r.isApproved ? 'Masquer' : 'Publier'}
                   </button>
@@ -91,7 +92,8 @@ const ReviewTab = ({ adminToken }) => {
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
       )}
     </div>
   );
