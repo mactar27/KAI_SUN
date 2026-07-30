@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from './../context/ShopContext';
-import { ShoppingBag, Menu, X, Truck, Lock, RefreshCw } from 'lucide-react';
+import { ShoppingBag, Menu, X, Truck, Lock, RefreshCw, Search, User } from 'lucide-react';
 import AudioPlayer from './AudioPlayer';
 
 const Navbar = () => {
@@ -38,17 +38,23 @@ const Navbar = () => {
           </Link>
 
           {/* DESKTOP NAV */}
-          <div className="nav-links">
+          <div className="nav-links" style={{ textTransform: 'uppercase', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px', gap: '30px' }}>
             <a href="/#collection">Collection</a>
             <a href="/#savoir-faire">Savoir-faire</a>
+            <a href="/#histoire">Notre Histoire</a>
             <a href="/#avis">Avis</a>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '16px', color: navColor }}>
             <AudioPlayer color={navColor} />
-            
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
+              <Search size={22} strokeWidth={1.5} />
+            </button>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
+              <User size={22} strokeWidth={1.5} />
+            </button>
             <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: navColor }}>
-              <ShoppingBag size={24} strokeWidth={2.5} />
+              <ShoppingBag size={22} strokeWidth={1.5} />
               {cartItemCount > 0 && (
                 <span style={{
                   position: 'absolute',
