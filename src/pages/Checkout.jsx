@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShopContext } from '../context/ShopContext';
+import { ShopContext, calculateCartTotal } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
 
 const Checkout = () => {
@@ -43,7 +43,7 @@ const Checkout = () => {
     setPromoLoading(false);
   };
 
-  const orderTotal = cart.reduce((acc, item) => acc + (item.quantity * item.product.price), 0);
+  const orderTotal = calculateCartTotal(cart);
   const discountAmount = appliedPromo ? (orderTotal * (appliedPromo.discountPercent / 100)) : 0;
   const finalTotal = Math.max(0, orderTotal - discountAmount);
 
