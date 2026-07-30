@@ -190,11 +190,53 @@ const Admin = () => {
         @media (max-width: 768px) {
           .admin-sidebar { transform: translateX(-100%); }
           .admin-sidebar.open { transform: translateX(0); }
-          .admin-main { margin-left: 0; }
+          .admin-main { margin-left: 0; padding-bottom: 80px; }
           .admin-topbar { padding: 0 20px; }
-          .mobile-menu-btn { display: block; }
+          .mobile-menu-btn { display: none !important; }
           .admin-content { padding: 20px; }
           .sidebar-overlay.open { display: block; }
+          
+          .admin-bottom-bar {
+            display: flex !important;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid #eaeaea;
+            z-index: 98;
+            padding: 0 10px;
+            padding-bottom: env(safe-area-inset-bottom);
+            justify-content: space-around;
+            align-items: center;
+          }
+          .admin-bottom-bar button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #a3a3a3;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            gap: 4px;
+            position: relative;
+            cursor: pointer;
+          }
+          .admin-bottom-bar button.active {
+            color: #D4AF37;
+          }
+        }
+        .admin-bottom-bar {
+          display: none;
         }
       `}</style>
       
@@ -398,6 +440,33 @@ const Admin = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* MOBILE BOTTOM APP BAR */}
+      <div className="admin-bottom-bar">
+        <button onClick={() => { setActiveTab('dashboard'); setMobileMenuOpen(false); }} className={activeTab === 'dashboard' ? 'active' : ''}>
+          <Home size={22} strokeWidth={1.5} />
+          Accueil
+        </button>
+        <button onClick={() => { setActiveTab('products'); setMobileMenuOpen(false); }} className={activeTab === 'products' ? 'active' : ''}>
+          <Package size={22} strokeWidth={1.5} />
+          Produits
+        </button>
+        <button onClick={() => { setActiveTab('orders'); setMobileMenuOpen(false); }} className={activeTab === 'orders' ? 'active' : ''}>
+          <ShoppingBag size={22} strokeWidth={1.5} />
+          Commandes
+          {orders.some(o => o.status === 'Nouvelle') && (
+            <span style={{
+              position: 'absolute', top: '-5px', right: '5px', background: '#111', color: '#D4AF37', fontSize: '9px', fontWeight: 900, width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              {orders.filter(o => o.status === 'Nouvelle').length}
+            </span>
+          )}
+        </button>
+        <button onClick={() => setMobileMenuOpen(true)}>
+          <Menu size={22} strokeWidth={1.5} />
+          Menu
+        </button>
       </div>
     </div>
   );
