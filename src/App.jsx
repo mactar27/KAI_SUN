@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import SearchOverlay from './components/SearchOverlay';
 import Home from './pages/Home';
 import MenCollection from './pages/MenCollection';
 import WomenCollection from './pages/WomenCollection';
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className="app">
       {!isAdmin && <Navbar />}
+      {!isAdmin && <SearchOverlay />}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

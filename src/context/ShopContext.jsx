@@ -19,6 +19,7 @@ export const ShopProvider = ({ children }) => {
   const [visitors, setVisitors] = useState(1245);
   const [dailyVisits, setDailyVisits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   
   const [adminToken, setAdminToken] = useState(() => localStorage.getItem('kaia_admin_token') || null);
 
@@ -255,7 +256,11 @@ export const ShopProvider = ({ children }) => {
       isLoading,
       adminToken,
       loginAdmin,
-      logoutAdmin
+      logoutAdmin,
+      updateProductStock,
+      createPromoCode,
+      isSearchOpen,
+      setIsSearchOpen
     }}>
       {children}
     </ShopContext.Provider>

@@ -5,7 +5,7 @@ import { ShoppingBag, Menu, X, Truck, Lock, RefreshCw, Search, User, Home } from
 import AudioPlayer from './AudioPlayer';
 
 const Navbar = () => {
-  const { cart } = useContext(ShopContext);
+  const { cart, setIsSearchOpen } = useContext(ShopContext);
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -47,7 +47,7 @@ const Navbar = () => {
 
           <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '16px', color: navColor }}>
             <AudioPlayer color={navColor} />
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
+            <button onClick={() => setIsSearchOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
               <Search size={22} strokeWidth={1.5} />
             </button>
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
@@ -104,10 +104,10 @@ const Navbar = () => {
           <Home size={22} strokeWidth={1.5} />
           Accueil
         </Link>
-        <a href="/#collection" onClick={() => setIsMenuOpen(false)}>
+        <button onClick={() => { setIsMenuOpen(false); setIsSearchOpen(true); }}>
           <Search size={22} strokeWidth={1.5} />
-          Boutique
-        </a>
+          Recherche
+        </button>
         <Link to="/panier" onClick={() => setIsMenuOpen(false)} style={{ position: 'relative' }}>
           <ShoppingBag size={22} strokeWidth={1.5} />
           Panier

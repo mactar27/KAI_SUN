@@ -420,7 +420,7 @@ const Home = () => {
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '16px', color: 'var(--accent)' }}>Rejoignez le cercle.</h2>
           <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '32px' }}>Recevez nos offres exclusives et un accès anticipé aux nouvelles collections.</p>
           <form 
-            style={{ display: 'flex', gap: '8px', maxWidth: '400px', margin: '0 auto' }} 
+            style={{ display: 'flex', flexWrap: 'wrap', width: '100%', maxWidth: '400px', margin: '0 auto', gap: '8px' }} 
             onSubmit={async (e) => {
               e.preventDefault();
               const email = e.target.elements.email.value;
@@ -438,8 +438,8 @@ const Home = () => {
               }
             }}
           >
-            <input name="email" type="email" placeholder="Votre adresse email..." required style={{ flex: 1, padding: '12px 20px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#fff', outline: 'none' }} />
-            <button type="submit" style={{ padding: '12px 24px', background: 'var(--accent)', color: '#fff', border: 'none', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '12px', cursor: 'pointer', transition: 'opacity 0.2s' }}>S'inscrire</button>
+            <input name="email" type="email" placeholder="Votre adresse email..." required style={{ flex: 1, minWidth: '200px', padding: '12px 20px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#fff', outline: 'none' }} />
+            <button type="submit" style={{ flexShrink: 0, padding: '12px 24px', background: 'var(--accent)', color: '#fff', border: 'none', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '12px', cursor: 'pointer', transition: 'opacity 0.2s' }}>S'inscrire</button>
           </form>
         </div>
       </section>
