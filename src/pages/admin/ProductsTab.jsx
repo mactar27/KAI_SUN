@@ -39,7 +39,10 @@ const ProductsTab = ({ products, refreshProducts }) => {
       const requests = selected.map(id => 
         fetch('/api/products', {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${adminToken}`
+          },
           body: JSON.stringify({ id, groupId: newGroupId, action: 'updateGroup' })
         })
       );
@@ -78,14 +81,20 @@ const ProductsTab = ({ products, refreshProducts }) => {
         if (isSelected && !wasInGroup) {
           requests.push(fetch('/api/products', {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${adminToken}`
+            },
             body: JSON.stringify({ id: p.id, groupId: editingGroupId, action: 'updateGroup' })
           }));
         } else if (!isSelected && wasInGroup) {
           requests.push(fetch('/api/products', {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: p.id, groupId: 'SOLO_' + p.ref, action: 'updateGroup' })
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${adminToken}`
+            },
+            body: JSON.stringify({ id: p.id, groupId: null, action: 'updateGroup' })
           }));
         }
       }
@@ -113,7 +122,10 @@ const ProductsTab = ({ products, refreshProducts }) => {
     if (!p) return;
     await fetch('/api/products', {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${adminToken}`
+      },
       body: JSON.stringify({ id: p.id, groupId: 'SOLO_' + p.ref, action: 'updateGroup' })
     });
     await refreshProducts();
@@ -125,11 +137,27 @@ const ProductsTab = ({ products, refreshProducts }) => {
     const requests = members.map(p => 
       fetch('/api/products', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
         body: JSON.stringify({ id: p.id, groupId: 'SOLO_' + p.ref, action: 'updateGroup' })
       })
     );
     await Promise.all(requests);
+    await refreshProducts();
+  };
+
+  const handleUpdateStock = async (id, stock) => {
+    await fetch('/api/products', {
+      method: 'PUT',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${adminToken}`
+      },
+      body: JSON.stringify({ id, stock, action: 'updateStock' })
+    });
+    setEditingStock(null);
     await refreshProducts();
   };
 

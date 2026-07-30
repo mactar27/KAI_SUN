@@ -160,7 +160,10 @@ const Admin = () => {
     try {
       await fetch('/api/orders', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
         body: JSON.stringify({ id, status })
       });
       fetchOrders();
