@@ -20,14 +20,26 @@ const Navbar = () => {
   return (
     <>
       <div className="promo-bar">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Truck size={14} /> Livraison offerte à Dakar
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Lock size={14} /> Paiement sécurisé
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <RefreshCw size={14} /> Retours sous 14 jours
+        <div className="promo-track">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Truck size={14} /> Livraison offerte à Dakar
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Lock size={14} /> Paiement sécurisé
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <RefreshCw size={14} /> Retours sous 14 jours
+          </div>
+          {/* Duplicate for seamless scrolling */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Truck size={14} /> Livraison offerte à Dakar
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Lock size={14} /> Paiement sécurisé
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <RefreshCw size={14} /> Retours sous 14 jours
+          </div>
         </div>
       </div>
 
@@ -50,9 +62,7 @@ const Navbar = () => {
             <button onClick={() => setIsSearchOpen(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
               <Search size={22} strokeWidth={1.5} />
             </button>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'inherit', display: 'flex' }}>
-              <User size={22} strokeWidth={1.5} />
-            </button>
+
             <Link to="/panier" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', color: navColor }}>
               <ShoppingBag size={22} strokeWidth={1.5} />
               {cartItemCount > 0 && (
