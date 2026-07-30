@@ -105,7 +105,6 @@ const ProductDetail = () => {
     .slice(0, 4);
 
   const avgRating = reviews.length > 0 ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1) : 5.0;
-  });
 
   const onTouchEndHandler = () => {
     if (!touchStartX.current || !touchEndX.current) return;
