@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from './../context/ShopContext';
-import { ShoppingBag, Menu, X, Truck, Lock, RefreshCw, Search, User } from 'lucide-react';
+import { ShoppingBag, Menu, X, Truck, Lock, RefreshCw, Search, User, Home } from 'lucide-react';
 import AudioPlayer from './AudioPlayer';
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div style={{ background: '#111', color: '#fff', fontSize: '0.75rem', fontWeight: 500, padding: '10px 0', display: 'flex', justifyContent: 'center', gap: '30px', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 101, letterSpacing: '0.5px' }}>
+      <div className="promo-bar">
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Truck size={14} /> Livraison offerte à Dakar
         </div>
@@ -77,15 +77,8 @@ const Navbar = () => {
               )}
             </Link>
             <a href="/#collection" className="nav-cta hide-on-mobile" style={isHomePage ? { background: '#faf9f6', color: '#0d2823' } : {}}>Voir la collection</a>
-            
-            {/* MOBILE MENU BUTTON */}
-            <button 
-              className="mobile-menu-btn" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ background: 'none', border: 'none', color: navColor, cursor: 'pointer', padding: '4px' }}
-            >
-              {isMenuOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
-            </button>
+            {/* MOBILE MENU BUTTON (Hidden on app-layout, moved to bottom bar) */}
+            {/* The hamburger is kept here in DOM but hidden via CSS .mobile-menu-btn display:none on mobile to enforce bottom bar */}
           </div>
         </div>
       </nav>
@@ -95,12 +88,42 @@ const Navbar = () => {
         <div className="mobile-menu-overlay">
           <div className="mobile-menu-content">
             <a href="/#collection" onClick={() => setIsMenuOpen(false)}>Collection</a>
-            <a href="/#savoir-faire" onClick={() => setIsMenuOpen(false)}>Savoir-faire</a>
+            <a href="/#histoire" onClick={() => setIsMenuOpen(false)}>Notre Histoire</a>
             <a href="/#avis" onClick={() => setIsMenuOpen(false)}>Avis</a>
-            <a href="/#collection" className="mobile-menu-cta" onClick={() => setIsMenuOpen(false)}>Voir la collection</a>
+            <Link to="/panier" onClick={() => setIsMenuOpen(false)}>Mon Panier</Link>
+            <button onClick={() => setIsMenuOpen(false)} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'var(--ink)' }}>
+              <X size={32} />
+            </button>
           </div>
         </div>
       )}
+
+      {/* MOBILE BOTTOM APP BAR */}
+      <div className="bottom-app-bar">
+        <Link to="/" onClick={() => setIsMenuOpen(false)} className={isHomePage ? 'active' : ''}>
+          <Home size={22} strokeWidth={1.5} />
+          Accueil
+        </Link>
+        <a href="/#collection" onClick={() => setIsMenuOpen(false)}>
+          <Search size={22} strokeWidth={1.5} />
+          Boutique
+        </a>
+        <Link to="/panier" onClick={() => setIsMenuOpen(false)} style={{ position: 'relative' }}>
+          <ShoppingBag size={22} strokeWidth={1.5} />
+          Panier
+          {cartItemCount > 0 && (
+            <span style={{
+              position: 'absolute', top: '-2px', right: '15px', background: '#F4C430', color: '#111', fontSize: '9px', fontWeight: 900, width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              {cartItemCount}
+            </span>
+          )}
+        </Link>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={isMenuOpen ? 'active' : ''}>
+          <Menu size={22} strokeWidth={1.5} />
+          Menu
+        </button>
+      </div>
     </>
   );
 };
