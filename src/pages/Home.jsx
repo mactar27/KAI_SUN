@@ -173,7 +173,7 @@ const Home = () => {
             zIndex: 0
           }}
         >
-          <source src="/images/hero_video.mov" type="video/mp4" />
+          <source src="/images/hero_video.mp4" type="video/mp4" />
           <source src="/images/hero_video.mov" type="video/quicktime" />
         </video>
         {/* Overlay gradient for readability */}
