@@ -451,8 +451,9 @@ const Admin = () => {
           </div>
           
           {/* Analytics restored */}
-          <div style={{ display: activeTab === 'analytics' ? 'block' : 'none' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '24px', color: '#111' }}>📊 Statistiques Détaillées</h2>
+          {activeTab === 'analytics' && (
+            <div>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '24px', color: '#111' }}>📊 Statistiques Détaillées</h2>
             
             <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid #eaeaea', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '16px' }}>
@@ -492,8 +493,8 @@ const Admin = () => {
                     }
                     
                     return (
-                      <div style={{ width: '100%', height: '450px', minWidth: 0 }}>
-                        <ResponsiveContainer width="100%" height="100%">
+                      <div style={{ width: '100%', height: '450px', minWidth: 300, minHeight: 400 }}>
+                        <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={400}>
                           <BarChart
                             data={chartData}
                             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
@@ -514,6 +515,7 @@ const Admin = () => {
               )}
             </div>
           </div>
+          )}
         </div>
       </div>
 
