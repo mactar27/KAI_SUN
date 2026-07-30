@@ -212,31 +212,37 @@ app.post('/api/orders', async (req, res) => {
 
 app.get('/api/analytics', authMiddleware, async (req, res) => {
   try {
-    const [totalStats] = await pool.query(`
-      SELECT event_type, product_ref, COUNT(*) as count 
-      FROM analytics 
-      GROUP BY event_type, product_ref
-    `);
-    const [dailyStats] = await pool.query(`
-      SELECT DATE_FORMAT(timestamp, '%Y-%m-%d') as date, event_type, product_ref, COUNT(*) as count 
-      FROM analytics 
-      WHERE timestamp >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-      GROUP BY DATE_FORMAT(timestamp, '%Y-%m-%d'), event_type, product_ref
-      ORDER BY date ASC
-    `);
+    const allEvents = await prisma.analytics.findMany();
+    
     const result = { views: {}, cart: {}, daily: {} };
-    totalStats.forEach(row => {
-      if (row.event_type === 'view') result.views[row.product_ref] = row.count;
-      if (row.event_type === 'cart') result.cart[row.product_ref] = row.count;
+    
+    allEvents.forEach(row => {
+      if (!row.product_ref) return;
+      
+      if (row.event_type === 'view') {
+        result.views[row.product_ref] = (result.views[row.product_ref] || 0) + 1;
+      }
+      if (row.event_type === 'cart') {
+        result.cart[row.product_ref] = (result.cart[row.product_ref] || 0) + 1;
+      }
+
+      if (row.timestamp) {
+        const dateStr = new Date(row.timestamp).toISOString().split('T')[0];
+        if (!result.daily[dateStr]) {
+          result.daily[dateStr] = { views: {}, cart: {} };
+        }
+        if (row.event_type === 'view') {
+          result.daily[dateStr].views[row.product_ref] = (result.daily[dateStr].views[row.product_ref] || 0) + 1;
+        }
+        if (row.event_type === 'cart') {
+          result.daily[dateStr].cart[row.product_ref] = (result.daily[dateStr].cart[row.product_ref] || 0) + 1;
+        }
+      }
     });
-    dailyStats.forEach(row => {
-      if (!result.daily[row.date]) result.daily[row.date] = { views: {}, cart: {} };
-      if (row.event_type === 'view') result.daily[row.date].views[row.product_ref] = row.count;
-      if (row.event_type === 'cart') result.daily[row.date].cart[row.product_ref] = row.count;
-    });
+
     res.status(200).json(result);
   } catch (error) {
-    console.error(error);
+    console.error('GET /api/analytics Error:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -245,10 +251,12 @@ app.post('/api/analytics', async (req, res) => {
   try {
     const { event_type, product_ref } = req.body;
     if (!event_type || !product_ref) return res.status(400).json({ error: 'Missing parameters' });
-    await pool.query('INSERT INTO analytics (event_type, product_ref) VALUES (?, ?)', [event_type, product_ref]);
+    await prisma.analytics.create({
+      data: { event_type, product_ref }
+    });
     res.status(201).json({ success: true });
   } catch (error) {
-    console.error(error);
+    console.error('POST /api/analytics Error:', error);
     res.status(500).json({ error: error.message });
   }
 });
