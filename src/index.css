@@ -103,6 +103,7 @@
       -webkit-backdrop-filter: blur(10px);
       border-top: 1px solid #eaeaea;
       z-index: 102; /* Above everything */
+      padding: 0 10px;
       padding-bottom: env(safe-area-inset-bottom);
     }
     .bottom-app-bar button, .bottom-app-bar a {
@@ -372,7 +373,7 @@
   .chatbot-btn {
     position: fixed;
     bottom: 24px;
-    left: 24px;
+    right: 24px;
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -392,7 +393,7 @@
   .chatbot-window {
     position: fixed;
     bottom: 24px;
-    left: 24px;
+    right: 24px;
     width: 350px;
     height: 500px;
     max-height: 80vh;
@@ -409,7 +410,8 @@
   @media(max-width:800px) {
     .chatbot-btn {
       bottom: 90px;
-      left: 20px;
+      right: 20px;
+      left: auto;
     }
     .chatbot-window {
       bottom: 90px;
