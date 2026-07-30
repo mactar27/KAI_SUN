@@ -104,10 +104,10 @@ app.get('/api/orders', authMiddleware, async (req, res) => {
       total: order.total_amount,
       status: order.status || 'Nouvelle',
       deliveryInfo: {
-        prenom: order.customer_name.split(' ')[0] || '',
-        nom: order.customer_name.split(' ').slice(1).join(' ') || '',
-        adresse: order.address,
-        phone: order.phone,
+        prenom: (order.customer_name || '').split(' ')[0] || '',
+        nom: (order.customer_name || '').split(' ').slice(1).join(' ') || '',
+        adresse: order.address || '',
+        phone: order.phone || '',
         ville: 'Dakar'
       },
       items: order.order_items.map(item => ({

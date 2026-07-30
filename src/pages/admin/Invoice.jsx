@@ -15,7 +15,9 @@ const Invoice = () => {
     const fetchOrder = async () => {
       if (!adminToken) return;
       try {
-        const res = await fetch('/api/orders');
+        const res = await fetch('/api/orders', {
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
         if (res.ok) {
           const data = await res.json();
           const found = data.find(o => o.id === parseInt(id));
