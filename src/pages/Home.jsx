@@ -111,7 +111,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
         <span className="badge-new">NOUVEAU</span>
       </div>
       <div className="colorway">
-        Fournisseur — {currentProduct.gender.charAt(0).toUpperCase() + currentProduct.gender.slice(1)}
+        Fournisseur — {currentProduct.gender ? currentProduct.gender.charAt(0).toUpperCase() + currentProduct.gender.slice(1) : ''}
         {variants.length > 1 && <span style={{display: 'block', color: 'var(--ink)', fontSize: '0.85rem', marginTop: '4px', fontWeight: 500}}>{variants.length} coloris disponibles</span>}
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
