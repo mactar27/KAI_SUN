@@ -81,14 +81,21 @@ app.get('/api/orders', authMiddleware, async (req, res) => {
   try {
     const orders = await prisma.orders.findMany({
       include: {
-        order_items: {
-          include: {
-            products: true
-          }
-        }
+        order_items: true
       },
       orderBy: { created_at: 'desc' }
     });
+
+    // Get all product IDs from order items
+    const allProductIds = [...new Set(orders.flatMap(o => o.order_items.map(i => i.product_id)))];
+    let productsMap = {};
+    if (allProductIds.length > 0) {
+      const [productRows] = await pool.query(
+        `SELECT * FROM products WHERE id IN (${allProductIds.map(() => '?').join(',')})`,
+        allProductIds
+      );
+      productRows.forEach(p => { productsMap[p.id] = p; });
+    }
 
     // Re-format pour correspondre au format du Frontend
     const formattedOrders = orders.map(order => ({
@@ -106,8 +113,8 @@ app.get('/api/orders', authMiddleware, async (req, res) => {
       items: order.order_items.map(item => ({
         quantity: item.quantity,
         product: {
-          ...(item.products || {}),
-          price: item.products ? item.products.price : 0,
+          ...(productsMap[item.product_id] || { id: item.product_id, name: 'Produit' }),
+          price: productsMap[item.product_id]?.price || 0,
           costPrice: 0
         }
       }))
