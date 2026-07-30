@@ -127,6 +127,20 @@ app.get('/api/orders', authMiddleware, async (req, res) => {
   }
 });
 
+app.put('/api/orders', authMiddleware, async (req, res) => {
+  const { id, status } = req.body;
+  try {
+    const order = await prisma.orders.update({
+      where: { id: parseInt(id) },
+      data: { status }
+    });
+    res.json({ success: true, order });
+  } catch (error) {
+    console.error('PUT /api/orders Error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/api/orders', async (req, res) => {
   const { deliveryInfo, items, total, promoCodeId } = req.body;
 
