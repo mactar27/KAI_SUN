@@ -77,34 +77,36 @@ app.delete('/api/products/:id', authMiddleware, async (req, res) => {
 // --- ORDERS API ---
 
 app.get('/api/orders', authMiddleware, async (req, res) => {
-  const orders = await prisma.order.findMany({
+  const orders = await prisma.orders.findMany({
     include: {
-      items: {
+      order_items: {
         include: {
-          product: true
+          products: true
         }
       }
-    }
+    },
+    orderBy: { created_at: 'desc' }
   });
 
   // Re-format pour correspondre au format du Frontend
   const formattedOrders = orders.map(order => ({
     id: order.id,
-    date: order.date.toISOString(),
-    total: order.total,
+    date: order.created_at ? order.created_at.toISOString() : new Date().toISOString(),
+    total: order.total_amount,
+    status: order.status || 'Nouvelle',
     deliveryInfo: {
-      prenom: order.prenom,
-      nom: order.nom,
-      adresse: order.adresse,
-      phone: order.cp, // On utilise la colonne cp pour stocker le phone
-      ville: order.ville
+      prenom: order.customer_name.split(' ')[0] || '',
+      nom: order.customer_name.split(' ').slice(1).join(' ') || '',
+      adresse: order.address,
+      phone: order.phone,
+      ville: 'Dakar'
     },
-    items: order.items.map(item => ({
+    items: order.order_items.map(item => ({
       quantity: item.quantity,
       product: {
-        ...item.product,
-        price: item.price, // Utiliser le snapshot du prix
-        costPrice: item.costPrice
+        ...(item.products || {}),
+        price: item.products ? item.products.price : 0,
+        costPrice: 0
       }
     }))
   }));
@@ -119,20 +121,16 @@ app.post('/api/orders', async (req, res) => {
     // Transaction pour créer la commande ET mettre à jour les stocks
     const order = await prisma.$transaction(async (tx) => {
       // 1. Créer la commande
-      const newOrder = await tx.order.create({
+      const newOrder = await tx.orders.create({
         data: {
-          total,
-          prenom: deliveryInfo.firstName || 'Inconnu',
-          nom: deliveryInfo.lastName || 'Inconnu',
-          adresse: deliveryInfo.address || 'Inconnue',
-          cp: deliveryInfo.phone || 'Inconnu',
-          ville: deliveryInfo.city || 'Dakar',
-          items: {
+          total_amount: total,
+          customer_name: (deliveryInfo.firstName + ' ' + deliveryInfo.lastName).trim() || 'Inconnu',
+          address: deliveryInfo.address || 'Inconnue',
+          phone: deliveryInfo.phone || 'Inconnu',
+          order_items: {
             create: items.map(item => ({
-              productId: item.product.id,
-              quantity: item.quantity,
-              price: item.product.price,
-              costPrice: item.product.costPrice
+              product_id: item.product.id,
+              quantity: item.quantity
             }))
           }
         }
@@ -140,7 +138,7 @@ app.post('/api/orders', async (req, res) => {
 
       // 2. Mettre à jour les stocks
       for (const item of items) {
-        await tx.product.update({
+        await tx.products.update({
           where: { id: item.product.id },
           data: {
             stock: {

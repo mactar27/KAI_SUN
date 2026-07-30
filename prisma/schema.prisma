@@ -105,6 +105,7 @@ model products {
   gender             String               @db.VarChar(20)
   image              String               @db.VarChar(255)
   groupId            String?              @db.VarChar(50)
+  stock              Int                  @default(0)
   product_thumbnails product_thumbnails[]
 }
 
