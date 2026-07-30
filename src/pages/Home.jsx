@@ -384,7 +384,7 @@ const Home = () => {
               — SAVOIR-FAIRE
             </div>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(32px, 6vw, 48px)', fontWeight: 600, color: 'var(--kaia-green)', lineHeight: 1.1, marginBottom: '32px' }}>
-              L'excellence du <br/>Studio & Atelier
+              De l'élégance <br/>à l'excellence
             </h2>
             <div style={{ width: '60px', height: '2px', background: 'var(--kaia-gold)', marginBottom: '32px' }}></div>
           </div>
