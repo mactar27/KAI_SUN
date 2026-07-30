@@ -4,10 +4,11 @@ import { MessageCircle, FileText } from 'lucide-react';
 
 const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
   const getWhatsAppLink = (order) => {
-    const cleanPhone = order.phone.replace(/[^0-9]/g, '');
-    const phone = cleanPhone.startsWith('221') ? cleanPhone : '221' + cleanPhone;
-    const msg = encodeURIComponent(`Bonjour ${order.customer_name},\n\nNous avons bien reçu votre commande chez KAIA SUN d'un montant de ${order.total_amount} FCFA.\nVotre commande est en cours de traitement. N'hésitez pas si vous avez des questions !`);
-    return `https://wa.me/${phone}?text=${msg}`;
+    const phone = (order.deliveryInfo?.phone || '').replace(/[^0-9]/g, '');
+    const cleanPhone = phone.startsWith('221') ? phone : '221' + phone;
+    const fullName = `${order.deliveryInfo?.prenom || ''} ${order.deliveryInfo?.nom || ''}`.trim() || 'Client';
+    const msg = encodeURIComponent(`Bonjour ${fullName},\n\nNous avons bien reçu votre commande chez KAIA SUN d'un montant de ${order.total} FCFA.\nVotre commande est en cours de traitement. N'hésitez pas si vous avez des questions !`);
+    return `https://wa.me/${cleanPhone}?text=${msg}`;
   };
 
   const statusConfig = {
@@ -56,7 +57,7 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
             {orders.map((order) => {
               const totalItems = order.items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
               const firstItem = order.items?.[0];
-              const firstProduct = firstItem ? products.find(p => p.id === firstItem.product_id) : null;
+              const firstProduct = firstItem?.product;
               
               return (
                 <tr key={order.id} style={{ borderBottom: '1px solid #eaeaea', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = '#fafafa'} onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
@@ -64,24 +65,24 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
                   <td data-label="Commande" style={{ padding: '20px 24px' }}>
                     <div style={{ fontWeight: 700, color: '#111' }}>#{order.id}</div>
                     <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '4px' }}>
-                      {new Date(order.created_at || order.date).toLocaleDateString('fr-FR')}
+                      {new Date(order.date).toLocaleDateString('fr-FR')}
                     </div>
                   </td>
                   
                   {/* Client */}
                   <td data-label="Client" style={{ padding: '20px 24px' }}>
-                    <div style={{ fontWeight: 600, color: '#333' }}>{order.customer_name}</div>
-                    <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '4px', whiteSpace: 'nowrap' }}>{order.phone}</div>
+                    <div style={{ fontWeight: 600, color: '#333' }}>{`${order.deliveryInfo?.prenom || ''} ${order.deliveryInfo?.nom || ''}`.trim() || 'Inconnu'}</div>
+                    <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '4px', whiteSpace: 'nowrap' }}>{order.deliveryInfo?.phone || 'Inconnu'}</div>
                   </td>
                   
                   {/* Produits */}
                   <td data-label="Produits" style={{ padding: '20px 24px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      {firstProduct && (
+                      {firstProduct && firstProduct.image && (
                         <img src={firstProduct.image + '?width=40&height=40'} alt="product" style={{ width: 40, height: 40, borderRadius: '8px', objectFit: 'cover', border: '1px solid #eaeaea' }} />
                       )}
                       <div>
-                        <div style={{ fontWeight: 600, color: '#333', fontSize: '0.9rem' }}>{firstProduct ? firstProduct.ref : 'Produit'}</div>
+                        <div style={{ fontWeight: 600, color: '#333', fontSize: '0.9rem' }}>{firstProduct ? (firstProduct.ref || firstProduct.name) : 'Produit'}</div>
                         {totalItems > 1 && (
                           <div style={{ fontSize: '0.75rem', color: '#888', marginTop: '2px' }}>+ {totalItems - 1} autre(s)</div>
                         )}
@@ -91,7 +92,7 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
                   
                   {/* Total */}
                   <td data-label="Total" style={{ padding: '20px 24px', fontWeight: 700, color: '#111' }}>
-                    {order.total_amount?.toLocaleString() || order.total?.toLocaleString()} FCFA
+                    {order.total?.toLocaleString()} FCFA
                   </td>
                   
                   <td data-label="Statut" style={{ padding: '20px 24px' }}>
