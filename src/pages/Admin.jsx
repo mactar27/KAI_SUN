@@ -67,7 +67,9 @@ const Admin = () => {
   const fetchAnalytics = async () => {
     setLoadingAnalytics(true);
     try {
-      const res = await fetch('/api/analytics');
+      const res = await fetch('/api/analytics', {
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      });
       if (res.ok) {
         const data = await res.json();
         setAnalytics(data);
