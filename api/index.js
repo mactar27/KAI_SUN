@@ -135,7 +135,7 @@ app.post('/api/orders', async (req, res) => {
           phone: deliveryInfo.phone || 'Inconnu',
           order_items: {
             create: items.map(item => ({
-              product_id: item.id,
+              product_id: item.product?.id || item.id,
               quantity: item.quantity
             }))
           }
@@ -145,7 +145,7 @@ app.post('/api/orders', async (req, res) => {
       // 2. Mettre à jour les stocks
       for (const item of items) {
         await tx.products.update({
-          where: { id: item.id },
+          where: { id: item.product?.id || item.id },
           data: {
             stock: {
               decrement: item.quantity
