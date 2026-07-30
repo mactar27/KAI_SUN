@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import { ShopContext } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
@@ -8,6 +8,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
   const { variants } = group;
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentProduct = variants[currentIndex];
+  const navigate = useNavigate();
   
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
@@ -122,7 +123,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
             e.preventDefault();
             e.stopPropagation();
             addToCart({ id: currentProduct.id, name: currentProduct.name, price: 25000, image: currentProduct.image + '?width=600&height=600' });
-            alert("Lunettes ajoutées au panier !");
+            navigate('/panier');
           }}
         >
           Ajouter

@@ -169,7 +169,10 @@ const ProductDetail = () => {
             <button 
               className="btn-primary" 
               style={{ width: '100%', padding: '20px', fontSize: '1.2rem', marginBottom: '32px' }}
-              onClick={() => addToCart({ id: product.id, name: product.name, price: 25000, image: product.image + '?width=600&height=600' })}
+              onClick={() => {
+                addToCart({ id: product.id, name: product.name, price: 25000, image: product.image + '?width=600&height=600' });
+                navigate('/panier');
+              }}
             >
               AJOUTER AU PANIER
             </button>

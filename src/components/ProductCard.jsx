@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(ShopContext);
+  const navigate = useNavigate();
 
   return (
     <div className="product-card group">
@@ -30,7 +32,7 @@ const ProductCard = ({ product }) => {
             e.preventDefault();
             e.stopPropagation();
             addToCart(product);
-            alert("Lunettes ajoutées au panier !");
+            navigate('/panier');
           }}
           disabled={product.stock === 0}
           style={{ cursor: product.stock === 0 ? 'not-allowed' : 'pointer', opacity: product.stock === 0 ? 0.5 : '' }}
