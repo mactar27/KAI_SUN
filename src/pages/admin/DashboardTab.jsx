@@ -107,15 +107,16 @@ const DashboardTab = ({ orders, products }) => {
       <div className="dashboard-grid">
         
         {/* Left Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', minWidth: 0 }}>
           
           {/* Recent Orders */}
-          <div style={{ background: '#fff', borderRadius: '16px', padding: '24px', border: '1px solid #eaeaea', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+          <div style={{ background: '#fff', borderRadius: '16px', padding: '24px', border: '1px solid #eaeaea', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', overflow: 'hidden' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700 }}>Commandes récentes</h2>
             </div>
             
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <div style={{ overflowX: 'auto', width: '100%' }}>
+              <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
                 <tr style={{ background: '#fafafa' }}>
                   <th style={{ padding: '12px 16px', fontSize: '0.75rem', textTransform: 'uppercase', color: '#888', fontWeight: 600 }}>Commande</th>
@@ -138,18 +139,19 @@ const DashboardTab = ({ orders, products }) => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
           </div>
 
         </div>
 
         {/* Right Column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', minWidth: 0 }}>
           
           {/* Revenue Chart */}
-          <div style={{ background: '#fff', borderRadius: '16px', padding: '24px', border: '1px solid #eaeaea', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+          <div style={{ background: '#fff', borderRadius: '16px', padding: '24px', border: '1px solid #eaeaea', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', overflow: 'hidden' }}>
             <h2 style={{ margin: '0 0 20px 0', fontSize: '1.25rem', fontWeight: 700 }}>Chiffre d'affaires</h2>
-            <div style={{ height: '240px' }}>
+            <div style={{ height: '240px', width: '100%', minWidth: 0 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={chartData}>
                   <defs>

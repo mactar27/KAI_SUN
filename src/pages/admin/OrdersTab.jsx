@@ -37,7 +37,7 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
       </div>
       
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+        <table style={{ width: '100%', minWidth: '1000px', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ background: '#fafafa', borderBottom: '1px solid #eaeaea' }}>
               <th style={{ padding: '16px 24px', fontSize: '0.75rem', textTransform: 'uppercase', color: '#888', fontWeight: 600, letterSpacing: '0.5px' }}>Commande</th>
@@ -141,7 +141,8 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, products }) => {
               );
             })}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
     </div>
   );

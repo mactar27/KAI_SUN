@@ -84,39 +84,37 @@ const PromoTab = ({ adminToken }) => {
       </form>
 
       {loading ? <p>Chargement...</p> : (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
-              <th style={{ padding: '12px 8px' }}>Code</th>
-              <th style={{ padding: '12px 8px' }}>Réduction</th>
-              <th style={{ padding: '12px 8px' }}>Statut</th>
-              <th style={{ padding: '12px 8px' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {promos.length === 0 ? (
-              <tr><td colSpan="4" style={{ padding: '16px', textAlign: 'center', color: '#666' }}>Aucun code promo créé.</td></tr>
-            ) : promos.map(promo => (
-              <tr key={promo.id} style={{ borderBottom: '1px solid #eee' }}>
-                <td style={{ padding: '12px 8px', fontWeight: 'bold' }}>{promo.code}</td>
-                <td style={{ padding: '12px 8px' }}>-{promo.discountPercent}%</td>
-                <td style={{ padding: '12px 8px' }}>
-                  <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', background: promo.isActive ? '#e8f5e9' : '#ffebee', color: promo.isActive ? '#2e7d32' : '#c62828' }}>
-                    {promo.isActive ? 'Actif' : 'Inactif'}
-                  </span>
-                </td>
-                <td style={{ padding: '12px 8px', display: 'flex', gap: '8px' }}>
-                  <button onClick={() => togglePromo(promo.id, !promo.isActive)} style={{ padding: '6px 12px', background: '#f5f5f5', border: '1px solid #ddd', borderRadius: '4px', cursor: 'pointer' }}>
-                    {promo.isActive ? 'Désactiver' : 'Activer'}
-                  </button>
-                  <button onClick={() => deletePromo(promo.id)} style={{ padding: '6px 12px', background: '#ffebee', color: '#c62828', border: '1px solid #ef9a9a', borderRadius: '4px', cursor: 'pointer' }}>
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
+                <th style={{ padding: '12px 8px' }}>Code</th>
+                <th style={{ padding: '12px 8px' }}>Réduction</th>
+                <th style={{ padding: '12px 8px' }}>Statut</th>
+                <th style={{ padding: '12px 8px' }}>Actions</th>
+            </thead>
+            <tbody>
+              {promos.length === 0 ? (
+                <tr><td colSpan="4" style={{ padding: '16px', textAlign: 'center', color: '#666' }}>Aucun code promo créé.</td></tr>
+              ) : promos.map(promo => (
+                <tr key={promo.id} style={{ borderBottom: '1px solid #eee' }}>
+                  <td style={{ padding: '12px 8px', fontWeight: 600 }}>{promo.code}</td>
+                  <td style={{ padding: '12px 8px' }}>{promo.discount_percent}%</td>
+                  <td style={{ padding: '12px 8px' }}>
+                    <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '0.8rem', background: promo.is_active ? '#e6f4ea' : '#fce8e6', color: promo.is_active ? '#137333' : '#c5221f' }}>
+                      {promo.is_active ? 'Actif' : 'Désactivé'}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px 8px' }}>
+                    <button onClick={() => togglePromo(promo.id, !promo.is_active)} style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>
+                      {promo.is_active ? 'Désactiver' : 'Activer'}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

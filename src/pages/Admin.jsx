@@ -413,7 +413,7 @@ const Admin = () => {
               {loadingAnalytics ? <p>Chargement des statistiques...</p> : (
                 <>
                   {products.some(p => (analytics.views[p.ref] || 0) > 0 || (analytics.cart[p.ref] || 0) > 0) ? (
-                    <div style={{ width: '100%', height: '450px' }}>
+                    <div style={{ width: '100%', height: '450px', minWidth: 0 }}>
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                           data={products.map(p => ({
