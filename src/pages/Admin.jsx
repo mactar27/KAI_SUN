@@ -49,7 +49,9 @@ const Admin = () => {
   const fetchOrders = async () => {
     setLoadingOrders(true);
     try {
-      const res = await fetch('/api/orders');
+      const res = await fetch('/api/orders', {
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      });
       if (res.ok) {
         const data = await res.json();
         setOrders(data);
@@ -103,7 +105,9 @@ const Admin = () => {
   useEffect(() => {
     const pollOrders = async () => {
       try {
-        const res = await fetch('/api/orders');
+        const res = await fetch('/api/orders', {
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        });
         if (res.ok) {
           const data = await res.json();
           // If we have a previous count and the new count is higher, trigger notification
