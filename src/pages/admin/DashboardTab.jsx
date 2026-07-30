@@ -69,6 +69,12 @@ const DashboardTab = ({ orders, products }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <style>{`
+        .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+        @media (max-width: 1024px) {
+          .dashboard-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
       
       {/* Header text */}
       <div>
@@ -98,7 +104,7 @@ const DashboardTab = ({ orders, products }) => {
       </div>
 
       {/* Main Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
+      <div className="dashboard-grid">
         
         {/* Left Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>

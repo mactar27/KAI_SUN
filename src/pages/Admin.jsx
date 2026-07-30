@@ -11,7 +11,7 @@ import CustomersTab from './admin/CustomersTab';
 import DashboardTab from './admin/DashboardTab';
 import OrdersTab from './admin/OrdersTab';
 import ProductsTab from './admin/ProductsTab';
-import { Home, Package, ShoppingBag, Users, Star, Ticket, Mail, BarChart2, Settings, LogOut, Bell, Music, Copy, Check } from 'lucide-react';
+import { Home, Package, ShoppingBag, Users, Star, Ticket, Mail, BarChart2, Settings, LogOut, Bell, Music, Copy, Check, Menu, X } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Admin = () => {
@@ -22,7 +22,8 @@ const Admin = () => {
     return <Login />;
   }
 
-  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard', 'products', 'orders', etc.
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Orders State
   const [orders, setOrders] = useState([]);
@@ -176,16 +177,42 @@ const Admin = () => {
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#FAFAFA', fontFamily: 'Inter, sans-serif' }}>
+      <style>{`
+        .admin-layout { display: flex; min-height: 100vh; background: #FAFAFA; font-family: Inter, sans-serif; }
+        .admin-sidebar { width: 260px; background: #0A0A0A; color: #fff; display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; transition: transform 0.3s ease; }
+        .admin-main { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; transition: margin-left 0.3s ease; }
+        .admin-topbar { height: 80px; background: #fff; border-bottom: 1px solid #eaeaea; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; position: sticky; top: 0; z-index: 90; }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: #111; padding: 8px; margin-left: -16px; }
+        .admin-content { padding: 40px; flex: 1; max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 99; }
+        
+        @media (max-width: 768px) {
+          .admin-sidebar { transform: translateX(-100%); }
+          .admin-sidebar.open { transform: translateX(0); }
+          .admin-main { margin-left: 0; }
+          .admin-topbar { padding: 0 20px; }
+          .mobile-menu-btn { display: block; }
+          .admin-content { padding: 20px; }
+          .sidebar-overlay.open { display: block; }
+        }
+      `}</style>
       
+      {/* OVERLAY FOR MOBILE SIDEBAR */}
+      <div className={`sidebar-overlay ${mobileMenuOpen ? 'open' : ''}`} onClick={() => setMobileMenuOpen(false)}></div>
+
       {/* SIDEBAR */}
-      <div style={{ width: '260px', background: '#0A0A0A', color: '#fff', display: 'flex', flexDirection: 'column', position: 'fixed', top: 0, bottom: 0, left: 0, zIndex: 100 }}>
+      <div className={`admin-sidebar ${mobileMenuOpen ? 'open' : ''}`}>
         {/* Logo */}
-        <div style={{ padding: '32px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 900, letterSpacing: '2px', color: '#D4AF37', textTransform: 'uppercase' }}>
-            KAÏA
-          </h2>
-          <div style={{ fontSize: '0.65rem', letterSpacing: '4px', marginTop: '4px', color: '#888' }}>SUNGLASSES</div>
+        <div style={{ padding: '32px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 900, letterSpacing: '2px', color: '#D4AF37', textTransform: 'uppercase' }}>
+              KAÏA
+            </h2>
+            <div style={{ fontSize: '0.65rem', letterSpacing: '4px', marginTop: '4px', color: '#888' }}>SUNGLASSES</div>
+          </div>
+          <button className="mobile-menu-btn" style={{ color: '#fff', marginLeft: 0 }} onClick={() => setMobileMenuOpen(false)}>
+            <X size={24} />
+          </button>
         </div>
 
         {/* Navigation */}
@@ -193,7 +220,7 @@ const Admin = () => {
           {navItems.map(item => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => { setActiveTab(item.id); setMobileMenuOpen(false); }}
               style={{
                 display: 'flex', alignItems: 'center', gap: '12px', width: '100%', padding: '12px 16px',
                 background: activeTab === item.id ? '#D4AF37' : 'transparent',
@@ -245,11 +272,15 @@ const Admin = () => {
       </div>
 
       {/* MAIN CONTENT */}
-      <div style={{ marginLeft: '260px', flex: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div className="admin-main">
         
         {/* Top Header */}
-        <div style={{ height: '80px', background: '#fff', borderBottom: '1px solid #eaeaea', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 40px', position: 'sticky', top: 0, zIndex: 90 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div className="admin-topbar">
+          <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(true)}>
+            <Menu size={24} />
+          </button>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginLeft: 'auto' }}>
             <button 
               onClick={requestNotifications}
               style={{
@@ -269,7 +300,7 @@ const Admin = () => {
         </div>
 
         {/* Dynamic Tab Content */}
-        <div style={{ padding: '40px', flex: 1, maxWidth: '1400px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+        <div className="admin-content">
           {activeTab === 'dashboard' && <DashboardTab orders={orders} products={products} />}
           {activeTab === 'orders' && <OrdersTab orders={orders} loadingOrders={loadingOrders} updateOrderStatus={updateOrderStatus} products={products} />}
           {activeTab === 'products' && <ProductsTab products={products} refreshProducts={refreshProducts} />}
