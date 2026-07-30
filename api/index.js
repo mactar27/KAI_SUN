@@ -124,8 +124,8 @@ app.post('/api/orders', async (req, res) => {
       const newOrder = await tx.orders.create({
         data: {
           total_amount: total,
-          customer_name: (deliveryInfo.firstName + ' ' + deliveryInfo.lastName).trim() || 'Inconnu',
-          address: deliveryInfo.address || 'Inconnue',
+          customer_name: [deliveryInfo.prenom, deliveryInfo.nom].filter(Boolean).join(' ') || 'Inconnu',
+          address: deliveryInfo.adresse || 'Inconnue',
           phone: deliveryInfo.phone || 'Inconnu',
           order_items: {
             create: items.map(item => ({
