@@ -113,7 +113,7 @@ app.get('/api/orders', authMiddleware, async (req, res) => {
 });
 
 app.post('/api/orders', async (req, res) => {
-  const { deliveryInfo, items, total } = req.body;
+  const { deliveryInfo, items, total, promoCodeId } = req.body;
 
   try {
     // Transaction pour créer la commande ET mettre à jour les stocks
@@ -147,6 +147,14 @@ app.post('/api/orders', async (req, res) => {
               decrement: item.quantity
             }
           }
+        });
+      }
+
+      // 3. Désactiver le code promo si utilisé (usage unique)
+      if (promoCodeId) {
+        await tx.promoCode.update({
+          where: { id: promoCodeId },
+          data: { isActive: false }
         });
       }
 

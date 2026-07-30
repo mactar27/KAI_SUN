@@ -56,7 +56,7 @@ const Checkout = () => {
     if (cart.length === 0) return;
     
     // Save to database
-    placeOrder(formData, discountAmount);
+    placeOrder(formData, discountAmount, appliedPromo?.id);
 
     // Removed WhatsApp redirection per user request
     

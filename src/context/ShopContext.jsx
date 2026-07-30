@@ -122,15 +122,14 @@ export const ShopProvider = ({ children }) => {
     setCart([]);
   };
 
-  const placeOrder = async (deliveryInfo, discount = 0) => {
+  const placeOrder = async (deliveryInfo, discount = 0, promoCodeId = null) => {
     const orderTotal = calculateCartTotal(cart);
     const finalTotal = Math.max(0, orderTotal - discount);
     const orderData = {
-      customer_name: `${deliveryInfo.prenom} ${deliveryInfo.nom}`,
-      phone: deliveryInfo.phone,
-      address: `${deliveryInfo.adresse}, ${deliveryInfo.ville}`,
-      total_amount: finalTotal,
-      items: cart.map(item => ({ id: item.product.id, quantity: item.quantity }))
+      deliveryInfo,
+      items: cart,
+      total: finalTotal,
+      promoCodeId
     };
 
     try {
