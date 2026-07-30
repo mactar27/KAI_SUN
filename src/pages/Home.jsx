@@ -119,8 +119,10 @@ const VariantSliderCard = ({ group, addToCart }) => {
           className="btn-primary" 
           style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
             addToCart({ id: currentProduct.id, name: currentProduct.name, price: 25000, image: currentProduct.image + '?width=600&height=600' });
+            alert("Lunettes ajoutées au panier !");
           }}
         >
           Ajouter

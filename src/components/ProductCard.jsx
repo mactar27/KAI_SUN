@@ -26,7 +26,12 @@ const ProductCard = ({ product }) => {
         </div>
         <button 
           className="add-to-cart-btn"
-          onClick={() => addToCart(product)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(product);
+            alert("Lunettes ajoutées au panier !");
+          }}
           disabled={product.stock === 0}
           style={{ cursor: product.stock === 0 ? 'not-allowed' : 'pointer', opacity: product.stock === 0 ? 0.5 : '' }}
         >
