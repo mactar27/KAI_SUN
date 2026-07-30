@@ -9,6 +9,7 @@ const Cart = () => {
   const { cart, removeFromCart } = useContext(ShopContext);
 
   const total = calculateCartTotal(cart);
+  const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   if (cart.length === 0) {
     return (
@@ -66,9 +67,9 @@ const Cart = () => {
               <span>Livraison</span>
               <span>Calculée à l'étape suivante</span>
             </div>
-            {cart.reduce((acc, item) => acc + item.quantity, 0) >= 2 && (
-              <div style={{ padding: '0.8rem', backgroundColor: '#e6f7ff', border: '1px solid #91d5ff', borderRadius: '4px', marginBottom: '1rem', color: '#0050b3', fontSize: '0.85rem' }}>
-                🎉 Promo appliquée : La deuxième paire est à 5 000 FCFA !
+            {totalQuantity >= 2 && (
+              <div style={{ background: '#e8f5e9', color: '#2e7d32', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontWeight: 600, fontSize: '0.9rem' }}>
+                🎉 Promo appliquée : La deuxième paire est à 10 000 FCFA !
               </div>
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: '1.3rem', marginBottom: '3rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem', color: 'var(--color-primary)' }}>
