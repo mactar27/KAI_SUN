@@ -6,6 +6,7 @@ import WomenCollection from './pages/WomenCollection';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Admin from './pages/Admin';
+import Invoice from './pages/admin/Invoice';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import Chatbot from './components/Chatbot';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/panier" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/invoice/:id" element={<Invoice />} />
           
           {/* Legal & Contact Routes */}
           <Route path="/cgv" element={<CGV />} />

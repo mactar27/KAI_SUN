@@ -6,6 +6,7 @@ import MusicTab from './admin/MusicTab';
 import PromoTab from './admin/PromoTab';
 import ReviewTab from './admin/ReviewTab';
 import SettingsTab from './admin/SettingsTab';
+import CustomersTab from './admin/CustomersTab';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 const Admin = () => {
   const { adminToken, logoutAdmin } = useContext(ShopContext);
@@ -342,6 +343,11 @@ const Admin = () => {
                 🎟️ Codes Promo
               </button>
               <button 
+                onClick={() => setActiveTab('customers')}
+                style={{ padding: '8px 16px', background: activeTab === 'customers' ? '#111' : '#eee', color: activeTab === 'customers' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
+                👥 Fichier Client
+              </button>
+              <button 
                 onClick={() => setActiveTab('reviews')}
                 style={{ padding: '8px 16px', background: activeTab === 'reviews' ? '#111' : '#eee', color: activeTab === 'reviews' ? '#fff' : '#333', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}>
                 ⭐ Avis Clients
@@ -400,14 +406,19 @@ const Admin = () => {
                         <p style={{ margin: '4px 0' }}>📞 {order.phone}</p>
                         <p style={{ margin: '4px 0', fontSize: '14px' }}>📍 {order.address}</p>
                         
-                        <a 
-                          href={getWhatsAppLink(order)} 
-                          target="_blank" 
-                          rel="noreferrer"
-                          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginTop: '12px', padding: '8px 16px', background: '#25D366', color: '#fff', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px' }}
-                        >
-                          💬 Contacter sur WhatsApp
-                        </a>
+                        <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                          <a 
+                            href={getWhatsAppLink(order)} 
+                            target="_blank" 
+                            rel="noreferrer"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: '#25D366', color: '#fff', borderRadius: '8px', textDecoration: 'none', fontWeight: 700, fontSize: '14px' }}
+                          >
+                            💬 Contacter sur WhatsApp
+                          </a>
+                          <Link to={`/admin/invoice/${order.id}`} target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#111', color: '#fff', textDecoration: 'none', padding: '8px 16px', borderRadius: '8px', fontWeight: 700, fontSize: '14px' }}>
+                            📄 Générer Facture
+                          </Link>
+                        </div>
                       </div>
                       
                       <div>

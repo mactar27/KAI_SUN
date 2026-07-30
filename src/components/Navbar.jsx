@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from './../context/ShopContext';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, Truck, Lock, RefreshCw } from 'lucide-react';
 import AudioPlayer from './AudioPlayer';
 
 const Navbar = () => {
@@ -9,45 +9,29 @@ const Navbar = () => {
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const [bannerText, setBannerText] = useState(null); // null means loading, '' means disabled
-
   // Determine if we are on the home page with the dark hero image
   const isHomePage = location.pathname === '/';
   const navColor = isHomePage ? '#faf9f6' : '#0d2823';
 
-  // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
-  useEffect(() => {
-    fetch('/api/settings')
-      .then(res => res.json())
-      .then(data => {
-        setBannerText(data.announcement_text || '');
-      })
-      .catch(e => {
-        console.error(e);
-        setBannerText('');
-      });
-  }, []);
-
   return (
     <>
-      {bannerText && (
-        <div className="promo-bar" id="promoBar">
-          <div className="promo-track">
-            <span>{bannerText}</span>
-            <span>{bannerText}</span>
-            <span>{bannerText}</span>
-            <span>{bannerText}</span>
-            <span>{bannerText}</span>
-            <span>{bannerText}</span>
-          </div>
+      <div style={{ background: '#111', color: '#fff', fontSize: '0.75rem', fontWeight: 500, padding: '10px 0', display: 'flex', justifyContent: 'center', gap: '30px', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 101, letterSpacing: '0.5px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Truck size={14} /> Livraison offerte à Dakar
         </div>
-      )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Lock size={14} /> Paiement sécurisé
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <RefreshCw size={14} /> Retours sous 14 jours
+        </div>
+      </div>
 
-      <nav id="nav" style={{ '--nav-color': navColor, top: bannerText ? '35px' : '0' }}>
+      <nav id="nav" style={{ '--nav-color': navColor, top: '35px' }}>
         <div className="wrap">
           <Link to="/" className="logo">
             KAÏA <span>SUNGLASSES</span>
