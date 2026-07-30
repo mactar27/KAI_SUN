@@ -390,7 +390,7 @@ const Home = () => {
           </div>
 
           <div>
-            <img src="/images/atelier.png" alt="Atelier Kaïa" style={{ width: '100%', borderRadius: '28px', boxShadow: '0 15px 35px rgba(0,0,0,0.08)', display: 'block', objectFit: 'cover' }} />
+            <img src="/images/atelier.png" alt="Atelier Kaïa" style={{ width: '100%', aspectRatio: '16/9', maxHeight: '380px', borderRadius: '24px', boxShadow: '0 15px 35px rgba(0,0,0,0.08)', display: 'block', objectFit: 'cover', objectPosition: 'center 60%' }} />
           </div>
 
         </div>
