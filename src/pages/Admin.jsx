@@ -98,10 +98,12 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    fetchOrders();
-    fetchAnalytics();
-    fetchNewsletter();
-  }, []);
+    if (adminToken) {
+      fetchOrders();
+      fetchAnalytics();
+      fetchNewsletter();
+    }
+  }, [adminToken]);
 
   // Polling for new orders
   useEffect(() => {
@@ -470,10 +472,22 @@ const Admin = () => {
               {loadingAnalytics ? <p>Chargement des statistiques...</p> : (
                 <>
                   {(() => {
-                    const dataSource = selectedDate === 'total' ? analytics : (analytics.daily[selectedDate] || { views: {}, cart: {} });
-                    const hasData = products.some(p => (dataSource.views?.[p.ref] || 0) > 0 || (dataSource.cart?.[p.ref] || 0) > 0);
+                    const dataSource = selectedDate === 'total' ? analytics : (analytics.daily?.[selectedDate] || { views: {}, cart: {} });
                     
-                    if (!hasData) {
+                    const viewsKeys = Object.keys(dataSource.views || {});
+                    const cartKeys = Object.keys(dataSource.cart || {});
+                    const allKeys = Array.from(new Set([...viewsKeys, ...cartKeys]));
+
+                    const chartData = allKeys.map(key => {
+                      const prod = products.find(p => p.ref === key || p.id === key);
+                      return {
+                        name: prod?.ref || key,
+                        vues: dataSource.views?.[key] || 0,
+                        paniers: dataSource.cart?.[key] || 0
+                      };
+                    }).filter(d => d.vues > 0 || d.paniers > 0);
+                    
+                    if (chartData.length === 0) {
                       return <p style={{ textAlign: 'center', color: '#888', padding: '40px 0' }}>Aucune donnée d'interaction pour cette période.</p>;
                     }
                     
@@ -481,11 +495,7 @@ const Admin = () => {
                       <div style={{ width: '100%', height: '450px', minWidth: 0 }}>
                         <ResponsiveContainer width="100%" height="100%">
                           <BarChart
-                            data={products.map(p => ({
-                              name: p.ref,
-                              vues: dataSource.views?.[p.ref] || 0,
-                              paniers: dataSource.cart?.[p.ref] || 0,
-                            })).filter(d => d.vues > 0 || d.paniers > 0)}
+                            data={chartData}
                             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                           >
                           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eaeaea" />
