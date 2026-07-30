@@ -49,30 +49,78 @@ app.post('/api/auth/login', (req, res) => {
 // --- PRODUCTS API ---
 
 app.get('/api/products', async (req, res) => {
-  const products = await prisma.product.findMany();
-  res.json(products);
+  try {
+    const products = await prisma.products.findMany();
+    res.json(products);
+  } catch (e) {
+    console.error('GET /api/products Error:', e);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/products', authMiddleware, async (req, res) => {
+  const { id, action, groupId, stock, ...rest } = req.body;
+  try {
+    if (action === 'updateGroup') {
+      const updated = await prisma.products.update({
+        where: { id: String(id) },
+        data: { groupId }
+      });
+      return res.json(updated);
+    }
+    if (action === 'updateStock') {
+      const updated = await prisma.products.update({
+        where: { id: String(id) },
+        data: { stock: parseInt(stock) }
+      });
+      return res.json(updated);
+    }
+    const updated = await prisma.products.update({
+      where: { id: String(id) },
+      data: { ...rest, ...(stock !== undefined ? { stock: parseInt(stock) } : {}) }
+    });
+    res.json(updated);
+  } catch (e) {
+    console.error('PUT /api/products Error:', e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 app.post('/api/products', authMiddleware, async (req, res) => {
-  const product = await prisma.product.create({
-    data: req.body
-  });
-  res.json(product);
+  try {
+    const product = await prisma.products.create({
+      data: req.body
+    });
+    res.json(product);
+  } catch (e) {
+    console.error('POST /api/products Error:', e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 app.put('/api/products/:id', authMiddleware, async (req, res) => {
-  const product = await prisma.product.update({
-    where: { id: parseInt(req.params.id) },
-    data: req.body
-  });
-  res.json(product);
+  try {
+    const product = await prisma.products.update({
+      where: { id: req.params.id },
+      data: req.body
+    });
+    res.json(product);
+  } catch (e) {
+    console.error('PUT /api/products/:id Error:', e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 app.delete('/api/products/:id', authMiddleware, async (req, res) => {
-  await prisma.product.delete({
-    where: { id: parseInt(req.params.id) }
-  });
-  res.json({ success: true });
+  try {
+    await prisma.products.delete({
+      where: { id: req.params.id }
+    });
+    res.json({ success: true });
+  } catch (e) {
+    console.error('DELETE /api/products Error:', e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // --- ORDERS API ---
