@@ -145,6 +145,9 @@ const Home = () => {
   return (
     <div style={{ paddingTop: '0' }}>
       <header className="hero" style={{ 
+        backgroundImage: 'url(/images/hero_pool.png)', 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center 80%', 
         minHeight: '100svh', 
         display: 'flex', 
         flexDirection: 'column', 
@@ -156,36 +159,6 @@ const Home = () => {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        {/* Background Video */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 80%',
-            zIndex: 0
-          }}
-        >
-          <source src="/images/hero_video.mp4" type="video/mp4" />
-          <source src="/images/hero_video.mov" type="video/quicktime" />
-        </video>
-        {/* Overlay gradient for readability */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(to top, rgba(244, 239, 226, 0.85) 0%, rgba(244, 239, 226, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%)',
-          zIndex: 1
-        }}></div>
         <div style={{ position: 'relative', width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', zIndex: 2 }}>
           
           {/* Title */}
