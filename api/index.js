@@ -122,11 +122,11 @@ app.post('/api/orders', async (req, res) => {
       const newOrder = await tx.order.create({
         data: {
           total,
-          prenom: deliveryInfo.prenom,
-          nom: deliveryInfo.nom,
-          adresse: deliveryInfo.adresse,
-          cp: deliveryInfo.phone, // Map phone to the 'cp' database column
-          ville: deliveryInfo.ville,
+          prenom: deliveryInfo.firstName || 'Inconnu',
+          nom: deliveryInfo.lastName || 'Inconnu',
+          adresse: deliveryInfo.address || 'Inconnue',
+          cp: deliveryInfo.phone || 'Inconnu',
+          ville: deliveryInfo.city || 'Dakar',
           items: {
             create: items.map(item => ({
               productId: item.product.id,

@@ -6,7 +6,8 @@ const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:3000/api';
 
 export const calculateCartTotal = (cart) => {
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  return Math.floor(totalQuantity / 2) * 35000 + (totalQuantity % 2) * 25000;
+  // 1 pair = 25000, 2 pairs = 40000 (10000 discount on the second pair)
+  return Math.floor(totalQuantity / 2) * 40000 + (totalQuantity % 2) * 25000;
 };
 
 export const ShopProvider = ({ children }) => {
@@ -157,17 +158,21 @@ export const ShopProvider = ({ children }) => {
     };
 
     try {
-      await fetch(`/api/orders`, {
+      const res = await fetch(`/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
       });
+      if (!res.ok) {
+        throw new Error('Erreur lors de la création de la commande');
+      }
       // Rafraichir les données depuis le serveur après commande
       await fetchOrders();
       await fetchProducts();
       clearCart();
     } catch (error) {
-      console.error("Erreur lors de la commande", error);
+      console.error('Erreur placeOrder:', error);
+      throw error;
     }
   };
 

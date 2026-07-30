@@ -51,25 +51,29 @@ const Checkout = () => {
     setFormData({...formData, [e.target.id]: e.target.value});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (cart.length === 0) return;
     
-    // Save to database
-    placeOrder(formData, discountAmount, appliedPromo?.id);
+    try {
+      // Save to database
+      await placeOrder(formData, discountAmount, appliedPromo?.id);
 
-    // E-commerce Tracking: Purchase
-    if (typeof window !== 'undefined') {
-      if (window.fbq) {
-        window.fbq('track', 'Purchase', { value: finalTotal, currency: 'XOF' });
+      // E-commerce Tracking: Purchase
+      if (typeof window !== 'undefined') {
+        if (window.fbq) {
+          window.fbq('track', 'Purchase', { value: finalTotal, currency: 'XOF' });
+        }
+        if (window.gtag) {
+          window.gtag('event', 'purchase', { value: finalTotal, currency: 'XOF' });
+        }
       }
-      if (window.gtag) {
-        window.gtag('event', 'purchase', { value: finalTotal, currency: 'XOF' });
-      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      alert("Une erreur s'est produite lors de la validation de votre commande. Veuillez réessayer.");
+      console.error(err);
     }
-
-    clearCart(); // Make sure to clear cart upon order
-    setIsSubmitted(true);
   };
 
   if (isSubmitted) {
