@@ -57,7 +57,7 @@ const Cart = () => {
         </div>
         
         <div>
-          <div className="glass-panel" style={{ padding: '3rem 2rem', borderRadius: '0px', backgroundColor: '#fafafa', border: '1px solid var(--color-border)' }}>
+          <div className="glass-panel checkout-panel">
             <h3 style={{ marginBottom: '2rem', fontSize: '1.4rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '1rem', fontFamily: 'var(--font-body)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '1px' }}>Récapitulatif</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', color: 'var(--color-text-light)' }}>
               <span>Sous-total</span>

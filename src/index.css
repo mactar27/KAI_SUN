@@ -422,3 +422,13 @@
       width: auto;
     }
   }
+  
+  /* Checkout & Cart Panels */
+  .checkout-panel { padding: 3rem; border-radius: 0px; background-color: #fafafa; border: 1px solid var(--color-border); }
+  @media(max-width: 768px) {
+    .checkout-panel { padding: 1.5rem 1rem; }
+    
+    /* Make the promo input and button wrap correctly */
+    .promo-row { flex-wrap: wrap; }
+    .promo-row button { flex: 1 1 100%; margin-top: 4px; padding: 12px 20px !important; }
+  }

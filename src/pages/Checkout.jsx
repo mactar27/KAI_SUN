@@ -110,7 +110,7 @@ const Checkout = () => {
     <div className="section container animate-fade-in" style={{ paddingTop: '150px', maxWidth: '800px', minHeight: '80vh' }}>
       <h1 className="section-title" style={{ textAlign: 'left', marginBottom: '4rem' }}>Informations de Livraison</h1>
       
-      <div className="glass-panel" style={{ padding: '3rem', borderRadius: '0px', backgroundColor: '#fafafa', border: '1px solid var(--color-border)' }}>
+      <div className="glass-panel checkout-panel">
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           
           <div className="grid grid-cols-2">
@@ -142,7 +142,7 @@ const Checkout = () => {
 
           <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #eee' }}>
             <label style={labelStyle}>Avez-vous un code promo ?</label>
-            <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+            <div className="promo-row" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
               <input 
                 type="text" 
                 placeholder="Entrez votre code" 
