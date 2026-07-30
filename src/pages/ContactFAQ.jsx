@@ -64,7 +64,7 @@ const ContactFAQ = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Phone size={20} color="#cba75c" />
-                <a href="tel:+221781925177" style={{ color: '#111', textDecoration: 'none' }}>+221 78 192 51 77 (WhatsApp)</a>
+                <a href="tel:+22100000000" style={{ color: '#111', textDecoration: 'none' }}>+221 XX XXX XX XX (WhatsApp)</a>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <MapPin size={20} color="#cba75c" />

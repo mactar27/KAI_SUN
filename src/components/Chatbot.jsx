@@ -18,13 +18,6 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Open chatbot automatically on first visit after a short delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,27 +57,9 @@ const Chatbot = () => {
     <>
       {/* Chat Button */}
       <button 
+        className="chatbot-btn"
         onClick={() => setIsOpen(true)}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          left: '24px',
-          width: '56px',
-          height: '56px',
-          borderRadius: '50%',
-          background: '#fff',
-          color: '#3a4a35',
-          border: '1px solid rgba(0,0,0,0.05)',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-          display: isOpen ? 'none' : 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: 1000,
-          transition: 'transform 0.2s ease',
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        style={{ display: isOpen ? 'none' : 'flex' }}
       >
         <div style={{
           fontFamily: "'Playfair Display', serif",
@@ -111,22 +86,7 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div style={{
-          position: 'fixed',
-          bottom: '24px',
-          left: '24px',
-          width: '350px',
-          height: '500px',
-          maxHeight: '80vh',
-          background: '#fff',
-          borderRadius: '24px',
-          boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
-          display: 'flex',
-          flexDirection: 'column',
-          zIndex: 1000,
-          overflow: 'hidden',
-          border: '1px solid rgba(0,0,0,0.05)'
-        }}>
+        <div className="chatbot-window">
           {/* Header */}
           <div style={{
             background: 'var(--kaia-cream)',
