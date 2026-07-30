@@ -164,7 +164,10 @@ export const ShopProvider = ({ children }) => {
         body: JSON.stringify(orderData)
       });
       if (!res.ok) {
-        throw new Error('Erreur lors de la création de la commande');
+        let errData = {};
+        try { errData = await res.json(); } catch(e) {}
+        console.error('API Error /orders:', errData);
+        throw new Error(errData.error || 'Erreur lors de la création de la commande');
       }
       // Rafraichir les données depuis le serveur après commande
       await fetchOrders();
