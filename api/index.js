@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import { handleUpload } from '@vercel/blob/client';
+import pool from './db.js';
 
 // Force explicit TiDB connection string to guarantee sslaccept=strict is present
 // because the user's Vercel DATABASE_URL might be missing it.
@@ -77,41 +78,46 @@ app.delete('/api/products/:id', authMiddleware, async (req, res) => {
 // --- ORDERS API ---
 
 app.get('/api/orders', authMiddleware, async (req, res) => {
-  const orders = await prisma.orders.findMany({
-    include: {
-      order_items: {
-        include: {
-          products: true
+  try {
+    const orders = await prisma.orders.findMany({
+      include: {
+        order_items: {
+          include: {
+            products: true
+          }
         }
-      }
-    },
-    orderBy: { created_at: 'desc' }
-  });
+      },
+      orderBy: { created_at: 'desc' }
+    });
 
-  // Re-format pour correspondre au format du Frontend
-  const formattedOrders = orders.map(order => ({
-    id: order.id,
-    date: order.created_at ? order.created_at.toISOString() : new Date().toISOString(),
-    total: order.total_amount,
-    status: order.status || 'Nouvelle',
-    deliveryInfo: {
-      prenom: order.customer_name.split(' ')[0] || '',
-      nom: order.customer_name.split(' ').slice(1).join(' ') || '',
-      adresse: order.address,
-      phone: order.phone,
-      ville: 'Dakar'
-    },
-    items: order.order_items.map(item => ({
-      quantity: item.quantity,
-      product: {
-        ...(item.products || {}),
-        price: item.products ? item.products.price : 0,
-        costPrice: 0
-      }
-    }))
-  }));
+    // Re-format pour correspondre au format du Frontend
+    const formattedOrders = orders.map(order => ({
+      id: order.id,
+      date: order.created_at ? order.created_at.toISOString() : new Date().toISOString(),
+      total: order.total_amount,
+      status: order.status || 'Nouvelle',
+      deliveryInfo: {
+        prenom: order.customer_name.split(' ')[0] || '',
+        nom: order.customer_name.split(' ').slice(1).join(' ') || '',
+        adresse: order.address,
+        phone: order.phone,
+        ville: 'Dakar'
+      },
+      items: order.order_items.map(item => ({
+        quantity: item.quantity,
+        product: {
+          ...(item.products || {}),
+          price: item.products ? item.products.price : 0,
+          costPrice: 0
+        }
+      }))
+    }));
 
-  res.json(formattedOrders);
+    res.json(formattedOrders);
+  } catch (error) {
+    console.error('GET /api/orders Error:', error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.post('/api/orders', async (req, res) => {
@@ -163,6 +169,71 @@ app.post('/api/orders', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to place order' });
+  }
+});
+
+// --- ANALYTICS API ---
+
+app.get('/api/analytics', authMiddleware, async (req, res) => {
+  try {
+    const [totalStats] = await pool.query(`
+      SELECT event_type, product_ref, COUNT(*) as count 
+      FROM analytics 
+      GROUP BY event_type, product_ref
+    `);
+    const [dailyStats] = await pool.query(`
+      SELECT DATE_FORMAT(timestamp, '%Y-%m-%d') as date, event_type, product_ref, COUNT(*) as count 
+      FROM analytics 
+      WHERE timestamp >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+      GROUP BY DATE_FORMAT(timestamp, '%Y-%m-%d'), event_type, product_ref
+      ORDER BY date ASC
+    `);
+    const result = { views: {}, cart: {}, daily: {} };
+    totalStats.forEach(row => {
+      if (row.event_type === 'view') result.views[row.product_ref] = row.count;
+      if (row.event_type === 'cart') result.cart[row.product_ref] = row.count;
+    });
+    dailyStats.forEach(row => {
+      if (!result.daily[row.date]) result.daily[row.date] = { views: {}, cart: {} };
+      if (row.event_type === 'view') result.daily[row.date].views[row.product_ref] = row.count;
+      if (row.event_type === 'cart') result.daily[row.date].cart[row.product_ref] = row.count;
+    });
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/analytics', async (req, res) => {
+  try {
+    const { event_type, product_ref } = req.body;
+    if (!event_type || !product_ref) return res.status(400).json({ error: 'Missing parameters' });
+    await pool.query('INSERT INTO analytics (event_type, product_ref) VALUES (?, ?)', [event_type, product_ref]);
+    res.status(201).json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// --- CHAT API ---
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { GoogleGenAI } = await import('@google/genai');
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    const { messages } = req.body;
+    if (!messages || !Array.isArray(messages)) return res.status(400).json({ error: 'Invalid request' });
+    const [products] = await pool.query('SELECT * FROM products');
+    const catalogText = products.map(p => `- Modèle: ${p.name} (Réf: ${p.ref}, Genre: ${p.gender})`).join('\n');
+    const systemInstruction = `Tu es l'assistant virtuel de KAÏA SUNGLASSES, une marque premium basée à Dakar. Réponds en français, avec un ton chic et chaleureux. Prix unique: 25 000 FCFA. Catalogue: ${catalogText}`;
+    const geminiMessages = messages.map(msg => ({ role: msg.role === 'user' ? 'user' : 'model', parts: [{ text: msg.content }] }));
+    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: geminiMessages, config: { systemInstruction, temperature: 0.7 } });
+    res.status(200).json({ text: response.text });
+  } catch (error) {
+    console.error('Chat error:', error);
+    res.status(500).json({ error: error.message });
   }
 });
 

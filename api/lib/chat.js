@@ -1,5 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
-import pool from './db.js';
+import pool from '../db.js';
 
 // Initialize the Google Gen AI SDK
 // It automatically picks up process.env.GEMINI_API_KEY
