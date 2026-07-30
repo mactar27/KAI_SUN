@@ -156,10 +156,7 @@ app.post('/api/orders', async (req, res) => {
 
       // 3. Désactiver le code promo si utilisé (usage unique)
       if (promoCodeId) {
-        await tx.promoCode.update({
-          where: { id: promoCodeId },
-          data: { isActive: false }
-        });
+        await pool.query('UPDATE promo_codes SET is_active = 0 WHERE id = ?', [promoCodeId]);
       }
 
       return newOrder;
@@ -167,8 +164,8 @@ app.post('/api/orders', async (req, res) => {
 
     res.json(order);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to place order' });
+    console.error('POST /api/orders Error:', error);
+    res.status(500).json({ error: error.message || 'Failed to place order' });
   }
 });
 
