@@ -156,7 +156,14 @@ app.post('/api/orders', async (req, res) => {
 
       // 3. Désactiver le code promo si utilisé (usage unique)
       if (promoCodeId) {
-        await pool.query('UPDATE promo_codes SET is_active = 0 WHERE id = ?', [promoCodeId]);
+        try {
+          await prisma.promoCode.update({
+            where: { id: promoCodeId },
+            data: { isActive: false }
+          });
+        } catch (e) {
+          console.warn('Could not deactivate promo code:', e.message);
+        }
       }
 
       return newOrder;

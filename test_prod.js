@@ -10,7 +10,7 @@ async function main() {
       ville: 'Dakar'
     },
     items: [
-      { id: 'NDL8298', quantity: 1, price: 10000, costPrice: 5000 }
+      { product: { id: 'NDL8298', price: 12500, costPrice: 5000 }, quantity: 1 }
     ],
     total: 10000
   };
