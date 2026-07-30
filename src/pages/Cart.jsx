@@ -17,6 +17,7 @@ const Cart = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [confirmedDetails, setConfirmedDetails] = useState(null);
 
   const total = calculateCartTotal(cart);
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -25,8 +26,17 @@ const Cart = () => {
     e.preventDefault();
     if (cart.length === 0) return;
     setIsSubmitting(true);
+    const orderTotal = calculateCartTotal(cart);
+    const orderItems = [...cart];
     try {
       await placeOrder(formData, 0, null);
+      setConfirmedDetails({
+        prenom: formData.prenom,
+        phone: formData.phone,
+        adresse: formData.adresse,
+        total: orderTotal,
+        items: orderItems
+      });
       setIsSubmitted(true);
     } catch (err) {
       alert("Une erreur s'est produite lors de la validation. Veuillez réessayer.");
@@ -36,16 +46,71 @@ const Cart = () => {
     }
   };
 
-  if (isSubmitted) {
+  if (isSubmitted && confirmedDetails) {
+    const waText = encodeURIComponent(`Bonjour KAÏA SUN, je viens de passer la commande de ${confirmedDetails.total.toLocaleString()} FCFA pour ${confirmedDetails.prenom} (${confirmedDetails.phone}). Merci de me confirmer la livraison à ${confirmedDetails.adresse} !`);
+    const waUrl = `https://wa.me/221773519128?text=${waText}`;
+
     return (
-      <div className="section container text-center animate-fade-in" style={{ paddingTop: '150px', minHeight: '60vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ fontSize: '64px', marginBottom: '20px' }}>✅</div>
-        <h1 className="section-title" style={{ marginBottom: '1rem' }}>Commande Confirmée !</h1>
-        <p style={{ marginBottom: '2rem', fontSize: '1.2rem', color: '#555', maxWidth: '500px' }}>
-          Merci {formData.prenom} ! Votre commande de <strong>{total.toLocaleString()} FCFA</strong> a bien été enregistrée. 
-          Notre équipe va vous contacter sur WhatsApp au <strong>{formData.phone}</strong> pour organiser la livraison.
-        </p>
-        <Link to="/" onClick={() => setIsSubmitted(false)} className="btn btn-primary">Continuer vos achats</Link>
+      <div className="section container animate-fade-in" style={{ paddingTop: '140px', paddingBottom: '80px', minHeight: '80vh', display: 'flex', justifyContent: 'center' }}>
+        <div className="glass-panel" style={{ maxWidth: '650px', width: '100%', background: '#fff', borderRadius: '24px', border: '1px solid rgba(13, 40, 35, 0.1)', padding: '40px 30px', boxShadow: '0 20px 40px rgba(0,0,0,0.04)', textAlign: 'center' }}>
+          
+          <div style={{ width: '72px', height: '72px', background: 'rgba(102, 165, 155, 0.12)', color: '#4a8f84', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontSize: '32px' }}>
+            ✓
+          </div>
+
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.2rem', color: 'var(--kaia-green)', marginBottom: '12px', fontWeight: 600 }}>
+            Commande Confirmée !
+          </h1>
+          
+          <p style={{ fontSize: '1.05rem', color: '#555', marginBottom: '32px', lineHeight: 1.6 }}>
+            Merci <strong>{confirmedDetails.prenom}</strong> ! Votre commande a bien été enregistrée. Notre équipe prépare vos lunettes pour la livraison à <strong>{confirmedDetails.adresse}</strong>.
+          </p>
+
+          {/* RECAP CARD */}
+          <div style={{ background: '#fcfbf7', border: '1px solid #eee', borderRadius: '16px', padding: '24px', textAlign: 'left', marginBottom: '32px' }}>
+            <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', color: '#888', marginBottom: '16px', fontWeight: 700 }}>Détail de votre commande</h3>
+            
+            {confirmedDetails.items.map((item, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', paddingBottom: '12px', borderBottom: i === confirmedDetails.items.length - 1 ? 'none' : '1px dashed #e0e0e0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <img src={item.product.image} alt={item.product.name} style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', borderRadius: '8px', padding: '4px', border: '1px solid #eee' }} />
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: '0.95rem', color: '#111' }}>{item.product.name}</div>
+                    <div style={{ fontSize: '0.85rem', color: '#777' }}>Qté: {item.quantity}</div>
+                  </div>
+                </div>
+                <div style={{ fontWeight: 700, fontSize: '1rem', color: '#111' }}>
+                  {(item.product.price * item.quantity).toLocaleString()} FCFA
+                </div>
+              </div>
+            ))}
+
+            <div style={{ borderTop: '2px solid #111', paddingTop: '16px', marginTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 800, fontSize: '1.2rem', color: 'var(--kaia-green)' }}>
+              <span>TOTAL PAYABLE À LA LIVRAISON</span>
+              <span>{confirmedDetails.total.toLocaleString()} FCFA</span>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <a 
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'block', width: '100%', padding: '16px', background: '#25D366', color: '#fff', fontWeight: 700, borderRadius: '100px', textDecoration: 'none', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)' }}
+            >
+              💬 Contacter le Service Client sur WhatsApp
+            </a>
+            
+            <Link 
+              to="/" 
+              onClick={() => { setIsSubmitted(false); setConfirmedDetails(null); }} 
+              style={{ display: 'block', width: '100%', padding: '16px', background: '#111', color: '#fff', fontWeight: 600, borderRadius: '100px', textDecoration: 'none', fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px' }}
+            >
+              Continuer mes achats
+            </Link>
+          </div>
+
+        </div>
       </div>
     );
   }
