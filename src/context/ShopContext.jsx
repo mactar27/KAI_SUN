@@ -55,7 +55,7 @@ export const ShopProvider = ({ children }) => {
         setDailyVisits(data.daily || []);
       } else {
         const err = await res.text();
-        console.error('API Error /stats:', err.substring(0, 50));
+        console.error('API Error /stats:', err ? err.substring(0, 50) : 'No error details');
       }
     } catch (e) {
       console.error('Network Error /stats:', e);
@@ -250,7 +250,7 @@ export const ShopProvider = ({ children }) => {
         data = JSON.parse(text);
       } catch (e) {
         console.error("Non-JSON response:", text);
-        return { success: false, error: `Erreur serveur: ${text.substring(0, 60)}` };
+        return { success: false, error: `Erreur serveur: ${text ? text.substring(0, 60) : 'No error details'}` };
       }
       if (data && data.success) {
         setAdminToken(data.token);
