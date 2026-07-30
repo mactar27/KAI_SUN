@@ -438,7 +438,8 @@ const Home = () => {
               }
             }}
           >
-            <input name="email" type="email" placeholder="Votre adresse email..." required style={{ flex: 1, minWidth: '200px', padding: '12px 20px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#fff', outline: 'none' }} />
+            <label htmlFor="newsletter_email" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Adresse email</label>
+            <input id="newsletter_email" name="email" type="email" autoComplete="email" placeholder="Votre adresse email..." required style={{ flex: 1, minWidth: '200px', padding: '12px 20px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: '#fff', outline: 'none' }} />
             <button type="submit" style={{ flexShrink: 0, padding: '12px 24px', background: 'var(--accent)', color: '#fff', border: 'none', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '12px', cursor: 'pointer', transition: 'opacity 0.2s' }}>S'inscrire</button>
           </form>
         </div>

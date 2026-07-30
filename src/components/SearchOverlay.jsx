@@ -80,8 +80,10 @@ const SearchOverlay = () => {
           borderRadius: '12px',
           padding: '12px 16px'
         }}>
-          <Search size={20} color="#888" style={{ marginRight: '12px' }} />
+          <label htmlFor="search_query" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Rechercher</label>
           <input 
+            id="search_query"
+            name="search"
             type="text" 
             placeholder="Rechercher un modèle, une couleur..." 
             value={query}

@@ -183,7 +183,10 @@ const Chatbot = () => {
             borderBottomLeftRadius: '24px',
             borderBottomRightRadius: '24px'
           }}>
+            <label htmlFor="chatbot_input" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Votre question</label>
             <input
+              id="chatbot_input"
+              name="chatbot_message"
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}

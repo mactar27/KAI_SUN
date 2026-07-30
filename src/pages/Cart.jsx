@@ -122,9 +122,12 @@ const Cart = () => {
             {/* FAST DELIVERY FORM */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, marginBottom: '6px', color: '#555' }}>Prénom & Nom *</label>
+                <label htmlFor="cart_prenom" style={{ display: 'block', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, marginBottom: '6px', color: '#555' }}>Prénom & Nom *</label>
                 <input 
+                  id="cart_prenom"
+                  name="name"
                   type="text" 
+                  autoComplete="name"
                   required 
                   placeholder="Ex: Mactar Ndiaye"
                   value={formData.prenom} 
@@ -134,9 +137,12 @@ const Cart = () => {
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, marginBottom: '6px', color: '#555' }}>Téléphone WhatsApp *</label>
+                <label htmlFor="cart_phone" style={{ display: 'block', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, marginBottom: '6px', color: '#555' }}>Téléphone WhatsApp *</label>
                 <input 
+                  id="cart_phone"
+                  name="phone"
                   type="tel" 
+                  autoComplete="tel"
                   required 
                   placeholder="Ex: 77 123 45 67"
                   value={formData.phone} 
@@ -146,9 +152,12 @@ const Cart = () => {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, marginBottom: '6px', color: '#555' }}>Adresse / Quartier de livraison *</label>
+                <label htmlFor="cart_adresse" style={{ display: 'block', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700, marginBottom: '6px', color: '#555' }}>Adresse / Quartier de livraison *</label>
                 <input 
+                  id="cart_adresse"
+                  name="address"
                   type="text" 
+                  autoComplete="street-address"
                   required 
                   placeholder="Ex: Almadies, près du restaurant X"
                   value={formData.adresse} 

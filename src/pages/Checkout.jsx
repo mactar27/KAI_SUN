@@ -116,15 +116,24 @@ const Checkout = () => {
               </div>
             ) : (
               <form onSubmit={submitReview} style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left' }}>
-                <input required type="text" placeholder="Votre nom" value={reviewForm.authorName} onChange={e => setReviewForm({...reviewForm, authorName: e.target.value})} style={{ padding: '14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem' }} />
-                <select value={reviewForm.rating} onChange={e => setReviewForm({...reviewForm, rating: parseInt(e.target.value)})} style={{ padding: '14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem', background: '#fff' }}>
-                  <option value="5">5 Étoiles - Excellent</option>
-                  <option value="4">4 Étoiles - Très bien</option>
-                  <option value="3">3 Étoiles - Moyen</option>
-                  <option value="2">2 Étoiles - Décevant</option>
-                  <option value="1">1 Étoile - Mauvais</option>
-                </select>
-                <textarea required placeholder="Partagez votre expérience d'achat..." value={reviewForm.comment} onChange={e => setReviewForm({...reviewForm, comment: e.target.value})} style={{ padding: '14px', borderRadius: '8px', border: '1px solid #ddd', minHeight: '120px', fontSize: '1rem', fontFamily: 'inherit' }}></textarea>
+                <div>
+                  <label htmlFor="review_author" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>Votre nom</label>
+                  <input id="review_author" name="authorName" required type="text" autoComplete="name" placeholder="Votre nom" value={reviewForm.authorName} onChange={e => setReviewForm({...reviewForm, authorName: e.target.value})} style={{ width: '100%', padding: '14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem' }} />
+                </div>
+                <div>
+                  <label htmlFor="review_rating" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>Note</label>
+                  <select id="review_rating" name="rating" value={reviewForm.rating} onChange={e => setReviewForm({...reviewForm, rating: parseInt(e.target.value)})} style={{ width: '100%', padding: '14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1rem', background: '#fff' }}>
+                    <option value="5">5 Étoiles - Excellent</option>
+                    <option value="4">4 Étoiles - Très bien</option>
+                    <option value="3">3 Étoiles - Moyen</option>
+                    <option value="2">2 Étoiles - Décevant</option>
+                    <option value="1">1 Étoile - Mauvais</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="review_comment" style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>Votre avis</label>
+                  <textarea id="review_comment" name="comment" required placeholder="Partagez votre expérience d'achat..." value={reviewForm.comment} onChange={e => setReviewForm({...reviewForm, comment: e.target.value})} style={{ width: '100%', padding: '14px', borderRadius: '8px', border: '1px solid #ddd', minHeight: '120px', fontSize: '1rem', fontFamily: 'inherit' }}></textarea>
+                </div>
                 <button type="submit" style={{ padding: '16px', background: '#111', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', fontSize: '1.1rem' }}>Envoyer mon avis</button>
               </form>
             )}
@@ -178,34 +187,36 @@ const Checkout = () => {
           <div className="grid grid-cols-2">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="prenom" style={labelStyle}>Prénom</label>
-              <input type="text" id="prenom" required value={formData.prenom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
+              <input type="text" id="prenom" name="prenom" autoComplete="given-name" required value={formData.prenom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="nom" style={labelStyle}>Nom</label>
-              <input type="text" id="nom" required value={formData.nom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
+              <input type="text" id="nom" name="nom" autoComplete="family-name" required value={formData.nom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <label htmlFor="adresse" style={labelStyle}>Adresse de livraison</label>
-            <input type="text" id="adresse" placeholder="Numéro et rue" required value={formData.adresse} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
+            <input type="text" id="adresse" name="adresse" autoComplete="street-address" placeholder="Numéro et rue" required value={formData.adresse} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
           </div>
 
           <div className="grid grid-cols-2">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="ville" style={labelStyle}>Ville / Quartier</label>
-              <input type="text" id="ville" required value={formData.ville} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
+              <input type="text" id="ville" name="ville" autoComplete="address-level2" required value={formData.ville} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="phone" style={labelStyle}>Numéro de téléphone</label>
-              <input type="tel" id="phone" placeholder="+221 ..." required value={formData.phone} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
+              <input type="tel" id="phone" name="phone" autoComplete="tel" placeholder="+221 ..." required value={formData.phone} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
           </div>
 
           <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #eee' }}>
-            <label style={labelStyle}>Avez-vous un code promo ?</label>
+            <label htmlFor="promoCodeInput" style={labelStyle}>Avez-vous un code promo ?</label>
             <div className="promo-row" style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
               <input 
+                id="promoCodeInput"
+                name="promoCodeInput"
                 type="text" 
                 placeholder="Entrez votre code" 
                 value={promoCodeInput}
