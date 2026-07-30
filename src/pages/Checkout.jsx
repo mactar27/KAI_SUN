@@ -71,21 +71,22 @@ const Checkout = () => {
 
   const inputStyle = {
     padding: '1rem',
-    border: '1px solid var(--color-border)',
-    borderRadius: '0px',
-    fontFamily: 'var(--font-body)',
+    border: '1px solid #d1d5db',
+    borderRadius: '8px',
+    fontFamily: 'var(--font-body, sans-serif)',
     fontSize: '1rem',
     outline: 'none',
     transition: 'border-color 0.3s ease',
-    backgroundColor: 'transparent'
+    backgroundColor: '#ffffff'
   };
 
   const labelStyle = {
-    fontFamily: 'var(--font-body)',
+    fontFamily: 'var(--font-body, sans-serif)',
     fontSize: '0.9rem',
     textTransform: 'uppercase',
     letterSpacing: '1px',
-    color: 'var(--color-text-light)'
+    color: '#4b5563',
+    fontWeight: 600
   };
 
   return (
@@ -98,27 +99,27 @@ const Checkout = () => {
           <div className="grid grid-cols-2">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="prenom" style={labelStyle}>Prénom</label>
-              <input type="text" id="prenom" required value={formData.prenom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'} />
+              <input type="text" id="prenom" required value={formData.prenom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="nom" style={labelStyle}>Nom</label>
-              <input type="text" id="nom" required value={formData.nom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'} />
+              <input type="text" id="nom" required value={formData.nom} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <label htmlFor="adresse" style={labelStyle}>Adresse de livraison</label>
-            <input type="text" id="adresse" placeholder="Numéro et rue" required value={formData.adresse} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'} />
+            <input type="text" id="adresse" placeholder="Numéro et rue" required value={formData.adresse} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
           </div>
 
           <div className="grid grid-cols-2">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="ville" style={labelStyle}>Ville / Quartier</label>
-              <input type="text" id="ville" required value={formData.ville} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'} />
+              <input type="text" id="ville" required value={formData.ville} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <label htmlFor="phone" style={labelStyle}>Numéro de téléphone</label>
-              <input type="tel" id="phone" placeholder="+221 ..." required value={formData.phone} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--color-border)'} />
+              <input type="tel" id="phone" placeholder="+221 ..." required value={formData.phone} onChange={handleChange} style={inputStyle} onFocus={(e) => e.target.style.borderColor = '#111'} onBlur={(e) => e.target.style.borderColor = '#d1d5db'} />
             </div>
           </div>
 
