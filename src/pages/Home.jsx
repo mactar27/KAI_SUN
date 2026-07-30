@@ -333,7 +333,7 @@ const Home = () => {
               const filteredProducts = products.filter(p => activeFilter === 'all' || p.gender === activeFilter);
               const groupedProductsMap = new Map();
               filteredProducts.forEach(p => {
-                const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+                const groupKey = p.groupId || (p.ref ? p.ref.substring(0, p.ref.length - 1) : p.id);
                 if (!groupedProductsMap.has(groupKey)) {
                   groupedProductsMap.set(groupKey, { variants: [p] });
                 } else {

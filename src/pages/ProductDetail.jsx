@@ -80,9 +80,9 @@ const ProductDetail = () => {
     product.image.replace('_1.jpg', '_2.jpg')
   ];
 
-  const groupKey = product.groupId || product.ref.substring(0, product.ref.length - 1);
+  const groupKey = product.groupId || (product.ref ? product.ref.substring(0, product.ref.length - 1) : product.id);
   const variants = products.filter(p => {
-    const pKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+    const pKey = p.groupId || (p.ref ? p.ref.substring(0, p.ref.length - 1) : p.id);
     return pKey === groupKey;
   });
 

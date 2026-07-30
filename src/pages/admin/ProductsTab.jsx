@@ -14,7 +14,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
   // Group logic
   const groups = {};
   products.forEach(p => {
-    const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+    const groupKey = p.groupId || (p.ref ? p.ref.substring(0, p.ref.length - 1) : p.id);
     if (!groups[groupKey]) groups[groupKey] = [];
     groups[groupKey].push(p);
   });
@@ -72,7 +72,7 @@ const ProductsTab = ({ products, refreshProducts }) => {
       const requests = [];
       for (const p of products) {
         const isSelected = selected.includes(p.id);
-        const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+        const groupKey = p.groupId || (p.ref ? p.ref.substring(0, p.ref.length - 1) : p.id);
         const wasInGroup = groupKey === editingGroupId;
         
         if (isSelected && !wasInGroup) {

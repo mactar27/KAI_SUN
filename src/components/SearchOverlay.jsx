@@ -37,7 +37,7 @@ const SearchOverlay = () => {
     // Group variants by base ref (remove last letter if it's A, B, etc.)
     const grouped = new Map();
     matched.forEach(p => {
-      const groupKey = p.groupId || p.ref.substring(0, p.ref.length - 1);
+      const groupKey = p.groupId || (p.ref ? p.ref.substring(0, p.ref.length - 1) : p.id);
       if (!grouped.has(groupKey)) {
         grouped.set(groupKey, p);
       }
