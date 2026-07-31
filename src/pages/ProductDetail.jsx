@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
-import { ArrowLeft, Check } from 'lucide-react';
+import { ArrowLeft, Check, ZoomIn, X } from 'lucide-react';
 
 const ProductDetail = () => {
   const { products } = useContext(ProductsContext);
@@ -12,6 +12,7 @@ const ProductDetail = () => {
   const product = products.find(p => p.id === id);
   const [mainImage, setMainImage] = useState(product ? product.image : '');
   const [reviews, setReviews] = useState([]);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
 
   const navigate = useNavigate();
   
@@ -130,29 +131,80 @@ const ProductDetail = () => {
           
           {/* IMAGE SECTION */}
           <div style={{ position: 'sticky', top: '120px' }}>
-              <div 
+            <div 
+              onClick={() => setIsZoomOpen(true)}
               style={{ 
                 backgroundImage: 'url(/images/sable_sans_coquillage.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                padding: '40px', 
-                border: '2px solid var(--ink)', 
-                borderRadius: '16px',
-                touchAction: 'pan-y'
+                padding: '20px', 
+                border: '1.5px solid rgba(0,0,0,0.12)', 
+                borderRadius: '20px',
+                touchAction: 'pan-y',
+                position: 'relative',
+                cursor: 'zoom-in',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.06)'
               }}
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEndHandler}
             >
+              {/* Loupe HD Badge */}
+              <button 
+                onClick={(e) => { e.stopPropagation(); setIsZoomOpen(true); }}
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#3a4a35',
+                  border: '1px solid rgba(0,0,0,0.08)',
+                  padding: '8px 14px',
+                  borderRadius: '100px',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  zIndex: 2
+                }}
+              >
+                <ZoomIn size={15} /> Inspecter en HD
+              </button>
+
               <img 
-                src={mainImage + '?width=1000&height=1000'} 
+                src={mainImage + '?width=1200&height=1200'} 
                 alt={product.name} 
-                style={{ width: '100%', height: 'auto', display: 'block', mixBlendMode: 'multiply' }} 
+                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }} 
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1000x1000/f0f0f0/a0a0a0?text=Image+Indisponible' }}
               />
             </div>
             
-            {/* THUMBNAILS REMOVED AS REQUESTED */}
+            {/* THUMBNAIL ANGLE & VARIANT GALLERY */}
+            <div style={{ display: 'flex', gap: '12px', marginTop: '16px', justifyContent: 'center' }}>
+              {thumbnails.map((thumb, idx) => (
+                <div 
+                  key={idx}
+                  onClick={() => setMainImage(thumb)}
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '12px',
+                    border: mainImage === thumb ? '2px solid #3a4a35' : '1px solid #ddd',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    background: '#fff',
+                    padding: '4px',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <img src={thumb} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* DETAILS SECTION */}
@@ -349,6 +401,71 @@ const ProductDetail = () => {
           </div>
         )}
       </div>
+
+      {/* FULL SCREEN HD ZOOM LIGHTBOX MODAL */}
+      {isZoomOpen && (
+        <div 
+          onClick={() => setIsZoomOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(12, 27, 23, 0.95)',
+            backdropFilter: 'blur(12px)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px',
+            cursor: 'zoom-out'
+          }}
+        >
+          {/* Close button */}
+          <button 
+            onClick={() => setIsZoomOpen(false)}
+            style={{
+              position: 'absolute',
+              top: '24px',
+              right: '24px',
+              background: 'rgba(255, 255, 255, 0.15)',
+              border: 'none',
+              color: '#fff',
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              zIndex: 100000
+            }}
+          >
+            <X size={24} />
+          </button>
+
+          {/* High Definition Zoom Image */}
+          <div style={{ maxWidth: '90vw', maxHeight: '88vh', position: 'relative' }} onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={mainImage + '?width=2000&height=2000'} 
+              alt={product.name} 
+              style={{
+                maxWidth: '100%',
+                maxHeight: '85vh',
+                objectFit: 'contain',
+                display: 'block',
+                margin: '0 auto',
+                borderRadius: '16px',
+                boxShadow: '0 25px 60px rgba(0,0,0,0.5)'
+              }}
+            />
+            <div style={{ textAlign: 'center', color: '#f4efe2', marginTop: '16px', fontFamily: "'Inter', sans-serif", fontSize: '0.9rem', letterSpacing: '1px' }}>
+              🔍 Inspection Haute Définition — <strong>{product.name}</strong> (RÉF. {product.ref})
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
