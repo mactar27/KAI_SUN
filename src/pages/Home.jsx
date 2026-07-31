@@ -77,7 +77,15 @@ const VariantSliderCard = ({ group, addToCart }) => {
             touchAction: 'pan-y',
             background: 'var(--kaia-cream)',
             borderRadius: '12px',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            aspectRatio: '1 / 1',
+            maxHeight: '220px',
+            padding: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto',
+            width: '100%'
           }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
@@ -89,9 +97,10 @@ const VariantSliderCard = ({ group, addToCart }) => {
             loading="lazy" 
             style={{ 
               mixBlendMode: 'multiply',
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain'
+              maxWidth: '85%',
+              maxHeight: '85%',
+              objectFit: 'contain',
+              display: 'block'
             }}
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x600/f0f0f0/a0a0a0?text=Image+Indisponible' }} 
           />
