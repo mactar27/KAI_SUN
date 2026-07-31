@@ -11,6 +11,7 @@ import Invoice from './pages/admin/Invoice';
 import Footer from './components/Footer';
 import ProductDetail from './pages/ProductDetail';
 import Chatbot from './components/Chatbot';
+import SplashScreen from './components/SplashScreen';
 
 // New Pages
 import CGV from './pages/legal/CGV';
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="app">
+      {!isAdmin && <SplashScreen />}
       {!isAdmin && <Navbar />}
       {!isAdmin && <SearchOverlay />}
       <main>
