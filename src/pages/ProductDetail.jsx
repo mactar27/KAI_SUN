@@ -230,13 +230,77 @@ const ProductDetail = () => {
               </div>
             </div>
 
+            {/* GUIDE DES TAILLES & FICHE TECHNIQUE */}
+            <div style={{ marginTop: '32px', marginBottom: '32px', background: '#fcfbf7', border: '1px solid #e5e5e5', borderRadius: '16px', padding: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span style={{ fontSize: '1.4rem' }}>📐</span>
+                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: '#111' }}>
+                  Guide des Tailles & Fiche Technique
+                </h3>
+              </div>
+
+              {/* Dimensions Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', textAlign: 'center', marginBottom: '20px', background: '#fff', padding: '16px', borderRadius: '12px', border: '1px solid #eee' }}>
+                <div style={{ borderRight: '1px solid #eee', paddingRight: '8px' }}>
+                  <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Largeur Monture</div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
+                    {product.gender === 'homme' ? '146 mm' : product.gender === 'femme' ? '142 mm' : '144 mm'}
+                  </div>
+                </div>
+                <div style={{ borderRight: '1px solid #eee', paddingRight: '8px' }}>
+                  <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Largeur Verres</div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
+                    {product.gender === 'homme' ? '53 mm' : product.gender === 'femme' ? '50 mm' : '51 mm'}
+                  </div>
+                </div>
+                <div style={{ borderRight: '1px solid #eee', paddingRight: '8px' }}>
+                  <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Pont de Nez</div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
+                    {product.gender === 'homme' ? '19 mm' : '18 mm'}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Branches</div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
+                    {product.gender === 'homme' ? '145 mm' : '140 mm'}
+                  </div>
+                </div>
+              </div>
+
+              {/* Recommended Face Shapes */}
+              <div style={{ background: '#fff', padding: '16px', borderRadius: '12px', border: '1px solid #eee', marginBottom: '20px' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#444', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>👤</span> Formes de Visage Recommandées :
+                </div>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  {(product.gender === 'femme' 
+                    ? ['Ovale', 'Rond', 'Cœur', 'Diamant'] 
+                    : product.gender === 'homme' 
+                    ? ['Ovale', 'Carré', 'Rectangulaire'] 
+                    : ['Tous Visages', 'Ovale', 'Rond', 'Carré']
+                  ).map((shape, idx) => (
+                    <span key={idx} style={{ background: 'rgba(102, 165, 155, 0.12)', color: '#3a4a35', padding: '6px 14px', borderRadius: '100px', fontSize: '0.85rem', fontWeight: 600 }}>
+                      ✓ Visage {shape}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technical Specifications */}
+              <div style={{ fontSize: '0.85rem', color: '#555', lineHeight: 1.6 }}>
+                <div><strong>• Matériau :</strong> Acétate bio-sourcé italien de haute résistance</div>
+                <div><strong>• Protection solaire :</strong> UV400 Catégorie 3 (Protection maximale Dakar & plage)</div>
+                <div><strong>• Charnières :</strong> Acier inoxydable renforcé à 5 charnières</div>
+              </div>
+            </div>
+
             {/* FEATURES */}
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 'Protection UV400 certifiée',
-                'Verres anti-rayures',
-                'Matériaux durables',
-                'Livraison express disponible'
+                'Verres anti-rayures & polarisés',
+                'Matériaux durables & légers',
+                'Livraison express disponible à Dakar'
               ].map((feat, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', fontSize: '1rem' }}>
                   <Check style={{ color: 'var(--accent-dark)' }} /> {feat}
