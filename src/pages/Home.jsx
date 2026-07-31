@@ -117,7 +117,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
           to={`/product/${currentProduct.id}`} 
           style={{ fontSize: '0.78rem', color: '#c6a664', textDecoration: 'none', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '8px' }}
         >
-          📐 Guide Tailles ({currentProduct.frame_width || (currentProduct.gender === 'homme' ? '146 mm' : '142 mm')}) &rarr;
+          Guide Tailles ({currentProduct.frame_width || (currentProduct.gender === 'homme' ? '146 mm' : '142 mm')}) &rarr;
         </Link>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
@@ -397,8 +397,8 @@ const Home = () => {
             
             {/* Guide des Tailles & Specs Preview Box on Home Page */}
             <div style={{ background: '#fff', padding: '20px', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 8px 24px rgba(0,0,0,0.04)' }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--kaia-green)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                📐 <strong>Guide des Tailles & Précision Optique :</strong>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--kaia-green)', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Guide des Tailles & Précision Optique :
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '0.82rem', color: '#555', marginBottom: '14px' }}>
                 <div>• Largeur monture : <strong>142 à 146 mm</strong></div>
@@ -407,7 +407,7 @@ const Home = () => {
                 <div>• Adaptabilité : <strong>Tous Visages</strong></div>
               </div>
               <a href="#collection" style={{ fontSize: '0.78rem', fontWeight: 700, color: '#c6a664', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                📐 CONSULTER LE GUIDE SUR LES MODÈLES &rarr;
+                CONSULTER LE GUIDE SUR LES MODÈLES &rarr;
               </a>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { ProductsContext } from '../context/ProductsContext';
-import { ArrowLeft, Check, ZoomIn, X } from 'lucide-react';
+import { ArrowLeft, Check, ZoomIn, X, Ruler, UserCheck, ShieldCheck } from 'lucide-react';
 
 const ProductDetail = () => {
   const { products } = useContext(ProductsContext);
@@ -285,8 +285,8 @@ const ProductDetail = () => {
             {/* GUIDE DES TAILLES & FICHE TECHNIQUE */}
             <div style={{ marginTop: '32px', marginBottom: '32px', background: '#fcfbf7', border: '1px solid #e5e5e5', borderRadius: '16px', padding: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                <span style={{ fontSize: '1.4rem' }}>📐</span>
-                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: '#111' }}>
+                <Ruler size={18} style={{ color: '#3a4a35' }} />
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: '#111' }}>
                   Guide des Tailles & Fiche Technique
                 </h3>
               </div>
@@ -321,8 +321,8 @@ const ProductDetail = () => {
 
               {/* Recommended Face Shapes */}
               <div style={{ background: '#fff', padding: '16px', borderRadius: '12px', border: '1px solid #eee', marginBottom: '20px' }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#444', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>👤</span> Formes de Visage Recommandées :
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#444', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <UserCheck size={16} style={{ color: '#3a4a35' }} /> Formes de Visage Recommandées :
                 </div>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                   {(product.face_shapes 
@@ -333,8 +333,8 @@ const ProductDetail = () => {
                         ? ['Ovale', 'Carré', 'Rectangulaire'] 
                         : ['Tous Visages', 'Ovale', 'Rond', 'Carré'])
                   ).map((shape, idx) => (
-                    <span key={idx} style={{ background: 'rgba(102, 165, 155, 0.12)', color: '#3a4a35', padding: '6px 14px', borderRadius: '100px', fontSize: '0.85rem', fontWeight: 600 }}>
-                      ✓ Visage {shape}
+                    <span key={idx} style={{ background: 'rgba(102, 165, 155, 0.12)', color: '#3a4a35', padding: '6px 14px', borderRadius: '100px', fontSize: '0.82rem', fontWeight: 600 }}>
+                      Visage {shape}
                     </span>
                   ))}
                 </div>
