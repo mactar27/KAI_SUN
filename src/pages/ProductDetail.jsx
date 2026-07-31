@@ -178,7 +178,7 @@ const ProductDetail = () => {
               <img 
                 src={mainImage + '?width=1200&height=1200'} 
                 alt={product.name} 
-                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }} 
+                style={{ width: '100%', maxHeight: '420px', objectFit: 'contain', display: 'block', margin: '0 auto', borderRadius: '12px' }} 
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1000x1000/f0f0f0/a0a0a0?text=Image+Indisponible' }}
               />
             </div>
@@ -387,13 +387,15 @@ const ProductDetail = () => {
         {similarProducts.length > 0 && (
           <div style={{ marginTop: '4rem' }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '2rem', textAlign: 'center' }}>Vous aimerez aussi...</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1.5rem' }}>
               {similarProducts.map(sp => (
-                <Link to={`/product/${sp.id}`} key={sp.id} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: '8px', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
-                  <img src={sp.image} alt={sp.name} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', borderRadius: '12px' }} />
+                <Link to={`/product/${sp.id}`} key={sp.id} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: '8px', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
+                  <div style={{ width: '100%', aspectRatio: '1/1', background: '#fcfbf7', borderRadius: '16px', border: '1px solid #eaeaea', padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={sp.image} alt={sp.name} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+                  </div>
                   <div>
-                    <h4 style={{ margin: 0, fontWeight: 700 }}>{sp.name}</h4>
-                    <p style={{ margin: 0, color: '#666' }}>{sp.price.toLocaleString()} FCFA</p>
+                    <h4 style={{ margin: '4px 0 2px 0', fontWeight: 700, fontSize: '0.95rem' }}>{sp.name}</h4>
+                    <p style={{ margin: 0, color: 'var(--kaia-green, #3a4a35)', fontWeight: 800, fontSize: '0.9rem' }}>{sp.price.toLocaleString()} FCFA</p>
                   </div>
                 </Link>
               ))}
