@@ -81,6 +81,22 @@ app.put('/api/products', authMiddleware, async (req, res) => {
       });
       return res.json(updated);
     }
+    if (action === 'updateSpecs') {
+      const { frame_width, lens_width, bridge_width, temple_length, face_shapes, material, uv_protection } = req.body;
+      const updated = await prisma.products.update({
+        where: { id: String(id) },
+        data: {
+          frame_width,
+          lens_width,
+          bridge_width,
+          temple_length,
+          face_shapes,
+          material,
+          uv_protection
+        }
+      });
+      return res.json(updated);
+    }
     const safeStock = stock !== undefined ? Math.max(0, parseInt(stock) || 0) : undefined;
     const updated = await prisma.products.update({
       where: { id: String(id) },

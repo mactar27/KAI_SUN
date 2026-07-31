@@ -106,6 +106,13 @@ model products {
   image              String               @db.VarChar(255)
   groupId            String?              @db.VarChar(50)
   stock              Int                  @default(0)
+  frame_width        String?              @db.VarChar(50)
+  lens_width         String?              @db.VarChar(50)
+  bridge_width       String?              @db.VarChar(50)
+  temple_length      String?              @db.VarChar(50)
+  face_shapes        String?              @db.VarChar(255)
+  material           String?              @db.VarChar(255)
+  uv_protection      String?              @db.VarChar(255)
   product_thumbnails product_thumbnails[]
 }
 

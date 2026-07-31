@@ -244,25 +244,25 @@ const ProductDetail = () => {
                 <div style={{ borderRight: '1px solid #eee', paddingRight: '8px' }}>
                   <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Largeur Monture</div>
                   <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
-                    {product.gender === 'homme' ? '146 mm' : product.gender === 'femme' ? '142 mm' : '144 mm'}
+                    {product.frame_width || (product.gender === 'homme' ? '146 mm' : product.gender === 'femme' ? '142 mm' : '144 mm')}
                   </div>
                 </div>
                 <div style={{ borderRight: '1px solid #eee', paddingRight: '8px' }}>
                   <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Largeur Verres</div>
                   <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
-                    {product.gender === 'homme' ? '53 mm' : product.gender === 'femme' ? '50 mm' : '51 mm'}
+                    {product.lens_width || (product.gender === 'homme' ? '53 mm' : product.gender === 'femme' ? '50 mm' : '51 mm')}
                   </div>
                 </div>
                 <div style={{ borderRight: '1px solid #eee', paddingRight: '8px' }}>
                   <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Pont de Nez</div>
                   <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
-                    {product.gender === 'homme' ? '19 mm' : '18 mm'}
+                    {product.bridge_width || (product.gender === 'homme' ? '19 mm' : '18 mm')}
                   </div>
                 </div>
                 <div>
                   <div style={{ fontSize: '0.75rem', color: '#777', textTransform: 'uppercase', fontWeight: 600 }}>Branches</div>
                   <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--kaia-green, #3a4a35)', marginTop: '4px' }}>
-                    {product.gender === 'homme' ? '145 mm' : '140 mm'}
+                    {product.temple_length || (product.gender === 'homme' ? '145 mm' : '140 mm')}
                   </div>
                 </div>
               </div>
@@ -273,11 +273,13 @@ const ProductDetail = () => {
                   <span>👤</span> Formes de Visage Recommandées :
                 </div>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  {(product.gender === 'femme' 
-                    ? ['Ovale', 'Rond', 'Cœur', 'Diamant'] 
-                    : product.gender === 'homme' 
-                    ? ['Ovale', 'Carré', 'Rectangulaire'] 
-                    : ['Tous Visages', 'Ovale', 'Rond', 'Carré']
+                  {(product.face_shapes 
+                    ? product.face_shapes.split(',').map(s => s.trim())
+                    : (product.gender === 'femme' 
+                        ? ['Ovale', 'Rond', 'Cœur', 'Diamant'] 
+                        : product.gender === 'homme' 
+                        ? ['Ovale', 'Carré', 'Rectangulaire'] 
+                        : ['Tous Visages', 'Ovale', 'Rond', 'Carré'])
                   ).map((shape, idx) => (
                     <span key={idx} style={{ background: 'rgba(102, 165, 155, 0.12)', color: '#3a4a35', padding: '6px 14px', borderRadius: '100px', fontSize: '0.85rem', fontWeight: 600 }}>
                       ✓ Visage {shape}
@@ -288,8 +290,8 @@ const ProductDetail = () => {
 
               {/* Technical Specifications */}
               <div style={{ fontSize: '0.85rem', color: '#555', lineHeight: 1.6 }}>
-                <div><strong>• Matériau :</strong> Acétate bio-sourcé italien de haute résistance</div>
-                <div><strong>• Protection solaire :</strong> UV400 Catégorie 3 (Protection maximale Dakar & plage)</div>
+                <div><strong>• Matériau :</strong> {product.material || 'Acétate bio-sourcé italien de haute résistance'}</div>
+                <div><strong>• Protection solaire :</strong> {product.uv_protection || 'UV400 Catégorie 3 (Protection maximale Dakar & plage)'}</div>
                 <div><strong>• Charnières :</strong> Acier inoxydable renforcé à 5 charnières</div>
               </div>
             </div>

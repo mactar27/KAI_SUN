@@ -11,6 +11,62 @@ const ProductsTab = ({ products, refreshProducts }) => {
   const [stockValue, setStockValue] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
+  // Specs Modal state
+  const [specsModalProduct, setSpecsModalProduct] = useState(null);
+  const [specsForm, setSpecsForm] = useState({
+    frame_width: '',
+    lens_width: '',
+    bridge_width: '',
+    temple_length: '',
+    face_shapes: '',
+    material: '',
+    uv_protection: ''
+  });
+
+  const openSpecsModal = (productGroup) => {
+    const mainProd = productGroup[0];
+    setSpecsModalProduct(productGroup);
+    setSpecsForm({
+      frame_width: mainProd.frame_width || (mainProd.gender === 'homme' ? '146 mm' : mainProd.gender === 'femme' ? '142 mm' : '144 mm'),
+      lens_width: mainProd.lens_width || (mainProd.gender === 'homme' ? '53 mm' : mainProd.gender === 'femme' ? '50 mm' : '51 mm'),
+      bridge_width: mainProd.bridge_width || (mainProd.gender === 'homme' ? '19 mm' : '18 mm'),
+      temple_length: mainProd.temple_length || (mainProd.gender === 'homme' ? '145 mm' : '140 mm'),
+      face_shapes: mainProd.face_shapes || (mainProd.gender === 'femme' ? 'Ovale, Rond, Cœur, Diamant' : mainProd.gender === 'homme' ? 'Ovale, Carré, Rectangulaire' : 'Tous Visages, Ovale, Rond, Carré'),
+      material: mainProd.material || 'Acétate bio-sourcé italien',
+      uv_protection: mainProd.uv_protection || 'UV400 Catégorie 3'
+    });
+  };
+
+  const saveSpecs = async () => {
+    if (!specsModalProduct || specsModalProduct.length === 0) return;
+    setIsSaving(true);
+    try {
+      const adminToken = localStorage.getItem('adminToken');
+      const requests = specsModalProduct.map(p => 
+        fetch('/api/products', {
+          method: 'PUT',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${adminToken}`
+          },
+          body: JSON.stringify({
+            id: p.id,
+            action: 'updateSpecs',
+            ...specsForm
+          })
+        })
+      );
+      await Promise.all(requests);
+      await refreshProducts();
+      setSpecsModalProduct(null);
+    } catch (e) {
+      console.error(e);
+      alert("Erreur lors de la sauvegarde de la fiche technique.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   // Group logic
   const groups = {};
   products.forEach(p => {
@@ -218,7 +274,15 @@ const ProductsTab = ({ products, refreshProducts }) => {
                     <div style={{ fontSize: '0.75rem', color: '#888' }}>Prix de vente</div>
                   </div>
 
-                  <div style={{ display: 'flex', gap: '8px', flex: 1, justifyContent: 'flex-end' }}>
+                  <div style={{ display: 'flex', gap: '8px', flex: 1, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+                    <button
+                      onClick={() => openSpecsModal(members)}
+                      style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#fcfbf7', color: '#3a4a35', border: '1px solid #dcd8c8', padding: '8px 14px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.8rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = '#3a4a35'; e.currentTarget.style.background = '#f5f0e1'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = '#dcd8c8'; e.currentTarget.style.background = '#fcfbf7'; }}
+                    >
+                      📐 Tailles & Fiche
+                    </button>
                     <button
                       onClick={() => startEditGroup(groupId)}
                       style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#fff', color: '#111', border: '1px solid #eaeaea', padding: '8px 16px', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.8rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
@@ -356,6 +420,65 @@ const ProductsTab = ({ products, refreshProducts }) => {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        )}
+
+        {/* SPECS & DIMENSIONS MODAL */}
+        {specsModalProduct && (
+          <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+            <div style={{ background: '#fff', width: '100%', maxWidth: '550px', borderRadius: '16px', padding: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: '1px solid #eee', paddingBottom: '12px' }}>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: '#111' }}>
+                  📐 Modifier Tailles & Fiche Technique
+                </h3>
+                <button onClick={() => setSpecsModalProduct(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#666' }}>
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>Largeur Monture (mm)</label>
+                  <input type="text" value={specsForm.frame_width} onChange={e => setSpecsForm({...specsForm, frame_width: e.target.value})} placeholder="ex: 146 mm" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>Largeur Verres (mm)</label>
+                  <input type="text" value={specsForm.lens_width} onChange={e => setSpecsForm({...specsForm, lens_width: e.target.value})} placeholder="ex: 53 mm" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>Pont de Nez (mm)</label>
+                  <input type="text" value={specsForm.bridge_width} onChange={e => setSpecsForm({...specsForm, bridge_width: e.target.value})} placeholder="ex: 19 mm" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>Longueur Branches (mm)</label>
+                  <input type="text" value={specsForm.temple_length} onChange={e => setSpecsForm({...specsForm, temple_length: e.target.value})} placeholder="ex: 145 mm" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>👤 Formes de Visage Recommandées</label>
+                <input type="text" value={specsForm.face_shapes} onChange={e => setSpecsForm({...specsForm, face_shapes: e.target.value})} placeholder="ex: Ovale, Rond, Carré, Rectangulaire" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>🌿 Matériau de la Monture</label>
+                <input type="text" value={specsForm.material} onChange={e => setSpecsForm({...specsForm, material: e.target.value})} placeholder="ex: Acétate bio-sourcé italien" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+              </div>
+
+              <div style={{ marginBottom: '24px' }}>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#444', marginBottom: '4px' }}>☀️ Protection Solaires & Verres</label>
+                <input type="text" value={specsForm.uv_protection} onChange={e => setSpecsForm({...specsForm, uv_protection: e.target.value})} placeholder="ex: UV400 Catégorie 3" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }} />
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+                <button onClick={() => setSpecsModalProduct(null)} style={{ padding: '10px 20px', borderRadius: '8px', border: '1px solid #ccc', background: '#fff', cursor: 'pointer', fontWeight: 600 }}>
+                  Annuler
+                </button>
+                <button onClick={saveSpecs} disabled={isSaving} style={{ padding: '10px 24px', borderRadius: '8px', border: 'none', background: 'var(--kaia-green, #3a4a35)', color: '#fff', cursor: 'pointer', fontWeight: 700 }}>
+                  {isSaving ? 'Enregistrement...' : 'Enregistrer'}
+                </button>
+              </div>
             </div>
           </div>
         )}

@@ -27,12 +27,12 @@ const SplashScreen = () => {
       // Once full text is typed, wait a moment then fade out
       const fadeTimeout = setTimeout(() => {
         setIsFading(true);
-      }, 600);
+      }, 650);
 
       const hideTimeout = setTimeout(() => {
         setIsDone(true);
         sessionStorage.setItem('kaia_seen_splash', 'true');
-      }, 1200);
+      }, 1250);
 
       return () => {
         clearTimeout(fadeTimeout);
@@ -51,49 +51,64 @@ const SplashScreen = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#f4efe2', // Exact Kaïa Cream background
-        color: '#3a4a35',           // Kaïa Olive Green
+        // Bright Sunny Summer Gradient: Soft Sky Blue -> Luminous Sun Light -> Warm Sand Gold
+        background: 'linear-gradient(135deg, #e0f2fe 0%, #fffdf5 45%, #fef3c7 100%)',
+        color: '#1e3a34',
         zIndex: 999999,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         opacity: isFading ? 0 : 1,
-        transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1)',
         pointerEvents: isFading ? 'none' : 'auto',
         overflow: 'hidden'
       }}
     >
-      {/* Background ambient warm glow */}
+      {/* Golden Summer Sunburst Glow */}
       <div 
         style={{
           position: 'absolute',
-          width: '400px',
-          height: '400px',
+          width: '550px',
+          height: '550px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(141, 153, 131, 0.15) 0%, rgba(244, 239, 226, 0) 70%)',
-          top: '50%',
+          background: 'radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, rgba(255, 253, 245, 0) 70%)',
+          top: '48%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none'
         }}
       />
 
+      {/* Summer Sun Icon */}
+      <div 
+        style={{
+          fontSize: '2.5rem',
+          marginBottom: '16px',
+          color: '#d97706',
+          opacity: 0.9,
+          animation: 'spin 20s linear infinite'
+        }}
+      >
+        ☀️
+      </div>
+
       {/* Main Letter-by-Letter Title */}
       <h1 
         style={{
           fontFamily: "'Playfair Display', serif",
           fontSize: 'clamp(2rem, 6vw, 3.8rem)',
-          fontWeight: 500,
+          fontWeight: 600,
           letterSpacing: '0.22em',
-          color: '#3a4a35',
+          color: '#1e3a34', // Deep Ocean Teal
           margin: 0,
           textAlign: 'center',
           minHeight: '1.2em',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          textTransform: 'uppercase'
+          textTransform: 'uppercase',
+          textShadow: '0 2px 10px rgba(255,255,255,0.8)'
         }}
       >
         {displayedText}
@@ -103,7 +118,7 @@ const SplashScreen = () => {
               display: 'inline-block',
               width: '3px',
               height: '1em',
-              backgroundColor: '#8d9983',
+              backgroundColor: '#d97706',
               marginLeft: '6px',
               animation: 'pulse 0.6s infinite alternate'
             }}
@@ -111,16 +126,16 @@ const SplashScreen = () => {
         )}
       </h1>
 
-      {/* Subtle Olive Line */}
+      {/* Subtle Warm Gold Line */}
       <div 
         style={{
-          width: currentIndex >= fullText.length ? '80px' : '0px',
-          height: '1.5px',
-          background: '#8d9983',
+          width: currentIndex >= fullText.length ? '90px' : '0px',
+          height: '2px',
+          background: 'linear-gradient(90deg, #d97706, #fbbf24)',
           marginTop: '20px',
           marginBottom: '16px',
           transition: 'width 0.5s ease-out',
-          opacity: 0.8
+          borderRadius: '2px'
         }}
       />
 
@@ -128,25 +143,29 @@ const SplashScreen = () => {
       <p 
         style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: '0.75rem',
-          letterSpacing: '0.3em',
+          fontSize: '0.78rem',
+          letterSpacing: '0.35em',
           textTransform: 'uppercase',
-          color: '#3a4a35',
+          color: '#2d4a43',
           margin: 0,
           opacity: currentIndex >= fullText.length ? 1 : 0,
           transform: currentIndex >= fullText.length ? 'translateY(0)' : 'translateY(10px)',
           transition: 'opacity 0.5s ease, transform 0.5s ease',
-          fontWeight: 600
+          fontWeight: 700
         }}
       >
         DAKAR • LUNETTES DE SOLEIL
       </p>
 
-      {/* Pulsing animation keyframes */}
+      {/* Animations */}
       <style>{`
         @keyframes pulse {
           0% { opacity: 1; }
           100% { opacity: 0; }
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
