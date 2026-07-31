@@ -278,7 +278,7 @@ const ProductDetail = () => {
               </div>
               <div>
                 <h4 style={{ fontWeight: 700, marginBottom: '4px', color: '#B45309' }}>PROMOTION ACTIVE</h4>
-                <p style={{ fontSize: '0.9rem', color: '#92400E' }}>Ajoutez une 2ème paire au panier et elle passera automatiquement à <strong>5 000 FCFA</strong> au lieu de 25 000 FCFA !</p>
+                <p style={{ fontSize: '0.9rem', color: '#92400E' }}>Ajoutez une 2ème paire au panier et elle passera automatiquement à <strong>10 000 FCFA</strong> au lieu de 25 000 FCFA !</p>
               </div>
             </div>
 

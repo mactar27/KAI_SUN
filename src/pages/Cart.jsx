@@ -175,7 +175,7 @@ const Cart = () => {
             
             {totalQuantity >= 2 && (
               <div style={{ background: '#e8f5e9', color: '#2e7d32', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontWeight: 600, fontSize: '0.85rem' }}>
-                🎉 Promo appliquée : -10 000 FCFA sur la 2ème paire !
+                🎉 Promo appliquée : la 2ème paire à 10 000 FCFA (-15 000 FCFA de réduction) !
               </div>
             )}
 

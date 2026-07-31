@@ -6,8 +6,8 @@ const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:3000/api';
 
 export const calculateCartTotal = (cart) => {
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  // 1 pair = 25000, 2 pairs = 40000 (10000 discount on the second pair)
-  return Math.floor(totalQuantity / 2) * 40000 + (totalQuantity % 2) * 25000;
+  // 1 pair = 25000, 2 pairs = 35000 (15000 discount on the 2nd pair -> 2nd pair is 10000 FCFA)
+  return Math.floor(totalQuantity / 2) * 35000 + (totalQuantity % 2) * 25000;
 };
 
 export const ShopProvider = ({ children }) => {
