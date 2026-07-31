@@ -25,7 +25,6 @@ function App() {
 
   return (
     <div className="app">
-      {!isAdmin && <SplashScreen />}
       {!isAdmin && <Navbar />}
       {!isAdmin && <SearchOverlay />}
       <main>
