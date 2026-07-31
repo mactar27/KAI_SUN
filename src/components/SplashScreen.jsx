@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const SplashScreen = () => {
-  const brandName = "KAÏA";
-  const [displayedText, setDisplayedText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
@@ -15,33 +12,29 @@ const SplashScreen = () => {
       return;
     }
 
-    // Letter-by-letter typing effect for "KAÏA"
-    if (currentIndex < brandName.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + brandName[currentIndex]);
-        setCurrentIndex((prev) => prev + 1);
-      }, 120); // Smooth 120ms per letter
+    // Sequence timing for haute-couture reveal:
+    // 0ms: Start letter reveal
+    // 1100ms: Reveal SUNGLASSES subtitle
+    // 1600ms: Start silky fade out
+    // 2300ms: Unmount
+    const fadeTimeout = setTimeout(() => {
+      setIsFading(true);
+    }, 1600);
 
-      return () => clearTimeout(timeout);
-    } else {
-      // Once KAÏA is typed, wait briefly then fade out splash overlay
-      const fadeTimeout = setTimeout(() => {
-        setIsFading(true);
-      }, 700);
+    const hideTimeout = setTimeout(() => {
+      setIsDone(true);
+      sessionStorage.setItem('kaia_seen_splash', 'true');
+    }, 2350);
 
-      const hideTimeout = setTimeout(() => {
-        setIsDone(true);
-        sessionStorage.setItem('kaia_seen_splash', 'true');
-      }, 1300);
-
-      return () => {
-        clearTimeout(fadeTimeout);
-        clearTimeout(hideTimeout);
-      };
-    }
-  }, [currentIndex]);
+    return () => {
+      clearTimeout(fadeTimeout);
+      clearTimeout(hideTimeout);
+    };
+  }, []);
 
   if (isDone) return null;
+
+  const letters = ['K', 'A', 'Ï', 'A'];
 
   return (
     <div 
@@ -51,95 +44,140 @@ const SplashScreen = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#f4efe2', // Exact Kaïa warm cream brand color
+        backgroundColor: '#f8f5ee', // Silk warm luxury cream
         zIndex: 999999,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         opacity: isFading ? 0 : 1,
-        transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
         pointerEvents: isFading ? 'none' : 'auto',
         overflow: 'hidden',
-        padding: '20px'
+        padding: '24px'
       }}
     >
-      {/* Ultra-Luxurious Minimalist Brand Typography */}
+      {/* Delicate Ambient Halo */}
+      <div 
+        style={{
+          position: 'absolute',
+          width: '450px',
+          height: '450px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(198, 166, 100, 0.12) 0%, rgba(248, 245, 238, 0) 70%)',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* Main Luxury Brand Typography Container */}
       <div 
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          textAlign: 'center'
+          textAlign: 'center',
+          position: 'relative',
+          zIndex: 2
         }}
       >
-        {/* Main "KAÏA" Letter-by-Letter Serif Title */}
+        {/* "K A Ï A" Staggered Smooth Fade & Float-Up */}
         <h1 
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(2.8rem, 12vw, 5.2rem)',
+            fontSize: 'clamp(3rem, 14vw, 5.8rem)',
             fontWeight: 400,
-            letterSpacing: '0.18em',
             color: '#3a4a35', // Signature Kaïa Olive Green
             margin: 0,
             lineHeight: 1,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            gap: '0.18em'
           }}
         >
-          {displayedText}
-          {currentIndex < brandName.length && (
-            <span 
+          {letters.map((char, index) => (
+            <span
+              key={index}
               style={{
                 display: 'inline-block',
-                width: '3px',
-                height: '0.7em',
-                backgroundColor: '#c6a664',
-                marginLeft: '4px',
-                animation: 'pulse 0.5s infinite alternate'
+                animation: 'luxLetterReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                animationDelay: `${0.12 * index + 0.1}s`,
+                opacity: 0,
+                transform: 'translateY(16px)'
               }}
-            />
-          )}
+            >
+              {char}
+            </span>
+          ))}
         </h1>
 
-        {/* Subtitle "SUNGLASSES" (Identical to Navbar logo styling) */}
+        {/* Subtitle "S U N G L A S S E S" */}
         <div 
           style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 'clamp(8px, 2.5vw, 11px)',
+            fontSize: 'clamp(9px, 2.6vw, 12px)',
             fontWeight: 600,
-            letterSpacing: '0.6em',
+            letterSpacing: '0.65em',
             color: '#3a4a35',
-            marginTop: '12px',
+            marginTop: '16px',
             textTransform: 'uppercase',
-            opacity: currentIndex >= brandName.length ? 1 : 0,
-            transform: currentIndex >= brandName.length ? 'translateY(0)' : 'translateY(8px)',
-            transition: 'opacity 0.5s ease-out, transform 0.5s ease-out'
+            animation: 'luxSubReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            animationDelay: '0.7s',
+            opacity: 0,
+            transform: 'translateY(10px)',
+            paddingLeft: '0.65em' // Optical alignment for wide tracking
           }}
         >
           SUNGLASSES
         </div>
 
-        {/* Delicate Gold Accent Line */}
+        {/* Whisper-Thin Gold Accent Line */}
         <div 
           style={{
-            width: currentIndex >= brandName.length ? '40px' : '0px',
             height: '1px',
-            background: '#c6a664',
-            marginTop: '20px',
-            transition: 'width 0.5s ease-out',
+            background: 'linear-gradient(90deg, transparent, #c6a664, transparent)',
+            marginTop: '22px',
+            animation: 'luxLineExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            animationDelay: '0.95s',
+            width: '0px',
             opacity: 0.8
           }}
         />
       </div>
 
-      {/* Pulse animation for cursor */}
+      {/* Keyframe Animations */}
       <style>{`
-        @keyframes pulse {
-          0% { opacity: 1; }
-          100% { opacity: 0; }
+        @keyframes luxLetterReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(18px) scale(0.96);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        @keyframes luxSubReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes luxLineExpand {
+          0% {
+            width: 0px;
+          }
+          100% {
+            width: 60px;
+          }
         }
       `}</style>
     </div>
