@@ -120,11 +120,11 @@ const ProductDetail = () => {
   };
 
   return (
-    <div style={{ paddingTop: '120px', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>
-      <div className="container" style={{ maxWidth: '1200px' }}>
+    <div style={{ paddingTop: 'clamp(145px, 18vw, 180px)', paddingBottom: '100px', background: 'var(--bg)', minHeight: '100vh' }}>
+      <div className="container" style={{ maxWidth: '1200px', padding: '0 24px' }}>
         
-        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--ink)', fontWeight: 500, marginBottom: '40px' }}>
-          <ArrowLeft /> Retour à la boutique
+        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--ink)', fontWeight: 600, marginBottom: '36px', marginTop: '10px' }}>
+          <ArrowLeft size={18} /> Retour à la boutique
         </Link>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '60px', alignItems: 'start' }}>
