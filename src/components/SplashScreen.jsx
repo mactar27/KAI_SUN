@@ -20,19 +20,19 @@ const SplashScreen = () => {
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, 75); // 75ms per letter
+      }, 70); // 70ms per letter
 
       return () => clearTimeout(timeout);
     } else {
       // Once full text is typed, wait a moment then fade out
       const fadeTimeout = setTimeout(() => {
         setIsFading(true);
-      }, 700);
+      }, 600);
 
       const hideTimeout = setTimeout(() => {
         setIsDone(true);
         sessionStorage.setItem('kaia_seen_splash', 'true');
-      }, 1400);
+      }, 1200);
 
       return () => {
         clearTimeout(fadeTimeout);
@@ -51,27 +51,27 @@ const SplashScreen = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#0c1b17', // Deep luxury Kaïa dark teal
-        color: '#f4efe2',
+        backgroundColor: '#f4efe2', // Exact Kaïa Cream background
+        color: '#3a4a35',           // Kaïa Olive Green
         zIndex: 999999,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         opacity: isFading ? 0 : 1,
-        transition: 'opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
         pointerEvents: isFading ? 'none' : 'auto',
         overflow: 'hidden'
       }}
     >
-      {/* Background ambient lighting */}
+      {/* Background ambient warm glow */}
       <div 
         style={{
           position: 'absolute',
-          width: '300px',
-          height: '300px',
+          width: '400px',
+          height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%)',
+          background: 'radial-gradient(circle, rgba(141, 153, 131, 0.15) 0%, rgba(244, 239, 226, 0) 70%)',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -84,9 +84,9 @@ const SplashScreen = () => {
         style={{
           fontFamily: "'Playfair Display', serif",
           fontSize: 'clamp(2rem, 6vw, 3.8rem)',
-          fontWeight: 600,
-          letterSpacing: '0.25em',
-          color: '#f4efe2',
+          fontWeight: 500,
+          letterSpacing: '0.22em',
+          color: '#3a4a35',
           margin: 0,
           textAlign: 'center',
           minHeight: '1.2em',
@@ -103,7 +103,7 @@ const SplashScreen = () => {
               display: 'inline-block',
               width: '3px',
               height: '1em',
-              backgroundColor: '#D4AF37',
+              backgroundColor: '#8d9983',
               marginLeft: '6px',
               animation: 'pulse 0.6s infinite alternate'
             }}
@@ -111,15 +111,15 @@ const SplashScreen = () => {
         )}
       </h1>
 
-      {/* Subtle Gold Line */}
+      {/* Subtle Olive Line */}
       <div 
         style={{
           width: currentIndex >= fullText.length ? '80px' : '0px',
-          height: '1px',
-          background: '#D4AF37',
+          height: '1.5px',
+          background: '#8d9983',
           marginTop: '20px',
           marginBottom: '16px',
-          transition: 'width 0.6s ease-out',
+          transition: 'width 0.5s ease-out',
           opacity: 0.8
         }}
       />
@@ -131,11 +131,11 @@ const SplashScreen = () => {
           fontSize: '0.75rem',
           letterSpacing: '0.3em',
           textTransform: 'uppercase',
-          color: '#D4AF37',
+          color: '#3a4a35',
           margin: 0,
           opacity: currentIndex >= fullText.length ? 1 : 0,
           transform: currentIndex >= fullText.length ? 'translateY(0)' : 'translateY(10px)',
-          transition: 'opacity 0.6s ease, transform 0.6s ease',
+          transition: 'opacity 0.5s ease, transform 0.5s ease',
           fontWeight: 600
         }}
       >
