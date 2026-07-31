@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const SplashScreen = () => {
-  const fullText = "KAÏA SUNGLASSES";
+  const brandName = "KAÏA";
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -15,24 +15,24 @@ const SplashScreen = () => {
       return;
     }
 
-    // Letter-by-letter typing effect
-    if (currentIndex < fullText.length) {
+    // Letter-by-letter typing effect for "KAÏA"
+    if (currentIndex < brandName.length) {
       const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + fullText[currentIndex]);
+        setDisplayedText((prev) => prev + brandName[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, 70); // 70ms per letter
+      }, 120); // Smooth 120ms per letter
 
       return () => clearTimeout(timeout);
     } else {
-      // Once full text is typed, wait a moment then fade out
+      // Once KAÏA is typed, wait briefly then fade out splash overlay
       const fadeTimeout = setTimeout(() => {
         setIsFading(true);
-      }, 650);
+      }, 700);
 
       const hideTimeout = setTimeout(() => {
         setIsDone(true);
         sessionStorage.setItem('kaia_seen_splash', 'true');
-      }, 1250);
+      }, 1300);
 
       return () => {
         clearTimeout(fadeTimeout);
@@ -51,121 +51,95 @@ const SplashScreen = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        // Bright Sunny Summer Gradient: Soft Sky Blue -> Luminous Sun Light -> Warm Sand Gold
-        background: 'linear-gradient(135deg, #e0f2fe 0%, #fffdf5 45%, #fef3c7 100%)',
-        color: '#1e3a34',
+        backgroundColor: '#f4efe2', // Exact Kaïa warm cream brand color
         zIndex: 999999,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         opacity: isFading ? 0 : 1,
-        transition: 'opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
         pointerEvents: isFading ? 'none' : 'auto',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        padding: '20px'
       }}
     >
-      {/* Golden Summer Sunburst Glow */}
+      {/* Ultra-Luxurious Minimalist Brand Typography */}
       <div 
         style={{
-          position: 'absolute',
-          width: '550px',
-          height: '550px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, rgba(255, 253, 245, 0) 70%)',
-          top: '48%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Summer Sun Icon */}
-      <div 
-        style={{
-          fontSize: '2.5rem',
-          marginBottom: '16px',
-          color: '#d97706',
-          opacity: 0.9,
-          animation: 'spin 20s linear infinite'
-        }}
-      >
-        ☀️
-      </div>
-
-      {/* Main Letter-by-Letter Title */}
-      <h1 
-        style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: 'clamp(2rem, 6vw, 3.8rem)',
-          fontWeight: 600,
-          letterSpacing: '0.22em',
-          color: '#1e3a34', // Deep Ocean Teal
-          margin: 0,
-          textAlign: 'center',
-          minHeight: '1.2em',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          textTransform: 'uppercase',
-          textShadow: '0 2px 10px rgba(255,255,255,0.8)'
+          textAlign: 'center'
         }}
       >
-        {displayedText}
-        {currentIndex < fullText.length && (
-          <span 
-            style={{
-              display: 'inline-block',
-              width: '3px',
-              height: '1em',
-              backgroundColor: '#d97706',
-              marginLeft: '6px',
-              animation: 'pulse 0.6s infinite alternate'
-            }}
-          />
-        )}
-      </h1>
+        {/* Main "KAÏA" Letter-by-Letter Serif Title */}
+        <h1 
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2.8rem, 12vw, 5.2rem)',
+            fontWeight: 400,
+            letterSpacing: '0.18em',
+            color: '#3a4a35', // Signature Kaïa Olive Green
+            margin: 0,
+            lineHeight: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          {displayedText}
+          {currentIndex < brandName.length && (
+            <span 
+              style={{
+                display: 'inline-block',
+                width: '3px',
+                height: '0.7em',
+                backgroundColor: '#c6a664',
+                marginLeft: '4px',
+                animation: 'pulse 0.5s infinite alternate'
+              }}
+            />
+          )}
+        </h1>
 
-      {/* Subtle Warm Gold Line */}
-      <div 
-        style={{
-          width: currentIndex >= fullText.length ? '90px' : '0px',
-          height: '2px',
-          background: 'linear-gradient(90deg, #d97706, #fbbf24)',
-          marginTop: '20px',
-          marginBottom: '16px',
-          transition: 'width 0.5s ease-out',
-          borderRadius: '2px'
-        }}
-      />
+        {/* Subtitle "SUNGLASSES" (Identical to Navbar logo styling) */}
+        <div 
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 'clamp(8px, 2.5vw, 11px)',
+            fontWeight: 600,
+            letterSpacing: '0.6em',
+            color: '#3a4a35',
+            marginTop: '12px',
+            textTransform: 'uppercase',
+            opacity: currentIndex >= brandName.length ? 1 : 0,
+            transform: currentIndex >= brandName.length ? 'translateY(0)' : 'translateY(8px)',
+            transition: 'opacity 0.5s ease-out, transform 0.5s ease-out'
+          }}
+        >
+          SUNGLASSES
+        </div>
 
-      {/* Subtitle */}
-      <p 
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: '0.78rem',
-          letterSpacing: '0.35em',
-          textTransform: 'uppercase',
-          color: '#2d4a43',
-          margin: 0,
-          opacity: currentIndex >= fullText.length ? 1 : 0,
-          transform: currentIndex >= fullText.length ? 'translateY(0)' : 'translateY(10px)',
-          transition: 'opacity 0.5s ease, transform 0.5s ease',
-          fontWeight: 700
-        }}
-      >
-        DAKAR • LUNETTES DE SOLEIL
-      </p>
+        {/* Delicate Gold Accent Line */}
+        <div 
+          style={{
+            width: currentIndex >= brandName.length ? '40px' : '0px',
+            height: '1px',
+            background: '#c6a664',
+            marginTop: '20px',
+            transition: 'width 0.5s ease-out',
+            opacity: 0.8
+          }}
+        />
+      </div>
 
-      {/* Animations */}
+      {/* Pulse animation for cursor */}
       <style>{`
         @keyframes pulse {
           0% { opacity: 1; }
           100% { opacity: 0; }
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
