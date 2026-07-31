@@ -312,8 +312,8 @@
 
   /* ---------- COLLECTION ---------- */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);gap:16px;}}
-  @media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:12px;}}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);gap:20px;}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr;gap:24px;}}
 
   .card{background:var(--surface);border:2px solid var(--ink);border-radius:16px;padding:20px;transition:transform .2s ease, box-shadow .2s ease;transform-style:preserve-3d;}
   .card:hover{box-shadow:6px 6px 0 var(--ink);transform:translate(-3px,-3px);}

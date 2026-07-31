@@ -79,7 +79,7 @@ const VariantSliderCard = ({ group, addToCart }) => {
             borderRadius: '12px',
             overflow: 'hidden',
             aspectRatio: '1 / 1',
-            maxHeight: '220px',
+            maxHeight: '280px',
             padding: '16px',
             display: 'flex',
             alignItems: 'center',
@@ -97,8 +97,8 @@ const VariantSliderCard = ({ group, addToCart }) => {
             loading="lazy" 
             style={{ 
               mixBlendMode: 'multiply',
-              maxWidth: '85%',
-              maxHeight: '85%',
+              maxWidth: '90%',
+              maxHeight: '90%',
               objectFit: 'contain',
               display: 'block'
             }}
@@ -129,8 +129,8 @@ const VariantSliderCard = ({ group, addToCart }) => {
           Guide Tailles ({currentProduct.frame_width || (currentProduct.gender === 'homme' ? '146 mm' : '142 mm')}) &rarr;
         </Link>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--ink)' }}>25 000 FCFA</span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', gap: '8px' }}>
+        <span style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--ink)', whiteSpace: 'nowrap' }}>25 000 FCFA</span>
         <button 
           className="btn-primary" 
           style={{ padding: '8px 16px', fontSize: '12px', borderRadius: '100px' }}
