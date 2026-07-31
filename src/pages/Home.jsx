@@ -162,6 +162,7 @@ const Home = () => {
           loop 
           muted 
           playsInline 
+          className="hero-bg-video"
           style={{
             position: 'absolute',
             top: 0,
@@ -169,7 +170,7 @@ const Home = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 80%',
+            objectPosition: 'center center',
             zIndex: 0
           }}
         >

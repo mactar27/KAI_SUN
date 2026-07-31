@@ -371,6 +371,18 @@
     *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
   }
 
+  /* Hero Video Mobile Responsiveness */
+  .hero-bg-video {
+    object-fit: cover !important;
+    object-position: center 50% !important;
+  }
+  @media (max-width: 768px) {
+    .hero-bg-video {
+      object-fit: cover !important;
+      object-position: center 50% !important;
+    }
+  }
+
   /* ---------- CHATBOT ---------- */
   .chatbot-btn {
     position: fixed;
