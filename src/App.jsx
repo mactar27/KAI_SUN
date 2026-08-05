@@ -18,10 +18,17 @@ import CGV from './pages/legal/CGV';
 import MentionsLegales from './pages/legal/MentionsLegales';
 import Confidentialite from './pages/legal/Confidentialite';
 import ContactFAQ from './pages/ContactFAQ';
+import ComingSoon from './pages/ComingSoon';
+
+const IS_UNDER_CONSTRUCTION = true; // Toggle this to false to reveal the site
 
 function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
+
+  if (IS_UNDER_CONSTRUCTION && !isAdmin) {
+    return <ComingSoon />;
+  }
 
   return (
     <div className="app">
