@@ -129,13 +129,17 @@ export default function LaunchPage() {
           </button>
         </div>
 
-        {/* Right - Hero image */}
+        {/* Right - Hero video */}
         <div style={{ position: 'relative', overflow: 'hidden' }}>
-          <img
-            src="/images/hero_pool.png"
-            alt="Kaïa Sun - Lunettes de soleil premium"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
+          >
+            <source src="/images/hero_video.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
