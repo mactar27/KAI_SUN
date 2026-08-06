@@ -260,14 +260,26 @@ export default function LaunchPage() {
         textAlign: 'center'
       }}>
         {[
-          { icon: '🛡', title: 'Qualité Premium', sub: 'Matériaux de haute qualité' },
-          { icon: '☀', title: 'Protection UV400', sub: 'Protection maximale' },
-          { icon: '🚚', title: 'Livraison rapide', sub: 'Rapide & sécurisée' },
+          { 
+            icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>, 
+            title: 'Qualité Premium', 
+            sub: 'Matériaux de haute qualité' 
+          },
+          { 
+            icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, 
+            title: 'Protection UV400', 
+            sub: 'Protection maximale' 
+          },
+          { 
+            icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, 
+            title: 'Livraison rapide', 
+            sub: 'Rapide & sécurisée' 
+          },
         ].map(f => (
-          <div key={f.title} style={{ color: '#fff' }}>
-            <div style={{ fontSize: '1.6rem', marginBottom: '8px', filter: 'brightness(2)' }}>{f.icon}</div>
+          <div key={f.title} style={{ color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ marginBottom: '12px', color: 'var(--kaia-gold)' }}>{f.icon}</div>
             <p style={{ margin: 0, fontWeight: 700, fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--kaia-gold)' }}>{f.title}</p>
-            <p style={{ margin: '4px 0 0', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)' }}>{f.sub}</p>
+            <p style={{ margin: '6px 0 0', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)' }}>{f.sub}</p>
           </div>
         ))}
       </section>
