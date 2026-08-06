@@ -19,9 +19,15 @@ export default function LaunchPage() {
         .lp-collection { grid-template-columns: 1fr 2fr; }
         .lp-col-right { grid-template-columns: repeat(3, 1fr); }
         .lp-footer-btns { flex-direction: row; }
+        .lp-logo-text { font-family: "Playfair Display", serif; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.05em; color: #111; line-height: 1; }
+        .lp-logo-sub { font-size: 0.6rem; color: var(--kaia-gold); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 5px; font-weight: 600; white-space: nowrap; }
+        
         @media (max-width: 900px) {
           .lp-nav { padding: 0 16px; }
           .lp-nav-links { display: none !important; }
+          .lp-logo-text { font-size: 1.3rem !important; }
+          .lp-logo-sub { font-size: 0.5rem !important; }
+          .lp-nav-right { gap: 8px !important; }
           .lp-histoire { grid-template-columns: 1fr !important; }
           .lp-features { grid-template-columns: 1fr !important; padding: 48px 24px !important; gap: 40px !important; }
           .lp-collection { grid-template-columns: 1fr !important; }
@@ -44,9 +50,9 @@ export default function LaunchPage() {
         <div style={{ flex: 1 }}></div>
 
         {/* Center logo */}
-        <div style={{ textAlign: 'center', flex: 1 }}>
-          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.7rem', fontWeight: 600, letterSpacing: '0.05em', color: '#111', lineHeight: 1 }}>KAÏA SUN</div>
-          <div style={{ fontSize: '0.6rem', color: 'var(--kaia-gold)', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '5px', fontWeight: 600 }}>Dakar, Sénégal</div>
+        <div style={{ textAlign: 'center', flex: 1, minWidth: '130px' }}>
+          <div className="lp-logo-text">KAÏA SUN</div>
+          <div className="lp-logo-sub">Dakar, Sénégal</div>
         </div>
 
         {/* Right actions */}
@@ -127,7 +133,7 @@ export default function LaunchPage() {
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, minHeight: '480px' }}>
-          <img src="/images/sable_pur.png" alt="Ambiance Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/histoire_chatgpt.png" alt="Ambiance Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           <img src="/images/hderoapp.png" alt="Packaging Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center' }} />
         </div>
       </section>
