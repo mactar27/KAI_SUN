@@ -11,21 +11,27 @@ const Checkout = () => {
   const [reviewForm, setReviewForm] = useState({ authorName: '', rating: 5, comment: '' });
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const [purchasedProductId, setPurchasedProductId] = useState('STORE');
-  const { cart, placeOrder, clearCart } = useContext(ShopContext);
+  const { cart, placeOrder, clearCart, countryCode } = useContext(ShopContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     prenom: '',
     nom: '',
-    adresse: '',
+    email: '',
     phone: '',
-    ville: ''
+    adresse: '',
+    ville: 'Dakar',
+    notes: ''
   });
 
   const [promoCodeInput, setPromoCodeInput] = useState('');
   const [appliedPromo, setAppliedPromo] = useState(null);
   const [promoError, setPromoError] = useState('');
   const [promoLoading, setPromoLoading] = useState(false);
+
+  const orderTotal = calculateCartTotal(cart, countryCode);
+  const discountAmount = appliedPromo ? (orderTotal * (appliedPromo.discountPercent / 100)) : 0;
+  const finalTotal = Math.max(0, orderTotal - discountAmount);
 
   const handleApplyPromo = async () => {
     if (!promoCodeInput) return;
@@ -47,10 +53,6 @@ const Checkout = () => {
     }
     setPromoLoading(false);
   };
-
-  const orderTotal = calculateCartTotal(cart);
-  const discountAmount = appliedPromo ? (orderTotal * (appliedPromo.discountPercent / 100)) : 0;
-  const finalTotal = Math.max(0, orderTotal - discountAmount);
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.id]: e.target.value});

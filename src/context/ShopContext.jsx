@@ -4,14 +4,16 @@ export const ShopContext = createContext();
 
 const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:3000/api';
 
-export const calculateCartTotal = (cart) => {
+export const calculateCartTotal = (cart, countryCode = 'SN') => {
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  // 1 pair = 25000, 2 pairs = 35000 (15000 discount on the 2nd pair -> 2nd pair is 10000 FCFA)
-  return Math.floor(totalQuantity / 2) * 35000 + (totalQuantity % 2) * 25000;
+  const basePrice = countryCode === 'CI' ? 35000 : 25000;
+  const secondPairPrice = countryCode === 'CI' ? 15000 : 10000;
+  return Math.floor(totalQuantity / 2) * (basePrice + secondPairPrice) + (totalQuantity % 2) * basePrice;
 };
 
 export const ShopProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [countryCode, setCountryCode] = useState('SN'); // default to Senegal
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem('kaia_cart_v2');
     return saved ? JSON.parse(saved) : [];
@@ -25,10 +27,31 @@ export const ShopProvider = ({ children }) => {
   const [adminToken, setAdminToken] = useState(() => localStorage.getItem('kaia_admin_token') || null);
 
   // Fetch initial data
-  const fetchProducts = async () => {
+  const fetchProducts = async (currentCountry = 'SN') => {
     const res = await fetch(`${API_URL}/products`);
     const data = await res.json();
-    setProducts(data);
+    const updatedData = data.map(p => ({
+      ...p,
+      price: currentCountry === 'CI' ? 35000 : 25000
+    }));
+    setProducts(updatedData);
+  };
+
+  const fetchLocationAndProducts = async () => {
+    let detectedCountry = 'SN';
+    try {
+      const res = await fetch('https://ipapi.co/json/');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.country_code === 'CI') {
+          detectedCountry = 'CI';
+        }
+      }
+    } catch (e) {
+      console.error('Erreur détection IP', e);
+    }
+    setCountryCode(detectedCountry);
+    await fetchProducts(detectedCountry);
   };
 
   const fetchOrders = async () => {
@@ -65,7 +88,7 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     const initApp = async () => {
       try {
-        await Promise.all([fetchProducts(), fetchStats()]);
+        await Promise.all([fetchLocationAndProducts(), fetchStats()]);
         if (adminToken) await fetchOrders();
         
         // Simuler une visite (incrément backend) uniquement si c'est une nouvelle session
@@ -148,7 +171,7 @@ export const ShopProvider = ({ children }) => {
   };
 
   const placeOrder = async (deliveryInfo, discount = 0, promoCodeId = null) => {
-    const orderTotal = calculateCartTotal(cart);
+    const orderTotal = calculateCartTotal(cart, countryCode);
     const finalTotal = Math.max(0, orderTotal - discount);
     const orderData = {
       deliveryInfo,
@@ -289,7 +312,8 @@ export const ShopProvider = ({ children }) => {
       loginAdmin,
       logoutAdmin,
       isSearchOpen,
-      setIsSearchOpen
+      setIsSearchOpen,
+      countryCode
     }}>
       {children}
     </ShopContext.Provider>

@@ -6,7 +6,7 @@ import { ShopContext, calculateCartTotal } from '../context/ShopContext';
 
 const Cart = () => {
   const { products } = useContext(ProductsContext);
-  const { cart, removeFromCart, placeOrder, clearCart } = useContext(ShopContext);
+  const { cart, removeFromCart, placeOrder, clearCart, countryCode } = useContext(ShopContext);
 
   const [formData, setFormData] = useState({
     prenom: '',
@@ -19,14 +19,14 @@ const Cart = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [confirmedDetails, setConfirmedDetails] = useState(null);
 
-  const total = calculateCartTotal(cart);
+  const total = calculateCartTotal(cart, countryCode);
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (cart.length === 0) return;
     setIsSubmitting(true);
-    const orderTotal = calculateCartTotal(cart);
+    const orderTotal = calculateCartTotal(cart, countryCode);
     const orderItems = [...cart];
     try {
       await placeOrder(formData, 0, null);
