@@ -124,6 +124,9 @@ export default function LaunchPage() {
             fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
             fontWeight: 400, lineHeight: 1.2, color: '#111', marginBottom: '28px'
           }}>Façonnée à l'image de chacun</h2>
+          <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, maxWidth: '400px' }}>
+            Des montures intemporelles, des matériaux de qualité, et un savoir-faire sélectif pour sublimer chaque regard.
+          </p>
         </div>
         <div style={{ minHeight: '480px', overflow: 'hidden' }}>
           <img src="/images/histoire_chatgpt.png" alt="Ambiance Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
