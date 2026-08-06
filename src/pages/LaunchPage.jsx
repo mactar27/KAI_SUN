@@ -40,19 +40,16 @@ export default function LaunchPage() {
         backgroundColor: '#F5F0E8', borderBottom: '1px solid rgba(0,0,0,0.08)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px'
       }}>
-        <div className="lp-nav-links" style={{ gap: '32px', flex: 1 }}>
-          {NAV_LINKS.map((l, i) => (
-            <span key={l} style={{
-              fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase',
-              color: i === 0 ? 'var(--kaia-gold)' : '#333', cursor: 'pointer',
-              borderBottom: i === 0 ? '1px solid var(--kaia-gold)' : 'none', paddingBottom: i === 0 ? '2px' : 0
-            }}>{l}</span>
-          ))}
-        </div>
+        {/* Left spacer */}
+        <div style={{ flex: 1 }} />
+
+        {/* Center logo */}
         <div style={{ textAlign: 'center', flex: 1 }}>
           <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.7rem', fontWeight: 600, letterSpacing: '0.05em', color: '#111', lineHeight: 1 }}>KAÏA SUN</div>
           <div style={{ fontSize: '0.6rem', color: 'var(--kaia-gold)', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '5px', fontWeight: 600 }}>Dakar, Sénégal</div>
         </div>
+
+        {/* Right actions */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '20px', flex: 1 }}>
           <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', color: '#333' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
