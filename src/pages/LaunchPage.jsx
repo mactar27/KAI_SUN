@@ -123,10 +123,10 @@ export default function LaunchPage() {
             fontWeight: 400, lineHeight: 1.2, color: '#111', marginBottom: '28px'
           }}>Pensées à Dakar.<br />Portées partout.</h2>
           <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, marginBottom: '16px', maxWidth: '400px' }}>
-            KAÏA SUN est une marque de lunettes née à Dakar, inspirée par la lumière, la culture et l'élégance naturelle de la vie sénégalaise.
+            KAÏA SUN est une marque de lunettes née à Dakar, portée au Sénégal et en Côte d'Ivoire. Inspirée par la lumière, la culture et l'élégance naturelle de l'Afrique de l'Ouest.
           </p>
           <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, maxWidth: '400px' }}>
-            Des montures intemporelles, des matériaux de qualité, et un savoir-faire sélectif pour sublimer chaque regard.
+            De Dakar à Abidjan, des montures intemporelles, des matériaux de qualité, et un savoir-faire sélectif pour sublimer chaque regard.
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, minHeight: '480px' }}>
