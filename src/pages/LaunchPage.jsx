@@ -95,8 +95,7 @@ export default function LaunchPage() {
             fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2.4rem, 5vw, 4rem)',
             fontWeight: 400, lineHeight: 1.15, color: '#fff', marginBottom: '20px'
           }}>
-            L'élégance<br />à la sénégalaise,<br />
-            <em style={{ color: 'var(--kaia-gold)', fontStyle: 'italic' }}>très bientôt.</em>
+            <em style={{ color: 'var(--kaia-gold)', fontStyle: 'italic' }}>L'élégance commence par le regard</em>
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '36px', maxWidth: '380px' }}>
             Découvrez en avant-première nos lunettes premium.<br />La collection officielle sera disponible prochainement.
@@ -124,13 +123,7 @@ export default function LaunchPage() {
           <h2 style={{
             fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
             fontWeight: 400, lineHeight: 1.2, color: '#111', marginBottom: '28px'
-          }}>Pensées à Dakar.<br />Portées partout.</h2>
-          <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, marginBottom: '16px', maxWidth: '400px' }}>
-            KAÏA SUN est une marque de lunettes née à Dakar, portée au Sénégal et en Côte d'Ivoire. Inspirée par la lumière, la culture et l'élégance naturelle de l'Afrique de l'Ouest.
-          </p>
-          <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, maxWidth: '400px' }}>
-            De Dakar à Abidjan, des montures intemporelles, des matériaux de qualité, et un savoir-faire sélectif pour sublimer chaque regard.
-          </p>
+          }}>Façonnée à l'image de chacun</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, minHeight: '480px' }}>
           <img src="/images/histoire_chatgpt.png" alt="Ambiance Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
