@@ -82,64 +82,90 @@ export default function LaunchPage() {
 
       {/* ─── HERO ───────────────────────────────────────────── */}
       <section style={{
-        paddingTop: '72px',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        minHeight: '88vh'
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 60px',
+        overflow: 'hidden'
       }}>
-        {/* Left - Text */}
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0
+          }}
+        >
+          <source src="/images/hero_video.mp4" type="video/mp4" />
+        </video>
+
+        {/* Gradient Overlay for Text Readability */}
         <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '60px 60px 60px 60px',
-          backgroundColor: '#F9F7F2'
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)',
+          zIndex: 1
+        }}></div>
+
+        {/* Text Content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          maxWidth: '500px',
+          marginTop: '72px' // Offset for navbar
         }}>
           <h2 style={{
             fontFamily: '"Playfair Display", serif',
-            fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
+            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             fontWeight: 400,
-            lineHeight: 1.2,
-            color: '#111',
-            marginBottom: '24px'
+            lineHeight: 1.15,
+            color: '#fff',
+            marginBottom: '24px',
+            textShadow: '0 2px 10px rgba(0,0,0,0.5)'
           }}>
             L'élégance<br />
             à la sénégalaise,<br />
             <span style={{ fontStyle: 'italic', color: 'var(--kaia-gold)' }}>très bientôt.</span>
           </h2>
-          <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.7, maxWidth: '340px', marginBottom: '36px' }}>
+          <p style={{ 
+            fontSize: '1.1rem', 
+            color: 'rgba(255,255,255,0.9)', 
+            lineHeight: 1.7, 
+            marginBottom: '36px',
+            textShadow: '0 1px 5px rgba(0,0,0,0.5)'
+          }}>
             Découvrez en avant-première nos modèles de lunettes premium.
           </p>
           <button onClick={scrollToCollection} style={{
-            alignSelf: 'flex-start',
             backgroundColor: 'var(--kaia-gold)',
             color: '#fff',
             border: 'none',
-            padding: '14px 28px',
-            fontSize: '0.75rem',
+            padding: '16px 32px',
+            fontSize: '0.8rem',
             fontWeight: 700,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             cursor: 'pointer',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '10px'
-          }}>
+            gap: '10px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+            transition: 'transform 0.2s',
+          }}
+          onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+          onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
+          >
             Découvrir la collection →
           </button>
-        </div>
-
-        {/* Right - Hero video */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          >
-            <source src="/images/hero_video.mp4" type="video/mp4" />
-          </video>
         </div>
       </section>
 
