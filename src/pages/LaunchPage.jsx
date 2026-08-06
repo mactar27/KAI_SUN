@@ -2,100 +2,136 @@ import React from 'react';
 import { products } from '../data/products';
 
 const LaunchPage = () => {
-  // We can select a few top products or all of them. Let's show all of them.
-  const displayProducts = products;
+  // Take first 12 products or all, remove the supplier name from display
+  const displayProducts = products.map(p => ({
+    ...p,
+    displayName: p.name.split('(')[0].trim()
+  }));
 
   return (
-    <div style={{ backgroundColor: 'var(--bg)', minHeight: '100vh', width: '100%' }}>
+    <div style={{ backgroundColor: '#FCFBF7', minHeight: '100vh', width: '100%', fontFamily: 'Inter, sans-serif' }}>
+      
       {/* Header */}
       <header style={{
-        padding: '32px 0',
+        padding: '40px 0',
         textAlign: 'center',
-        borderBottom: '1px solid var(--line)',
-        backgroundColor: '#fff'
+        position: 'relative',
+        zIndex: 10
       }}>
-        <h1 style={{ margin: 0, fontSize: '2rem', letterSpacing: '0.05em' }}>KAÏA SUN</h1>
-        <p style={{ margin: '8px 0 0', color: 'var(--ink-soft)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+        <h1 style={{ 
+          margin: 0, 
+          fontSize: '2.5rem', 
+          fontFamily: '"Playfair Display", serif',
+          fontWeight: 600,
+          letterSpacing: '0.08em',
+          color: 'var(--ink)'
+        }}>KAÏA SUN</h1>
+        <p style={{ 
+          margin: '12px 0 0', 
+          color: 'var(--kaia-gold)', 
+          fontSize: '0.75rem', 
+          textTransform: 'uppercase', 
+          letterSpacing: '0.2em',
+          fontWeight: 600
+        }}>
           Dakar, Sénégal
         </p>
       </header>
 
       {/* Hero Section */}
       <section style={{
-        padding: '60px 20px',
+        padding: '80px 20px',
         textAlign: 'center',
-        backgroundColor: 'var(--kaia-cream)'
+        position: 'relative'
       }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '24px', fontStyle: 'italic' }}>
-            La nouvelle collection arrive très bientôt
+        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontSize: '3.5rem', 
+            fontFamily: '"Playfair Display", serif',
+            fontWeight: 400,
+            lineHeight: 1.2,
+            color: 'var(--ink)',
+            marginBottom: '32px'
+          }}>
+            L'élégance à la sénégalaise, <br />
+            <span style={{ fontStyle: 'italic', color: 'var(--kaia-gold)' }}>très bientôt.</span>
           </h2>
-          <p style={{ fontSize: '1.1rem', color: 'var(--ink-soft)', lineHeight: 1.6, marginBottom: '32px' }}>
-            Découvrez en exclusivité nos modèles premium. Le site officiel est en cours de finalisation, mais vous pouvez déjà repérer vos coups de cœur.
+          <p style={{ 
+            fontSize: '1.1rem', 
+            color: 'var(--ink-soft)', 
+            lineHeight: 1.8, 
+            marginBottom: '40px',
+            maxWidth: '500px',
+            margin: '0 auto 40px'
+          }}>
+            Découvrez en avant-première nos modèles de lunettes premium. 
+            La collection officielle sera disponible prochainement.
           </p>
-          <div style={{ width: '60px', height: '2px', backgroundColor: 'var(--kaia-gold)', margin: '0 auto' }}></div>
         </div>
       </section>
 
       {/* Collection Grid */}
-      <section style={{ padding: '80px 20px', maxWidth: '1240px', margin: '0 auto' }}>
-        <h3 style={{ textAlign: 'center', fontSize: '2rem', marginBottom: '48px' }}>Notre Collection</h3>
+      <section style={{ padding: '40px 40px 100px', maxWidth: '1400px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '60px' }}>
+          <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--line)' }}></div>
+          <h3 style={{ textTransform: 'uppercase', letterSpacing: '0.15em', fontSize: '0.85rem', color: 'var(--ink-soft)' }}>
+            Aperçu de la collection
+          </h3>
+          <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--line)' }}></div>
+        </div>
         
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '40px',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '60px 40px',
         }}>
           {displayProducts.map((product) => (
-            <div key={product.id} style={{ display: 'flex', flexDirection: 'column' }}>
+            <div key={product.id} style={{ display: 'flex', flexDirection: 'column', group: 'true' }}>
               <div style={{
                 position: 'relative',
-                aspectRatio: '1',
-                backgroundColor: '#f9f9f9',
-                borderRadius: '12px',
+                aspectRatio: '4/3',
+                backgroundColor: '#fff',
                 overflow: 'hidden',
-                marginBottom: '16px'
+                marginBottom: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px'
               }}>
                 <img 
                   src={product.image} 
-                  alt={product.name}
+                  alt={product.displayName}
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
+                    width: '90%',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    transition: 'transform 0.5s ease',
                   }}
+                  onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                  onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
                 />
-                <div style={{
-                  position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  backgroundColor: 'var(--kaia-gold)',
-                  color: '#fff',
-                  padding: '4px 12px',
-                  borderRadius: '20px',
-                  fontSize: '0.75rem',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
-                }}>
-                  Teasing
-                </div>
               </div>
               
               <div style={{ textAlign: 'center' }}>
-                <h4 style={{ fontSize: '1.1rem', marginBottom: '8px', fontFamily: 'Inter, sans-serif', fontWeight: 600 }}>{product.name}</h4>
-                <div style={{ 
-                  display: 'inline-block',
-                  border: '1px solid var(--kaia-gold)',
-                  color: 'var(--kaia-gold)',
-                  padding: '8px 16px',
-                  borderRadius: '30px',
-                  fontSize: '0.85rem',
+                <h4 style={{ 
+                  fontSize: '1.2rem', 
+                  marginBottom: '12px', 
+                  fontFamily: '"Playfair Display", serif',
                   fontWeight: 500,
-                  marginTop: '12px'
+                  color: 'var(--ink)'
                 }}>
-                  Bientôt disponible
-                </div>
+                  {product.displayName}
+                </h4>
+                
+                <span style={{ 
+                  fontSize: '0.75rem', 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.1em',
+                  color: 'var(--kaia-gold)',
+                  fontWeight: 600
+                }}>
+                  Disponible Bientôt
+                </span>
               </div>
             </div>
           ))}
@@ -104,28 +140,45 @@ const LaunchPage = () => {
 
       {/* Footer */}
       <footer style={{
-        padding: '60px 20px',
-        backgroundColor: 'var(--ink)',
+        padding: '80px 20px',
+        backgroundColor: 'var(--kaia-green)',
         color: '#fff',
         textAlign: 'center'
       }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <h3 style={{ color: '#fff', marginBottom: '24px', fontSize: '1.5rem' }}>Restons en contact</h3>
-          <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '32px' }}>
-            Pour toute question ou demande de réservation anticipée, n'hésitez pas à nous contacter sur WhatsApp ou Instagram.
+          <h1 style={{ 
+            fontFamily: '"Playfair Display", serif', 
+            fontSize: '2rem', 
+            marginBottom: '24px',
+            color: 'var(--kaia-gold)'
+          }}>KAÏA SUN</h1>
+          <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '40px', fontSize: '0.95rem', lineHeight: 1.6 }}>
+            Contactez-nous pour toute demande de réservation anticipée.
           </p>
           
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginBottom: '48px' }}>
-            <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-              <span>WhatsApp</span>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '60px' }}>
+            <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{ 
+              color: '#fff', 
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              fontSize: '0.8rem'
+            }}>
+              WhatsApp
             </a>
-            <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-              <span>Instagram</span>
+            <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" style={{ 
+              color: '#fff', 
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              fontSize: '0.8rem'
+            }}>
+              Instagram
             </a>
           </div>
           
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '24px', color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
-            &copy; {new Date().getFullYear()} Kaïa Sun. Tous droits réservés.
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '32px', color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', letterSpacing: '0.05em' }}>
+            &copy; {new Date().getFullYear()} KAÏA SUN. TOUS DROITS RÉSERVÉS.
           </div>
         </div>
       </footer>
