@@ -18,7 +18,7 @@ import CGV from './pages/legal/CGV';
 import MentionsLegales from './pages/legal/MentionsLegales';
 import Confidentialite from './pages/legal/Confidentialite';
 import ContactFAQ from './pages/ContactFAQ';
-import ComingSoon from './pages/ComingSoon';
+import LaunchPage from './pages/LaunchPage';
 
 const IS_UNDER_CONSTRUCTION = true; // Toggle this to false to reveal the site
 
@@ -27,7 +27,7 @@ function App() {
   const isAdmin = location.pathname.startsWith('/admin');
 
   if (IS_UNDER_CONSTRUCTION && !isAdmin) {
-    return <ComingSoon />;
+    return <LaunchPage />;
   }
 
   return (
