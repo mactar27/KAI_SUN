@@ -20,7 +20,7 @@ import Confidentialite from './pages/legal/Confidentialite';
 import ContactFAQ from './pages/ContactFAQ';
 import LaunchPage from './pages/LaunchPage';
 
-const IS_UNDER_CONSTRUCTION = true; // Toggle this to false to reveal the site
+const IS_UNDER_CONSTRUCTION = false; // Toggle this to false to reveal the site
 
 function App() {
   const location = useLocation();

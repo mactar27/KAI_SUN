@@ -1,329 +1,215 @@
-import React, { useState } from 'react';
-import { products } from '../data/products';
+import React from 'react';
 
-// Curated collection with elegant Kaïa naming
-const kaiaCurated = [
-  { id: 1, code: 'KAÏA 01', desc: 'Écaille classique', image: products[0]?.image },
-  { id: 2, code: 'KAÏA 02', desc: 'Rose translucide',  image: products[3]?.image },
-  { id: 3, code: 'KAÏA 03', desc: 'Brun caramel',      image: products[2]?.image },
-  { id: 4, code: 'KAÏA 04', desc: 'Noir intemporel',   image: products[4]?.image },
-  { id: 5, code: 'KAÏA 05', desc: 'Écaille solaire',   image: products[1]?.image },
-];
-
-const NAV_LINKS = ['Accueil', 'Collection', 'À propos', 'Contact'];
+const NAV_LINKS = ['Accueil', 'À propos', 'Collection', 'Contact'];
 
 export default function LaunchPage() {
-  const [navOpen, setNavOpen] = useState(false);
-
   const scrollToCollection = () => {
     document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div style={{ backgroundColor: '#F9F7F2', minHeight: '100vh', fontFamily: 'Inter, sans-serif', overflowX: 'hidden' }}>
-      
+    <div style={{ backgroundColor: '#F5F0E8', minHeight: '100vh', fontFamily: 'Inter, sans-serif', overflowX: 'hidden' }}>
+
       <style>{`
-        .desktop-only { display: flex; }
-        .mobile-only { display: none; }
-        .nav-container { padding: 0 50px; }
-        .hero-section { padding: 0 60px; }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); }
-        .grid-collection { grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .grid-features { grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 40px; }
-        .footer-container { padding: 60px 40px 40px; }
-        .social-buttons { flex-direction: row; }
-        .right-nav { justify-content: flex-end; }
-        
+        * { box-sizing: border-box; }
+        .lp-nav { padding: 0 48px; }
+        .lp-nav-links { display: flex !important; }
+        .lp-histoire { grid-template-columns: 1fr 1fr; }
+        .lp-features { grid-template-columns: repeat(3, 1fr); padding: 48px 60px; }
+        .lp-collection { grid-template-columns: 1fr 2fr; }
+        .lp-col-right { grid-template-columns: repeat(3, 1fr); }
+        .lp-footer-btns { flex-direction: row; }
         @media (max-width: 900px) {
-          .nav-container { padding: 0 20px; }
-          .desktop-only { display: none !important; }
-          .mobile-only { display: flex; }
-          .right-nav { justify-content: flex-end; gap: 12px !important; }
-          .hero-section { padding: 0 20px; align-items: flex-end; padding-bottom: 80px; }
-          .hero-title { font-size: 2.8rem; margin-top: auto; }
-          .grid-collection { grid-template-columns: 1fr; gap: 40px; }
-          .grid-features { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px; }
-          .footer-container { padding: 60px 20px 40px; }
-          .social-buttons { flex-direction: column; width: 100%; max-width: 250px; margin: 0 auto 48px; }
+          .lp-nav { padding: 0 16px; }
+          .lp-nav-links { display: none !important; }
+          .lp-histoire { grid-template-columns: 1fr !important; }
+          .lp-features { grid-template-columns: 1fr !important; padding: 48px 24px !important; gap: 40px !important; }
+          .lp-collection { grid-template-columns: 1fr !important; }
+          .lp-col-right { grid-template-columns: repeat(3, 1fr) !important; }
+          .lp-collection-text { padding: 48px 24px !important; }
+          .lp-histoire-text { padding: 48px 24px !important; }
+          .lp-hero-text { padding: 40px 24px !important; }
+          .lp-footer-btns { flex-direction: column !important; align-items: stretch !important; }
+          .lp-footer-btns a { justify-content: center !important; }
         }
       `}</style>
 
-      {/* ─── NAVBAR ─────────────────────────────────────────── */}
-      <nav className="nav-container" style={{
+      {/* NAVBAR */}
+      <nav className="lp-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        backgroundColor: '#F9F7F2',
-        borderBottom: '1px solid rgba(0,0,0,0.06)',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        height: '80px'
+        backgroundColor: '#F5F0E8', borderBottom: '1px solid rgba(0,0,0,0.08)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px'
       }}>
-        {/* Left links (Desktop) */}
-        <div className="desktop-only" style={{ gap: '32px', flex: 1 }}>
-          {NAV_LINKS.map(l => (
-            <span key={l} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#111', cursor: 'pointer' }}>{l}</span>
+        <div className="lp-nav-links" style={{ gap: '32px', flex: 1 }}>
+          {NAV_LINKS.map((l, i) => (
+            <span key={l} style={{
+              fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase',
+              color: i === 0 ? 'var(--kaia-gold)' : '#333', cursor: 'pointer',
+              borderBottom: i === 0 ? '1px solid var(--kaia-gold)' : 'none', paddingBottom: i === 0 ? '2px' : 0
+            }}>{l}</span>
           ))}
         </div>
-        
-        {/* Left spacer (Mobile) */}
-        <div className="mobile-only" style={{ flex: 1 }}></div>
-
-        {/* Center logo */}
         <div style={{ textAlign: 'center', flex: 1 }}>
-          <h1 style={{ margin: 0, fontSize: '1.8rem', fontFamily: '"Playfair Display", serif', fontWeight: 600, letterSpacing: '0.06em', lineHeight: 1 }}>KAÏA SUN</h1>
-          <p style={{ margin: '6px 0 0', fontSize: '0.65rem', color: 'var(--kaia-gold)', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600 }}>Dakar, Sénégal</p>
+          <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.7rem', fontWeight: 600, letterSpacing: '0.05em', color: '#111', lineHeight: 1 }}>KAÏA SUN</div>
+          <div style={{ fontSize: '0.6rem', color: 'var(--kaia-gold)', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '5px', fontWeight: 600 }}>Dakar, Sénégal</div>
         </div>
-
-        {/* Right actions */}
-        <div className="right-nav" style={{ display: 'flex', alignItems: 'center', gap: '24px', flex: 1 }}>
-          {/* WhatsApp - Desktop only */}
-          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" className="desktop-only" style={{ alignItems: 'center' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-            </svg>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '20px', flex: 1 }}>
+          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', color: '#333' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
-          {/* Instagram - Desktop only */}
-          <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" title="Instagram" className="desktop-only" style={{ alignItems: 'center' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-            </svg>
+          <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', color: '#333' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          {/* Reserve CTA */}
           <button onClick={scrollToCollection} style={{
-            backgroundColor: 'var(--kaia-green)',
-            color: '#fff',
-            border: 'none',
-            padding: '10px 16px',
-            borderRadius: '4px',
-            fontSize: '0.75rem',
-            fontWeight: 700,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-            whiteSpace: 'nowrap'
-          }}>
-            Réserver
-          </button>
+            backgroundColor: 'var(--kaia-green)', color: '#fff', border: 'none',
+            padding: '10px 18px', fontSize: '0.7rem', fontWeight: 700,
+            letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer',
+            borderRadius: '3px', whiteSpace: 'nowrap'
+          }}>Réserver</button>
         </div>
       </nav>
 
-      {/* ─── HERO ───────────────────────────────────────────── */}
-      <section className="hero-section" style={{
-        position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden'
+      {/* HERO */}
+      <section style={{
+        position: 'relative', display: 'flex', alignItems: 'center',
+        minHeight: '90vh', overflow: 'hidden', marginTop: '72px'
       }}>
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 0
-          }}
-        >
-          <source src="/images/hero_video.mp4" type="video/mp4" />
-        </video>
-
-        {/* Gradient Overlay for Text Readability */}
+        <img
+          src="/images/hderoapp.png"
+          alt="Lunettes Kaïa Sun dans leur étui"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        />
         <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%)',
-          zIndex: 1
-        }}></div>
-        {/* Additional gradient for mobile bottom text */}
-        <div className="mobile-only" style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%)',
-          zIndex: 1
-        }}></div>
-
-        {/* Text Content */}
-        <div style={{
-          position: 'relative',
-          zIndex: 2,
-          maxWidth: '500px',
-          marginTop: '72px' // Offset for navbar
-        }}>
-          <h2 className="hero-title" style={{
-            fontFamily: '"Playfair Display", serif',
-            fontWeight: 400,
-            lineHeight: 1.15,
-            color: '#fff',
-            marginBottom: '24px',
-            textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to right, rgba(10,18,14,0.78) 0%, rgba(10,18,14,0.4) 50%, rgba(10,18,14,0) 80%)'
+        }} />
+        <div className="lp-hero-text" style={{ position: 'relative', zIndex: 2, padding: '80px 60px', maxWidth: '560px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+            <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--kaia-gold)' }}>Nouvelle Collection</span>
+            <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--kaia-gold)', opacity: 0.6 }} />
+          </div>
+          <h1 style={{
+            fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2.4rem, 5vw, 4rem)',
+            fontWeight: 400, lineHeight: 1.15, color: '#fff', marginBottom: '20px'
           }}>
-            L'élégance<br />
-            à la sénégalaise,<br />
-            <span style={{ fontStyle: 'italic', color: 'var(--kaia-gold)' }}>très bientôt.</span>
-          </h2>
-          <p style={{ 
-            fontSize: '1.1rem', 
-            color: 'rgba(255,255,255,0.9)', 
-            lineHeight: 1.7, 
-            marginBottom: '36px',
-            textShadow: '0 1px 5px rgba(0,0,0,0.5)'
-          }}>
-            Découvrez en avant-première nos modèles de lunettes premium.
+            L'élégance<br />à la sénégalaise,<br />
+            <em style={{ color: 'var(--kaia-gold)', fontStyle: 'italic' }}>très bientôt.</em>
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '36px', maxWidth: '380px' }}>
+            Découvrez en avant-première nos lunettes premium.<br />La collection officielle sera disponible prochainement.
           </p>
           <button onClick={scrollToCollection} style={{
-            backgroundColor: 'var(--kaia-gold)',
-            color: '#fff',
-            border: 'none',
-            padding: '16px 32px',
-            fontSize: '0.8rem',
-            fontWeight: 700,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-            transition: 'transform 0.2s',
+            display: 'inline-flex', alignItems: 'center', gap: '10px',
+            backgroundColor: 'var(--kaia-green)', color: '#fff', border: 'none',
+            padding: '14px 28px', fontSize: '0.75rem', fontWeight: 700,
+            letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer',
+            borderRadius: '3px', transition: 'transform 0.2s'
           }}
           onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
           onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            Découvrir la collection →
-          </button>
+          >Être informé →</button>
         </div>
       </section>
 
-      {/* ─── COLLECTION ─────────────────────────────────────── */}
-      <section id="collection" style={{ padding: '80px 20px', maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Section header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '12px' }}>
-            <div style={{ width: '40px', height: '1px', backgroundColor: '#111' }}></div>
-            <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#111' }}>
-              Aperçu de la collection
-            </span>
-            <div style={{ width: '40px', height: '1px', backgroundColor: '#111' }}></div>
+      {/* NOTRE HISTOIRE */}
+      <section className="lp-histoire" style={{ display: 'grid', backgroundColor: '#F5F0E8' }}>
+        <div className="lp-histoire-text" style={{ padding: '80px 60px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+            <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--kaia-gold)' }}>Notre Histoire</span>
+            <div style={{ width: '32px', height: '1px', backgroundColor: 'var(--kaia-gold)' }} />
           </div>
-          <p style={{ fontSize: '0.95rem', color: '#888', fontStyle: 'italic' }}>
-            Des montures uniques, pensées pour sublimer chaque regard.
+          <h2 style={{
+            fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
+            fontWeight: 400, lineHeight: 1.2, color: '#111', marginBottom: '28px'
+          }}>Pensées à Dakar.<br />Portées partout.</h2>
+          <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, marginBottom: '16px', maxWidth: '400px' }}>
+            KAÏA SUN est une marque de lunettes née à Dakar, inspirée par la lumière, la culture et l'élégance naturelle de la vie sénégalaise.
+          </p>
+          <p style={{ fontSize: '0.9rem', color: '#555', lineHeight: 1.8, maxWidth: '400px' }}>
+            Des montures intemporelles, des matériaux de qualité, et un savoir-faire sélectif pour sublimer chaque regard.
           </p>
         </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, minHeight: '480px' }}>
+          <img src="/images/sable_pur.png" alt="Ambiance Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/hderoapp.png" alt="Packaging Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center' }} />
+        </div>
+      </section>
 
-        {/* Grid */}
-        <div className="grid-collection" style={{ display: 'grid' }}>
-          {kaiaCurated.map((item) => (
-            <div key={item.id} style={{
-              backgroundColor: '#fff',
-              border: '1px solid rgba(0,0,0,0.07)',
-              borderRadius: '4px',
-              overflow: 'hidden',
-              transition: 'box-shadow 0.3s',
-            }}
-              onMouseOver={e => e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1)'}
-              onMouseOut={e => e.currentTarget.style.boxShadow = 'none'}
-            >
-              {/* Image */}
-              <div style={{ padding: '32px 24px 24px', backgroundColor: '#FAFAF8', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '200px' }}>
-                <img
-                  src={item.image}
-                  alt={item.code}
-                  style={{ width: '85%', height: 'auto', objectFit: 'contain', transition: 'transform 0.4s ease' }}
-                  onMouseOver={e => e.currentTarget.style.transform = 'scale(1.06)'}
-                  onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-                />
-              </div>
-              {/* Info */}
-              <div style={{ padding: '18px 24px 22px', textAlign: 'center' }}>
-                <h4 style={{ margin: '0 0 6px', fontFamily: '"Playfair Display", serif', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.04em' }}>
-                  {item.code}
-                </h4>
-                <p style={{ margin: '0 0 12px', fontSize: '0.82rem', color: '#888', fontStyle: 'italic' }}>{item.desc}</p>
-                <div style={{ width: '28px', height: '2px', backgroundColor: 'var(--kaia-gold)', margin: '0 auto' }}></div>
+      {/* FEATURES */}
+      <section style={{ borderTop: '1px solid rgba(0,0,0,0.08)', borderBottom: '1px solid rgba(0,0,0,0.08)', backgroundColor: '#F5F0E8' }}>
+        <div className="lp-features" style={{ display: 'grid', gap: '32px' }}>
+          {[
+            { icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, title: 'PROTECTION UV400', sub: 'Une protection maximale contre les rayons UVA & UVB.' },
+            { icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, title: 'MATÉRIAUX PREMIUM', sub: 'Acétate de haute qualité, charnières renforcées, finitions soignées.' },
+            { icon: <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="5" r="3"/><path d="M6 22v-4a6 6 0 0 1 12 0v4"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/></svg>, title: 'DESIGN INTEMPOREL', sub: 'Des montures élégantes qui traversent le temps.' },
+          ].map(f => (
+            <div key={f.title} style={{ display: 'flex', alignItems: 'flex-start', gap: '18px' }}>
+              <div style={{ color: 'var(--kaia-gold)', flexShrink: 0, marginTop: '4px', opacity: 0.85 }}>{f.icon}</div>
+              <div>
+                <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.12em', color: '#111', marginBottom: '8px' }}>{f.title}</p>
+                <p style={{ fontSize: '0.85rem', color: '#666', lineHeight: 1.65 }}>{f.sub}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ─── FEATURES BAR ──────────────────────────────────── */}
-      <section className="grid-features" style={{
-        backgroundColor: 'var(--kaia-green)',
-        display: 'grid',
-        textAlign: 'center'
-      }}>
-        {[
-          { 
-            icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>, 
-            title: 'Qualité Premium', 
-            sub: 'Matériaux de haute qualité' 
-          },
-          { 
-            icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>, 
-            title: 'Protection UV400', 
-            sub: 'Protection maximale' 
-          },
-          { 
-            icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, 
-            title: 'Livraison rapide', 
-            sub: 'Rapide & sécurisée' 
-          },
-        ].map(f => (
-          <div key={f.title} style={{ color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ marginBottom: '12px', color: 'var(--kaia-gold)' }}>{f.icon}</div>
-            <p style={{ margin: 0, fontWeight: 700, fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--kaia-gold)' }}>{f.title}</p>
-            <p style={{ margin: '6px 0 0', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)' }}>{f.sub}</p>
+      {/* COLLECTION TEASER */}
+      <section id="collection" className="lp-collection" style={{ display: 'grid', backgroundColor: '#F5F0E8' }}>
+        <div className="lp-collection-text" style={{ padding: '80px 60px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+            <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--kaia-gold)' }}>Collection</span>
+            <div style={{ width: '32px', height: '1px', backgroundColor: 'var(--kaia-gold)' }} />
           </div>
-        ))}
+          <h2 style={{
+            fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+            fontWeight: 400, lineHeight: 1.2, color: '#111', marginBottom: '36px'
+          }}>Un aperçu de ce qui vous attend.</h2>
+          <button onClick={() => window.open('https://wa.me/221770000000?text=Bonjour, je souhaite être informé(e) de la collection Kaïa Sun !', '_blank')} style={{
+            alignSelf: 'flex-start', backgroundColor: 'var(--kaia-green)', color: '#fff',
+            border: 'none', padding: '14px 28px', fontSize: '0.75rem', fontWeight: 700,
+            letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '3px'
+          }}>Découvrir bientôt</button>
+        </div>
+        <div className="lp-col-right" style={{ display: 'grid', gap: '2px' }}>
+          {['Apercu_1.png', 'Apercu_2.png', 'Apercu_3.png'].map((img, i) => (
+            <div key={i} style={{ overflow: 'hidden', aspectRatio: '3/4' }}>
+              <img src={`/images/${img}`} alt={`Aperçu ${i + 1}`}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                onMouseOver={e => e.currentTarget.style.transform = 'scale(1.06)'}
+                onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+              />
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* ─── FOOTER ─────────────────────────────────────────── */}
-      <footer className="footer-container" style={{
-        backgroundColor: 'var(--kaia-green)',
-        borderTop: '1px solid rgba(255,255,255,0.08)',
-        textAlign: 'center',
-        color: '#fff'
-      }}>
-        <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: '2rem', color: 'var(--kaia-gold)', marginBottom: '16px' }}>
-          KAÏA SUN
-        </h2>
-        <p style={{ color: 'rgba(255,255,255,0.65)', marginBottom: '32px', maxWidth: '360px', margin: '0 auto 32px', fontSize: '0.9rem' }}>
-          Contactez-nous pour toute demande de réservation anticipée.
+      {/* FOOTER */}
+      <footer style={{ backgroundColor: 'var(--kaia-green)', padding: '80px 40px', textAlign: 'center', color: '#fff' }}>
+        <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--kaia-gold)', marginBottom: '16px' }}>Réservation Anticipée</p>
+        <p style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: '#fff', marginBottom: '8px', fontWeight: 400 }}>
+          Soyez parmi les premiers à découvrir la collection.
         </p>
-        <div className="social-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-            border: '1px solid rgba(255,255,255,0.4)', borderRadius: '4px',
-            padding: '12px 20px', color: '#fff', textDecoration: 'none',
-            fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase'
-          }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-            </svg>
-            WhatsApp
-          </a>
-          <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-            border: '1px solid rgba(255,255,255,0.4)', borderRadius: '4px',
-            padding: '12px 20px', color: '#fff', textDecoration: 'none',
-            fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase'
-          }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-            </svg>
-            Instagram
-          </a>
+        <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.88rem', marginBottom: '40px' }}>Rejoignez la liste d'attente — disponible en exclusivité.</p>
+        <div className="lp-footer-btns" style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '64px' }}>
+          {[
+            { href: 'https://wa.me/221770000000?text=Bonjour, je souhaite réserver une paire Kaïa Sun !', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>, label: 'Réserver sur WhatsApp' },
+            { href: 'https://instagram.com/kaiasun', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>, label: 'Suivre sur Instagram' },
+          ].map(btn => (
+            <a key={btn.label} href={btn.href} target="_blank" rel="noopener noreferrer" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '10px',
+              border: '1px solid rgba(255,255,255,0.3)', borderRadius: '3px',
+              padding: '14px 24px', color: '#fff', textDecoration: 'none',
+              fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase'
+            }}
+            onMouseOver={e => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'}
+            onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+            >{btn.icon}{btn.label}</a>
+          ))}
         </div>
-        <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.72rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+        <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', color: 'var(--kaia-gold)', letterSpacing: '0.08em', marginBottom: '8px' }}>KAÏA SUN</div>
+        <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '32px' }}>Dakar, Sénégal</div>
+        <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
           © {new Date().getFullYear()} Kaïa Sun. Tous droits réservés.
         </p>
       </footer>
