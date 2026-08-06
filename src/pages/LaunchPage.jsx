@@ -21,21 +21,50 @@ export default function LaunchPage() {
 
   return (
     <div style={{ backgroundColor: '#F9F7F2', minHeight: '100vh', fontFamily: 'Inter, sans-serif', overflowX: 'hidden' }}>
+      
+      <style>{`
+        .desktop-only { display: flex; }
+        .mobile-only { display: none; }
+        .nav-container { padding: 0 50px; }
+        .hero-section { padding: 0 60px; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+        .grid-collection { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .grid-features { grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 40px; }
+        .footer-container { padding: 60px 40px 40px; }
+        .social-buttons { flex-direction: row; }
+        .right-nav { justify-content: flex-end; }
+        
+        @media (max-width: 900px) {
+          .nav-container { padding: 0 20px; }
+          .desktop-only { display: none !important; }
+          .mobile-only { display: flex; }
+          .right-nav { justify-content: flex-end; gap: 12px !important; }
+          .hero-section { padding: 0 20px; align-items: flex-end; padding-bottom: 80px; }
+          .hero-title { font-size: 2.8rem; margin-top: auto; }
+          .grid-collection { grid-template-columns: 1fr; gap: 40px; }
+          .grid-features { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px; }
+          .footer-container { padding: 60px 20px 40px; }
+          .social-buttons { flex-direction: column; width: 100%; max-width: 250px; margin: 0 auto 48px; }
+        }
+      `}</style>
 
       {/* ─── NAVBAR ─────────────────────────────────────────── */}
-      <nav style={{
+      <nav className="nav-container" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         backgroundColor: '#F9F7F2',
         borderBottom: '1px solid rgba(0,0,0,0.06)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 50px', height: '80px'
+        height: '80px'
       }}>
-        {/* Left links */}
-        <div style={{ display: 'flex', gap: '32px', flex: 1 }}>
+        {/* Left links (Desktop) */}
+        <div className="desktop-only" style={{ gap: '32px', flex: 1 }}>
           {NAV_LINKS.map(l => (
             <span key={l} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#111', cursor: 'pointer' }}>{l}</span>
           ))}
         </div>
+        
+        {/* Left spacer (Mobile) */}
+        <div className="mobile-only" style={{ flex: 1 }}></div>
 
         {/* Center logo */}
         <div style={{ textAlign: 'center', flex: 1 }}>
@@ -44,15 +73,15 @@ export default function LaunchPage() {
         </div>
 
         {/* Right actions */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '24px', flex: 1 }}>
-          {/* WhatsApp */}
-          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="right-nav" style={{ display: 'flex', alignItems: 'center', gap: '24px', flex: 1 }}>
+          {/* WhatsApp - Desktop only */}
+          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" className="desktop-only" style={{ alignItems: 'center' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
           </a>
-          {/* Instagram */}
-          <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" title="Instagram">
+          {/* Instagram - Desktop only */}
+          <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" title="Instagram" className="desktop-only" style={{ alignItems: 'center' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -64,13 +93,14 @@ export default function LaunchPage() {
             backgroundColor: 'var(--kaia-green)',
             color: '#fff',
             border: 'none',
-            padding: '10px 20px',
+            padding: '10px 16px',
             borderRadius: '4px',
             fontSize: '0.75rem',
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            whiteSpace: 'nowrap'
           }}>
             Réserver
           </button>
@@ -78,12 +108,11 @@ export default function LaunchPage() {
       </nav>
 
       {/* ─── HERO ───────────────────────────────────────────── */}
-      <section style={{
+      <section className="hero-section" style={{
         position: 'relative',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        padding: '0 60px',
         overflow: 'hidden'
       }}>
         {/* Video Background */}
@@ -109,7 +138,14 @@ export default function LaunchPage() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)',
+          background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%)',
+          zIndex: 1
+        }}></div>
+        {/* Additional gradient for mobile bottom text */}
+        <div className="mobile-only" style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%)',
           zIndex: 1
         }}></div>
 
@@ -120,9 +156,8 @@ export default function LaunchPage() {
           maxWidth: '500px',
           marginTop: '72px' // Offset for navbar
         }}>
-          <h2 style={{
+          <h2 className="hero-title" style={{
             fontFamily: '"Playfair Display", serif',
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             fontWeight: 400,
             lineHeight: 1.15,
             color: '#fff',
@@ -167,7 +202,7 @@ export default function LaunchPage() {
       </section>
 
       {/* ─── COLLECTION ─────────────────────────────────────── */}
-      <section id="collection" style={{ padding: '80px 40px', maxWidth: '1200px', margin: '0 auto' }}>
+      <section id="collection" style={{ padding: '80px 20px', maxWidth: '1200px', margin: '0 auto' }}>
         {/* Section header */}
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '12px' }}>
@@ -183,11 +218,7 @@ export default function LaunchPage() {
         </div>
 
         {/* Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '24px'
-        }}>
+        <div className="grid-collection" style={{ display: 'grid' }}>
           {kaiaCurated.map((item) => (
             <div key={item.id} style={{
               backgroundColor: '#fff',
@@ -223,12 +254,9 @@ export default function LaunchPage() {
       </section>
 
       {/* ─── FEATURES BAR ──────────────────────────────────── */}
-      <section style={{
+      <section className="grid-features" style={{
         backgroundColor: 'var(--kaia-green)',
-        padding: '40px 40px',
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '24px',
         textAlign: 'center'
       }}>
         {[
@@ -245,10 +273,9 @@ export default function LaunchPage() {
       </section>
 
       {/* ─── FOOTER ─────────────────────────────────────────── */}
-      <footer style={{
+      <footer className="footer-container" style={{
         backgroundColor: 'var(--kaia-green)',
         borderTop: '1px solid rgba(255,255,255,0.08)',
-        padding: '60px 40px 40px',
         textAlign: 'center',
         color: '#fff'
       }}>
@@ -258,25 +285,25 @@ export default function LaunchPage() {
         <p style={{ color: 'rgba(255,255,255,0.65)', marginBottom: '32px', maxWidth: '360px', margin: '0 auto 32px', fontSize: '0.9rem' }}>
           Contactez-nous pour toute demande de réservation anticipée.
         </p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '48px' }}>
+        <div className="social-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
           <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex', alignItems: 'center', gap: '8px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
             border: '1px solid rgba(255,255,255,0.4)', borderRadius: '4px',
-            padding: '10px 20px', color: '#fff', textDecoration: 'none',
+            padding: '12px 20px', color: '#fff', textDecoration: 'none',
             fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase'
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
             WhatsApp
           </a>
           <a href="https://instagram.com/kaiasun" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex', alignItems: 'center', gap: '8px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
             border: '1px solid rgba(255,255,255,0.4)', borderRadius: '4px',
-            padding: '10px 20px', color: '#fff', textDecoration: 'none',
+            padding: '12px 20px', color: '#fff', textDecoration: 'none',
             fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase'
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
