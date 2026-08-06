@@ -40,10 +40,10 @@ export const ShopProvider = ({ children }) => {
   const fetchLocationAndProducts = async () => {
     let detectedCountry = 'SN';
     try {
-      const res = await fetch('https://ipapi.co/json/');
+      const res = await fetch('https://api.country.is/');
       if (res.ok) {
         const data = await res.json();
-        if (data.country_code === 'CI') {
+        if (data.country === 'CI') {
           detectedCountry = 'CI';
         }
       }
