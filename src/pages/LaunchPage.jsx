@@ -142,28 +142,6 @@ const LaunchPage = () => {
                   onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
                 />
               </div>
-              
-              <div style={{ textAlign: 'center' }}>
-                <h4 style={{ 
-                  fontSize: '1.2rem', 
-                  marginBottom: '12px', 
-                  fontFamily: '"Playfair Display", serif',
-                  fontWeight: 500,
-                  color: 'var(--ink)'
-                }}>
-                  {product.displayName}
-                </h4>
-                
-                <span style={{ 
-                  fontSize: '0.75rem', 
-                  textTransform: 'uppercase', 
-                  letterSpacing: '0.1em',
-                  color: 'var(--kaia-gold)',
-                  fontWeight: 600
-                }}>
-                  Disponible Bientôt
-                </span>
-              </div>
             </div>
           ))}
         </div>
