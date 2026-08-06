@@ -28,28 +28,25 @@ export default function LaunchPage() {
         backgroundColor: '#F9F7F2',
         borderBottom: '1px solid rgba(0,0,0,0.06)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 40px', height: '72px'
+        padding: '0 50px', height: '80px'
       }}>
         {/* Left links */}
-        <div style={{ display: 'flex', gap: '32px' }}>
-          {NAV_LINKS.slice(0, 2).map(l => (
-            <span key={l} style={{ fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#111', cursor: 'pointer' }}>{l}</span>
+        <div style={{ display: 'flex', gap: '32px', flex: 1 }}>
+          {NAV_LINKS.map(l => (
+            <span key={l} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#111', cursor: 'pointer' }}>{l}</span>
           ))}
         </div>
 
         {/* Center logo */}
-        <div style={{ textAlign: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-          <h1 style={{ margin: 0, fontSize: '1.6rem', fontFamily: '"Playfair Display", serif', fontWeight: 600, letterSpacing: '0.06em', lineHeight: 1 }}>KAÏA SUN</h1>
-          <p style={{ margin: '4px 0 0', fontSize: '0.65rem', color: 'var(--kaia-gold)', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600 }}>Dakar, Sénégal</p>
+        <div style={{ textAlign: 'center', flex: 1 }}>
+          <h1 style={{ margin: 0, fontSize: '1.8rem', fontFamily: '"Playfair Display", serif', fontWeight: 600, letterSpacing: '0.06em', lineHeight: 1 }}>KAÏA SUN</h1>
+          <p style={{ margin: '6px 0 0', fontSize: '0.65rem', color: 'var(--kaia-gold)', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600 }}>Dakar, Sénégal</p>
         </div>
 
         {/* Right actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          {NAV_LINKS.slice(2).map(l => (
-            <span key={l} style={{ fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#111', cursor: 'pointer', display: 'none' }}>{l}</span>
-          ))}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '24px', flex: 1 }}>
           {/* WhatsApp */}
-          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+          <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" style={{ display: 'flex', alignItems: 'center' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
