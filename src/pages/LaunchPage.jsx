@@ -125,9 +125,8 @@ export default function LaunchPage() {
             fontWeight: 400, lineHeight: 1.2, color: '#111', marginBottom: '28px'
           }}>Façonnée à l'image de chacun</h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, minHeight: '480px' }}>
+        <div style={{ minHeight: '480px', overflow: 'hidden' }}>
           <img src="/images/histoire_chatgpt.png" alt="Ambiance Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <img src="/images/hderoapp.png" alt="Packaging Kaïa Sun" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center' }} />
         </div>
       </section>
 
