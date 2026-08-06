@@ -38,37 +38,68 @@ const LaunchPage = () => {
         </p>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section - Fullscreen Video */}
       <section style={{
-        padding: '80px 20px',
-        textAlign: 'center',
-        position: 'relative'
+        position: 'relative',
+        height: '90vh',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0, left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0
+          }}
+        >
+          <source src="/images/hero_video.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)',
+          zIndex: 1
+        }}></div>
+
+        {/* Hero text */}
+        <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 20px' }}>
           <h2 style={{ 
-            fontSize: '3.5rem', 
+            fontSize: 'clamp(2.5rem, 6vw, 5rem)', 
             fontFamily: '"Playfair Display", serif',
             fontWeight: 400,
-            lineHeight: 1.2,
-            color: 'var(--ink)',
-            marginBottom: '32px'
+            lineHeight: 1.15,
+            color: '#fff',
+            marginBottom: '24px',
+            textShadow: '0 2px 20px rgba(0,0,0,0.3)'
           }}>
-            L'élégance à la sénégalaise, <br />
+            L'élégance à la sénégalaise,<br />
             <span style={{ fontStyle: 'italic', color: 'var(--kaia-gold)' }}>très bientôt.</span>
           </h2>
           <p style={{ 
-            fontSize: '1.1rem', 
-            color: 'var(--ink-soft)', 
+            fontSize: '1.05rem', 
+            color: 'rgba(255,255,255,0.85)', 
             lineHeight: 1.8, 
-            marginBottom: '40px',
-            maxWidth: '500px',
-            margin: '0 auto 40px'
+            maxWidth: '480px',
+            margin: '0 auto'
           }}>
-            Découvrez en avant-première nos modèles de lunettes premium. 
+            Découvrez en avant-première nos modèles de lunettes premium.<br />
             La collection officielle sera disponible prochainement.
           </p>
         </div>
       </section>
+
 
       {/* Collection Grid */}
       <section style={{ padding: '40px 40px 100px', maxWidth: '1400px', margin: '0 auto' }}>
