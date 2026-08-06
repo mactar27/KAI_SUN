@@ -34,14 +34,14 @@ export default function LaunchPage() {
         }
       `}</style>
 
-      {/* NAVBAR */}
+      {/* ─── NAVBAR ─────────────────────────────────────────── */}
       <nav className="lp-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         backgroundColor: '#F5F0E8', borderBottom: '1px solid rgba(0,0,0,0.08)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px'
       }}>
-        {/* Left spacer */}
-        <div style={{ flex: 1 }} />
+        {/* Left spacer for centering */}
+        <div style={{ flex: 1 }}></div>
 
         {/* Center logo */}
         <div style={{ textAlign: 'center', flex: 1 }}>
@@ -50,7 +50,7 @@ export default function LaunchPage() {
         </div>
 
         {/* Right actions */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '20px', flex: 1 }}>
+        <div className="lp-nav-right" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '20px', flex: 1 }}>
           <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', color: '#333' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
