@@ -21,6 +21,8 @@ export default function LaunchPage() {
         .lp-logo-text { font-family: "Playfair Display", serif; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.05em; color: #111; line-height: 1; }
         .lp-logo-sub { font-size: 0.6rem; color: var(--kaia-gold); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 5px; font-weight: 600; white-space: nowrap; }
         .lp-hero-bg { object-position: center; }
+        .lp-hero-overlay { background: linear-gradient(to right, rgba(10,18,14,0.78) 0%, rgba(10,18,14,0.4) 50%, rgba(10,18,14,0) 80%); }
+        .lp-hero-section { align-items: center; }
         
         @media (max-width: 900px) {
           .lp-nav { padding: 0 16px; }
@@ -34,8 +36,10 @@ export default function LaunchPage() {
           .lp-col-right { grid-template-columns: repeat(3, 1fr) !important; }
           .lp-collection-text { padding: 48px 24px !important; }
           .lp-histoire-text { padding: 48px 24px !important; }
-          .lp-hero-text { padding: 40px 24px !important; margin-bottom: 180px !important; }
-          .lp-hero-bg { object-position: 75% center !important; }
+          .lp-hero-section { align-items: flex-start !important; padding-top: 40px !important; }
+          .lp-hero-text { padding: 40px 24px !important; margin-bottom: 0 !important; }
+          .lp-hero-bg { object-position: 85% center !important; }
+          .lp-hero-overlay { background: linear-gradient(to bottom, rgba(10,18,14,0.85) 0%, rgba(10,18,14,0.7) 40%, rgba(10,18,14,0.2) 100%) !important; }
           .lp-footer-btns { flex-direction: column !important; align-items: stretch !important; }
           .lp-footer-btns a { justify-content: center !important; }
         }
@@ -71,8 +75,8 @@ export default function LaunchPage() {
       </nav>
 
       {/* HERO */}
-      <section style={{
-        position: 'relative', display: 'flex', alignItems: 'center',
+      <section className="lp-hero-section" style={{
+        position: 'relative', display: 'flex',
         minHeight: '90vh', overflow: 'hidden', marginTop: '72px'
       }}>
         <img
@@ -81,9 +85,8 @@ export default function LaunchPage() {
           className="lp-hero-bg"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, rgba(10,18,14,0.78) 0%, rgba(10,18,14,0.4) 50%, rgba(10,18,14,0) 80%)'
+        <div className="lp-hero-overlay" style={{
+          position: 'absolute', inset: 0
         }} />
         <div className="lp-hero-text" style={{ position: 'relative', zIndex: 2, padding: '80px 60px', maxWidth: '560px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
