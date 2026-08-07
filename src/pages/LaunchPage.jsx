@@ -21,7 +21,7 @@ export default function LaunchPage() {
         .lp-logo-text { font-family: "Playfair Display", serif; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.05em; color: #111; line-height: 1; }
         .lp-logo-sub { font-size: 0.6rem; color: var(--kaia-gold); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 5px; font-weight: 600; white-space: nowrap; }
         .lp-hero-bg { object-position: center; }
-        .lp-hero-overlay { background: linear-gradient(to right, rgba(10,18,14,0.65) 0%, rgba(10,18,14,0.3) 50%, rgba(10,18,14,0) 80%); }
+        .lp-hero-overlay { background: linear-gradient(to right, rgba(245,240,232,0.85) 0%, rgba(245,240,232,0.4) 50%, rgba(245,240,232,0) 80%); }
         .lp-hero-section { align-items: center; }
         
         @media (max-width: 900px) {
@@ -39,7 +39,7 @@ export default function LaunchPage() {
           .lp-hero-section { align-items: flex-start !important; padding-top: 40px !important; }
           .lp-hero-text { padding: 40px 24px !important; margin-bottom: 0 !important; }
           .lp-hero-bg { object-position: 85% center !important; }
-          .lp-hero-overlay { background: linear-gradient(to bottom, rgba(10,18,14,0.6) 0%, rgba(10,18,14,0.3) 40%, rgba(10,18,14,0) 100%) !important; }
+          .lp-hero-overlay { background: linear-gradient(to bottom, rgba(245,240,232,0.8) 0%, rgba(245,240,232,0.5) 40%, rgba(245,240,232,0) 100%) !important; }
           .lp-footer-btns { flex-direction: column !important; align-items: stretch !important; }
           .lp-footer-btns a { justify-content: center !important; }
         }
@@ -90,16 +90,16 @@ export default function LaunchPage() {
         }} />
         <div className="lp-hero-text" style={{ position: 'relative', zIndex: 2, padding: '80px 60px', maxWidth: '560px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-            <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--kaia-gold)' }}>Nouvelle Collection</span>
-            <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--kaia-gold)', opacity: 0.6 }} />
+            <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#111' }}>Nouvelle Collection</span>
+            <div style={{ width: '40px', height: '1px', backgroundColor: '#111', opacity: 0.6 }} />
           </div>
           <h1 style={{
             fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2.4rem, 5vw, 4rem)',
-            fontWeight: 400, lineHeight: 1.15, color: '#fff', marginBottom: '20px'
+            fontWeight: 400, lineHeight: 1.15, color: '#111', marginBottom: '20px'
           }}>
-            <em style={{ color: 'var(--kaia-gold)', fontStyle: 'italic' }}>L'élégance commence par le regard</em>
+            <em style={{ color: 'var(--kaia-green)', fontStyle: 'italic' }}>L'élégance commence par le regard</em>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '36px', maxWidth: '380px' }}>
+          <p style={{ color: '#444', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: '36px', maxWidth: '380px' }}>
             Découvrez en avant-première nos lunettes premium.<br />La collection officielle sera disponible prochainement.
           </p>
           <button onClick={scrollToCollection} style={{
