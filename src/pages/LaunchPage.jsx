@@ -34,7 +34,7 @@ export default function LaunchPage() {
           .lp-col-right { grid-template-columns: repeat(3, 1fr) !important; }
           .lp-collection-text { padding: 48px 24px !important; }
           .lp-histoire-text { padding: 48px 24px !important; }
-          .lp-hero-text { padding: 40px 24px !important; }
+          .lp-hero-text { padding: 40px 24px !important; margin-bottom: 180px !important; }
           .lp-hero-bg { object-position: 75% center !important; }
           .lp-footer-btns { flex-direction: column !important; align-items: stretch !important; }
           .lp-footer-btns a { justify-content: center !important; }
