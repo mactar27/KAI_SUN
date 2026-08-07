@@ -9,7 +9,6 @@ export default function LaunchPage() {
 
   return (
     <div style={{ backgroundColor: '#F5F0E8', minHeight: '100vh', fontFamily: 'Inter, sans-serif', overflowX: 'hidden' }}>
-
       <style>{`
         * { box-sizing: border-box; }
         .lp-nav { padding: 0 48px; }
@@ -21,6 +20,7 @@ export default function LaunchPage() {
         .lp-footer-btns { flex-direction: row; }
         .lp-logo-text { font-family: "Playfair Display", serif; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.05em; color: #111; line-height: 1; }
         .lp-logo-sub { font-size: 0.6rem; color: var(--kaia-gold); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 5px; font-weight: 600; white-space: nowrap; }
+        .lp-hero-bg { object-position: center; }
         
         @media (max-width: 900px) {
           .lp-nav { padding: 0 16px; }
@@ -35,6 +35,7 @@ export default function LaunchPage() {
           .lp-collection-text { padding: 48px 24px !important; }
           .lp-histoire-text { padding: 48px 24px !important; }
           .lp-hero-text { padding: 40px 24px !important; }
+          .lp-hero-bg { object-position: 75% center !important; }
           .lp-footer-btns { flex-direction: column !important; align-items: stretch !important; }
           .lp-footer-btns a { justify-content: center !important; }
         }
@@ -60,7 +61,6 @@ export default function LaunchPage() {
           <a href="https://wa.me/221770000000" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', color: '#333' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
-
           <button onClick={scrollToCollection} style={{
             backgroundColor: 'var(--kaia-green)', color: '#fff', border: 'none',
             padding: '10px 18px', fontSize: '0.7rem', fontWeight: 700,
@@ -78,6 +78,7 @@ export default function LaunchPage() {
         <img
           src="/images/hderoapp.png"
           alt="Lunettes Kaïa Sun dans leur étui"
+          className="lp-hero-bg"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
         <div style={{
