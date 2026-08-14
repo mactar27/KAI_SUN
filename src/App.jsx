@@ -21,12 +21,24 @@ import ContactFAQ from './pages/ContactFAQ';
 import LaunchPage from './pages/LaunchPage';
 
 const IS_UNDER_CONSTRUCTION = true; // Toggle this to false to reveal the site
+const PREVIEW_SECRET = 'kaiasun2026'; // Code secret pour accès client
 
 function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
 
-  if (IS_UNDER_CONSTRUCTION && !isAdmin) {
+  // Vérifier si le code secret est dans l'URL
+  const params = new URLSearchParams(location.search);
+  const previewParam = params.get('preview');
+
+  if (previewParam === PREVIEW_SECRET) {
+    // Mémoriser l'accès dans le navigateur
+    localStorage.setItem('kaïasun_preview', PREVIEW_SECRET);
+  }
+
+  const hasPreviewAccess = localStorage.getItem('kaïasun_preview') === PREVIEW_SECRET;
+
+  if (IS_UNDER_CONSTRUCTION && !isAdmin && !hasPreviewAccess) {
     return <LaunchPage />;
   }
 
