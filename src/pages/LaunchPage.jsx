@@ -56,8 +56,7 @@ export default function LaunchPage() {
 
         {/* Center logo */}
         <div style={{ textAlign: 'center', flex: 1, minWidth: '130px' }}>
-          <div className="lp-logo-text">KAÏA SUN</div>
-          <div className="lp-logo-sub">Dakar, Sénégal</div>
+          <img src="/images/kaia_logo.png" alt="KAÏA SUNGLASSES" style={{ height: '38px', width: 'auto', filter: 'brightness(0)' }} />
         </div>
 
         {/* Right actions */}
@@ -221,7 +220,7 @@ export default function LaunchPage() {
             >{s.icon}</a>
           ))}
         </div>
-        <div style={{ fontFamily: '"Bodoni Moda", serif', fontWeight: 400, fontSize: '1.6rem', color: 'var(--kaia-gold)', letterSpacing: '0.18em', lineHeight: 0.9, marginBottom: '4px' }}>KAÏA SUN</div>
+        <img src="/images/kaia_logo.png" alt="KAÏA SUNGLASSES" style={{ height: '48px', width: 'auto', filter: 'brightness(0) invert(1)', opacity: 0.85, marginBottom: '6px' }} />
         <div style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.55em', textTransform: 'uppercase', marginBottom: '32px', fontWeight: 300 }}>Dakar, Sénégal</div>
         <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
           © {new Date().getFullYear()} Kaïa Sun. Tous droits réservés.

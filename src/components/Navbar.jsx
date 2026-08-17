@@ -46,7 +46,16 @@ const Navbar = () => {
       <nav id="nav" style={{ '--nav-color': navColor, top: '35px' }}>
         <div className="wrap">
           <Link to="/" className="logo">
-            KAÏA <span>SUNGLASSES</span>
+            <img
+              src="/images/kaia_logo.png"
+              alt="KAÏA SUNGLASSES"
+              style={{
+                height: '44px',
+                width: 'auto',
+                filter: isHomePage ? 'brightness(0) invert(1)' : 'brightness(0)',
+                transition: 'filter 0.3s'
+              }}
+            />
           </Link>
 
           {/* DESKTOP NAV */}
