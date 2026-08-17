@@ -47,10 +47,10 @@ const Navbar = () => {
         <div className="wrap">
           <Link to="/" className="logo">
             <img
-              src="/images/kaia_logo.png"
+              src="/kaia-logo-v3.png"
               alt="KAÏA SUNGLASSES"
               style={{
-                height: '44px',
+                height: '40px',
                 width: 'auto',
                 filter: isHomePage ? 'brightness(0) invert(1)' : 'brightness(0)',
                 transition: 'filter 0.3s'
