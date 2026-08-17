@@ -206,6 +206,21 @@ export default function LaunchPage() {
             >{btn.icon}{btn.label}</a>
           ))}
         </div>
+        {/* Réseaux sociaux */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '48px' }}>
+          {[
+            { href: 'https://www.instagram.com/kai_asun?igsh=MjdkcDUyZHA5ZGtp', label: 'Instagram', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> },
+            { href: 'https://www.facebook.com/share/198aD3athe/?mibextid=wwXIfr', label: 'Facebook', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> },
+            { href: 'https://snapchat.com/t/v4l6U8Ka', label: 'Snapchat', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C8.5 2 6 4.5 6 8v1.5c-.8.2-1.5.8-1.5 1.5 0 .6.4 1.1 1 1.4-.3.8-.8 1.5-1.5 2.1-.3.3-.3.7 0 1 .5.5 1.8.8 3 .5.3.5.8.9 1.5.9.4 0 .8-.1 1.2-.2.3.1.6.2 1 .2.4 0 .7-.1 1-.2.4.1.8.2 1.2.2.7 0 1.2-.4 1.5-.9 1.2.3 2.5 0 3-.5.3-.3.3-.7 0-1-.7-.6-1.2-1.3-1.5-2.1.6-.3 1-.8 1-1.4 0-.7-.7-1.3-1.5-1.5V8c0-3.5-2.5-6-6-6z"/></svg> },
+          ].map(s => (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+              title={s.label}
+              style={{ color: 'rgba(255,255,255,0.55)', transition: 'color 0.2s' }}
+              onMouseOver={e => e.currentTarget.style.color = 'var(--kaia-gold)'}
+              onMouseOut={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
+            >{s.icon}</a>
+          ))}
+        </div>
         <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', color: 'var(--kaia-gold)', letterSpacing: '0.08em', marginBottom: '8px' }}>KAÏA SUN</div>
         <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '32px' }}>Dakar, Sénégal</div>
         <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
