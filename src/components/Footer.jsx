@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="wrap foot-grid">
         <div className="foot-col">
           <div className="logo">
-            <img src="/kaia-logo-v3.png" alt="KAÏA SUNGLASSES" style={{ height: '36px', width: 'auto', filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
+            <img src="/images/kaia_logo.png" alt="KAÏA SUNGLASSES" style={{ height: '36px', width: 'auto', filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
           </div>
           <p className="foot-tagline">Lunettes de soleil pour la lumière franche de Dakar. Qualité premium, design intemporel.</p>
           <div style={{ marginTop: 'auto' }}>
