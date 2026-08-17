@@ -291,9 +291,7 @@ const Home = () => {
       <section id="histoire" style={{ padding: '100px 20px', background: 'var(--kaia-cream)' }}>
         <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '40px', alignItems: 'center' }}>
           <div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', color: 'var(--kaia-green)', lineHeight: 1.1 }}>
-              KAÏA SUN
-            </h2>
+            <img src="/images/kaia_logo.png" alt="KAÏA SUNGLASSES" style={{ height: '52px', width: 'auto', filter: 'brightness(0) sepia(1) saturate(3) hue-rotate(120deg) brightness(0.3)' }} />
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.2em', color: 'var(--kaia-gold)', marginTop: '8px', textTransform: 'uppercase' }}>
               HISTOIRE
             </div>
