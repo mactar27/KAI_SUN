@@ -7,7 +7,7 @@ const OrdersTab = ({ orders, loadingOrders, updateOrderStatus, deleteAllOrders, 
     const phone = (order.deliveryInfo?.phone || '').replace(/[^0-9]/g, '');
     const cleanPhone = phone.startsWith('221') ? phone : '221' + phone;
     const fullName = `${order.deliveryInfo?.prenom || ''} ${order.deliveryInfo?.nom || ''}`.trim() || 'Client';
-    const msg = encodeURIComponent(`Bonjour ${fullName},\n\nNous avons bien reçu votre commande chez KAIA SUN d'un montant de ${order.total} FCFA.\nVotre commande est en cours de traitement. N'hésitez pas si vous avez des questions !`);
+    const msg = encodeURIComponent(`Bonjour ${fullName},\n\nNous avons bien reçu votre commande chez KA\u00cfA SUN d'un montant de ${order.total} FCFA.\nVotre commande est en cours de traitement. N'hésitez pas si vous avez des questions !`);
     return `https://wa.me/${cleanPhone}?text=${msg}`;
   };
 
