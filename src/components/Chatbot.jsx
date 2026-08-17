@@ -61,24 +61,14 @@ const Chatbot = () => {
         onClick={() => setIsOpen(true)}
         style={{ display: isOpen ? 'none' : 'flex' }}
       >
-        <div style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: '14px',
-          color: 'var(--kaia-green)',
-          lineHeight: 0.8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginTop: '-4px'
-        }}>
-          KAÏA
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+          <img src="/images/kaia_logo.png" alt="KAÏA" style={{ height: '22px', width: 'auto', filter: 'brightness(0)', opacity: 0.85 }} />
           <span style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: '5px',
             fontWeight: 700,
             letterSpacing: '0.4em',
             color: 'var(--kaia-gold)',
-            marginTop: '4px',
             marginLeft: '2px'
           }}>ASSISTANT</span>
         </div>
@@ -96,26 +86,15 @@ const Chatbot = () => {
             justifyContent: 'space-between',
             borderBottom: '1px solid rgba(0,0,0,0.05)'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: '24px',
-                color: 'var(--kaia-green)',
-                lineHeight: 0.8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start'
-              }}>
-                KAÏA
-                <span style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '7px',
-                  fontWeight: 600,
-                  letterSpacing: '0.4em',
-                  color: 'var(--kaia-gold)',
-                  marginTop: '6px'
-                }}>ASSISTANT</span>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <img src="/images/kaia_logo.png" alt="KAÏA SUNGLASSES" style={{ height: '28px', width: 'auto', filter: 'brightness(0)' }} />
+              <span style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '7px',
+                fontWeight: 600,
+                letterSpacing: '0.4em',
+                color: 'var(--kaia-gold)'
+              }}>ASSISTANT</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
