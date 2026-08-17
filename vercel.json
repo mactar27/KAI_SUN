@@ -6,7 +6,7 @@
       "destination": "/api/index.js"
     },
     {
-      "source": "/((?!api|images|icons|fonts|.*\\.(png|jpg|jpeg|gif|svg|webp|ico|css|js|woff|woff2|ttf|mp4|webm|mov)).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
