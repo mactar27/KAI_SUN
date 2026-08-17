@@ -62,7 +62,7 @@ const Chatbot = () => {
         style={{ display: isOpen ? 'none' : 'flex' }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-          <img src="/images/kaia_logo.png" alt="KAÏA" style={{ height: '22px', width: 'auto', filter: 'brightness(0)', opacity: 0.85 }} />
+          <img src="/kaia-logo-v3.png" alt="KAÏA" style={{ height: '24px', width: 'auto', filter: 'brightness(0)', opacity: 0.85 }} />
           <span style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: '5px',
@@ -87,7 +87,7 @@ const Chatbot = () => {
             borderBottom: '1px solid rgba(0,0,0,0.05)'
           }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <img src="/images/kaia_logo.png" alt="KAÏA SUNGLASSES" style={{ height: '28px', width: 'auto', filter: 'brightness(0)' }} />
+              <img src="/kaia-logo-v3.png" alt="KAÏA SUNGLASSES" style={{ height: '32px', width: 'auto', filter: 'brightness(0)' }} />
               <span style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: '7px',
