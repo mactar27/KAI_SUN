@@ -288,11 +288,9 @@ const Admin = () => {
       <div className={`admin-sidebar ${mobileMenuOpen ? 'open' : ''}`}>
         {/* Logo */}
         <div style={{ padding: '32px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 900, letterSpacing: '2px', color: '#D4AF37', textTransform: 'uppercase' }}>
-              KAÏA
-            </h2>
-            <div style={{ fontSize: '0.65rem', letterSpacing: '4px', marginTop: '4px', color: '#888' }}>SUNGLASSES</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img src="/kaia-logo-v3.png" alt="KAÏA" style={{ height: '32px', width: 'auto', filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
+            <div style={{ fontSize: '0.65rem', letterSpacing: '4px', color: '#D4AF37', fontWeight: 600 }}>ADMIN</div>
           </div>
           <button className="mobile-menu-btn" style={{ color: '#fff', marginLeft: 0 }} onClick={() => setMobileMenuOpen(false)}>
             <X size={24} />
@@ -331,8 +329,8 @@ const Admin = () => {
         {/* User Profile */}
         <div style={{ padding: '24px 16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', padding: '0 8px' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#333', color: '#D4AF37', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.9rem' }}>
-              KA
+            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <img src="/kaia-logo-v3.png" alt="K" style={{ height: '20px', width: 'auto', filter: 'brightness(0) invert(1) opacity(0.8)' }} />
             </div>
             <div>
               <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>KAÏA SUN</div>
