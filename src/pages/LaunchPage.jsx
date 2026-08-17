@@ -18,8 +18,8 @@ export default function LaunchPage() {
         .lp-collection { grid-template-columns: 1fr 2fr; }
         .lp-col-right { grid-template-columns: repeat(3, 1fr); }
         .lp-footer-btns { flex-direction: row; }
-        .lp-logo-text { font-family: "Playfair Display", serif; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.05em; color: #111; line-height: 1; }
-        .lp-logo-sub { font-size: 0.6rem; color: var(--kaia-gold); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 5px; font-weight: 600; white-space: nowrap; }
+        .lp-logo-text { font-family: "Bodoni Moda", serif; font-size: 1.8rem; font-weight: 400; letter-spacing: 0.18em; color: #111; line-height: 0.9; }
+        .lp-logo-sub { font-family: "Montserrat", sans-serif; font-size: 0.58rem; color: var(--kaia-gold); letter-spacing: 0.55em; text-transform: uppercase; margin-top: 7px; font-weight: 300; white-space: nowrap; }
         .lp-hero-bg { object-position: center; }
         .lp-hero-overlay { background: linear-gradient(to right, rgba(245,240,232,0.85) 0%, rgba(245,240,232,0.4) 50%, rgba(245,240,232,0) 80%); }
         .lp-hero-section { align-items: center; }
@@ -221,8 +221,8 @@ export default function LaunchPage() {
             >{s.icon}</a>
           ))}
         </div>
-        <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', color: 'var(--kaia-gold)', letterSpacing: '0.08em', marginBottom: '8px' }}>KAÏA SUN</div>
-        <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '32px' }}>Dakar, Sénégal</div>
+        <div style={{ fontFamily: '"Bodoni Moda", serif', fontWeight: 400, fontSize: '1.6rem', color: 'var(--kaia-gold)', letterSpacing: '0.18em', lineHeight: 0.9, marginBottom: '4px' }}>KAÏA SUN</div>
+        <div style={{ fontFamily: '"Montserrat", sans-serif', fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.55em', textTransform: 'uppercase', marginBottom: '32px', fontWeight: 300 }}>Dakar, Sénégal</div>
         <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
           © {new Date().getFullYear()} Kaïa Sun. Tous droits réservés.
         </p>

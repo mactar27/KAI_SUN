@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Montserrat:wght@200;300;400&display=swap');
   :root{
     --bg:#FFFFFF;
     --surface:#FFFFFF;
@@ -58,8 +58,8 @@
   /* ---------- NAV ---------- */
   nav{position:absolute;top:0;left:0;right:0;z-index:100;padding:24px 0;background:transparent;border-bottom:none;}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .logo{font-family:'Playfair Display',serif;font-weight:400;font-size:42px;letter-spacing:0.15em;color:var(--nav-color, #3a4a35);line-height:0.8;display:flex;flex-direction:column;align-items:center;margin-left: -4px;}
-  .logo span{font-family:'Inter',sans-serif;font-size:7px;font-weight:600;letter-spacing:0.6em;color:var(--nav-color, #3a4a35);margin-top:8px;margin-left:8px;}
+  .logo{font-family:'Bodoni Moda',serif;font-weight:400;font-size:42px;letter-spacing:0.18em;color:var(--nav-color, #3a4a35);line-height:0.85;display:flex;flex-direction:column;align-items:center;margin-left:-4px;}
+  .logo span{font-family:'Montserrat',sans-serif;font-size:7px;font-weight:300;letter-spacing:0.62em;color:var(--nav-color, #3a4a35);margin-top:9px;margin-left:4px;text-transform:uppercase;}
   .nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;color:var(--nav-color, #3a4a35);text-transform:uppercase;letter-spacing:0.08em;}
   .nav-links a{transition:opacity .2s;}
   .nav-links a:hover{opacity:.6;}
@@ -358,8 +358,8 @@
   @media(max-width:800px){.foot-grid{grid-template-columns:1fr 1fr;}}
   @media(max-width:480px){.foot-grid{grid-template-columns:1fr;}}
   .foot-col{display:flex;flex-direction:column;gap:12px;}
-  footer .logo{font-family:'Playfair Display',serif;font-size:22px;text-transform:uppercase;}
-  footer .logo span{color:var(--kaia-gold);-webkit-text-stroke:0;}
+  footer .logo{font-family:'Bodoni Moda',serif;font-size:22px;letter-spacing:0.18em;}
+  footer .logo span{font-family:'Montserrat',sans-serif;font-weight:300;letter-spacing:0.62em;color:rgba(255,255,255,0.7);-webkit-text-stroke:0;}
   .foot-tagline{font-size:13.5px;color:#B9B6AC;max-width:220px;margin-top:4px;}
   .foot-rating{font-size:13px;font-weight:500;color:#fff;letter-spacing:0.02em;}
   .foot-heading{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:2px;}
